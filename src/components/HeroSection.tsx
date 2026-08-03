@@ -18,6 +18,7 @@ export function HeroSection() {
       <video
         className="absolute inset-0 h-full w-full object-cover"
         src="/hero-flight.mp4"
+        poster="/hero-fallback.jpg"
         autoPlay
         muted
         loop

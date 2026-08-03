@@ -16,6 +16,7 @@ export function AboutSection() {
             <video
               className="aspect-[4/5] w-full object-cover"
               src="/about-airport.mp4"
+              poster="/about-fallback.jpg"
               autoPlay
               muted
               loop
