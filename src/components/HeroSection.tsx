@@ -1,6 +1,38 @@
 import { useState, useEffect } from "react";
 
 const title = "Mani Abroad Consultancy";
+const subtext = "Study / Work / Migrate";
+const description = "Your journey beyond borders, guided end to end — from choosing the right country to boarding the flight with confidence.";
+
+function renderLetterByLetter(
+  text: string,
+  baseDelay: number,
+  charStagger: number,
+  animateClass: string,
+  videoPlaying: boolean
+) {
+  let charIndex = 0;
+  return text.split(" ").map((word, wi) => {
+    const wordChars = word.split("");
+    return (
+      <span key={wi} className="mr-[0.24em] inline-block whitespace-nowrap">
+        {wordChars.map((ch, ci) => {
+          const delay = baseDelay + charIndex * charStagger;
+          charIndex++;
+          return (
+            <span
+              key={ci}
+              className={`${videoPlaying ? animateClass : "opacity-0"} inline-block`}
+              style={{ animationDelay: `${delay}s` }}
+            >
+              {ch}
+            </span>
+          );
+        })}
+      </span>
+    );
+  });
+}
 
 export function HeroSection() {
   const [videoPlaying, setVideoPlaying] = useState(false);
@@ -30,27 +62,12 @@ export function HeroSection() {
       <div className="absolute inset-0" style={{ background: "linear-gradient(to top, var(--ink), transparent 55%)" }} />
 
       <div className="relative mx-auto w-full max-w-7xl px-6 pt-28">
-        <p 
-          className={`${videoPlaying ? "animate-fade-rise" : "opacity-0"} text-[0.7rem] uppercase tracking-[0.42em] text-gold`}
-          style={{ animationDelay: "0.4s" }}
-        >
-          Study &nbsp;/&nbsp; Work &nbsp;/&nbsp; Migrate
+        <p className="text-[0.7rem] uppercase tracking-[0.42em] text-gold">
+          {renderLetterByLetter(subtext, 0.4, 0.03, "animate-letter-in", videoPlaying)}
         </p>
 
         <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.05] text-sky-400 sm:text-7xl lg:text-8xl">
-          {title.split(" ").map((word, wi) => (
-            <span key={wi} className="mr-[0.28em] inline-block whitespace-nowrap">
-              {word.split("").map((ch, ci) => (
-                <span
-                  key={ci}
-                  className={`${videoPlaying ? "animate-letter-in" : "opacity-0"} inline-block`}
-                  style={{ animationDelay: `${0.8 + wi * 0.22 + ci * 0.045}s` }}
-                >
-                  {ch}
-                </span>
-              ))}
-            </span>
-          ))}
+          {renderLetterByLetter(title, 0.8, 0.035, "animate-letter-in", videoPlaying)}
         </h1>
 
         <div 
@@ -58,17 +75,13 @@ export function HeroSection() {
           style={{ background: "var(--gradient-gold)", animationDelay: "2.0s" }} 
         />
 
-        <p
-          className={`${videoPlaying ? "animate-fade-rise" : "opacity-0"} mt-8 max-w-xl text-base leading-relaxed text-primary-foreground/75`}
-          style={{ animationDelay: "2.4s" }}
-        >
-          Your journey beyond borders, guided end to end — from choosing the right
-          country to boarding the flight with confidence.
+        <p className="mt-8 max-w-xl text-base leading-relaxed text-primary-foreground/75">
+          {renderLetterByLetter(description, 2.2, 0.012, "animate-letter-in", videoPlaying)}
         </p>
 
         <div 
           className={`${videoPlaying ? "animate-fade-rise" : "opacity-0"} mt-10 flex flex-wrap gap-4 pb-24`} 
-          style={{ animationDelay: "2.8s" }}
+          style={{ animationDelay: "3.6s" }}
         >
           <a
             href="#contact"
