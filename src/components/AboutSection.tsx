@@ -1,5 +1,6 @@
 import { Eye, Target, GraduationCap, Globe, Sparkles, Briefcase, FileText } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
+import { InteractiveGlobe } from "./InteractiveGlobe";
 
 const stats = [
   { value: "12+", label: "Years guiding travellers" },
@@ -30,68 +31,56 @@ export function AboutSection() {
             `}} />
 
             <div
-              className="overflow-hidden rounded-[2rem] border border-border"
-              style={{ boxShadow: "var(--shadow-premium)" }}
+              className="overflow-hidden rounded-[2rem] border border-[var(--gold)]/25 bg-[#060a15]"
+              style={{ boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 40px rgba(224, 183, 109, 0.08)" }}
             >
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#060a15] group/globe flex items-center justify-center">
                 
-                {/* Rotating Globe Video Background */}
-                <video
-                  className="absolute inset-0 h-full w-full object-cover opacity-75 mix-blend-screen"
-                  src="/about-globe.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  aria-hidden="true"
-                />
-                
-                {/* Radial gold gradient back glow */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(224,183,109,0.12)_0%,transparent_75%)] pointer-events-none" />
-                
-                {/* Dark overlay blend */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060a15]/90 via-transparent to-[#060a15]/20 pointer-events-none" />
+                {/* Interactive 3D Holographic Globe Component */}
+                <div className="absolute inset-0 w-full h-full">
+                  <InteractiveGlobe />
+                </div>
 
                 {/* Floating Thematic Badges */}
                 {/* Badge 1: University Admissions & Cap */}
                 <div 
-                  className="absolute top-8 left-6 flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-[#0c1224]/85 border border-[var(--gold)]/20 backdrop-blur-md shadow-lg"
+                  className="absolute top-8 left-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]"
                   style={{ animation: "float-slow 7s ease-in-out infinite" }}
                 >
-                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20">
-                    <GraduationCap className="h-4.5 w-4.5" />
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_10px_rgba(224,183,109,0.1)]">
+                    <GraduationCap className="h-5 w-5" />
                   </div>
                   <div>
-                    <span className="block text-[0.58rem] font-extrabold uppercase tracking-wider text-muted-foreground">Study Abroad</span>
-                    <span className="block text-[0.68rem] font-bold text-foreground mt-0.5">Admissions & Visas</span>
+                    <span className="block text-[0.58rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">Study Abroad</span>
+                    <span className="block text-[0.72rem] font-black text-white uppercase tracking-wide mt-0.5">Admissions & Visas</span>
                   </div>
                 </div>
 
                 {/* Badge 2: Germany Opportunity Card (Migrate) */}
                 <div 
-                  className="absolute bottom-16 right-6 flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-[#0c1224]/85 border border-[var(--gold)]/20 backdrop-blur-md shadow-lg"
+                  className="absolute bottom-16 right-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]"
                   style={{ animation: "float-medium 6s ease-in-out infinite" }}
                 >
-                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20">
-                    <Briefcase className="h-4 w-4" />
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_10px_rgba(224,183,109,0.1)]">
+                    <Briefcase className="h-4.5 w-4.5" />
                   </div>
                   <div>
-                    <span className="block text-[0.58rem] font-extrabold uppercase tracking-wider text-muted-foreground">Work & Migrate</span>
-                    <span className="block text-[0.68rem] font-bold text-foreground mt-0.5">Opportunity Card Route</span>
+                    <span className="block text-[0.58rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">Work & Migrate</span>
+                    <span className="block text-[0.72rem] font-black text-white uppercase tracking-wide mt-0.5">Opportunity Card Route</span>
                   </div>
                 </div>
 
                 {/* Badge 3: World Flags Orbit */}
                 <div 
-                  className="absolute top-1/2 left-6 flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#0c1224]/75 border border-border/40 backdrop-blur-md shadow-md"
+                  className="absolute top-1/2 left-6 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0a1122]/85 border border-border/60 backdrop-blur-md shadow-md"
                   style={{ animation: "float-fast 5s ease-in-out infinite" }}
                 >
                   <div className="flex -space-x-1.5">
-                    <img src="https://flagcdn.com/w40/gb.png" className="h-3.5 w-5 rounded-sm object-cover border border-border/40" alt="UK" />
-                    <img src="https://flagcdn.com/w40/de.png" className="h-3.5 w-5 rounded-sm object-cover border border-border/40" alt="Germany" />
-                    <img src="https://flagcdn.com/w40/us.png" className="h-3.5 w-5 rounded-sm object-cover border border-border/40" alt="USA" />
+                    <img src="https://flagcdn.com/w40/gb.png" className="h-4 w-6 rounded-sm object-cover border border-border/40 shadow-sm" alt="UK" />
+                    <img src="https://flagcdn.com/w40/de.png" className="h-4 w-6 rounded-sm object-cover border border-border/40 shadow-sm" alt="Germany" />
+                    <img src="https://flagcdn.com/w40/us.png" className="h-4 w-6 rounded-sm object-cover border border-border/40 shadow-sm" alt="USA" />
                   </div>
-                  <span className="text-[0.6rem] font-bold uppercase tracking-wider text-muted-foreground">Global Visas</span>
+                  <span className="text-[0.62rem] font-extrabold uppercase tracking-widest text-white">Global Visas</span>
                 </div>
 
               </div>
