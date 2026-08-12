@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { type ReactNode } from "react";
+import { Toaster } from "../components/ui/sonner";
 
 import "../styles.css";
 
@@ -106,6 +107,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         {children}
         <Scripts />
+        <Toaster />
       </body>
     </html>
   );
