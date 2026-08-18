@@ -1,8 +1,8 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { n as toast } from "../_libs/sonner.mjs";
-import { A as ChevronRight, C as FileCheck, D as Clock, E as Compass, F as BookOpen, I as Award, M as ChevronDown, N as Calendar, O as CircleQuestionMark, P as Briefcase, S as FileText, T as DollarSign, _ as Mail, a as Tag, b as GraduationCap, c as Shield, d as Quote, f as Plane, g as MapPin, h as Menu, i as Target, j as ChevronLeft, k as CircleCheck, l as ShieldCheck, m as MessageSquare, n as User, o as Star, p as Phone, r as Trophy, s as Sparkles, t as X, u as Send, v as Headphones, w as Eye, x as Globe, y as Handshake } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BrTSHyqn.js
+import { A as ChevronRight, C as FileCheck, D as Clock, E as Compass, F as BookOpen, I as Award, L as ArrowUp, M as ChevronDown, N as Calendar, O as CircleQuestionMark, P as Briefcase, S as FileText, T as DollarSign, _ as Mail, a as Tag, b as GraduationCap, c as Shield, d as Quote, f as Plane, g as MapPin, h as Menu, i as Target, j as ChevronLeft, k as CircleCheck, l as ShieldCheck, m as MessageSquare, n as User, o as Star, p as Phone, r as Trophy, s as Sparkles, t as X, u as Send, v as Headphones, w as Eye, x as Globe, y as Handshake } from "../_libs/lucide-react.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DDDGfYNW.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var links = [
@@ -64,19 +64,22 @@ function SiteHeader() {
 					className: "flex items-center gap-3 animate-slide-right group",
 					onClick: () => setActiveLink("Home"),
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "flex h-11 w-11 items-center justify-center rounded-full bg-white p-1 overflow-hidden transition-transform duration-500 group-hover:rotate-12 shadow-[0_0_15px_rgba(224,183,109,0.3)]",
+						className: "flex h-12 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5 overflow-hidden transition-transform duration-300 group-hover:scale-105 shadow-[0_0_15px_rgba(166,106,33,0.25)]",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 							src: "/logo.png",
-							alt: "Mani Abroad Logo",
+							alt: "mcCoy Global Logo",
 							className: "h-full w-full object-contain"
 						})
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex flex-col",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "font-sans text-[1.05rem] font-bold tracking-[0.22em] text-white leading-none uppercase",
-							children: "Mani Abroad"
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+							className: "font-sans text-[1.35rem] font-extrabold tracking-[0.02em] text-white leading-none",
+							children: ["mcCoy ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-[var(--gold)] font-bold",
+								children: "Global"
+							})]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "font-sans text-[0.62rem] tracking-[0.38em] text-[var(--gold)] leading-none uppercase mt-1.5 font-medium",
+							className: "font-sans text-[0.68rem] tracking-[0.34em] text-[var(--gold)]/80 leading-none uppercase mt-1.5 font-semibold",
 							children: "Consultancy"
 						})]
 					})]
@@ -99,9 +102,8 @@ function SiteHeader() {
 					style: { animationDelay: "0.5s" },
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 						href: "#contact",
-						className: "flex items-center gap-2 rounded-lg px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#0b1224] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(224,183,109,0.4)]",
-						style: { background: "var(--gradient-gold)" },
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plane, { className: "h-3.5 w-3.5 -rotate-45" }), "Enquire Now"]
+						className: "flex items-center gap-2.5 rounded-lg border border-[var(--gold)] bg-[#0b1224] px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-105 hover:bg-[var(--gold)] hover:text-[#0b1224] hover:shadow-[0_0_20px_rgba(166,106,33,0.45)] group",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plane, { className: "h-3.5 w-3.5 -rotate-45 text-[var(--gold)] group-hover:text-[#0b1224] transition-colors" }), "Enquire Now"]
 					})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
@@ -128,9 +130,8 @@ function SiteHeader() {
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 					href: "#contact",
 					onClick: () => setMobileMenuOpen(false),
-					className: "mt-2 flex items-center justify-center gap-2 rounded-lg py-3 text-xs font-bold uppercase tracking-[0.2em] text-[#0b1224]",
-					style: { background: "var(--gradient-gold)" },
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plane, { className: "h-4 w-4 -rotate-45" }), "Enquire Now"]
+					className: "mt-2 flex items-center justify-center gap-2 rounded-lg py-3 text-xs font-bold uppercase tracking-[0.2em] text-white border border-[var(--gold)] bg-[#0b1224] hover:bg-[var(--gold)] hover:text-[#0b1224] transition-all duration-300 group",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plane, { className: "h-4 w-4 -rotate-45 text-[var(--gold)] group-hover:text-[#0b1224] transition-colors" }), "Enquire Now"]
 				})]
 			})
 		})]
@@ -164,7 +165,7 @@ function HeroSection() {
 	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 		id: "home",
-		className: "relative flex min-h-screen items-center overflow-hidden pt-28 pb-10 sm:pb-12 lg:pb-16",
+		className: "relative flex min-h-screen items-center overflow-hidden pt-28 pb-16 sm:pb-24 lg:pb-32",
 		style: { background: "linear-gradient(100deg, #060a15 0%, #060a15 35%, #0c4a6e 55%, #0284c7 75%, #38bdf8 100%)" },
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("video", {
@@ -186,6 +187,10 @@ function HeroSection() {
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "absolute inset-x-0 bottom-0 h-48 pointer-events-none z-[1]",
 				style: { background: "linear-gradient(to top, #060a15 0%, rgba(6, 10, 21, 0.4) 40%, transparent 100%)" }
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "absolute inset-0 pointer-events-none z-[1]",
+				style: { background: "linear-gradient(to right, rgba(6, 10, 21, 0.95) 0%, rgba(6, 10, 21, 0.75) 45%, rgba(6, 10, 21, 0.35) 70%, transparent 100%)" }
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 				className: "relative z-10 mx-auto w-full max-w-7xl px-6",
@@ -226,11 +231,11 @@ function HeroSection() {
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "block",
 								style: { textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" },
-								children: renderLetterByLetter("Mani Abroad", .3, .1, "animate-letter-in", videoPlaying, 0)
+								children: renderLetterByLetter("mcCoy Global", .3, .1, "animate-letter-in", videoPlaying, 0)
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "block mt-2 text-[var(--gold)] font-semibold",
 								style: { textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" },
-								children: renderLetterByLetter("Consultancy", .3, .1, "animate-letter-in", videoPlaying, 11)
+								children: renderLetterByLetter("Consultancy", .3, .1, "animate-letter-in", videoPlaying, 12)
 							})]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -246,7 +251,7 @@ function HeroSection() {
 							style: { animationDelay: "0.9s" },
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 								href: "#contact",
-								className: "flex items-center gap-2.5 rounded-lg px-8 py-4 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-[#0b1224] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(224,183,109,0.4)]",
+								className: "flex items-center gap-2.5 rounded-lg px-8 py-4 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(166,106,33,0.45)]",
 								style: { background: "var(--gradient-gold)" },
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "h-4 w-4" }), "Free Consultation"]
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
@@ -258,7 +263,7 @@ function HeroSection() {
 						})
 					]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "mt-10 w-full rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-md md:p-8 animate-slide-up opacity-0",
+					className: "mt-12 w-full rounded-2xl border border-white/10 bg-[#060a15]/65 p-6 backdrop-blur-lg md:p-8 animate-slide-up opacity-0 shadow-[0_20px_50px_rgba(0,0,0,0.4)]",
 					style: { animationDelay: "1.1s" },
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "grid gap-8 sm:grid-cols-2 lg:grid-cols-4",
@@ -270,14 +275,14 @@ function HeroSection() {
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "flex items-center gap-4",
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/20 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]",
+											className: "flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]",
 											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "h-5.5 w-5.5" })
 										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-											className: "font-sans text-[0.8rem] font-extrabold tracking-[0.15em] text-white uppercase",
+											className: "font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase",
 											children: "Global Opportunities"
 										})]
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "mt-4 text-[0.82rem] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors",
+										className: "mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors",
 										children: "Access top study, work and migration destinations worldwide."
 									})]
 								})
@@ -289,14 +294,14 @@ function HeroSection() {
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "flex items-center gap-4",
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/20 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]",
+											className: "flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]",
 											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "h-5.5 w-5.5" })
 										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-											className: "font-sans text-[0.8rem] font-extrabold tracking-[0.15em] text-white uppercase",
+											className: "font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase",
 											children: "Expert Guidance"
 										})]
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "mt-4 text-[0.82rem] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors",
+										className: "mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors",
 										children: "Personalized support from application to visa and beyond."
 									})]
 								})
@@ -308,14 +313,14 @@ function HeroSection() {
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "flex items-center gap-4",
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/20 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]",
+											className: "flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]",
 											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "h-5.5 w-5.5" })
 										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-											className: "font-sans text-[0.8rem] font-extrabold tracking-[0.15em] text-white uppercase",
+											className: "font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase",
 											children: "Trusted & Reliable"
 										})]
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "mt-4 text-[0.82rem] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors",
+										className: "mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors",
 										children: "Transparent process with ethical advice you can always count on."
 									})]
 								})
@@ -327,14 +332,14 @@ function HeroSection() {
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "flex items-center gap-4",
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/20 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]",
+											className: "flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]",
 											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Handshake, { className: "h-5.5 w-5.5" })
 										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-											className: "font-sans text-[0.8rem] font-extrabold tracking-[0.15em] text-white uppercase",
+											className: "font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase",
 											children: "End-to-End Support"
 										})]
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "mt-4 text-[0.82rem] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors",
+										className: "mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors",
 										children: "We're with you at every step of your journey, until you reach your destination."
 									})]
 								})
@@ -477,9 +482,9 @@ function InteractiveGlobe() {
 			ctx.fillStyle = bgGrad;
 			ctx.fillRect(0, 0, width, height);
 			const glowGrad = ctx.createRadialGradient(width / 2, height / 2, radius - 5, width / 2, height / 2, radius + 25);
-			glowGrad.addColorStop(0, "rgba(224, 183, 109, 0.06)");
-			glowGrad.addColorStop(.5, "rgba(224, 183, 109, 0.03)");
-			glowGrad.addColorStop(1, "rgba(224, 183, 109, 0)");
+			glowGrad.addColorStop(0, "rgba(184, 123, 44, 0.06)");
+			glowGrad.addColorStop(.5, "rgba(184, 123, 44, 0.03)");
+			glowGrad.addColorStop(1, "rgba(184, 123, 44, 0)");
 			ctx.fillStyle = glowGrad;
 			ctx.beginPath();
 			ctx.arc(width / 2, height / 2, radius + 25, 0, Math.PI * 2);
@@ -508,14 +513,14 @@ function InteractiveGlobe() {
 				const p1 = projectedPoints[i];
 				const p2 = projectedPoints[(i + 1) % lonCount === 0 ? i - lonCount + 1 : i + 1];
 				const isBack = p1.z > 0 || p2.z > 0;
-				ctx.strokeStyle = isBack ? "rgba(224, 183, 109, 0.06)" : "rgba(224, 183, 109, 0.25)";
+				ctx.strokeStyle = isBack ? "rgba(184, 123, 44, 0.06)" : "rgba(184, 123, 44, 0.25)";
 				ctx.beginPath();
 				ctx.moveTo(p1.x, p1.y);
 				ctx.lineTo(p2.x, p2.y);
 				ctx.stroke();
 				if (i < projectedPoints.length - lonCount) {
 					const p3 = projectedPoints[i + lonCount];
-					ctx.strokeStyle = p1.z > 0 || p3.z > 0 ? "rgba(224, 183, 109, 0.05)" : "rgba(224, 183, 109, 0.22)";
+					ctx.strokeStyle = p1.z > 0 || p3.z > 0 ? "rgba(184, 123, 44, 0.05)" : "rgba(184, 123, 44, 0.22)";
 					ctx.beginPath();
 					ctx.moveTo(p1.x, p1.y);
 					ctx.lineTo(p3.x, p3.y);
@@ -528,7 +533,7 @@ function InteractiveGlobe() {
 				const c1 = projectedCities[conn.start];
 				const c2 = projectedCities[conn.end];
 				const isBack = c1.z > 20 || c2.z > 20;
-				ctx.strokeStyle = isBack ? "rgba(224, 183, 109, 0.1)" : "rgba(224, 183, 109, 0.4)";
+				ctx.strokeStyle = isBack ? "rgba(184, 123, 44, 0.1)" : "rgba(184, 123, 44, 0.4)";
 				ctx.beginPath();
 				const midX = (c1.x + c2.x) / 2;
 				const midY = (c1.y + c2.y) / 2 - 35;
@@ -542,7 +547,7 @@ function InteractiveGlobe() {
 					const px = (1 - t) * (1 - t) * c1.x + 2 * (1 - t) * t * midX + t * t * c2.x;
 					const py = (1 - t) * (1 - t) * c1.y + 2 * (1 - t) * t * midY + t * t * c2.y;
 					ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-					ctx.shadowColor = "#e0b76d";
+					ctx.shadowColor = "#b87b2c";
 					ctx.shadowBlur = 10;
 					ctx.beginPath();
 					ctx.arc(px, py, 2.5, 0, Math.PI * 2);
@@ -552,12 +557,12 @@ function InteractiveGlobe() {
 			});
 			projectedCities.forEach((city, idx) => {
 				if (city.z < 20) {
-					ctx.fillStyle = "#e0b76d";
+					ctx.fillStyle = "#b87b2c";
 					ctx.beginPath();
 					ctx.arc(city.x, city.y, 4, 0, Math.PI * 2);
 					ctx.fill();
 					const scale = 1 + Math.abs(Math.sin(Date.now() * .002 + idx)) * 1.5;
-					ctx.strokeStyle = "rgba(224, 183, 109, 0.3)";
+					ctx.strokeStyle = "rgba(184, 123, 44, 0.3)";
 					ctx.lineWidth = .8;
 					ctx.beginPath();
 					ctx.arc(city.x, city.y, 4 * scale, 0, Math.PI * 2);
@@ -624,16 +629,16 @@ function AboutSection() {
             ` } }),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 							className: "overflow-hidden rounded-[2rem] border border-[var(--gold)]/25 bg-[#060a15]",
-							style: { boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 40px rgba(224, 183, 109, 0.08)" },
+							style: { boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 40px rgba(184, 123, 44, 0.08)" },
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "relative aspect-[4/5] w-full overflow-hidden bg-[#060a15] group/globe flex items-center justify-center",
+								className: "relative aspect-[4/3] w-full overflow-hidden bg-[#060a15] group/globe flex items-center justify-center",
 								children: [
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 										className: "absolute inset-0 w-full h-full",
 										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(InteractiveGlobe, {})
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "absolute top-8 left-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]",
+										className: "absolute top-6 left-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]",
 										style: { animation: "float-slow 7s ease-in-out infinite" },
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 											className: "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_10px_rgba(224,183,109,0.1)]",
@@ -647,7 +652,7 @@ function AboutSection() {
 										})] })]
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "absolute bottom-16 right-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]",
+										className: "absolute bottom-6 right-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]",
 										style: { animation: "float-medium 6s ease-in-out infinite" },
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 											className: "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_10px_rgba(224,183,109,0.1)]",
@@ -661,7 +666,7 @@ function AboutSection() {
 										})] })]
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "absolute top-1/2 left-6 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0a1122]/85 border border-border/60 backdrop-blur-md shadow-md",
+										className: "absolute top-[52%] left-6 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0a1122]/85 border border-border/60 backdrop-blur-md shadow-md",
 										style: { animation: "float-fast 5s ease-in-out infinite" },
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 											className: "flex -space-x-1.5",
@@ -875,13 +880,17 @@ function WhyChooseUs() {
 						direction: "left",
 						delay: 200,
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "group relative p-8 rounded-3xl border border-[var(--gold)]/20 bg-gradient-to-br from-[#0c1224] to-[#060a15] text-white shadow-[0_20px_50px_rgba(6,10,21,0.25)] transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/40 overflow-hidden",
+							className: "group relative p-8 rounded-3xl border border-[var(--gold)]/45 bg-gradient-to-br from-[#0c1224] to-[#060a15] text-white shadow-[0_20px_50px_rgba(224,183,109,0.18)] transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_50px_rgba(224,183,109,0.3)] overflow-hidden",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "absolute top-4 right-4 flex items-center gap-1 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/30 px-2.5 py-1 text-[0.58rem] font-bold uppercase tracking-wider text-[var(--gold)] shadow-sm",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "⭐ Top Advisory Leadership" })
+								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex items-center gap-6",
+									className: "flex items-center gap-6 mt-2",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-										className: "relative h-20 w-20 shrink-0 rounded-full border-2 border-[var(--gold)] p-0.5 overflow-hidden shadow-[0_0_20px_rgba(224,183,109,0.3)] bg-slate-800",
+										className: "relative h-20 w-20 shrink-0 rounded-full border-2 border-[var(--gold)] p-0.5 overflow-hidden shadow-[0_0_20px_rgba(224,183,109,0.4)] bg-slate-800",
 										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 											src: "/founder.png",
 											alt: "Mani Kumar",
@@ -1827,7 +1836,7 @@ function EligibilityPlanner() {
 											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 												type: "submit",
 												disabled: isSubmitting,
-												className: "w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-xl text-xs font-bold uppercase tracking-wider text-[#0b1224] transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_15px_rgba(224,183,109,0.3)] cursor-pointer",
+												className: "w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-xl text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_15px_rgba(166,106,33,0.3)] cursor-pointer",
 												style: { background: "var(--gradient-gold)" },
 												children: isSubmitting ? "Submitting..." : "Get Free Assessment Callback"
 											})
@@ -1979,22 +1988,29 @@ function GallerySection() {
 						delay: 150 + idx % 4 * 100,
 						className: "flex",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "group relative flex flex-col justify-between rounded-3xl border border-border bg-card overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/40 hover:shadow-[0_20px_40px_rgba(224,183,109,0.12)] w-full",
-							style: { boxShadow: "var(--shadow-premium)" },
+							className: `group relative flex flex-col justify-between rounded-3xl border overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/60 hover:shadow-[0_20px_45px_rgba(224,183,109,0.2)] w-full ${idx === 1 ? "border-[var(--gold)] bg-gradient-to-b from-card via-card to-[var(--gold)]/5 shadow-[0_15px_35px_rgba(224,183,109,0.18)]" : "border-border bg-card shadow-premium"}`,
+							style: { boxShadow: idx === 1 ? "0 15px 35px rgba(224,183,109,0.18)" : "var(--shadow-premium)" },
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" }),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "group-hover:translate-y-[-2px] transition-transform duration-300",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "relative h-64 w-full overflow-hidden bg-muted",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-											src: story.image,
-											alt: story.name,
-											className: "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-full bg-emerald-500 px-3 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-wider text-white shadow-lg",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Visa Approved" })]
-										})]
+										children: [
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+												src: story.image,
+												alt: story.name,
+												className: "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-full bg-emerald-500 px-3 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-wider text-white shadow-lg",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Visa Approved" })]
+											}),
+											idx === 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "absolute top-4 right-4 z-20 flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-1.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-black shadow-lg",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "⭐ Highlighted" })
+											})
+										]
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "p-6",
 										children: [
@@ -2373,7 +2389,7 @@ function ContactFormSection() {
 									href: "https://wa.me/918886368886",
 									target: "_blank",
 									rel: "noopener noreferrer",
-									className: "inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-xs font-extrabold uppercase tracking-widest text-[#0b1224] transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(224,183,109,0.25)] hover:shadow-[0_0_30px_rgba(224,183,109,0.4)]",
+									className: "inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-xs font-extrabold uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(166,106,33,0.25)] hover:shadow-[0_0_30px_rgba(166,106,33,0.4)]",
 									style: { background: "var(--gradient-gold)" },
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { className: "h-4 w-4" }), "Chat on WhatsApp"]
 								})
@@ -2601,9 +2617,9 @@ function ContactFormSection() {
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 									type: "submit",
 									disabled: isSubmitting,
-									className: "w-full flex items-center justify-center gap-2 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.22em] text-[#0b1224] transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(224,183,109,0.3)] cursor-pointer",
+									className: "w-full flex items-center justify-center gap-2 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(166,106,33,0.3)] cursor-pointer",
 									style: { background: "var(--gradient-gold)" },
-									children: isSubmitting ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-4.5 w-4.5 animate-spin rounded-full border-2 border-[#0b1224] border-t-transparent" }), "Submitting Enquiry..."] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "h-4 w-4" }), "Submit Consultation Request"] })
+									children: isSubmitting ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-4.5 w-4.5 animate-spin rounded-full border-2 border-white border-t-transparent" }), "Submitting Enquiry..."] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "h-4 w-4" }), "Submit Consultation Request"] })
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "flex items-center justify-center gap-2 text-[0.68rem] text-muted-foreground/60 mt-4",
@@ -2659,15 +2675,15 @@ function SiteFooter() {
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "flex items-center gap-3",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-									className: "flex h-10 w-10 items-center justify-center rounded-full bg-white p-1 overflow-hidden shadow-[0_0_15px_rgba(224,183,109,0.3)]",
+									className: "flex h-12 w-20 items-center justify-center rounded-lg bg-white p-1.5 overflow-hidden shadow-[0_0_15px_rgba(166,106,33,0.25)]",
 									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 										src: "/logo.png",
-										alt: "Mani Abroad Logo",
+										alt: "mcCoy Global Logo",
 										className: "h-full w-full object-contain"
 									})
 								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "font-display text-xl tracking-[0.16em] uppercase",
-									children: "Mani Abroad"
+									className: "font-display text-xl tracking-[0.16em]",
+									children: "mcCoy Global"
 								})]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -2744,7 +2760,7 @@ function SiteFooter() {
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
 					"© ",
 					(/* @__PURE__ */ new Date()).getFullYear(),
-					" Mani Abroad Consultancy"
+					" mcCoy Global Consultancy"
 				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Hyderabad \xA0·\xA0 +91 98499 20961" })]
 			})]
 		})
@@ -2754,6 +2770,21 @@ function WhatsAppWidget() {
 	const [isOpen, setIsOpen] = (0, import_react.useState)(false);
 	const [hasPopped, setHasPopped] = (0, import_react.useState)(false);
 	const [showBadge, setShowBadge] = (0, import_react.useState)(true);
+	const [showScrollTop, setShowScrollTop] = (0, import_react.useState)(false);
+	(0, import_react.useEffect)(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 300) setShowScrollTop(true);
+			else setShowScrollTop(false);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		});
+	};
 	(0, import_react.useEffect)(() => {
 		if (!sessionStorage.getItem("whatsapp_prompt_opened")) {
 			const timer = setTimeout(() => {
@@ -2779,75 +2810,89 @@ function WhatsAppWidget() {
 		toast.success("Redirecting to WhatsApp chat...");
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: `w-[340px] rounded-3xl border border-border bg-card overflow-hidden shadow-2xl transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" : "translate-y-8 opacity-0 scale-90 pointer-events-none"}`,
-			style: { boxShadow: "0 20px 50px rgba(0, 0, 0, 0.35)" },
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-[#0c1224] p-5 border-b border-border/40 relative",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-						onClick: handleClose,
-						className: "absolute top-4 right-4 text-white/50 hover:text-white transition-colors cursor-pointer",
-						"aria-label": "Close chat assistant",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-5 w-5" })
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center gap-3.5",
+		className: "fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 font-sans",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+				onClick: scrollToTop,
+				className: `group flex h-12 w-12 items-center justify-center rounded-full bg-[#0a1122]/90 border border-[var(--gold)]/35 text-white transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-[var(--gold)] hover:text-[#0b1224] hover:border-[var(--gold)] cursor-pointer ${showScrollTop ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" : "translate-y-4 opacity-0 scale-75 pointer-events-none absolute"}`,
+				"aria-label": "Scroll to top",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUp, { className: "h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" })
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: `w-[340px] rounded-3xl border border-border bg-card overflow-hidden shadow-2xl transition-all duration-500 transform ${isOpen ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" : "translate-y-8 opacity-0 scale-90 pointer-events-none"}`,
+				style: { boxShadow: "0 20px 50px rgba(0, 0, 0, 0.35)" },
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "bg-[#0c1224] p-5 border-b border-border/40 relative",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: handleClose,
+							className: "absolute top-4 right-4 text-white/50 hover:text-white transition-colors cursor-pointer",
+							"aria-label": "Close chat assistant",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-5 w-5" })
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-3.5",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "relative h-11 w-11 shrink-0 rounded-full border border-[var(--gold)]/35 p-0.5 bg-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: "/founder.png",
+									alt: "Mani Kumar",
+									className: "h-full w-full rounded-full object-cover"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "absolute bottom-0 right-0 h-3 w-3 rounded-full bg-emerald-500 border-2 border-[#0c1224] animate-pulse" })]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+								className: "text-sm font-extrabold uppercase tracking-wider text-white",
+								children: "Mani Kumar"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "block text-[0.62rem] font-bold uppercase tracking-widest text-[var(--gold)] mt-0.5",
+								children: "Founder & Managing Director"
+							})] })]
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "p-5 space-y-4 bg-muted/20 max-h-[220px] overflow-y-auto",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "relative h-11 w-11 shrink-0 rounded-full border border-[var(--gold)]/35 p-0.5 bg-slate-800",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-								src: "/founder.png",
-								alt: "Mani Kumar",
-								className: "h-full w-full rounded-full object-cover"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "absolute bottom-0 right-0 h-3 w-3 rounded-full bg-emerald-500 border-2 border-[#0c1224] animate-pulse" })]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-							className: "text-sm font-extrabold uppercase tracking-wider text-white",
-							children: "Mani Kumar"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "block text-[0.62rem] font-bold uppercase tracking-widest text-[var(--gold)] mt-0.5",
-							children: "Founder & Managing Director"
-						})] })]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "p-5 space-y-4 bg-muted/20 max-h-[220px] overflow-y-auto",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex flex-col gap-1 max-w-[85%] bg-card border border-border px-4 py-3 rounded-2xl rounded-tl-none text-xs text-foreground leading-relaxed",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "text-[0.62rem] font-semibold text-[var(--gold)] uppercase tracking-wider mb-1",
-							children: "Mani Abroad Advisory"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Hello! Thank you for visiting our website. ✈️" })]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "flex flex-col gap-1 max-w-[85%] bg-card border border-border px-4 py-3 rounded-2xl rounded-tl-none text-xs text-foreground leading-relaxed",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Whether you want to explore the Germany Opportunity Card, UK Youth Mobility, or university admissions, I'm here to assist you directly." })
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "p-5 border-t border-border/40 bg-card",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-						href: "https://wa.me/918886368886?text=Hi%20Mani%20Kumar,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20enquire%20about%20visa%20options.",
-						target: "_blank",
-						rel: "noopener noreferrer",
-						onClick: handleWhatsAppRedirect,
-						className: "flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest text-[#0b1224] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(224,183,109,0.3)]",
-						style: { background: "var(--gradient-gold)" },
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "h-3.5 w-3.5" }), "Start Chat on WhatsApp"]
+							className: "flex flex-col gap-1 max-w-[85%] bg-card border border-border px-4 py-3 rounded-2xl rounded-tl-none text-xs text-foreground leading-relaxed",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-[0.62rem] font-semibold text-[var(--gold)] uppercase tracking-wider mb-1",
+								children: "mcCoy Global Advisory"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Hello! Thank you for visiting our website. ✈️" })]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "flex flex-col gap-1 max-w-[85%] bg-card border border-border px-4 py-3 rounded-2xl rounded-tl-none text-xs text-foreground leading-relaxed",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Whether you want to explore the Germany Opportunity Card, UK Youth Mobility, or university admissions, I'm here to assist you directly." })
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "p-5 border-t border-border/40 bg-card",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+							href: "https://wa.me/918886368886?text=Hi%20Mani%20Kumar,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20enquire%20about%20visa%20options.",
+							target: "_blank",
+							rel: "noopener noreferrer",
+							onClick: handleWhatsAppRedirect,
+							className: "flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(166,106,33,0.3)]",
+							style: { background: "var(--gradient-gold)" },
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "h-3.5 w-3.5" }), "Start Chat on WhatsApp"]
+						})
 					})
-				})
-			]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-			onClick: handleToggle,
-			className: "group relative flex h-14 w-14 items-center justify-center rounded-full text-white transition-all duration-300 shadow-[0_8px_30px_rgba(224,183,109,0.25)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(224,183,109,0.4)] cursor-pointer",
-			style: { background: "var(--gradient-gold)" },
-			"aria-label": "Toggle WhatsApp assistant chat",
-			children: [showBadge && !isOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-				className: "absolute -top-1.5 -right-1.5 flex h-4.5 w-4.5",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-					className: "relative inline-flex items-center justify-center rounded-full h-4.5 w-4.5 bg-red-500 text-[0.55rem] font-bold text-white leading-none",
-					children: "1"
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+				onClick: handleToggle,
+				className: "group relative flex h-14 w-14 items-center justify-center rounded-full text-white transition-all duration-300 shadow-[0_8px_30px_rgba(37,211,102,0.3)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(37,211,102,0.45)] cursor-pointer",
+				style: { background: "linear-gradient(135deg, #128C7E, #25D366)" },
+				"aria-label": "Toggle WhatsApp assistant chat",
+				children: [showBadge && !isOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+					className: "absolute -top-1.5 -right-1.5 flex h-4.5 w-4.5",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "relative inline-flex items-center justify-center rounded-full h-4.5 w-4.5 bg-red-500 text-[0.55rem] font-bold text-white leading-none",
+						children: "1"
+					})]
+				}), isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-6 w-6 text-white transition-transform duration-300 rotate-90" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
+					viewBox: "0 0 24 24",
+					className: "h-7 w-7 fill-white transition-transform duration-300 group-hover:scale-105",
+					xmlns: "http://www.w3.org/2000/svg",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.458L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.45 5.556 0 10.074-4.513 10.077-10.067.001-2.69-1.04-5.218-2.929-7.11A9.97 9.97 0 0 0 12.008 1.54c-5.561 0-10.08 4.515-10.084 10.07a10.024 10.024 0 0 0 1.536 5.25l-.995 3.638 3.738-.98c1.554.849 3.037 1.282 4.444 1.282zm9.99-6.313c-.274-.137-1.62-.8-1.874-.892-.254-.092-.44-.137-.625.137-.184.274-.71.892-.87 1.077-.16.184-.32.208-.593.07-.273-.137-1.155-.425-2.2-1.358-.813-.726-1.362-1.623-1.522-1.897-.16-.273-.017-.42.12-.556.123-.122.274-.32.41-.48.137-.16.183-.273.273-.456.09-.184.046-.346-.023-.483-.069-.137-.625-1.506-.856-2.062-.225-.54-.472-.466-.647-.476-.168-.008-.361-.01-.555-.01-.194 0-.51.073-.777.366-.267.293-1.02 1.002-1.02 2.443s1.045 2.825 1.19 3.018c.146.193 2.056 3.14 4.978 4.4 1.127.487 2.008.777 2.687.992.684.218 1.307.187 1.8.114.55-.082 1.62-.662 1.848-1.27.228-.609.228-1.13.16-1.24-.07-.11-.255-.2-.53-.337z" })
 				})]
-			}), isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-6 w-6 text-[#0b1224] transition-transform duration-300 rotate-90" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { className: "h-6 w-6 text-[#0b1224] transition-transform duration-300 group-hover:scale-105" })]
-		})]
+			})
+		]
 	});
 }
 function Index() {

@@ -2,7 +2,7 @@ import { n as require_jsx_runtime, t as QueryClientProvider } from "../_libs/rea
 import { _ as useRouter, c as HeadContent, d as Outlet, f as lazyRouteComponent, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as Toaster } from "../_libs/sonner.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-vC42jjBf.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-BEhY5yzu.js
 var import_jsx_runtime = require_jsx_runtime();
 var Toaster$1 = ({ ...props }) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Toaster, {
@@ -89,18 +89,18 @@ var Route$1 = createRootRouteWithContext()({
 				name: "viewport",
 				content: "width=device-width, initial-scale=1"
 			},
-			{ title: "Mani Abroad Consultancy" },
+			{ title: "mcCoy Global Consultancy" },
 			{
 				name: "description",
 				content: "Study, Work & Migrate Overseas"
 			},
 			{
 				name: "author",
-				content: "Mani Abroad Consultancy"
+				content: "mcCoy Global Consultancy"
 			},
 			{
 				property: "og:title",
-				content: "Mani Abroad Consultancy"
+				content: "mcCoy Global Consultancy"
 			},
 			{
 				property: "og:description",
@@ -127,7 +127,7 @@ var Route$1 = createRootRouteWithContext()({
 			},
 			{
 				rel: "stylesheet",
-				href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Karla:wght@300;400;500;600&display=swap"
+				href: "https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap"
 			},
 			{
 				rel: "icon",
@@ -158,17 +158,17 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
 	});
 }
-var $$splitComponentImporter = () => import("./routes-BrTSHyqn.mjs");
+var $$splitComponentImporter = () => import("./routes-DDDGfYNW.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({
 	head: () => ({ meta: [
-		{ title: "Mani Abroad Consultancy | Study, Work & Migrate Overseas" },
+		{ title: "mcCoy Global Consultancy | Study, Work & Migrate Overseas" },
 		{
 			name: "description",
-			content: "Mani Abroad Consultancy guides you from first enquiry to airport check-in — student visas, work visas, PR and migration handled end to end."
+			content: "mcCoy Global Consultancy guides you from first enquiry to airport check-in — student visas, work visas, PR and migration handled end to end."
 		},
 		{
 			property: "og:title",
-			content: "Mani Abroad Consultancy | Study, Work & Migrate Overseas"
+			content: "mcCoy Global Consultancy | Study, Work & Migrate Overseas"
 		},
 		{
 			property: "og:description",

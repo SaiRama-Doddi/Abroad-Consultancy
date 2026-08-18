@@ -115,6 +115,19 @@ var createLucideIcon = (iconName, iconNode) => {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var ArrowUp = createLucideIcon("arrow-up", [["path", {
+	d: "m5 12 7-7 7 7",
+	key: "hav0vg"
+}], ["path", {
+	d: "M12 19V5",
+	key: "x0mq9r"
+}]]);
+/**
+* @license lucide-react v0.575.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Award = createLucideIcon("award", [["path", {
 	d: "m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526",
 	key: "1yiouv"
@@ -708,4 +721,4 @@ var X = createLucideIcon("x", [["path", {
 	key: "d8bk6v"
 }]]);
 //#endregion
-export { ChevronRight as A, FileCheck as C, Clock as D, Compass as E, BookOpen as F, Award as I, ChevronDown as M, Calendar as N, CircleQuestionMark as O, Briefcase as P, FileText as S, DollarSign as T, Mail as _, Tag as a, GraduationCap as b, Shield as c, Quote as d, Plane as f, MapPin as g, Menu as h, Target as i, ChevronLeft as j, CircleCheck as k, ShieldCheck as l, MessageSquare as m, User as n, Star as o, Phone as p, Trophy as r, Sparkles as s, X as t, Send as u, Headphones as v, Eye as w, Globe as x, Handshake as y };
+export { ChevronRight as A, FileCheck as C, Clock as D, Compass as E, BookOpen as F, Award as I, ArrowUp as L, ChevronDown as M, Calendar as N, CircleQuestionMark as O, Briefcase as P, FileText as S, DollarSign as T, Mail as _, Tag as a, GraduationCap as b, Shield as c, Quote as d, Plane as f, MapPin as g, Menu as h, Target as i, ChevronLeft as j, CircleCheck as k, ShieldCheck as l, MessageSquare as m, User as n, Star as o, Phone as p, Trophy as r, Sparkles as s, X as t, Send as u, Headphones as v, Eye as w, Globe as x, Handshake as y };
