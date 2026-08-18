@@ -32,7 +32,7 @@ export function AboutSection() {
 
             <div
               className="overflow-hidden rounded-[2rem] border border-[var(--gold)]/25 bg-[#060a15]"
-              style={{ boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 40px rgba(224, 183, 109, 0.08)" }}
+              style={{ boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 40px rgba(184, 123, 44, 0.08)" }}
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#060a15] group/globe flex items-center justify-center">
                 

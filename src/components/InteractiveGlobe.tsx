@@ -104,9 +104,9 @@ export function InteractiveGlobe() {
         width / 2, height / 2, radius - 5,
         width / 2, height / 2, radius + 25
       );
-      glowGrad.addColorStop(0, "rgba(224, 183, 109, 0.06)");
-      glowGrad.addColorStop(0.5, "rgba(224, 183, 109, 0.03)");
-      glowGrad.addColorStop(1, "rgba(224, 183, 109, 0)");
+      glowGrad.addColorStop(0, "rgba(184, 123, 44, 0.06)");
+      glowGrad.addColorStop(0.5, "rgba(184, 123, 44, 0.03)");
+      glowGrad.addColorStop(1, "rgba(184, 123, 44, 0)");
       ctx.fillStyle = glowGrad;
       ctx.beginPath();
       ctx.arc(width / 2, height / 2, radius + 25, 0, Math.PI * 2);
@@ -153,7 +153,7 @@ export function InteractiveGlobe() {
 
         // Draw connections, styling back-side elements with low opacity
         const isBack = p1.z > 0 || p2.z > 0;
-        ctx.strokeStyle = isBack ? "rgba(224, 183, 109, 0.06)" : "rgba(224, 183, 109, 0.25)";
+        ctx.strokeStyle = isBack ? "rgba(184, 123, 44, 0.06)" : "rgba(184, 123, 44, 0.25)";
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
@@ -162,7 +162,7 @@ export function InteractiveGlobe() {
         // Draw longitudinal connections
         if (i < projectedPoints.length - lonCount) {
           const p3 = projectedPoints[i + lonCount];
-          ctx.strokeStyle = (p1.z > 0 || p3.z > 0) ? "rgba(224, 183, 109, 0.05)" : "rgba(224, 183, 109, 0.22)";
+          ctx.strokeStyle = (p1.z > 0 || p3.z > 0) ? "rgba(184, 123, 44, 0.05)" : "rgba(184, 123, 44, 0.22)";
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p3.x, p3.y);
@@ -180,7 +180,7 @@ export function InteractiveGlobe() {
 
         // Fade flight arcs behind the globe
         const isBack = c1.z > 20 || c2.z > 20;
-        ctx.strokeStyle = isBack ? "rgba(224, 183, 109, 0.1)" : "rgba(224, 183, 109, 0.4)";
+        ctx.strokeStyle = isBack ? "rgba(184, 123, 44, 0.1)" : "rgba(184, 123, 44, 0.4)";
         ctx.beginPath();
         
         // Bezier curve to simulate airplane flight path
@@ -202,7 +202,7 @@ export function InteractiveGlobe() {
 
           // Glowing light point
           ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-          ctx.shadowColor = "#e0b76d";
+          ctx.shadowColor = "#b87b2c";
           ctx.shadowBlur = 10;
           ctx.beginPath();
           ctx.arc(px, py, 2.5, 0, Math.PI * 2);
@@ -216,14 +216,14 @@ export function InteractiveGlobe() {
         const isFront = city.z < 20;
         if (isFront) {
           // City Node circle
-          ctx.fillStyle = "#e0b76d";
+          ctx.fillStyle = "#b87b2c";
           ctx.beginPath();
           ctx.arc(city.x, city.y, 4, 0, Math.PI * 2);
           ctx.fill();
 
           // Outer pulsing ring
           const scale = 1 + Math.abs(Math.sin(Date.now() * 0.002 + idx)) * 1.5;
-          ctx.strokeStyle = "rgba(224, 183, 109, 0.3)";
+          ctx.strokeStyle = "rgba(184, 123, 44, 0.3)";
           ctx.lineWidth = 0.8;
           ctx.beginPath();
           ctx.arc(city.x, city.y, 4 * scale, 0, Math.PI * 2);
