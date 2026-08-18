@@ -34,7 +34,7 @@ export function AboutSection() {
               className="overflow-hidden rounded-[2rem] border border-[var(--gold)]/25 bg-[#060a15]"
               style={{ boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 40px rgba(224, 183, 109, 0.08)" }}
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#060a15] group/globe flex items-center justify-center">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#060a15] group/globe flex items-center justify-center">
                 
                 {/* Interactive 3D Holographic Globe Component */}
                 <div className="absolute inset-0 w-full h-full">
@@ -44,7 +44,7 @@ export function AboutSection() {
                 {/* Floating Thematic Badges */}
                 {/* Badge 1: University Admissions & Cap */}
                 <div 
-                  className="absolute top-8 left-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]"
+                  className="absolute top-6 left-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]"
                   style={{ animation: "float-slow 7s ease-in-out infinite" }}
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_10px_rgba(224,183,109,0.1)]">
@@ -58,7 +58,7 @@ export function AboutSection() {
 
                 {/* Badge 2: Germany Opportunity Card (Migrate) */}
                 <div 
-                  className="absolute bottom-16 right-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]"
+                  className="absolute bottom-6 right-6 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0a1122]/90 border border-[var(--gold)]/30 backdrop-blur-lg shadow-[0_10px_30px_rgba(224,183,109,0.15)]"
                   style={{ animation: "float-medium 6s ease-in-out infinite" }}
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_10px_rgba(224,183,109,0.1)]">
@@ -72,7 +72,7 @@ export function AboutSection() {
 
                 {/* Badge 3: World Flags Orbit */}
                 <div 
-                  className="absolute top-1/2 left-6 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0a1122]/85 border border-border/60 backdrop-blur-md shadow-md"
+                  className="absolute top-[52%] left-6 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[#0a1122]/85 border border-border/60 backdrop-blur-md shadow-md"
                   style={{ animation: "float-fast 5s ease-in-out infinite" }}
                 >
                   <div className="flex -space-x-1.5">
