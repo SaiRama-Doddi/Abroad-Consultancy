@@ -381,7 +381,7 @@ export function EligibilityPlanner() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-xl text-xs font-bold uppercase tracking-wider text-[#0b1224] transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_15px_rgba(224,183,109,0.3)] cursor-pointer"
+                          className="w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-xl text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_15px_rgba(166,106,33,0.3)] cursor-pointer"
                           style={{ background: "var(--gradient-gold)" }}
                         >
                           {isSubmitting ? "Submitting..." : "Get Free Assessment Callback"}

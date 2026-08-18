@@ -80,11 +80,16 @@ export function WhyChooseUs() {
           <div className="lg:col-span-6 space-y-6">
             {/* CEO Profile Card */}
             <ScrollReveal direction="left" delay={200}>
-              <div className="group relative p-8 rounded-3xl border border-[var(--gold)]/20 bg-gradient-to-br from-[#0c1224] to-[#060a15] text-white shadow-[0_20px_50px_rgba(6,10,21,0.25)] transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/40 overflow-hidden">
+              <div className="group relative p-8 rounded-3xl border border-[var(--gold)]/45 bg-gradient-to-br from-[#0c1224] to-[#060a15] text-white shadow-[0_20px_50px_rgba(224,183,109,0.18)] transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_50px_rgba(224,183,109,0.3)] overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
                 
-                <div className="flex items-center gap-6">
-                  <div className="relative h-20 w-20 shrink-0 rounded-full border-2 border-[var(--gold)] p-0.5 overflow-hidden shadow-[0_0_20px_rgba(224,183,109,0.3)] bg-slate-800">
+                {/* Highlight Badge */}
+                <div className="absolute top-4 right-4 flex items-center gap-1 rounded-full bg-[var(--gold)]/15 border border-[var(--gold)]/30 px-2.5 py-1 text-[0.58rem] font-bold uppercase tracking-wider text-[var(--gold)] shadow-sm">
+                  <span>⭐ Top Advisory Leadership</span>
+                </div>
+
+                <div className="flex items-center gap-6 mt-2">
+                  <div className="relative h-20 w-20 shrink-0 rounded-full border-2 border-[var(--gold)] p-0.5 overflow-hidden shadow-[0_0_20px_rgba(224,183,109,0.4)] bg-slate-800">
                     <img 
                       src="/founder.png" 
                       alt="Mani Kumar" 

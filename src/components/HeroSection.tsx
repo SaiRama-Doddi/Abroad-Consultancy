@@ -45,7 +45,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-10 sm:pb-12 lg:pb-16"
+      className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16 sm:pb-24 lg:pb-32"
       style={{
         background: "linear-gradient(100deg, #060a15 0%, #060a15 35%, #0c4a6e 55%, #0284c7 75%, #38bdf8 100%)"
       }}
@@ -73,6 +73,14 @@ export function HeroSection() {
         className="absolute inset-x-0 bottom-0 h-48 pointer-events-none z-[1]"
         style={{
           background: "linear-gradient(to top, #060a15 0%, rgba(6, 10, 21, 0.4) 40%, transparent 100%)"
+        }}
+      />
+
+      {/* Smooth left-to-right dark gradient overlay for text legibility */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-[1]"
+        style={{
+          background: "linear-gradient(to right, rgba(6, 10, 21, 0.95) 0%, rgba(6, 10, 21, 0.75) 45%, rgba(6, 10, 21, 0.35) 70%, transparent 100%)"
         }}
       />
 
@@ -114,13 +122,13 @@ export function HeroSection() {
               className="block"
               style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
-              {renderLetterByLetter("Mani Abroad", 0.3, 0.1, "animate-letter-in", videoPlaying, 0)}
+              {renderLetterByLetter("mcCoy Global", 0.3, 0.1, "animate-letter-in", videoPlaying, 0)}
             </span>
             <span 
               className="block mt-2 text-[var(--gold)] font-semibold"
               style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
-              {renderLetterByLetter("Consultancy", 0.3, 0.1, "animate-letter-in", videoPlaying, 11)}
+              {renderLetterByLetter("Consultancy", 0.3, 0.1, "animate-letter-in", videoPlaying, 12)}
             </span>
           </h1>
 
@@ -144,7 +152,7 @@ export function HeroSection() {
           >
             <a
               href="#contact"
-              className="flex items-center gap-2.5 rounded-lg px-8 py-4 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-[#0b1224] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(224,183,109,0.4)]"
+              className="flex items-center gap-2.5 rounded-lg px-8 py-4 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(166,106,33,0.45)]"
               style={{ background: "var(--gradient-gold)" }}
             >
               <Calendar className="h-4 w-4" />
@@ -163,7 +171,7 @@ export function HeroSection() {
 
         {/* Bottom Cards wrapped in glassmorphic box */}
         <div
-          className="mt-10 w-full rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-md md:p-8 animate-slide-up opacity-0"
+          className="mt-12 w-full rounded-2xl border border-white/10 bg-[#060a15]/65 p-6 backdrop-blur-lg md:p-8 animate-slide-up opacity-0 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
           style={{ animationDelay: "1.1s" }}
         >
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -171,14 +179,14 @@ export function HeroSection() {
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/20 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]">
                     <Globe className="h-5.5 w-5.5" />
                   </div>
-                  <h3 className="font-sans text-[0.8rem] font-extrabold tracking-[0.15em] text-white uppercase">
+                  <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
                     Global Opportunities
                   </h3>
                 </div>
-                <p className="mt-4 text-[0.82rem] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors">
+                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors">
                   Access top study, work and migration destinations worldwide.
                 </p>
               </div>
@@ -188,14 +196,14 @@ export function HeroSection() {
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/20 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]">
                     <FileText className="h-5.5 w-5.5" />
                   </div>
-                  <h3 className="font-sans text-[0.8rem] font-extrabold tracking-[0.15em] text-white uppercase">
+                  <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
                     Expert Guidance
                   </h3>
                 </div>
-                <p className="mt-4 text-[0.82rem] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors">
+                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors">
                   Personalized support from application to visa and beyond.
                 </p>
               </div>
@@ -205,14 +213,14 @@ export function HeroSection() {
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/20 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]">
                     <Shield className="h-5.5 w-5.5" />
                   </div>
-                  <h3 className="font-sans text-[0.8rem] font-extrabold tracking-[0.15em] text-white uppercase">
+                  <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
                     Trusted & Reliable
                   </h3>
                 </div>
-                <p className="mt-4 text-[0.82rem] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors">
+                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors">
                   Transparent process with ethical advice you can always count on.
                 </p>
               </div>
@@ -222,14 +230,14 @@ export function HeroSection() {
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/20 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]">
                     <Handshake className="h-5.5 w-5.5" />
                   </div>
-                  <h3 className="font-sans text-[0.8rem] font-extrabold tracking-[0.15em] text-white uppercase">
+                  <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
                     End-to-End Support
                   </h3>
                 </div>
-                <p className="mt-4 text-[0.82rem] leading-relaxed text-white/50 group-hover:text-white/70 transition-colors">
+                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors">
                   We're with you at every step of your journey, until you reach your destination.
                 </p>
               </div>

@@ -1,11 +1,28 @@
 import { useState, useEffect } from "react";
-import { MessageSquare, X, Send, ShieldAlert } from "lucide-react";
+import { MessageSquare, X, Send, ShieldAlert, ArrowUp } from "lucide-react";
 import { toast } from "sonner";
 
 export function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasPopped, setHasPopped] = useState(false);
   const [showBadge, setShowBadge] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     // Check if the chat pop has already occurred in this session
@@ -40,7 +57,20 @@ export function WhatsAppWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 font-sans">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 font-sans">
+      
+      {/* Scroll to Top (Up Arrow) Button */}
+      <button
+        onClick={scrollToTop}
+        className={`group flex h-12 w-12 items-center justify-center rounded-full bg-[#0a1122]/90 border border-[var(--gold)]/35 text-white transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-[var(--gold)] hover:text-[#0b1224] hover:border-[var(--gold)] cursor-pointer ${
+          showScrollTop 
+            ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" 
+            : "translate-y-4 opacity-0 scale-75 pointer-events-none absolute"
+        }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+      </button>
       
       {/* WhatsApp Chat Box */}
       <div 
@@ -86,7 +116,7 @@ export function WhatsAppWidget() {
         <div className="p-5 space-y-4 bg-muted/20 max-h-[220px] overflow-y-auto">
           {/* Chat Message 1 */}
           <div className="flex flex-col gap-1 max-w-[85%] bg-card border border-border px-4 py-3 rounded-2xl rounded-tl-none text-xs text-foreground leading-relaxed">
-            <span className="text-[0.62rem] font-semibold text-[var(--gold)] uppercase tracking-wider mb-1">Mani Abroad Advisory</span>
+            <span className="text-[0.62rem] font-semibold text-[var(--gold)] uppercase tracking-wider mb-1">mcCoy Global Advisory</span>
             <span>Hello! Thank you for visiting our website. ✈️</span>
           </div>
 
@@ -103,7 +133,7 @@ export function WhatsAppWidget() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleWhatsAppRedirect}
-            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest text-[#0b1224] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(224,183,109,0.3)]"
+            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(166,106,33,0.3)]"
             style={{ background: "var(--gradient-gold)" }}
           >
             <Send className="h-3.5 w-3.5" />
@@ -116,7 +146,7 @@ export function WhatsAppWidget() {
       {/* Floating Toggle Button */}
       <button
         onClick={handleToggle}
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full text-white transition-all duration-300 shadow-[0_8px_30px_rgba(224,183,109,0.25)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(224,183,109,0.4)] cursor-pointer"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full text-white transition-all duration-300 shadow-[0_8px_30px_rgba(166,106,33,0.25)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(166,106,33,0.4)] cursor-pointer"
         style={{ background: "var(--gradient-gold)" }}
         aria-label="Toggle WhatsApp assistant chat"
       >
@@ -130,9 +160,9 @@ export function WhatsAppWidget() {
         
         {/* Toggle Icons */}
         {isOpen ? (
-          <X className="h-6 w-6 text-[#0b1224] transition-transform duration-300 rotate-90" />
+          <X className="h-6 w-6 text-white transition-transform duration-300 rotate-90" />
         ) : (
-          <MessageSquare className="h-6 w-6 text-[#0b1224] transition-transform duration-300 group-hover:scale-105" />
+          <MessageSquare className="h-6 w-6 text-white transition-transform duration-300 group-hover:scale-105" />
         )}
       </button>
 

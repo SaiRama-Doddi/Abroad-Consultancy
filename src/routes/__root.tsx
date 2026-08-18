@@ -74,10 +74,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mani Abroad Consultancy" },
+      { title: "mcCoy Global Consultancy" },
       { name: "description", content: "Study, Work & Migrate Overseas" },
-      { name: "author", content: "Mani Abroad Consultancy" },
-      { property: "og:title", content: "Mani Abroad Consultancy" },
+      { name: "author", content: "mcCoy Global Consultancy" },
+      { property: "og:title", content: "mcCoy Global Consultancy" },
       { property: "og:description", content: "Study, Work & Migrate Overseas" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Karla:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap",
       },
       { rel: "icon", href: "/favicon.svg?v=1", type: "image/svg+xml" },
     ],

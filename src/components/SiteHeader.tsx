@@ -64,14 +64,14 @@ export function SiteHeader() {
           className="flex items-center gap-3 animate-slide-right group"
           onClick={() => setActiveLink("Home")}
         >
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white p-1 overflow-hidden transition-transform duration-500 group-hover:rotate-12 shadow-[0_0_15px_rgba(224,183,109,0.3)]">
-            <img src="/logo.png" alt="Mani Abroad Logo" className="h-full w-full object-contain" />
+          <div className="flex h-12 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5 overflow-hidden transition-transform duration-300 group-hover:scale-105 shadow-[0_0_15px_rgba(166,106,33,0.25)]">
+            <img src="/logo.png" alt="mcCoy Global Logo" className="h-full w-full object-contain" />
           </div>
           <div className="flex flex-col">
-            <span className="font-sans text-[1.05rem] font-bold tracking-[0.22em] text-white leading-none uppercase">
-              Mani Abroad
+            <span className="font-sans text-[1.35rem] font-extrabold tracking-[0.02em] text-white leading-none">
+              mcCoy <span className="text-[var(--gold)] font-bold">Global</span>
             </span>
-            <span className="font-sans text-[0.62rem] tracking-[0.38em] text-[var(--gold)] leading-none uppercase mt-1.5 font-medium">
+            <span className="font-sans text-[0.68rem] tracking-[0.34em] text-[var(--gold)]/80 leading-none uppercase mt-1.5 font-semibold">
               Consultancy
             </span>
           </div>
@@ -106,10 +106,9 @@ export function SiteHeader() {
         <div className="hidden md:flex animate-slide-left" style={{ animationDelay: "0.5s" }}>
           <a
             href="#contact"
-            className="flex items-center gap-2 rounded-lg px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#0b1224] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(224,183,109,0.4)]"
-            style={{ background: "var(--gradient-gold)" }}
+            className="flex items-center gap-2.5 rounded-lg border border-[var(--gold)] bg-[#0b1224] px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-105 hover:bg-[var(--gold)] hover:text-[#0b1224] hover:shadow-[0_0_20px_rgba(166,106,33,0.45)] group"
           >
-            <Plane className="h-3.5 w-3.5 -rotate-45" />
+            <Plane className="h-3.5 w-3.5 -rotate-45 text-[var(--gold)] group-hover:text-[#0b1224] transition-colors" />
             Enquire Now
           </a>
         </div>
@@ -148,10 +147,9 @@ export function SiteHeader() {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 flex items-center justify-center gap-2 rounded-lg py-3 text-xs font-bold uppercase tracking-[0.2em] text-[#0b1224]"
-              style={{ background: "var(--gradient-gold)" }}
+              className="mt-2 flex items-center justify-center gap-2 rounded-lg py-3 text-xs font-bold uppercase tracking-[0.2em] text-white border border-[var(--gold)] bg-[#0b1224] hover:bg-[var(--gold)] hover:text-[#0b1224] transition-all duration-300 group"
             >
-              <Plane className="h-4 w-4 -rotate-45" />
+              <Plane className="h-4 w-4 -rotate-45 text-[var(--gold)] group-hover:text-[#0b1224] transition-colors" />
               Enquire Now
             </a>
           </nav>

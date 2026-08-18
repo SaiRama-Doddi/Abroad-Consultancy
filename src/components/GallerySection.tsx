@@ -110,8 +110,12 @@ export function GallerySection() {
               className="flex"
             >
               <div
-                className="group relative flex flex-col justify-between rounded-3xl border border-border bg-card overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/40 hover:shadow-[0_20px_40px_rgba(224,183,109,0.12)] w-full"
-                style={{ boxShadow: "var(--shadow-premium)" }}
+                className={`group relative flex flex-col justify-between rounded-3xl border overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/60 hover:shadow-[0_20px_45px_rgba(224,183,109,0.2)] w-full ${
+                  idx === 1 
+                    ? "border-[var(--gold)] bg-gradient-to-b from-card via-card to-[var(--gold)]/5 shadow-[0_15px_35px_rgba(224,183,109,0.18)]" 
+                    : "border-border bg-card shadow-premium"
+                }`}
+                style={{ boxShadow: idx === 1 ? "0 15px 35px rgba(224,183,109,0.18)" : "var(--shadow-premium)" }}
               >
                 {/* Gold Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
@@ -129,6 +133,12 @@ export function GallerySection() {
                       <ShieldCheck className="h-3.5 w-3.5" />
                       <span>Visa Approved</span>
                     </div>
+                    {/* Special Highlighted Badge for 2nd Card */}
+                    {idx === 1 && (
+                      <div className="absolute top-4 right-4 z-20 flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-1.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-black shadow-lg">
+                        <span>⭐ Highlighted</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Card Info Content */}

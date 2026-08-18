@@ -12,10 +12,10 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white p-1 overflow-hidden shadow-[0_0_15px_rgba(224,183,109,0.3)]">
-                <img src="/logo.png" alt="Mani Abroad Logo" className="h-full w-full object-contain" />
+              <div className="flex h-12 w-20 items-center justify-center rounded-lg bg-white p-1.5 overflow-hidden shadow-[0_0_15px_rgba(166,106,33,0.25)]">
+                <img src="/logo.png" alt="mcCoy Global Logo" className="h-full w-full object-contain" />
               </div>
-              <span className="font-display text-xl tracking-[0.16em] uppercase">Mani Abroad</span>
+              <span className="font-display text-xl tracking-[0.16em]">mcCoy Global</span>
             </div>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-primary-foreground/65">
               Licensed overseas education and migration consultancy. Honest advice,
@@ -78,7 +78,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-primary-foreground/15 pt-8 text-[0.75rem] uppercase tracking-[0.16em] text-primary-foreground/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Mani Abroad Consultancy</p>
+          <p>© {new Date().getFullYear()} mcCoy Global Consultancy</p>
           <p>Hyderabad &nbsp;·&nbsp; +91 98499 20961</p>
         </div>
       </div>

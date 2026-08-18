@@ -141,7 +141,7 @@ export function ContactFormSection() {
                   href="https://wa.me/918886368886"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-xs font-extrabold uppercase tracking-widest text-[#0b1224] transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(224,183,109,0.25)] hover:shadow-[0_0_30px_rgba(224,183,109,0.4)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-xs font-extrabold uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(166,106,33,0.25)] hover:shadow-[0_0_30px_rgba(166,106,33,0.4)]"
                   style={{ background: "var(--gradient-gold)" }}
                 >
                   <MessageSquare className="h-4 w-4" />
@@ -285,12 +285,12 @@ export function ContactFormSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.22em] text-[#0b1224] transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(224,183,109,0.3)] cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(166,106,33,0.3)] cursor-pointer"
                   style={{ background: "var(--gradient-gold)" }}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="h-4.5 w-4.5 animate-spin rounded-full border-2 border-[#0b1224] border-t-transparent" />
+                      <div className="h-4.5 w-4.5 animate-spin rounded-full border-2 border-white border-t-transparent" />
                       Submitting Enquiry...
                     </>
                   ) : (
