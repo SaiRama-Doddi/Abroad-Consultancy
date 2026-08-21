@@ -2,7 +2,7 @@ import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { n as toast } from "../_libs/sonner.mjs";
 import { A as FileCheck, B as ChevronLeft, C as Landmark, D as GraduationCap, E as Handshake, F as Coins, G as Award, H as Calendar, I as Clock, K as ArrowUp, L as CircleQuestionMark, M as Eye, N as DollarSign, O as Globe, P as Compass, R as CircleCheck, S as Linkedin, T as Headphones, U as Briefcase, V as ChevronDown, W as BookOpen, _ as MessageSquare, a as Ticket, b as MapPin, c as Star, d as ShieldCheck, f as Send, g as Phone, h as PlaneTakeoff, i as Trophy, j as Facebook, k as FileText, l as Sparkles, m as Plane, n as Users, o as Target, p as Quote, q as ArrowRight, r as User, s as Tag, t as X, u as Shield, v as MessagesSquare, w as Instagram, x as Mail, y as Menu, z as ChevronRight } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-D-TY0ICe.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-Nf_P7FDl.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var links = [
@@ -2137,19 +2137,21 @@ function GallerySection() {
 					}, story.name))
 				}),
 				selectedStory && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "fixed inset-0 z-50 flex items-center justify-center p-4",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "absolute inset-0 bg-[#0b1224]/80 backdrop-blur-sm animate-fade-in",
-						onClick: () => setSelectedStory(null)
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "relative bg-white rounded-[32px] border border-slate-100 w-full max-w-4xl overflow-hidden shadow-2xl z-10 animate-slide-up duration-500 grid md:grid-cols-2",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								onClick: () => setSelectedStory(null),
-								className: "absolute top-4 right-4 z-30 bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-full transition-all duration-300 cursor-pointer",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-4 w-4" })
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "fixed inset-0 z-[100] overflow-y-auto p-4 sm:p-6 md:p-10 flex items-start justify-center md:items-center",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "fixed inset-0 bg-[#0b1224]/85 backdrop-blur-sm animate-fade-in z-0",
+							onClick: () => setSelectedStory(null)
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => setSelectedStory(null),
+							className: "fixed top-4 right-4 sm:top-6 sm:right-6 z-[110] bg-slate-900/90 hover:bg-slate-800 text-white p-3 rounded-full transition-all duration-300 cursor-pointer shadow-[0_5px_20px_rgba(0,0,0,0.4)] border border-white/10",
+							"aria-label": "Close modal",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-5 w-5" })
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "relative bg-white rounded-[28px] border border-slate-100 w-full max-w-4xl shadow-2xl z-10 animate-slide-up duration-500 grid md:grid-cols-2 my-auto max-h-[90vh] md:max-h-[85vh] overflow-y-auto",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "relative bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-200/50",
 								children: [
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:16px_16px] opacity-[0.04] pointer-events-none" }),
@@ -2242,8 +2244,7 @@ function GallerySection() {
 										})
 									})
 								]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "p-8 flex flex-col justify-between bg-white",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -2292,9 +2293,9 @@ function GallerySection() {
 										children: ["Start Your Success Story ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PlaneTakeoff, { className: "h-4 w-4" })]
 									})
 								})]
-							})
-						]
-					})]
+							})]
+						})
+					]
 				})
 			]
 		})]

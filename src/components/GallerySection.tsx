@@ -228,23 +228,24 @@ export function GallerySection() {
 
         {/* PASSPORT DETAIL MODAL */}
         {selectedStory && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[100] overflow-y-auto p-4 sm:p-6 md:p-10 flex items-start justify-center md:items-center">
             {/* Backdrop Blur */}
             <div 
-              className="absolute inset-0 bg-[#0b1224]/80 backdrop-blur-sm animate-fade-in"
+              className="fixed inset-0 bg-[#0b1224]/85 backdrop-blur-sm animate-fade-in z-0"
               onClick={() => setSelectedStory(null)}
             />
             
-            {/* Modal Box */}
-            <div className="relative bg-white rounded-[32px] border border-slate-100 w-full max-w-4xl overflow-hidden shadow-2xl z-10 animate-slide-up duration-500 grid md:grid-cols-2">
-              
-              {/* Close Button */}
-              <button 
-                onClick={() => setSelectedStory(null)}
-                className="absolute top-4 right-4 z-30 bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-full transition-all duration-300 cursor-pointer"
-              >
-                <X className="h-4 w-4" />
-              </button>
+            {/* Close Button - Fixed in viewport top-right for mobile & scroll-proof accessibility */}
+            <button 
+              onClick={() => setSelectedStory(null)}
+              className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[110] bg-slate-900/90 hover:bg-slate-800 text-white p-3 rounded-full transition-all duration-300 cursor-pointer shadow-[0_5px_20px_rgba(0,0,0,0.4)] border border-white/10"
+              aria-label="Close modal"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {/* Modal Box - Scrollable internally on tiny heights to prevent cutoffs */}
+            <div className="relative bg-white rounded-[28px] border border-slate-100 w-full max-w-4xl shadow-2xl z-10 animate-slide-up duration-500 grid md:grid-cols-2 my-auto max-h-[90vh] md:max-h-[85vh] overflow-y-auto">
 
               {/* Left Side: Passport Page Photo & Info */}
               <div className="relative bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-200/50">
