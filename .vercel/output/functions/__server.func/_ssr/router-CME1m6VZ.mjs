@@ -2,7 +2,7 @@ import { n as require_jsx_runtime, t as QueryClientProvider } from "../_libs/rea
 import { _ as useRouter, c as HeadContent, d as Outlet, f as lazyRouteComponent, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as Toaster } from "../_libs/sonner.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-BEhY5yzu.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-CME1m6VZ.js
 var import_jsx_runtime = require_jsx_runtime();
 var Toaster$1 = ({ ...props }) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Toaster, {
@@ -158,7 +158,7 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
 	});
 }
-var $$splitComponentImporter = () => import("./routes-DDDGfYNW.mjs");
+var $$splitComponentImporter = () => import("./routes-CXe5VbPV.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({
 	head: () => ({ meta: [
 		{ title: "mcCoy Global Consultancy | Study, Work & Migrate Overseas" },

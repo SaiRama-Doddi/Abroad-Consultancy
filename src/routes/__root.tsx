@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 import { Toaster } from "../components/ui/sonner";
+import { Preloader } from "../components/Preloader";
+import { BackgroundFlight } from "../components/BackgroundFlight";
 
 import "../styles.css";
 
@@ -89,7 +91,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap",
       },
-      { rel: "icon", href: "/favicon.svg?v=1", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.svg?v=5", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.png?v=5", type: "image/png" },
+      { rel: "shortcut icon", href: "/favicon.png?v=5" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=5" },
     ],
   }),
   shellComponent: RootShell,
@@ -105,6 +110,8 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <Preloader />
+        <BackgroundFlight />
         {children}
         <Scripts />
         <Toaster />

@@ -27,16 +27,19 @@ export function WhatsAppWidget() {
   useEffect(() => {
     // Check if the chat pop has already occurred in this session
     const alreadyOpened = sessionStorage.getItem("whatsapp_prompt_opened");
+    let timer: any;
     
     if (!alreadyOpened) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setIsOpen(true);
         setHasPopped(true);
         sessionStorage.setItem("whatsapp_prompt_opened", "true");
       }, 4000); // Auto-expand after 4 seconds to capture leads
-
-      return () => clearTimeout(timer);
     }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   const handleToggle = () => {

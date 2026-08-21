@@ -283,6 +283,32 @@ var Clock = createLucideIcon("clock", [["circle", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Coins = createLucideIcon("coins", [
+	["path", {
+		d: "M13.744 17.736a6 6 0 1 1-7.48-7.48",
+		key: "bq4yh3"
+	}],
+	["path", {
+		d: "M15 6h1v4",
+		key: "11y1tn"
+	}],
+	["path", {
+		d: "m6.134 14.768.866-.5 2 3.464",
+		key: "17snzx"
+	}],
+	["circle", {
+		cx: "16",
+		cy: "8",
+		r: "6",
+		key: "14bfc9"
+	}]
+]);
+/**
+* @license lucide-react v0.575.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Compass = createLucideIcon("compass", [["circle", {
 	cx: "12",
 	cy: "12",
@@ -457,6 +483,38 @@ var Headphones = createLucideIcon("headphones", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Landmark = createLucideIcon("landmark", [
+	["path", {
+		d: "M10 18v-7",
+		key: "wt116b"
+	}],
+	["path", {
+		d: "M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z",
+		key: "1m329m"
+	}],
+	["path", {
+		d: "M14 18v-7",
+		key: "vav6t3"
+	}],
+	["path", {
+		d: "M18 18v-7",
+		key: "aexdmj"
+	}],
+	["path", {
+		d: "M3 22h18",
+		key: "8prr45"
+	}],
+	["path", {
+		d: "M6 18v-7",
+		key: "1ivflk"
+	}]
+]);
+/**
+* @license lucide-react v0.575.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Mail = createLucideIcon("mail", [["path", {
 	d: "m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7",
 	key: "132q7q"
@@ -503,6 +561,19 @@ var Menu = createLucideIcon("menu", [
 		key: "1djgab"
 	}]
 ]);
+/**
+* @license lucide-react v0.575.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var MessagesSquare = createLucideIcon("messages-square", [["path", {
+	d: "M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z",
+	key: "1n2ejm"
+}], ["path", {
+	d: "M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1",
+	key: "1qfcsi"
+}]]);
 /**
 * @license lucide-react v0.575.0 - ISC
 *
@@ -713,6 +784,32 @@ var User = createLucideIcon("user", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Users = createLucideIcon("users", [
+	["path", {
+		d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",
+		key: "1yyitq"
+	}],
+	["path", {
+		d: "M16 3.128a4 4 0 0 1 0 7.744",
+		key: "16gr8j"
+	}],
+	["path", {
+		d: "M22 21v-2a4 4 0 0 0-3-3.87",
+		key: "kshegd"
+	}],
+	["circle", {
+		cx: "9",
+		cy: "7",
+		r: "4",
+		key: "nufk8"
+	}]
+]);
+/**
+* @license lucide-react v0.575.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var X = createLucideIcon("x", [["path", {
 	d: "M18 6 6 18",
 	key: "1bl5f8"
@@ -721,4 +818,4 @@ var X = createLucideIcon("x", [["path", {
 	key: "d8bk6v"
 }]]);
 //#endregion
-export { ChevronRight as A, FileCheck as C, Clock as D, Compass as E, BookOpen as F, Award as I, ArrowUp as L, ChevronDown as M, Calendar as N, CircleQuestionMark as O, Briefcase as P, FileText as S, DollarSign as T, Mail as _, Tag as a, GraduationCap as b, Shield as c, Quote as d, Plane as f, MapPin as g, Menu as h, Target as i, ChevronLeft as j, CircleCheck as k, ShieldCheck as l, MessageSquare as m, User as n, Star as o, Phone as p, Trophy as r, Sparkles as s, X as t, Send as u, Headphones as v, Eye as w, Globe as x, Handshake as y };
+export { Coins as A, Award as B, GraduationCap as C, Eye as D, FileCheck as E, ChevronLeft as F, ChevronDown as I, Calendar as L, CircleQuestionMark as M, CircleCheck as N, DollarSign as O, ChevronRight as P, Briefcase as R, Handshake as S, FileText as T, ArrowUp as V, Menu as _, Target as a, Landmark as b, Sparkles as c, Send as d, Quote as f, MessagesSquare as g, MessageSquare as h, Trophy as i, Clock as j, Compass as k, Shield as l, Phone as m, Users as n, Tag as o, Plane as p, User as r, Star as s, X as t, ShieldCheck as u, MapPin as v, Globe as w, Headphones as x, Mail as y, BookOpen as z };

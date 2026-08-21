@@ -45,18 +45,16 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16 sm:pb-24 lg:pb-32"
+      className="relative flex min-h-[90vh] lg:min-h-[85vh] items-center overflow-hidden pt-24 pb-4 sm:pb-6 lg:pb-8"
       style={{
-        background: "linear-gradient(100deg, #060a15 0%, #060a15 35%, #0c4a6e 55%, #0284c7 75%, #38bdf8 100%)"
+        background: "linear-gradient(100deg, #091930 0%, #0a2e5c 35%, #0284c7 70%, #38bdf8 100%)"
       }}
     >
       {/* Background Video blended with the sky-blue gradient */}
       <video
-        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000"
+        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 animate-slow-pan"
         style={{
-          filter: "grayscale(100%) brightness(1.2) contrast(1.15)",
-          mixBlendMode: "screen",
-          opacity: 0.95
+          opacity: 0.65
         }}
         src="/hero-flight.mp4"
         poster="/hero-fallback.jpg"
@@ -80,7 +78,7 @@ export function HeroSection() {
       <div 
         className="absolute inset-0 pointer-events-none z-[1]"
         style={{
-          background: "linear-gradient(to right, rgba(6, 10, 21, 0.95) 0%, rgba(6, 10, 21, 0.75) 45%, rgba(6, 10, 21, 0.35) 70%, transparent 100%)"
+          background: "linear-gradient(to right, rgba(9, 25, 48, 0.92) 0%, rgba(9, 25, 48, 0.75) 45%, rgba(9, 25, 48, 0.3) 75%, transparent 100%)"
         }}
       />
 
@@ -117,7 +115,7 @@ export function HeroSection() {
           </div>
 
           {/* Main Title heading (Serif + Sky Blue font with letter-to-letter animation) */}
-          <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.05] text-white sm:text-7xl lg:text-[5.5rem] tracking-tight">
+          <h1 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.8rem] xl:text-[5.5rem] font-semibold leading-[1.05] text-white tracking-tight">
             <span 
               className="block"
               style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
@@ -135,7 +133,7 @@ export function HeroSection() {
 
           {/* Subtitle description */}
           <p
-            className="mt-8 max-w-xl text-base leading-relaxed text-white animate-fade-rise opacity-0 sm:text-lg"
+            className="mt-4 max-w-xl text-base leading-relaxed text-white animate-fade-rise opacity-0 sm:text-lg"
             style={{ 
               animationDelay: "0.7s",
               textShadow: "0 2px 10px rgba(6, 10, 21, 0.95), 0 1px 3px rgba(6, 10, 21, 0.9)"
@@ -147,12 +145,12 @@ export function HeroSection() {
 
           {/* CTA Action Buttons */}
           <div
-            className="mt-10 flex flex-wrap gap-4 animate-fade-rise opacity-0"
+            className="mt-5 flex flex-col sm:flex-row flex-wrap gap-4 animate-fade-rise opacity-0"
             style={{ animationDelay: "0.9s" }}
           >
             <a
               href="#contact"
-              className="flex items-center gap-2.5 rounded-lg px-8 py-4 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(166,106,33,0.45)]"
+              className="flex items-center justify-center gap-2.5 rounded-lg px-6 sm:px-8 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(166,106,33,0.45)] w-full sm:w-auto"
               style={{ background: "var(--gradient-gold)" }}
             >
               <Calendar className="h-4 w-4" />
@@ -160,7 +158,7 @@ export function HeroSection() {
             </a>
             <a
               href="#about"
-              className="flex items-center gap-2.5 rounded-lg border border-white/30 bg-[#060a15]/30 backdrop-blur-sm px-8 py-4 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:border-[var(--gold)] hover:text-[var(--gold)] hover:bg-[var(--gold)]/10 hover:scale-105"
+              className="flex items-center justify-center gap-2.5 rounded-lg border border-white/30 bg-[#060a15]/30 backdrop-blur-sm px-6 sm:px-8 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:border-[var(--gold)] hover:text-[var(--gold)] hover:bg-[var(--gold)]/10 hover:scale-105 w-full sm:w-auto"
               style={{ textShadow: "0 1px 3px rgba(6, 10, 21, 0.8)" }}
             >
               <User className="h-4 w-4" />
@@ -171,10 +169,10 @@ export function HeroSection() {
 
         {/* Bottom Cards wrapped in glassmorphic box */}
         <div
-          className="mt-12 w-full rounded-2xl border border-white/10 bg-[#060a15]/65 p-6 backdrop-blur-lg md:p-8 animate-slide-up opacity-0 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+          className="mt-8 w-full rounded-2xl border border-white/10 bg-[#060a15]/65 p-5 backdrop-blur-lg md:p-6 animate-slide-up opacity-0 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
           style={{ animationDelay: "1.1s" }}
         >
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {/* Card 1 */}
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">

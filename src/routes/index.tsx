@@ -5,7 +5,6 @@ import { AboutSection } from "@/components/AboutSection";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { ExpertiseSection } from "@/components/ExpertiseSection";
 import { ServicesSection } from "@/components/ServicesSection";
-import { EligibilityPlanner } from "@/components/EligibilityPlanner";
 import { GallerySection } from "@/components/GallerySection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FaqSection } from "@/components/FaqSection";
@@ -45,7 +44,6 @@ function Index() {
         <WhyChooseUs />
         <ExpertiseSection />
         <ServicesSection />
-        <EligibilityPlanner />
         <GallerySection />
         <TestimonialsSection />
         <FaqSection />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GraduationCap, Plane, Globe, CheckCircle2, ChevronRight, BookOpen, Briefcase } from "lucide-react";
+import { GraduationCap, Plane, Globe, CheckCircle2, ChevronRight, BookOpen, Briefcase, Ticket, Landmark } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface Country {
@@ -15,6 +15,7 @@ const visaServices = [
   {
     title: "Student Visa",
     icon: GraduationCap,
+    image: "/service-student.jpg",
     description: "Unlock global educational opportunities. We guide you from choosing the right university to submission and approval. Access quality education with high visa success rates.",
     features: [
       "End-to-end admission counseling",
@@ -26,6 +27,7 @@ const visaServices = [
   {
     title: "Tourism & Visitor Visa",
     icon: Plane,
+    image: "/service-tourist.jpg",
     description: "Travel the world with zero stress. Whether it is visiting family, exploring destinations, or business meetings, we manage your visa formalities quickly and transparently.",
     features: [
       "Fast-track visa processing options",
@@ -35,14 +37,53 @@ const visaServices = [
     ]
   },
   {
-    title: "Opportunity & Mobility Visas",
+    title: "Opportunity Card Germany",
+    countryCode: "de",
     icon: Briefcase,
-    description: "Explore unique job-seeking and international youth schemes. We assess your eligibility, calculate points, and handle submissions for specialized visa programs.",
+    image: "/service-germany.jpg",
+    description: "Explore Germany's points-based job-seeking visa (Chancenkarte). We assess your eligibility, calculate points, and handle submissions for specialized visa programs.",
     features: [
       "Germany Opportunity Card (Chancenkarte)",
-      "UK Youth Mobility Scheme guidance",
       "Points-based calculator & profile assessment",
-      "Job search registry & cover support"
+      "Job search registry & cover support",
+      "Unrestricted search visa advisory"
+    ]
+  },
+  {
+    title: "Youth Mobility Visa UK",
+    countryCode: "gb",
+    icon: Globe,
+    image: "/service-uk.jpg",
+    description: "Live and work in the United Kingdom for up to 2 years. Our advisors help you navigate the qualifying criteria, age limits, financial requirements, and biometric registrations.",
+    features: [
+      "Age 18-30 Eligibility Assessment",
+      "Financial maintenance proof guidance",
+      "Biometric slot booking & document checklist",
+      "2-year stay and unrestricted work permit support"
+    ]
+  },
+  {
+    title: "Flight Ticket Booking",
+    icon: Ticket,
+    image: "/service-flight.jpg",
+    description: "Fly out with ease and comfort. We secure the best routes, optimal flight schedules, and special student discount fares for your flights to any global destination.",
+    features: [
+      "Student baggage allowance deals",
+      "Flexible ticket date-change options",
+      "Transit visa assistance if needed",
+      "Pre-departure travel checklist"
+    ]
+  },
+  {
+    title: "Education Loan Assistance",
+    icon: Landmark,
+    image: "/service-loan.jpg",
+    description: "Finance your overseas education stress-free. We partner with leading financial institutions to secure quick approvals, low-interest student loans, and collateral-free options.",
+    features: [
+      "Pre-visa approval loan letters",
+      "Collateral & collateral-free options",
+      "Special student interest rates",
+      "Fast-track documentation support"
     ]
   }
 ];
@@ -62,13 +103,13 @@ const countries: Country[] = [
     code: "gb",
     region: "hubs",
     courses: [
-      "Foundation & Undergraduate Degrees", 
-      "Postgraduate (Masters) Programs", 
+      "Foundation & Undergraduate Degrees",
+      "Postgraduate (Masters) Programs",
       "UK Youth Mobility Visa Scheme ✅"
     ],
     eligibility: "Intermediate / Bachelors / Age 18-30",
     highlights: [
-      "Youth Mobility Scheme: Live & work in the UK up to 2 years", 
+      "Youth Mobility Scheme: Live & work in the UK up to 2 years",
       "2-Year Post Study Work (PSW) Visa"
     ]
   },
@@ -95,13 +136,13 @@ const countries: Country[] = [
     code: "de",
     region: "europe",
     courses: [
-      "English-Taught Bachelors & Masters", 
-      "Germany Opportunity Card (Chancenkarte) ✅", 
+      "English-Taught Bachelors & Masters",
+      "Germany Opportunity Card (Chancenkarte) ✅",
       "MBA & Engineering Programs"
     ],
     eligibility: "Intermediate / Bachelors / Points-based System",
     highlights: [
-      "Opportunity Card: Job search without a pre-existing job offer", 
+      "Opportunity Card: Job search without a pre-existing job offer",
       "Zero tuition fees at public universities"
     ]
   },
@@ -196,66 +237,145 @@ const countries: Country[] = [
 export function ServicesSection() {
   const [selectedRegion, setSelectedRegion] = useState<"all" | "hubs" | "europe" | "asia">("all");
 
+  const highlightTitle = (title: string) => {
+    if (title.includes("Germany")) {
+      return (
+        <>
+          Opportunity Card <span className="text-[var(--gold)]">Germany</span>
+        </>
+      );
+    }
+    if (title.includes("UK")) {
+      return (
+        <>
+          Youth Mobility Visa <span className="text-[var(--gold)]">UK</span>
+        </>
+      );
+    }
+    return title;
+  };
+
   const filteredCountries = countries.filter(
     (c) => selectedRegion === "all" || c.region === selectedRegion
   );
 
   return (
-    <section id="services" className="bg-background/50 py-5 sm:py-6">
+    <section id="services" className="bg-background/50 pt-6 pb-8 sm:pt-8 sm:pb-12 relative overflow-hidden border-b border-slate-100">
       <div className="mx-auto max-w-7xl px-6">
-        
+
         {/* Section Header */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="text-center max-w-3xl mx-auto mb-8">
-            <p className="text-[0.7rem] uppercase tracking-[0.4em] text-accent">Our Services</p>
-            <h2 className="mt-5 font-display text-4xl leading-tight text-foreground sm:text-5xl">
-              Visa Pathways & Destinations
+          <div className="text-left w-full mb-8 flex flex-col items-start">
+            {/* Premium Capsule Subtitle Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3">
+              <Globe className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
+              <span>Our Services</span>
+            </div>
+
+            <h2 className="font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left">
+              Visa <span className="text-[var(--gold)] font-bold">Pathways</span> & Destinations
             </h2>
-            <div className="mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent mx-auto" />
-            <p className="mt-6 text-[1.02rem] text-muted-foreground leading-relaxed">
-              Mani Abroad Consultancy provides comprehensive solutions, from standard student visa arrangements to tourist visa facilitation across the globe.
+
+            <div className="mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
+
+            <p className="mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+              mcCoy Global Consultancy provides comprehensive solutions, from standard student visa arrangements to tourist visa facilitation across the globe.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Visa Services Row */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-8">
+        <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 mb-8">
           {visaServices.map((service, index) => {
             const Icon = service.icon;
             return (
-              <ScrollReveal 
-                key={service.title} 
-                direction="up" 
-                delay={200 + index * 150} 
+              <ScrollReveal
+                key={service.title}
+                direction="up"
+                delay={200 + index * 150}
                 className="flex"
               >
-                <div 
-                  className="group relative flex flex-col justify-between rounded-3xl border border-border bg-card p-8 sm:p-10 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/40 hover:shadow-[0_20px_40px_rgba(224,183,109,0.12)] overflow-hidden w-full"
-                  style={{ boxShadow: "var(--shadow-premium)" }}
+                <div
+                  className="group relative flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full"
+                  style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.02)" }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  
-                  <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.15)]">
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="font-display text-2xl text-foreground">{service.title}</h3>
-                    </div>
-                    
-                    <p className="text-[0.98rem] leading-relaxed text-muted-foreground mb-8">
-                      {service.description}
-                    </p>
+                  {/* Top gold bar accent on hover */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
+
+                  {/* Huge background progress number */}
+                  <div className="absolute right-6 bottom-5 text-7xl font-black text-slate-100/50 select-none pointer-events-none font-display z-0 group-hover:text-[var(--gold)]/5 transition-colors duration-500">
+                    {String(index + 1).padStart(2, '0')}
                   </div>
 
-                  <ul className="space-y-3.5">
-                    {service.features.map((feat) => (
-                      <li key={feat} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                        <CheckCircle2 className="h-4.5 w-4.5 text-[var(--gold)] shrink-0 mt-0.5" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Accent gold light glow on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+
+                  <div className="flex flex-col md:flex-row gap-6 items-stretch w-full h-full relative z-10">
+                    {/* Left panel: text and details */}
+                    <div className="flex flex-col justify-between flex-1 pr-0 md:pr-4">
+                      <div>
+                        {/* Icon & Title */}
+                        <div className="flex items-center gap-4 mb-5">
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/5 text-[var(--gold)] border border-[var(--gold)]/15 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105 shadow-sm">
+                            <Icon className="h-5.5 w-5.5" />
+                          </div>
+                          <h3 className="font-display text-xl font-extrabold text-slate-900 group-hover:text-[var(--gold)] transition-colors duration-300 tracking-tight leading-snug">
+                            {highlightTitle(service.title)}
+                          </h3>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-[0.82rem] leading-relaxed text-slate-700 mb-6 text-justify font-medium">
+                          {service.description}
+                        </p>
+
+                        {/* Features List */}
+                        <ul className="space-y-3">
+                          {service.features.map((feat) => (
+                            <li key={feat} className="flex items-start gap-3 group/li">
+                              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-300 group-hover/li:bg-[var(--gold)] group-hover/li:text-white mt-0.5 shadow-sm">
+                                <CheckCircle2 className="h-3 w-3" />
+                              </div>
+                              <span className="text-[0.82rem] font-bold text-slate-800 transition-colors duration-300 group-hover/li:text-slate-950 leading-snug">
+                                {feat}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Bottom Action Details Link */}
+                      <div 
+                        onClick={() => {
+                          const el = document.getElementById("contact");
+                          if (el) el.scrollIntoView({ behavior: "smooth" });
+                        }}
+                        className="mt-8 pt-4 border-t border-slate-50 flex items-center justify-between text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:text-[var(--gold)]/90 cursor-pointer"
+                      >
+                        <span>Enquire Details</span>
+                        <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                      </div>
+                    </div>
+
+                    {/* Right panel: Image wrapper */}
+                    <div className="relative w-full md:w-[180px] lg:w-[220px] h-[180px] md:h-auto rounded-2xl overflow-hidden shrink-0 border border-slate-150/70 group-hover:border-[var(--gold)]/40 transition-colors duration-500 shadow-sm self-stretch flex">
+                      <img 
+                        src={service.image} 
+                        alt={service.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      {/* Top-Right Country Flag Badge overlay */}
+                      {service.countryCode && (
+                        <div className="absolute top-3 right-3 z-30 transition-all duration-500 group-hover:scale-110 shadow-[0_4px_12px_rgba(0,0,0,0.08)] border-2 border-white rounded-lg overflow-hidden shrink-0 group-hover:border-[var(--gold)] group-hover:shadow-[0_0_20px_rgba(184,123,44,0.5)]">
+                          <img
+                            src={`https://flagcdn.com/w80/${service.countryCode}.png`}
+                            className="h-8 w-12 object-cover"
+                            alt="Country Flag"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </ScrollReveal>
             );
@@ -264,23 +384,35 @@ export function ServicesSection() {
 
         {/* Destinations Explorer Title */}
         <ScrollReveal direction="up" delay={150}>
-          <div className="text-center mb-6">
-            <h3 className="font-display text-3xl text-foreground">Explore Study Destinations</h3>
-            <p className="mt-2 text-sm text-muted-foreground">Select a region to filter available countries and educational pathways</p>
+          <div className="text-left w-full mb-8 flex flex-col items-start pt-8 border-t border-slate-100/80">
+            {/* Premium Capsule Subtitle Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3">
+              <Globe className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
+              <span>Global Opportunities</span>
+            </div>
+
+            <h3 className="font-display text-3xl leading-tight text-slate-800 font-extrabold tracking-tight text-left">
+              Explore Study <span className="text-[var(--gold)] font-bold">Destinations</span>
+            </h3>
+
+            <div className="mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
+
+            <p className="mt-4 text-[0.98rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+              Select a region below to filter available countries and explore educational pathways.
+            </p>
           </div>
         </ScrollReveal>
 
         {/* Region Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-start gap-2 mb-8">
           {(["all", "hubs", "europe", "asia"] as const).map((region) => (
             <button
               key={region}
               onClick={() => setSelectedRegion(region)}
-              className={`rounded-full px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 ${
-                selectedRegion === region
+              className={`rounded-full px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 ${selectedRegion === region
                   ? "text-[#0b1224] shadow-[0_0_15px_rgba(224,183,109,0.3)] scale-105"
                   : "text-muted-foreground/80 hover:text-foreground hover:bg-muted bg-card/65 border border-border"
-              }`}
+                }`}
               style={{
                 background: selectedRegion === region ? "var(--gradient-gold)" : undefined
               }}
@@ -296,54 +428,70 @@ export function ServicesSection() {
         {/* Countries Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {filteredCountries.map((country, idx) => (
-            <ScrollReveal 
-              key={country.name} 
-              direction="up" 
-              delay={100 + (idx % 3) * 120} 
+            <ScrollReveal
+              key={country.name}
+              direction="up"
+              delay={100 + (idx % 3) * 120}
               className="flex"
             >
               <div
-                className="group relative flex flex-col justify-between rounded-3xl border border-border bg-card p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/40 hover:shadow-[0_20px_40px_rgba(224,183,109,0.12)] overflow-hidden w-full"
-                style={{ boxShadow: "var(--shadow-premium)" }}
+                className="group relative flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full"
+                style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.02)" }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                {/* Top gold bar accent on hover */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
+
+                {/* Huge background progress number */}
+                <div className="absolute right-6 bottom-5 text-7xl font-black text-slate-100/50 select-none pointer-events-none font-display z-0 group-hover:text-[var(--gold)]/5 transition-colors duration-500">
+                  {String(idx + 1).padStart(2, '0')}
+                </div>
+
+                {/* Accent gold light glow on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
                 
-                <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
+                {/* Corner glow */}
+                <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-[var(--gold)]/8 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
+
+                <div className="group-hover:translate-y-[-2px] transition-transform duration-300 z-20 relative">
                   {/* Flag Image and Name Header */}
-                  <div className="flex items-center justify-between border-b border-border/60 pb-4 mb-6">
+                  <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
                     <div className="flex items-center gap-3">
-                      <img 
-                        src={`https://flagcdn.com/w40/${country.code}.png`} 
-                        srcSet={`https://flagcdn.com/w80/${country.code}.png 2x`}
-                        width="28"
-                        alt={`${country.name} Flag`}
-                        className="rounded-sm shadow-sm border border-border/40 object-cover h-4.5 w-6.5" 
-                      />
-                      <h4 className="font-display text-xl text-foreground font-semibold group-hover:text-[var(--gold)] transition-colors">
+                      <div className="relative overflow-hidden rounded-md border border-slate-100 shadow-sm shrink-0 h-6 w-9 transition-all duration-500 group-hover:scale-105 group-hover:border-[var(--gold)]">
+                        <img
+                          src={`https://flagcdn.com/w40/${country.code}.png`}
+                          srcSet={`https://flagcdn.com/w80/${country.code}.png 2x`}
+                          className="h-full w-full object-cover"
+                          alt={`${country.name} Flag`}
+                        />
+                      </div>
+                      <h4 className="font-display text-xl text-slate-800 font-extrabold tracking-tight group-hover:text-[var(--gold)] transition-colors duration-300">
                         {country.name}
                       </h4>
                     </div>
-                    <Globe className="h-4.5 w-4.5 text-muted-foreground/35 group-hover:rotate-12 transition-transform duration-500" />
+                    <Globe className="h-5 w-5 text-slate-300 group-hover:text-[var(--gold)] group-hover:rotate-45 transition-all duration-500 shrink-0" />
                   </div>
 
                   {/* Eligibility Badge */}
                   {country.eligibility && (
-                    <div className="mb-6 flex items-start gap-2 bg-[var(--gold)]/5 border border-[var(--gold)]/10 rounded-xl px-4 py-3 text-xs text-muted-foreground">
-                      <span className="font-semibold text-[var(--gold)]">Eligibility:</span>
-                      <span>{country.eligibility}</span>
+                    <div className="mb-6 flex items-center gap-2.5 bg-[var(--gold)]/5 border border-[var(--gold)]/10 rounded-2xl px-4 py-3 text-[0.82rem] text-slate-600">
+                      <CheckCircle2 className="h-4.5 w-4.5 text-[var(--gold)] shrink-0" />
+                      <div className="leading-snug">
+                        <span className="font-bold text-slate-800">Eligibility: </span>
+                        <span>{country.eligibility}</span>
+                      </div>
                     </div>
                   )}
 
                   {/* Courses Offered */}
                   <div className="mb-6">
-                    <span className="block text-[0.75rem] uppercase tracking-wider text-muted-foreground font-bold mb-3 flex items-center gap-1.5">
+                    <span className="block text-[0.75rem] uppercase tracking-wider text-slate-500 font-bold mb-3 flex items-center gap-1.5">
                       <BookOpen className="h-3.5 w-3.5 text-[var(--gold)]" /> Featured Programs
                     </span>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2.5">
                       {country.courses.map((course) => (
-                        <li key={course} className="flex items-start gap-2 text-[0.82rem] text-muted-foreground/90">
-                          <ChevronRight className="h-3.5 w-3.5 text-[var(--gold)] shrink-0 mt-0.5" />
-                          <span>{course}</span>
+                        <li key={course} className="flex items-start gap-2.5 text-[0.82rem] text-slate-600 group/course">
+                          <ChevronRight className="h-3.5 w-3.5 text-[var(--gold)] shrink-0 mt-0.5 transition-transform duration-300 group-hover/course:translate-x-1" />
+                          <span className="group-hover/course:text-slate-800 transition-colors">{course}</span>
                         </li>
                       ))}
                     </ul>
@@ -352,14 +500,15 @@ export function ServicesSection() {
 
                 {/* Highlights */}
                 {country.highlights && country.highlights.length > 0 && (
-                  <div className="mt-2 border-t border-border/40 pt-4">
+                  <div className="mt-2 border-t border-slate-100 pt-4 z-20 relative">
                     <span className="block text-[0.75rem] uppercase tracking-wider text-[var(--gold)] font-bold mb-2.5">
                       Why Choose {country.name}?
                     </span>
                     <ul className="space-y-2">
                       {country.highlights.map((highlight) => (
-                        <li key={highlight} className="text-[0.82rem] text-muted-foreground/80 leading-relaxed list-disc list-inside pl-1">
-                          {highlight}
+                        <li key={highlight} className="flex items-start gap-2.5 text-[0.82rem] text-slate-500 leading-relaxed group/highlight">
+                          <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] shrink-0 mt-2 transition-transform duration-300 group-hover/highlight:scale-125" />
+                          <span className="flex-1 text-justify">{highlight}</span>
                         </li>
                       ))}
                     </ul>

@@ -1,5 +1,63 @@
 import { useEffect, useRef } from "react";
 
+// Simplified latitude/longitude paths for main continents
+const continents = [
+  // North America
+  [
+    [-168, 65], [-120, 60], [-120, 48], [-125, 30], [-110, 22], [-98, 15], 
+    [-80, 8], [-80, 20], [-95, 30], [-75, 40], [-60, 50], [-55, 60], 
+    [-70, 70], [-100, 75], [-168, 65]
+  ],
+  // South America
+  [
+    [-80, 12], [-72, 10], [-50, -5], [-35, -5], [-40, -20], [-60, -40], 
+    [-70, -55], [-75, -50], [-70, -30], [-80, -10], [-80, 12]
+  ],
+  // Africa
+  [
+    [-17, 32], [10, 35], [30, 30], [33, 10], [50, 10], [40, -15], 
+    [20, -34], [10, -10], [-10, 5], [-17, 15], [-17, 32]
+  ],
+  // Eurasia
+  [
+    [-10, 62], [10, 55], [30, 65], [60, 70], [90, 75], [120, 75], 
+    [160, 70], [170, 60], [140, 50], [140, 35], [120, 30], [110, 15], 
+    [100, 10], [80, 10], [75, 20], [60, 15], [45, 12], [35, 30], 
+    [15, 38], [-10, 40], [-10, 62]
+  ],
+  // Australia
+  [
+    [113, -22], [143, -20], [151, -33], [138, -38], [115, -34], [113, -22]
+  ],
+  // Greenland
+  [
+    [-70, 75], [-60, 83], [-25, 78], [-45, 60], [-70, 75]
+  ]
+];
+
+// Conversion to Radians
+const continentsRad = continents.map(poly => 
+  poly.map((coord) => {
+    const lon = coord[0] ?? 0;
+    const lat = coord[1] ?? 0;
+    return [lon * Math.PI / 180, lat * Math.PI / 180];
+  })
+);
+
+interface City {
+  lon: number;
+  lat: number;
+  label: string;
+}
+
+const cities: City[] = [
+  { lon: -100, lat: 40, label: "USA 🇺🇸" },
+  { lon: -79.3, lat: 43.6, label: "Canada 🇨🇦" },
+  { lon: 0, lat: 51.5, label: "UK 🇬🇧" },
+  { lon: 13.4, lat: 52.5, label: "Germany 🇩🇪" },
+  { lon: 151.2, lat: -33.8, label: "Australia 🇦🇺" }
+];
+
 export function InteractiveGlobe() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -13,8 +71,8 @@ export function InteractiveGlobe() {
     let animationId: number;
     let width = canvas.width;
     let height = canvas.height;
+    let radius = 0;
 
-    // Handle resizing to fit the card container
     const resize = () => {
       const rect = canvas.parentElement?.getBoundingClientRect();
       width = rect?.width || 400;
@@ -24,216 +82,237 @@ export function InteractiveGlobe() {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      radius = Math.min(width, height) * 0.38; // Upgraded radius size
     };
 
     resize();
     window.addEventListener("resize", resize);
 
-    // Create 3D points representing a sphere grid
-    const points: { x: number; y: number; z: number }[] = [];
-    const radius = Math.min(width, height) * 0.32; // size of the globe
-
-    // Generate latitude/longitude grid lines
-    const latCount = 9;
-    const lonCount = 12;
-    for (let i = 1; i < latCount - 1; i++) {
-      const lat = (Math.PI * i) / (latCount - 1) - Math.PI / 2;
-      const cosLat = Math.cos(lat);
-      const sinLat = Math.sin(lat);
-
-      for (let j = 0; j < lonCount; j++) {
-        const lon = (2 * Math.PI * j) / lonCount;
-        const cosLon = Math.cos(lon);
-        const sinLon = Math.sin(lon);
-
-        points.push({
-          x: radius * cosLat * cosLon,
-          y: radius * sinLat,
-          z: radius * cosLat * sinLon,
-        });
-      }
-    }
-
-    // Add some random highlight nodes (major cities/destinations)
-    const cities: { x: number; y: number; z: number; label: string }[] = [
-      { x: 0.3, y: 0.4, z: 0.86, label: "Canada 🇨🇦" },
-      { x: -0.1, y: 0.6, z: -0.79, label: "UK 🇬🇧" },
-      { x: 0.5, y: -0.5, z: 0.7, label: "Australia 🇦🇺" },
-      { x: -0.7, y: 0.2, z: 0.68, label: "Germany 🇩🇪" },
-      { x: 0.8, y: 0.1, z: -0.58, label: "USA 🇺🇸" },
-    ].map(c => {
-      // Normalize and multiply by radius
-      const len = Math.sqrt(c.x * c.x + c.y * c.y + c.z * c.z);
-      return {
-        x: (c.x / len) * radius,
-        y: (c.y / len) * radius,
-        z: (c.z / len) * radius,
-        label: c.label,
-      };
-    });
-
-    let angleY = 0;
-    let angleX = 0.2; // slight tilt
-
-    // Particle connection lines
-    const connections: { start: number; end: number; progress: number; speed: number }[] = [];
-    for (let i = 0; i < cities.length; i++) {
-      connections.push({
-        start: i,
-        end: (i + 1) % cities.length,
-        progress: Math.random(),
-        speed: 0.004 + Math.random() * 0.003,
-      });
-    }
+    // Dynamic rotation angle
+    let angleY = 1.6; // starts facing UK/Europe/Africa
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Deep radial dark-navy background inside canvas
-      const bgGrad = ctx.createRadialGradient(
-        width / 2, height / 2, 50,
-        width / 2, height / 2, radius * 1.6
-      );
-      bgGrad.addColorStop(0, "#0a1122");
-      bgGrad.addColorStop(1, "#060a15");
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, width, height);
-
-      // Draw subtle outer atmospheric aura/glow
+      // 1. Draw outer glowing atmospheric aura (Golden Halo)
       const glowGrad = ctx.createRadialGradient(
-        width / 2, height / 2, radius - 5,
-        width / 2, height / 2, radius + 25
+        width / 2, height / 2, radius - 8,
+        width / 2, height / 2, radius + 32
       );
-      glowGrad.addColorStop(0, "rgba(184, 123, 44, 0.06)");
-      glowGrad.addColorStop(0.5, "rgba(184, 123, 44, 0.03)");
-      glowGrad.addColorStop(1, "rgba(184, 123, 44, 0)");
+      glowGrad.addColorStop(0, "rgba(224, 183, 109, 0.28)");
+      glowGrad.addColorStop(0.3, "rgba(224, 183, 109, 0.12)");
+      glowGrad.addColorStop(0.7, "rgba(224, 183, 109, 0.03)");
+      glowGrad.addColorStop(1, "rgba(224, 183, 109, 0)");
       ctx.fillStyle = glowGrad;
       ctx.beginPath();
-      ctx.arc(width / 2, height / 2, radius + 25, 0, Math.PI * 2);
+      ctx.arc(width / 2, height / 2, radius + 32, 0, Math.PI * 2);
       ctx.fill();
 
-      // Rotate calculations
-      angleY += 0.0035; // continuous spin speed
+      // 2. Draw sphere oceans background (deep dark blue radial gradient)
+      const oceanGrad = ctx.createRadialGradient(
+        width / 2 - radius * 0.25, height / 2 - radius * 0.25, radius * 0.1,
+        width / 2, height / 2, radius
+      );
+      oceanGrad.addColorStop(0, "#0e1c3a");
+      oceanGrad.addColorStop(0.6, "#060f23");
+      oceanGrad.addColorStop(1, "#030814");
+      ctx.fillStyle = oceanGrad;
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Slow rotation increment
+      angleY += 0.0035;
+
       const cosY = Math.cos(angleY);
       const sinY = Math.sin(angleY);
-      const cosX = Math.cos(angleX);
-      const sinX = Math.sin(angleX);
+      const tiltAngle = 0.25; // Tilt the Earth
+      const cosX = Math.cos(tiltAngle);
+      const sinX = Math.sin(tiltAngle);
 
-      // Helper to project 3D point to 2D
-      const project = (p: { x: number; y: number; z: number }) => {
-        // Rotate around Y-axis
-        let x1 = p.x * cosY - p.z * sinY;
-        let z1 = p.x * sinY + p.z * cosY;
+      // 3D Projection Function
+      const project = (lonRad: number, latRad: number) => {
+        // Apply Y rotation
+        const rotatedLon = lonRad + angleY;
 
-        // Rotate around X-axis (tilt)
-        let y2 = p.y * cosX - z1 * sinX;
-        let z2 = p.y * sinX + z1 * cosX;
+        // Spherical 3D Coordinates
+        const x3d = radius * Math.cos(latRad) * Math.sin(rotatedLon);
+        const y3d = -radius * Math.sin(latRad);
+        const z3d = radius * Math.cos(latRad) * Math.cos(rotatedLon);
 
-        // Perspective scale
-        const perspective = 300 / (300 + z2);
+        // Apply X Tilt rotation
+        const y3dTilted = y3d * cosX - z3d * sinX;
+        const z3dTilted = y3d * sinX + z3d * cosX;
+
+        // Orthographic scale & translation
         return {
-          x: width / 2 + x1 * perspective,
-          y: height / 2 + y2 * perspective,
-          z: z2, // for depth layering
-          perspective,
+          x: width / 2 + x3d,
+          y: height / 2 + y3dTilted,
+          z: z3dTilted // z < 0 means on the front side of orthographic projection
         };
       };
 
-      // Draw grid lines (back hemisphere first, then front hemisphere)
-      const projectedPoints = points.map(p => project(p));
-
-      // Draw grid structure
-      ctx.lineWidth = 0.5;
-      for (let i = 0; i < projectedPoints.length; i++) {
-        const p1 = projectedPoints[i];
-        
-        // Draw latitudinal connections
-        const nextLonIdx = (i + 1) % lonCount === 0 ? i - lonCount + 1 : i + 1;
-        const p2 = projectedPoints[nextLonIdx];
-
-        // Draw connections, styling back-side elements with low opacity
-        const isBack = p1.z > 0 || p2.z > 0;
-        ctx.strokeStyle = isBack ? "rgba(184, 123, 44, 0.06)" : "rgba(184, 123, 44, 0.25)";
+      // 3. Draw Grid Lines (Latitude & Longitude)
+      ctx.lineWidth = 0.6;
+      ctx.strokeStyle = "rgba(224, 183, 109, 0.08)";
+      
+      // Longitude Lines
+      for (let l = 0; l < 12; l++) {
+        const lonRad = (l * Math.PI) / 6;
         ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
-
-        // Draw longitudinal connections
-        if (i < projectedPoints.length - lonCount) {
-          const p3 = projectedPoints[i + lonCount];
-          ctx.strokeStyle = (p1.z > 0 || p3.z > 0) ? "rgba(184, 123, 44, 0.05)" : "rgba(184, 123, 44, 0.22)";
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p3.x, p3.y);
-          ctx.stroke();
+        let first = true;
+        for (let latDeg = -90; latDeg <= 90; latDeg += 10) {
+          const latRad = (latDeg * Math.PI) / 180;
+          const p = project(lonRad, latRad);
+          if (p.z < 0) {
+            if (first) {
+              ctx.moveTo(p.x, p.y);
+              first = false;
+            } else {
+              ctx.lineTo(p.x, p.y);
+            }
+          } else {
+            first = true;
+          }
         }
+        ctx.stroke();
       }
 
-      // Draw connection flight lines between main cities
-      const projectedCities = cities.map(c => project(c));
-
-      ctx.lineWidth = 1;
-      connections.forEach((conn) => {
-        const c1 = projectedCities[conn.start];
-        const c2 = projectedCities[conn.end];
-
-        // Fade flight arcs behind the globe
-        const isBack = c1.z > 20 || c2.z > 20;
-        ctx.strokeStyle = isBack ? "rgba(184, 123, 44, 0.1)" : "rgba(184, 123, 44, 0.4)";
+      // Latitude Lines
+      for (let latDeg = -80; latDeg <= 80; latDeg += 20) {
+        const latRad = (latDeg * Math.PI) / 180;
         ctx.beginPath();
-        
-        // Bezier curve to simulate airplane flight path
-        const midX = (c1.x + c2.x) / 2;
-        const midY = (c1.y + c2.y) / 2 - 35; // bulge upwards
-        ctx.moveTo(c1.x, c1.y);
-        ctx.quadraticCurveTo(midX, midY, c2.x, c2.y);
+        let first = true;
+        for (let lonDeg = -180; lonDeg <= 180; lonDeg += 10) {
+          const lonRad = (lonDeg * Math.PI) / 180;
+          const p = project(lonRad, latRad);
+          if (p.z < 0) {
+            if (first) {
+              ctx.moveTo(p.x, p.y);
+              first = false;
+            } else {
+              ctx.lineTo(p.x, p.y);
+            }
+          } else {
+            first = true;
+          }
+        }
         ctx.stroke();
+      }
 
-        // Draw animated light pulse traveling along path
-        conn.progress += conn.speed;
-        if (conn.progress > 1) conn.progress = 0;
+      // 4. Draw Continental Polygons (Front Hemisphere only)
+      continentsRad.forEach(poly => {
+        const projectedPoly = poly.map((coord) => {
+          const lon = coord[0] ?? 0;
+          const lat = coord[1] ?? 0;
+          return project(lon, lat);
+        });
 
-        if (!isBack) {
-          const t = conn.progress;
-          // Calculate quadratic bezier point
+        // Check average depth (z < 0 means front hemisphere)
+        const avgZ = projectedPoly.reduce((acc, p) => acc + p.z, 0) / projectedPoly.length;
+
+        if (avgZ < 0 && projectedPoly && projectedPoly[0]) {
+          ctx.beginPath();
+          ctx.moveTo(projectedPoly[0].x, projectedPoly[0].y);
+          for (let i = 1; i < projectedPoly.length; i++) {
+            const p = projectedPoly[i];
+            if (p) {
+              ctx.lineTo(p.x, p.y);
+            }
+          }
+          ctx.closePath();
+
+          // Golden Landmass Fill & Stroke
+          const landGrad = ctx.createLinearGradient(
+            width / 2 - radius, height / 2 - radius,
+            width / 2 + radius, height / 2 + radius
+          );
+          landGrad.addColorStop(0, "rgba(224, 183, 109, 0.32)");
+          landGrad.addColorStop(1, "rgba(184, 123, 44, 0.2)");
+          
+          ctx.fillStyle = landGrad;
+          ctx.fill();
+
+          ctx.strokeStyle = "rgba(224, 183, 109, 0.45)";
+          ctx.lineWidth = 0.85;
+          ctx.stroke();
+        }
+      });
+
+      // 5. Draw Spherical Shading Overlay (Light highlight on top-left, deep shadow on bottom-right)
+      const shadowGrad = ctx.createRadialGradient(
+        width / 2 - radius * 0.35, height / 2 - radius * 0.35, radius * 0.1,
+        width / 2, height / 2, radius
+      );
+      shadowGrad.addColorStop(0, "rgba(255, 255, 255, 0.1)");
+      shadowGrad.addColorStop(0.55, "rgba(0, 0, 0, 0)");
+      shadowGrad.addColorStop(1, "rgba(0, 0, 0, 0.85)");
+      ctx.fillStyle = shadowGrad;
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 6. Draw City Pins & Connection Lines
+      const projectedCities = cities.map(c => {
+        const p = project(c.lon * Math.PI / 180, c.lat * Math.PI / 180);
+        return { ...p, label: c.label };
+      });
+
+      // Connections flight lines
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(224, 183, 109, 0.4)";
+      for (let i = 0; i < projectedCities.length; i++) {
+        const c1 = projectedCities[i];
+        const c2 = projectedCities[(i + 1) % projectedCities.length];
+
+        if (c1 && c2 && c1.z < 0 && c2.z < 0) {
+          ctx.beginPath();
+          const midX = (c1.x + c2.x) / 2;
+          const midY = (c1.y + c2.y) / 2 - 25; // Bulge curve
+          ctx.moveTo(c1.x, c1.y);
+          ctx.quadraticCurveTo(midX, midY, c2.x, c2.y);
+          ctx.stroke();
+
+          // Animated pulse along flight arc
+          const t = (Date.now() * 0.0006 + i * 0.25) % 1.0;
           const px = (1 - t) * (1 - t) * c1.x + 2 * (1 - t) * t * midX + t * t * c2.x;
           const py = (1 - t) * (1 - t) * c1.y + 2 * (1 - t) * t * midY + t * t * c2.y;
 
-          // Glowing light point
-          ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-          ctx.shadowColor = "#b87b2c";
-          ctx.shadowBlur = 10;
+          ctx.fillStyle = "#ffffff";
+          ctx.shadowColor = "#e0b76d";
+          ctx.shadowBlur = 8;
           ctx.beginPath();
           ctx.arc(px, py, 2.5, 0, Math.PI * 2);
           ctx.fill();
           ctx.shadowBlur = 0; // reset
         }
-      });
+      }
 
-      // Draw city labels and nodes (front side overlay)
-      projectedCities.forEach((city, idx) => {
-        const isFront = city.z < 20;
-        if (isFront) {
-          // City Node circle
-          ctx.fillStyle = "#b87b2c";
+      // Draw Pins on top
+      projectedCities.forEach((city) => {
+        if (city.z < 0) {
+          // Inner dot
+          ctx.fillStyle = "#e0b76d";
           ctx.beginPath();
-          ctx.arc(city.x, city.y, 4, 0, Math.PI * 2);
+          ctx.arc(city.x, city.y, 4.5, 0, Math.PI * 2);
           ctx.fill();
 
-          // Outer pulsing ring
-          const scale = 1 + Math.abs(Math.sin(Date.now() * 0.002 + idx)) * 1.5;
-          ctx.strokeStyle = "rgba(184, 123, 44, 0.3)";
-          ctx.lineWidth = 0.8;
+          // Outer glowing ring
+          const ringScale = 1 + Math.abs(Math.sin(Date.now() * 0.0022)) * 1.4;
+          ctx.strokeStyle = "rgba(224, 183, 109, 0.35)";
+          ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.arc(city.x, city.y, 4 * scale, 0, Math.PI * 2);
+          ctx.arc(city.x, city.y, 4.5 * ringScale, 0, Math.PI * 2);
           ctx.stroke();
 
-          // Clean golden label tag
+          // Text labels
           ctx.font = "bold 9px Karla, sans-serif";
-          ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+          ctx.fillStyle = "#ffffff";
           ctx.textAlign = "center";
-          ctx.fillText(cities[idx].label, city.x, city.y - 12);
+          ctx.shadowColor = "rgba(0, 0, 0, 0.85)";
+          ctx.shadowBlur = 4;
+          ctx.fillText(city.label, city.x, city.y - 12);
+          ctx.shadowBlur = 0;
         }
       });
 
@@ -252,7 +331,7 @@ export function InteractiveGlobe() {
     <canvas
       ref={canvasRef}
       className="block w-full h-full object-cover"
-      aria-label="Interactive 3D Global Consultancy Globe Visualization"
+      aria-label="Realistic rotating 3D golden globe showing worldwide visa destinations"
     />
   );
 }
