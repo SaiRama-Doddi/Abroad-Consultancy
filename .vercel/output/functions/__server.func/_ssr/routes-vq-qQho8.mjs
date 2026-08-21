@@ -1,8 +1,8 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { n as toast } from "../_libs/sonner.mjs";
-import { A as Coins, B as Award, C as GraduationCap, D as Eye, E as FileCheck, F as ChevronLeft, I as ChevronDown, L as Calendar, M as CircleQuestionMark, N as CircleCheck, O as DollarSign, P as ChevronRight, R as Briefcase, S as Handshake, T as FileText, V as ArrowUp, _ as Menu, a as Target, b as Landmark, c as Sparkles, d as Send, f as Quote, g as MessagesSquare, h as MessageSquare, i as Trophy, j as Clock, k as Compass, l as Shield, m as Phone, n as Users, o as Tag, p as Plane, r as User, s as Star, t as X, u as ShieldCheck, v as MapPin, w as Globe, x as Headphones, y as Mail, z as BookOpen } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CXe5VbPV.js
+import { A as FileCheck, B as ChevronLeft, C as Landmark, D as GraduationCap, E as Handshake, F as Coins, G as Award, H as Calendar, I as Clock, K as ArrowUp, L as CircleQuestionMark, M as Eye, N as DollarSign, O as Globe, P as Compass, R as CircleCheck, S as Linkedin, T as Headphones, U as Briefcase, V as ChevronDown, W as BookOpen, _ as MessageSquare, a as Ticket, b as MapPin, c as Star, d as ShieldCheck, f as Send, g as Phone, h as PlaneTakeoff, i as Trophy, j as Facebook, k as FileText, l as Sparkles, m as Plane, n as Users, o as Target, p as Quote, q as ArrowRight, r as User, s as Tag, t as X, u as Shield, v as MessagesSquare, w as Instagram, x as Mail, y as Menu, z as ChevronRight } from "../_libs/lucide-react.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-vq-qQho8.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var links = [
@@ -358,8 +358,9 @@ function ScrollReveal({ children, className = "", delay = 0, duration = 800, dir
 	const [isIntersecting, setIsIntersecting] = (0, import_react.useState)(false);
 	const ref = (0, import_react.useRef)(null);
 	(0, import_react.useEffect)(() => {
-		const observer = new IntersectionObserver(([entry]) => {
-			if (entry.isIntersecting) {
+		const observer = new IntersectionObserver((entries) => {
+			const entry = entries[0];
+			if (entry && entry.isIntersecting) {
 				setIsIntersecting(true);
 				observer.unobserve(entry.target);
 			}
@@ -470,7 +471,11 @@ var continentsRad = [
 		[-45, 60],
 		[-70, 75]
 	]
-].map((poly) => poly.map(([lon, lat]) => [lon * Math.PI / 180, lat * Math.PI / 180]));
+].map((poly) => poly.map((coord) => {
+	const lon = coord[0] ?? 0;
+	const lat = coord[1] ?? 0;
+	return [lon * Math.PI / 180, lat * Math.PI / 180];
+}));
 var cities = [
 	{
 		lon: -100,
@@ -590,11 +595,18 @@ function InteractiveGlobe() {
 				ctx.stroke();
 			}
 			continentsRad.forEach((poly) => {
-				const projectedPoly = poly.map(([lon, lat]) => project(lon, lat));
-				if (projectedPoly.reduce((acc, p) => acc + p.z, 0) / projectedPoly.length < 0) {
+				const projectedPoly = poly.map((coord) => {
+					const lon = coord[0] ?? 0;
+					const lat = coord[1] ?? 0;
+					return project(lon, lat);
+				});
+				if (projectedPoly.reduce((acc, p) => acc + p.z, 0) / projectedPoly.length < 0 && projectedPoly && projectedPoly[0]) {
 					ctx.beginPath();
 					ctx.moveTo(projectedPoly[0].x, projectedPoly[0].y);
-					for (let i = 1; i < projectedPoly.length; i++) ctx.lineTo(projectedPoly[i].x, projectedPoly[i].y);
+					for (let i = 1; i < projectedPoly.length; i++) {
+						const p = projectedPoly[i];
+						if (p) ctx.lineTo(p.x, p.y);
+					}
 					ctx.closePath();
 					const landGrad = ctx.createLinearGradient(width / 2 - radius, height / 2 - radius, width / 2 + radius, height / 2 + radius);
 					landGrad.addColorStop(0, "rgba(224, 183, 109, 0.32)");
@@ -625,7 +637,7 @@ function InteractiveGlobe() {
 			for (let i = 0; i < projectedCities.length; i++) {
 				const c1 = projectedCities[i];
 				const c2 = projectedCities[(i + 1) % projectedCities.length];
-				if (c1.z < 0 && c2.z < 0) {
+				if (c1 && c2 && c1.z < 0 && c2.z < 0) {
 					ctx.beginPath();
 					const midX = (c1.x + c2.x) / 2;
 					const midY = (c1.y + c2.y) / 2 - 25;
@@ -698,9 +710,9 @@ function AnimatedCounter({ value, duration = 2e3 }) {
 			if (progress < 1) window.requestAnimationFrame(step);
 		};
 		const handleIntersection = (entries) => {
-			if (entries[0].isIntersecting) {
+			if (entries && entries[0] && entries[0].isIntersecting) {
 				window.requestAnimationFrame(step);
-				observer.disconnect();
+				if (observer) observer.disconnect();
 			}
 		};
 		if (elementRef.current && !isNaN(numericValue)) {
@@ -999,7 +1011,7 @@ function AboutSection() {
 					direction: "up",
 					delay: 150,
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "group relative rounded-3xl border border-slate-100 bg-white p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--gold)]/25 hover:shadow-[0_25px_50px_rgba(224,183,109,0.08)] overflow-hidden",
+						className: "group relative rounded-3xl border border-slate-200/85 bg-white p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--gold)]/25 hover:shadow-[0_25px_50px_rgba(224,183,109,0.08)] overflow-hidden",
 						style: { boxShadow: "var(--shadow-premium)" },
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute left-0 top-0 bottom-0 w-[4px] bg-[var(--gold)]/30 group-hover:bg-[var(--gold)] transition-colors duration-500" }),
@@ -1028,7 +1040,7 @@ function AboutSection() {
 					direction: "up",
 					delay: 300,
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "group relative rounded-3xl border border-slate-100 bg-white p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--gold)]/25 hover:shadow-[0_25px_50px_rgba(224,183,109,0.08)] overflow-hidden",
+						className: "group relative rounded-3xl border border-slate-200/85 bg-white p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--gold)]/25 hover:shadow-[0_25px_50px_rgba(224,183,109,0.08)] overflow-hidden",
 						style: { boxShadow: "var(--shadow-premium)" },
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute left-0 top-0 bottom-0 w-[4px] bg-[var(--gold)]/30 group-hover:bg-[var(--gold)] transition-colors duration-500" }),
@@ -1151,7 +1163,7 @@ function WhyChooseUs() {
 							delay: 200,
 							className: "w-full flex",
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "group w-full relative rounded-3xl border border-slate-100 bg-white p-6 sm:p-8 pb-8 sm:pb-10 shadow-[0_20px_50px_rgba(0,0,0,0.03)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_rgba(224,183,109,0.08)] flex flex-col sm:flex-row items-center gap-8 overflow-hidden",
+								className: "group w-full relative rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 pb-8 sm:pb-10 shadow-[0_20px_50px_rgba(0,0,0,0.03)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_rgba(224,183,109,0.08)] flex flex-col sm:flex-row items-center gap-8 overflow-hidden",
 								children: [
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" }),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute bottom-0 left-0 right-0 h-1 bg-[var(--gold)]" }),
@@ -1213,7 +1225,7 @@ function WhyChooseUs() {
 								delay: 150 + idx * 120,
 								className: "w-full",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "group relative flex gap-5 rounded-2xl border border-slate-100/90 bg-white p-6 shadow-[0_10px_35px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(224,183,109,0.08)] overflow-hidden",
+									className: "group relative flex gap-5 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_10px_35px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(224,183,109,0.08)] overflow-hidden",
 									children: [
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" }),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -1372,7 +1384,7 @@ function ExpertiseSection() {
 						delay: 100 + idx % 4 * 100,
 						className: "flex",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "group relative flex flex-col items-start rounded-3xl border border-slate-100 bg-white p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full h-full",
+							className: "group relative flex flex-col items-start rounded-3xl border border-slate-200/80 bg-white p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full h-full",
 							style: { boxShadow: "0 10px 30px rgba(0,0,0,0.02)" },
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-[var(--gold)]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" }),
@@ -1406,6 +1418,7 @@ var visaServices = [
 	{
 		title: "Student Visa",
 		icon: GraduationCap,
+		image: "/service-student.jpg",
 		description: "Unlock global educational opportunities. We guide you from choosing the right university to submission and approval. Access quality education with high visa success rates.",
 		features: [
 			"End-to-end admission counseling",
@@ -1417,6 +1430,7 @@ var visaServices = [
 	{
 		title: "Tourism & Visitor Visa",
 		icon: Plane,
+		image: "/service-tourist.jpg",
 		description: "Travel the world with zero stress. Whether it is visiting family, exploring destinations, or business meetings, we manage your visa formalities quickly and transparently.",
 		features: [
 			"Fast-track visa processing options",
@@ -1429,6 +1443,7 @@ var visaServices = [
 		title: "Opportunity Card Germany",
 		countryCode: "de",
 		icon: Briefcase,
+		image: "/service-germany.jpg",
 		description: "Explore Germany's points-based job-seeking visa (Chancenkarte). We assess your eligibility, calculate points, and handle submissions for specialized visa programs.",
 		features: [
 			"Germany Opportunity Card (Chancenkarte)",
@@ -1441,6 +1456,7 @@ var visaServices = [
 		title: "Youth Mobility Visa UK",
 		countryCode: "gb",
 		icon: Globe,
+		image: "/service-uk.jpg",
 		description: "Live and work in the United Kingdom for up to 2 years. Our advisors help you navigate the qualifying criteria, age limits, financial requirements, and biometric registrations.",
 		features: [
 			"Age 18-30 Eligibility Assessment",
@@ -1448,9 +1464,33 @@ var visaServices = [
 			"Biometric slot booking & document checklist",
 			"2-year stay and unrestricted work permit support"
 		]
+	},
+	{
+		title: "Flight Ticket Booking",
+		icon: Ticket,
+		image: "/service-flight.jpg",
+		description: "Fly out with ease and comfort. We secure the best routes, optimal flight schedules, and special student discount fares for your flights to any global destination.",
+		features: [
+			"Student baggage allowance deals",
+			"Flexible ticket date-change options",
+			"Transit visa assistance if needed",
+			"Pre-departure travel checklist"
+		]
+	},
+	{
+		title: "Education Loan Assistance",
+		icon: Landmark,
+		image: "/service-loan.jpg",
+		description: "Finance your overseas education stress-free. We partner with leading financial institutions to secure quick approvals, low-interest student loans, and collateral-free options.",
+		features: [
+			"Pre-visa approval loan letters",
+			"Collateral & collateral-free options",
+			"Special student interest rates",
+			"Fast-track documentation support"
+		]
 	}
 ];
-var countries$1 = [
+var countries = [
 	{
 		name: "United States",
 		code: "us",
@@ -1622,7 +1662,7 @@ function ServicesSection() {
 		})] });
 		return title;
 	};
-	const filteredCountries = countries$1.filter((c) => selectedRegion === "all" || c.region === selectedRegion);
+	const filteredCountries = countries.filter((c) => selectedRegion === "all" || c.region === selectedRegion);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		id: "services",
 		className: "bg-background/50 pt-6 pb-8 sm:pt-8 sm:pb-12 relative overflow-hidden border-b border-slate-100",
@@ -1667,7 +1707,7 @@ function ServicesSection() {
 							delay: 200 + index * 150,
 							className: "flex",
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "group relative flex flex-col justify-between rounded-3xl border border-slate-100 bg-white p-6 sm:p-8 pb-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full",
+								className: "group relative flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full",
 								style: { boxShadow: "0 10px 30px rgba(0,0,0,0.02)" },
 								children: [
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" }),
@@ -1676,50 +1716,61 @@ function ServicesSection() {
 										children: String(index + 1).padStart(2, "0")
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-[var(--gold)]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" }),
-									service.countryCode && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-										className: "absolute top-6 right-6 z-30 transition-all duration-500 group-hover:scale-110 shadow-[0_4px_12px_rgba(0,0,0,0.08)] border-2 border-white rounded-lg overflow-hidden shrink-0 group-hover:border-[var(--gold)] group-hover:shadow-[0_0_20px_rgba(184,123,44,0.5)]",
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-											src: `https://flagcdn.com/w80/${service.countryCode}.png`,
-											className: "h-10 w-16 object-cover",
-											alt: "Country Flag"
-										})
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center gap-4 mb-5 z-20 relative pr-20",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-												className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/5 text-[var(--gold)] border border-[var(--gold)]/15 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105 shadow-sm",
-												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { className: "h-5.5 w-5.5" })
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-												className: "font-display text-xl font-extrabold text-slate-800 group-hover:text-[var(--gold)] transition-colors duration-300 tracking-tight leading-snug",
-												children: highlightTitle(service.title)
-											})]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-[0.82rem] leading-relaxed text-slate-500 mb-6 text-justify z-20 relative",
-											children: service.description
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-											className: "space-y-3 z-20 relative",
-											children: service.features.map((feat) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
-												className: "flex items-start gap-3 group/li",
-												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-													className: "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-300 group-hover/li:bg-[var(--gold)] group-hover/li:text-white mt-0.5 shadow-sm",
-													children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "h-3 w-3" })
-												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-													className: "text-[0.82rem] font-medium text-slate-600 transition-colors duration-300 group-hover/li:text-slate-800 leading-snug",
-													children: feat
-												})]
-											}, feat))
-										})
-									] }),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										onClick: () => {
-											const el = document.getElementById("contact");
-											if (el) el.scrollIntoView({ behavior: "smooth" });
-										},
-										className: "mt-8 pt-4 border-t border-slate-50 flex items-center justify-between text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:text-[var(--gold)]/90 cursor-pointer z-20 relative",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Enquire Details" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: "h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" })]
+										className: "flex flex-col md:flex-row gap-6 items-stretch w-full h-full relative z-10",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex flex-col justify-between flex-1 pr-0 md:pr-4",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+													className: "flex items-center gap-4 mb-5",
+													children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+														className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/5 text-[var(--gold)] border border-[var(--gold)]/15 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105 shadow-sm",
+														children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { className: "h-5.5 w-5.5" })
+													}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+														className: "font-display text-xl font-extrabold text-slate-900 group-hover:text-[var(--gold)] transition-colors duration-300 tracking-tight leading-snug",
+														children: highlightTitle(service.title)
+													})]
+												}),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+													className: "text-[0.82rem] leading-relaxed text-slate-700 mb-6 text-justify font-medium",
+													children: service.description
+												}),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+													className: "space-y-3",
+													children: service.features.map((feat) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
+														className: "flex items-start gap-3 group/li",
+														children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+															className: "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-300 group-hover/li:bg-[var(--gold)] group-hover/li:text-white mt-0.5 shadow-sm",
+															children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "h-3 w-3" })
+														}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+															className: "text-[0.82rem] font-bold text-slate-800 transition-colors duration-300 group-hover/li:text-slate-950 leading-snug",
+															children: feat
+														})]
+													}, feat))
+												})
+											] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												onClick: () => {
+													const el = document.getElementById("contact");
+													if (el) el.scrollIntoView({ behavior: "smooth" });
+												},
+												className: "mt-8 pt-4 border-t border-slate-50 flex items-center justify-between text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:text-[var(--gold)]/90 cursor-pointer",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Enquire Details" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: "h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" })]
+											})]
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "relative w-full md:w-[180px] lg:w-[220px] h-[180px] md:h-auto rounded-2xl overflow-hidden shrink-0 border border-slate-150/70 group-hover:border-[var(--gold)]/40 transition-colors duration-500 shadow-sm self-stretch flex",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+												src: service.image,
+												alt: service.title,
+												className: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+											}), service.countryCode && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "absolute top-3 right-3 z-30 transition-all duration-500 group-hover:scale-110 shadow-[0_4px_12px_rgba(0,0,0,0.08)] border-2 border-white rounded-lg overflow-hidden shrink-0 group-hover:border-[var(--gold)] group-hover:shadow-[0_0_20px_rgba(184,123,44,0.5)]",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+													src: `https://flagcdn.com/w80/${service.countryCode}.png`,
+													className: "h-8 w-12 object-cover",
+													alt: "Country Flag"
+												})
+											})]
+										})]
 									})
 								]
 							})
@@ -1777,7 +1828,7 @@ function ServicesSection() {
 						delay: 100 + idx % 3 * 120,
 						className: "flex",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "group relative flex flex-col justify-between rounded-3xl border border-slate-100 bg-white p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full",
+							className: "group relative flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full",
 							style: { boxShadow: "0 10px 30px rgba(0,0,0,0.02)" },
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" }),
@@ -1864,466 +1915,6 @@ function ServicesSection() {
 		})
 	});
 }
-var goals = [
-	{
-		id: "study",
-		title: "Study Abroad",
-		description: "Get degree admissions and student visas in top international universities",
-		icon: GraduationCap
-	},
-	{
-		id: "migrate",
-		title: "Work & Migrate",
-		description: "Unlock work permits, job seeker visas, and residency opportunities",
-		icon: Briefcase
-	},
-	{
-		id: "visit",
-		title: "Tourist / Visit",
-		description: "Fast-track visitor visa applications for vacations or business trips",
-		icon: Compass
-	}
-];
-var countries = [
-	{
-		id: "US",
-		name: "United States",
-		code: "us",
-		visa: "F-1 Student Visa / Tourist Visa"
-	},
-	{
-		id: "GB",
-		name: "United Kingdom",
-		code: "gb",
-		visa: "Tier 4 Student Visa / Youth Mobility Visa"
-	},
-	{
-		id: "AU",
-		name: "Australia",
-		code: "au",
-		visa: "Subclass 500 Student Visa / Work Rights"
-	},
-	{
-		id: "DE",
-		name: "Germany",
-		code: "de",
-		visa: "Opportunity Card (Chancenkarte) / Student Visa"
-	},
-	{
-		id: "CA",
-		name: "Canada",
-		code: "ca",
-		visa: "Study Permit / Express Entry"
-	},
-	{
-		id: "SG",
-		name: "Singapore",
-		code: "sg",
-		visa: "Student Pass / Training Work Permit"
-	}
-];
-var educations = [
-	{
-		id: "intermediate",
-		title: "Intermediate / 12th Pass",
-		description: "Eligible for Bachelors degree enrollments and youth mobility schemes"
-	},
-	{
-		id: "bachelors",
-		title: "Bachelors Degree Completed",
-		description: "Eligible for Masters/MBA admissions and global job-seeker work visas"
-	},
-	{
-		id: "masters",
-		title: "Masters Degree Completed",
-		description: "Eligible for doctoral research and advanced professional skilled migration"
-	}
-];
-function EligibilityPlanner() {
-	const [step, setStep] = (0, import_react.useState)(1);
-	const [goal, setGoal] = (0, import_react.useState)(null);
-	const [selectedCountry, setSelectedCountry] = (0, import_react.useState)(null);
-	const [education, setEducation] = (0, import_react.useState)(null);
-	const [leadName, setLeadName] = (0, import_react.useState)("");
-	const [leadPhone, setLeadPhone] = (0, import_react.useState)("");
-	const [isSubmitted, setIsSubmitted] = (0, import_react.useState)(false);
-	const [isSubmitting, setIsSubmitting] = (0, import_react.useState)(false);
-	const handleNext = () => {
-		if (step < 4) setStep(step + 1);
-	};
-	const handleBack = () => {
-		if (step > 1) {
-			if (step === 4) setIsSubmitted(false);
-			setStep(step - 1);
-		}
-	};
-	const getMatchedPathway = () => {
-		const countryObj = countries.find((c) => c.id === selectedCountry);
-		const countryName = countryObj ? countryObj.name : "";
-		if (goal === "study") {
-			if (selectedCountry === "GB") return {
-				title: "UK Higher Education & Youth Mobility Route",
-				desc: `Based on your selection, you match both the UK Student Visa and the UK Youth Mobility Visa. You can apply for admissions in top UK universities or live and work in the UK for up to 2 years.`,
-				features: [
-					"2-Year Graduate Post-Study Work Route",
-					"No sponsorships required for Youth Mobility",
-					"Admission support in 150+ UK universities"
-				]
-			};
-			return {
-				title: `Student Visa Admission Route (${countryName})`,
-				desc: `You are eligible for direct Bachelors or Masters admission pathways in the ${countryName}. mcCoy Global Consultancy will handle your university matching, documentation, and visa filing.`,
-				features: [
-					"Priority scholarship application assistance",
-					"Post-study work permit arrangement (up to 3 years)",
-					"Complete pre-departure briefings"
-				]
-			};
-		} else if (goal === "migrate") {
-			if (selectedCountry === "DE") return {
-				title: "Germany Opportunity Card (Chancenkarte)",
-				desc: "Excellent! You qualify for Germany's points-based Opportunity Card. This visa allows skilled professionals to live and seek job opportunities in Germany without a pre-existing job offer.",
-				features: [
-					"Live & look for work in Germany for up to 1 year",
-					"Points based on qualification, age, and language skills",
-					"Part-time work permitted up to 20 hours/week"
-				]
-			};
-			else if (selectedCountry === "GB") return {
-				title: "UK Youth Mobility Visa Route",
-				desc: "You are eligible for the UK Youth Mobility Scheme. This allows young professionals to live, work, and travel in the United Kingdom without requiring job sponsorship.",
-				features: [
-					"Work in any job sector in the UK",
-					"Stay up to 2 years with flexible extensions",
-					"Fast-track processing & direct filing"
-				]
-			};
-			return {
-				title: `Skilled Visa & Direct Work Permits (${countryName})`,
-				desc: `You qualify to explore skilled migration pathways, professional job placement routes, or direct tourist-to-work permit transitions for the ${countryName}.`,
-				features: [
-					"Official credential evaluation advisory",
-					"Employer matchmaking assistance",
-					"Comprehensive visa filing support"
-				]
-			};
-		} else return {
-			title: `Fast-Track Tourist & Visitor Visa (${countryName})`,
-			desc: `You are set for a fast-track visitor or tourist visa pathway for the ${countryName}. We ensure error-free documentation checks to ensure high success rates.`,
-			features: [
-				"Sponsor document verification checks",
-				"Interview preparation guides",
-				"Hotel and flight booking itinerary drafts"
-			]
-		};
-	};
-	const handleLeadSubmit = (e) => {
-		e.preventDefault();
-		if (!leadName || !leadPhone) {
-			toast.error("Please fill in your name and phone number.");
-			return;
-		}
-		setIsSubmitting(true);
-		setTimeout(() => {
-			setIsSubmitting(false);
-			setIsSubmitted(true);
-			toast.success("Enquiry submitted successfully! A consultant will contact you shortly.");
-		}, 1200);
-	};
-	const pathway = getMatchedPathway();
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
-		id: "eligibility-planner",
-		className: "bg-white text-slate-800 pt-4 pb-6 sm:pt-6 sm:pb-8 relative overflow-hidden border-b border-slate-100",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mx-auto max-w-7xl px-6",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
-				direction: "up",
-				delay: 100,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "text-left w-full mb-8 flex flex-col items-start",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Compass, { className: "h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Interactive Tool" })]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-							className: "font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left",
-							children: [
-								"Visa ",
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-[var(--gold)] font-bold",
-									children: "Eligibility"
-								}),
-								" Planner"
-							]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis",
-							children: "Answer 3 simple questions to instantly match with your dream destinations and evaluate your visa eligibility."
-						})
-					]
-				})
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
-				direction: "up",
-				delay: 200,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "w-full rounded-3xl border border-slate-100 bg-white p-6 sm:p-8 relative overflow-hidden",
-					style: { boxShadow: "0 15px 40px rgba(0,0,0,0.03)" },
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 left-0 right-0 h-1 bg-[var(--gold)] z-10" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "mb-8 flex items-center justify-between border-b border-slate-50 pb-5",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-								className: "text-xs font-extrabold uppercase tracking-widest text-slate-400",
-								children: [
-									"Step ",
-									step,
-									" of 4"
-								]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "flex gap-2",
-								children: [
-									1,
-									2,
-									3,
-									4
-								].map((i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `h-2 rounded-full transition-all duration-300 ${i === step ? "w-8 bg-[var(--gold)]" : i < step ? "w-4 bg-[var(--gold)]/40" : "w-2 bg-slate-200"}` }, i))
-							})]
-						}),
-						step === 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "animate-fade-in duration-300",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "font-display text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight mb-6",
-								children: "What is your primary goal?"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "grid gap-6 sm:grid-cols-3",
-								children: goals.map((g) => {
-									const Icon = g.icon;
-									const isSelected = goal === g.id;
-									return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-										onClick: () => setGoal(g.id),
-										className: `group relative flex flex-col justify-between text-left p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${isSelected ? "border-[var(--gold)] bg-[var(--gold)]/5 shadow-[0_10px_25px_rgba(224,183,109,0.08)]" : "border-slate-100 bg-white hover:border-[var(--gold)]/40 hover:shadow-[0_10px_20px_rgba(0,0,0,0.02)]"}`,
-										children: [
-											isSelected && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "h-5 w-5 text-[var(--gold)] absolute top-4 right-4 z-20 shrink-0" }),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-												className: `flex h-11 w-11 items-center justify-center rounded-2xl transition-all duration-500 mb-6 border ${isSelected ? "bg-[var(--gold)] text-white border-[var(--gold)]" : "bg-[var(--gold)]/5 text-[var(--gold)] border-[var(--gold)]/10 group-hover:rotate-6 group-hover:scale-105"}`,
-												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { className: "h-5.5 w-5.5" })
-											}),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-												className: "font-sans text-sm font-bold uppercase tracking-wider text-slate-800",
-												children: g.title
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-												className: "mt-2 text-xs text-slate-500 leading-relaxed text-justify",
-												children: g.description
-											})] })
-										]
-									}, g.id);
-								})
-							})]
-						}),
-						step === 2 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "animate-fade-in duration-300",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "font-display text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight mb-6",
-								children: "Select your preferred destination"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "grid gap-4 sm:grid-cols-2 lg:grid-cols-3",
-								children: countries.map((c) => {
-									const isSelected = selectedCountry === c.id;
-									return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-										onClick: () => setSelectedCountry(c.id),
-										className: `group relative flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 text-left ${isSelected ? "border-[var(--gold)] bg-[var(--gold)]/5 shadow-[0_5px_15px_rgba(224,183,109,0.08)]" : "border-slate-100 bg-white hover:border-[var(--gold)]/40 hover:shadow-[0_8px_15px_rgba(0,0,0,0.02)]"}`,
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center gap-3",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-												className: "relative overflow-hidden rounded-md border border-slate-100 shadow-sm shrink-0 h-5.5 w-8",
-												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-													src: `https://flagcdn.com/w40/${c.code}.png`,
-													className: "h-full w-full object-cover",
-													alt: `${c.name} Flag`
-												})
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "text-sm font-bold text-slate-800",
-												children: c.name
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "block text-[0.62rem] text-slate-400 font-extrabold uppercase mt-0.5",
-												children: c.visa.split(" / ")[0]
-											})] })]
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: `h-4 w-4 text-slate-400 transition-transform duration-300 ${isSelected ? "translate-x-1 text-[var(--gold)]" : "group-hover:translate-x-0.5"}` })]
-									}, c.id);
-								})
-							})]
-						}),
-						step === 3 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "animate-fade-in duration-300",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "font-display text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight mb-6",
-								children: "What is your highest education level completed?"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "grid gap-5",
-								children: educations.map((e) => {
-									const isSelected = education === e.id;
-									return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-										onClick: () => setEducation(e.id),
-										className: `group relative flex items-start gap-4 p-5 rounded-2xl border transition-all duration-300 text-left ${isSelected ? "border-[var(--gold)] bg-[var(--gold)]/5 shadow-[0_5px_15px_rgba(224,183,109,0.08)]" : "border-slate-100 bg-white hover:border-[var(--gold)]/40 hover:shadow-[0_8px_15px_rgba(0,0,0,0.02)]"}`,
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: `mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border transition-all duration-500 ${isSelected ? "bg-[var(--gold)] text-white border-[var(--gold)]" : "bg-[var(--gold)]/5 text-[var(--gold)] border-[var(--gold)]/10 group-hover:rotate-6 group-hover:scale-105"}`,
-											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(GraduationCap, { className: "h-5.5 w-5.5" })
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "text-sm font-bold uppercase tracking-wider text-slate-800",
-											children: e.title
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "mt-1.5 text-xs text-slate-500 leading-relaxed text-justify",
-											children: e.description
-										})] })]
-									}, e.id);
-								})
-							})]
-						}),
-						step === 4 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "animate-fade-in duration-300",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "grid gap-8 lg:grid-cols-12 items-start",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "lg:col-span-6 space-y-6",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center gap-2 text-emerald-600 font-display text-lg font-bold",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "h-5 w-5 animate-pulse text-[var(--gold)]" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Matching Pathway Found!" })]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "font-display text-2xl text-slate-800 font-extrabold tracking-tight leading-snug",
-											children: pathway.title
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "mt-4 text-[0.88rem] leading-relaxed text-slate-500 text-justify",
-											children: pathway.desc
-										})] }),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-											className: "space-y-3",
-											children: pathway.features.map((feat) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
-												className: "flex items-start gap-2.5 text-[0.82rem] text-slate-600 group/feature",
-												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-													className: "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 mt-0.5 shadow-sm",
-													children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "h-3 w-3" })
-												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-													className: "flex-1 leading-snug",
-													children: feat
-												})]
-											}, feat))
-										})
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-									className: "lg:col-span-6 border-t border-slate-100 lg:border-t-0 lg:border-l pt-6 lg:pt-0 lg:pl-8",
-									children: !isSubmitted ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-										onSubmit: handleLeadSubmit,
-										className: "space-y-4",
-										children: [
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-												className: "mb-4",
-												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-													className: "font-sans text-xs font-extrabold text-slate-800 uppercase tracking-wider",
-													children: "Book Priority Consultation"
-												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-													className: "mt-1 text-xs text-slate-400",
-													children: "Submit your contact info to secure a priority assessment callback."
-												})]
-											}),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-												className: "flex flex-col gap-2",
-												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
-													htmlFor: "lead-name",
-													className: "text-[0.62rem] font-extrabold uppercase tracking-wider text-slate-400",
-													children: "Your Name *"
-												}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-													className: "relative",
-													children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-														type: "text",
-														id: "lead-name",
-														value: leadName,
-														onChange: (e) => setLeadName(e.target.value),
-														placeholder: "e.g. John Doe",
-														className: "w-full rounded-2xl border border-slate-200 bg-white pl-10 pr-4 py-3.5 text-xs text-slate-800 focus:border-[var(--gold)] focus:outline-none transition-colors",
-														required: true
-													}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" })]
-												})]
-											}),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-												className: "flex flex-col gap-2",
-												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
-													htmlFor: "lead-phone",
-													className: "text-[0.62rem] font-extrabold uppercase tracking-wider text-slate-400",
-													children: "Phone Number *"
-												}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-													className: "relative",
-													children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-														type: "tel",
-														id: "lead-phone",
-														value: leadPhone,
-														onChange: (e) => setLeadPhone(e.target.value),
-														placeholder: "e.g. +91 88863 68886",
-														className: "w-full rounded-2xl border border-slate-200 bg-white pl-10 pr-4 py-3.5 text-xs text-slate-800 focus:border-[var(--gold)] focus:outline-none transition-colors",
-														required: true
-													}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Phone, { className: "absolute left-3.5 top-3.5 h-4.5 w-4.5 text-slate-400" })]
-												})]
-											}),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-												type: "submit",
-												disabled: isSubmitting,
-												className: "w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-2xl text-xs font-bold uppercase tracking-wider text-[#0b1224] transition-all duration-300 disabled:opacity-50 hover:shadow-[0_4px_15px_rgba(184,123,44,0.35)] cursor-pointer",
-												style: { background: "var(--gradient-gold)" },
-												children: isSubmitting ? "Submitting..." : "Get Free Assessment Callback"
-											})
-										]
-									}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "text-center py-10 space-y-4 animate-fade-in",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 mx-auto",
-											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "h-8 w-8" })
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "font-display text-xl text-slate-800 font-extrabold tracking-tight",
-											children: "Priority Booking Confirmed!"
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-											className: "mt-2 text-[0.88rem] text-slate-500 leading-relaxed text-center",
-											children: [
-												"Thank you, ",
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", {
-													className: "text-slate-800",
-													children: leadName
-												}),
-												". A dedicated specialist for your ",
-												countries.find((c) => c.id === selectedCountry)?.name,
-												" pathway will call you at ",
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", {
-													className: "text-slate-800",
-													children: leadPhone
-												}),
-												" within 24 business hours."
-											]
-										})] })]
-									})
-								})]
-							})
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "mt-8 flex justify-between border-t border-slate-100 pt-5",
-							children: [step > 1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-								onClick: handleBack,
-								className: "flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-700 transition-colors py-2 px-4 cursor-pointer",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, { className: "h-4 w-4" }), " Back"]
-							}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {}), step < 4 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-								onClick: handleNext,
-								disabled: step === 1 && !goal || step === 2 && !selectedCountry || step === 3 && !education,
-								className: `flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest px-6 py-3 rounded-2xl transition-all duration-300 ${step === 1 && goal || step === 2 && selectedCountry || step === 3 && education ? "bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/90 hover:to-[var(--gold)] text-[#0b1224] shadow-[0_4px_12px_rgba(224,183,109,0.3)] hover:shadow-[0_6px_18px_rgba(224,183,109,0.45)] hover:-translate-y-0.5 cursor-pointer" : "bg-slate-100 text-slate-400 cursor-not-allowed opacity-50"}`,
-								children: ["Next ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: "h-4 w-4" })]
-							})]
-						})
-					]
-				})
-			})]
-		})
-	});
-}
 var successStories = [
 	{
 		name: "Kiran Kumar",
@@ -2332,7 +1923,16 @@ var successStories = [
 		visaType: "student",
 		visaLabel: "Student Visa (F-1)",
 		pathwayInfo: "MS in Computer Science · UT Dallas",
-		image: "/student-usa.png"
+		image: "/student-usa.png",
+		approvalTime: "12 Days",
+		serial: "MCC-US-8924",
+		testimonial: "mcCoy Global made my dream of studying in the USA a reality. Their expert guidance on SOP drafting and visa interview prep was flawless. Highly recommended!",
+		milestones: [
+			"Profile Evaluated",
+			"I-20 Received",
+			"Visa Slot Booked",
+			"Visa Approved"
+		]
 	},
 	{
 		name: "Ananya Reddy",
@@ -2341,7 +1941,16 @@ var successStories = [
 		visaType: "mobility",
 		visaLabel: "Germany Opportunity Card",
 		pathwayInfo: "IT Software Engineer Pathway",
-		image: "/student-germany.png"
+		image: "/student-germany.png",
+		approvalTime: "18 Days",
+		serial: "MCC-DE-4412",
+		testimonial: "Securing my Germany Opportunity Card was seamless thanks to mcCoy. They helped me with point calculation and document verification. Best consultancy ever!",
+		milestones: [
+			"Points Audited",
+			"Anabin Certified",
+			"Embassy Interview",
+			"Card Issued"
+		]
 	},
 	{
 		name: "Vikram Malhotra",
@@ -2350,7 +1959,16 @@ var successStories = [
 		visaType: "mobility",
 		visaLabel: "UK Youth Mobility Visa",
 		pathwayInfo: "Marketing Analyst · London",
-		image: "/student-uk.png"
+		image: "/student-uk.png",
+		approvalTime: "10 Days",
+		serial: "MCC-UK-1092",
+		testimonial: "Extremely professional team. They handled my Youth Mobility Visa smoothly, and I arrived in London within weeks. Truly hassle-free!",
+		milestones: [
+			"VFS Lodgement",
+			"Biometrics Done",
+			"Decision Received",
+			"Visa Endorsed"
+		]
 	},
 	{
 		name: "Sneha Rao",
@@ -2359,17 +1977,27 @@ var successStories = [
 		visaType: "student",
 		visaLabel: "Student Visa & Internship",
 		pathwayInfo: "NSTC Logistics Management + AI",
-		image: "/student-singapore.png"
+		image: "/student-singapore.png",
+		approvalTime: "14 Days",
+		serial: "MCC-SG-3810",
+		testimonial: "Thanks to mcCoy, I got my Singapore student visa and an internship placement at a leading logistics firm. Their guidance changed my career.",
+		milestones: [
+			"University Offer",
+			"ICA Application",
+			"STP Approval",
+			"Entry Granted"
+		]
 	}
 ];
 function GallerySection() {
 	const [filter, setFilter] = (0, import_react.useState)("all");
+	const [selectedStory, setSelectedStory] = (0, import_react.useState)(null);
 	const filteredStories = successStories.filter((story) => filter === "all" || story.visaType === filter);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 		id: "gallery",
-		className: "bg-background pt-6 pb-8 sm:pt-8 sm:pb-12 relative overflow-hidden border-b border-slate-100",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mx-auto max-w-7xl px-6",
+		className: "bg-[#fcfbf9] pt-6 pb-12 sm:pt-10 sm:pb-16 relative overflow-hidden border-b border-slate-100",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.06] pointer-events-none" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "mx-auto max-w-7xl px-6 relative z-10",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
 					direction: "up",
@@ -2404,14 +2032,14 @@ function GallerySection() {
 					direction: "up",
 					delay: 200,
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "flex justify-center gap-2 mb-8",
+						className: "flex justify-start gap-2 mb-8 overflow-x-auto pb-2 scrollbar-thin",
 						children: [
 							"all",
 							"student",
 							"mobility"
 						].map((type) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 							onClick: () => setFilter(type),
-							className: `rounded-full px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 ${filter === type ? "text-[#0b1224] shadow-[0_0_15px_rgba(224,183,109,0.3)] scale-105" : "text-muted-foreground/80 hover:text-foreground hover:bg-muted bg-card/65 border border-border"}`,
+							className: `rounded-full px-5 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 whitespace-nowrap cursor-pointer ${filter === type ? "text-[#0b1224] shadow-[0_4px_12px_rgba(224,183,109,0.25)] scale-105" : "text-slate-500 hover:text-slate-800 hover:bg-slate-50 bg-white border border-slate-100"}`,
 							style: { background: filter === type ? "var(--gradient-gold)" : void 0 },
 							children: [
 								type === "all" && "All Approvals",
@@ -2428,183 +2056,450 @@ function GallerySection() {
 						delay: 150 + idx % 4 * 100,
 						className: "flex",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: `group relative flex flex-col justify-between rounded-3xl border overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/60 hover:shadow-[0_20px_45px_rgba(224,183,109,0.2)] w-full ${idx === 1 ? "border-[var(--gold)] bg-gradient-to-b from-card via-card to-[var(--gold)]/5 shadow-[0_15px_35px_rgba(224,183,109,0.18)]" : "border-border bg-card shadow-premium"}`,
-							style: { boxShadow: idx === 1 ? "0 15px 35px rgba(224,183,109,0.18)" : "var(--shadow-premium)" },
+							onClick: () => setSelectedStory(story),
+							className: "group relative flex flex-col justify-between rounded-3xl border border-slate-150/70 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] w-full cursor-pointer",
 							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 group-hover:animate-shine pointer-events-none z-20" }),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "group-hover:translate-y-[-2px] transition-transform duration-300",
+									className: "relative z-10 flex flex-col h-full",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "relative h-64 w-full overflow-hidden bg-muted",
+										className: "relative h-64 w-full overflow-hidden bg-slate-50",
 										children: [
 											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 												src: story.image,
 												alt: story.name,
-												className: "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+												className: "h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
 											}),
 											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-												className: "absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-full bg-emerald-500 px-3 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-wider text-white shadow-lg",
-												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Visa Approved" })]
+												className: "absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-full bg-emerald-500/90 backdrop-blur-sm px-3.5 py-1.5 text-[0.62rem] font-extrabold uppercase tracking-widest text-white shadow-md",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Approved" })]
 											}),
-											idx === 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-												className: "absolute top-4 right-4 z-20 flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-1.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-black shadow-lg",
-												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "⭐ Highlighted" })
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "absolute bottom-3 right-4 z-20 font-mono text-[9px] font-semibold text-white/70 bg-black/35 backdrop-blur-sm px-2 py-0.5 rounded",
+												children: story.serial
 											})
 										]
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "p-6",
+										className: "p-6 relative flex-grow flex flex-col justify-between",
 										children: [
-											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-												className: "flex items-center gap-2 mb-3",
-												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-													src: `https://flagcdn.com/w40/${story.countryCode}.png`,
-													width: "20",
-													alt: `${story.destination} Flag`,
-													className: "rounded-sm border border-border/40 shadow-sm"
-												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-													className: "text-[0.68rem] font-bold uppercase tracking-wider text-[var(--gold)]",
-													children: story.destination
-												})]
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "font-display font-black text-6xl tracking-widest uppercase",
+													children: "VISA"
+												})
 											}),
-											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-												className: "font-display text-xl text-foreground font-semibold group-hover:text-[var(--gold)] transition-colors mb-2",
-												children: story.name
-											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+													className: "flex items-center gap-2 mb-3.5",
+													children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+														src: `https://flagcdn.com/w40/${story.countryCode}.png`,
+														width: "22",
+														alt: `${story.destination} Flag`,
+														className: "rounded-sm border border-slate-100 shadow-sm"
+													}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+														className: "text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)]",
+														children: story.destination
+													})]
+												}),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+													className: "font-display text-[1.15rem] text-slate-800 font-extrabold group-hover:text-[var(--gold)] transition-colors duration-300",
+													children: story.name
+												}),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+													className: "mt-2 text-[0.82rem] text-slate-500 leading-snug",
+													children: story.pathwayInfo
+												})
+											] }),
 											/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-												className: "mt-4 space-y-2",
+												className: "mt-5 pt-4 border-t border-slate-100/80 flex items-center justify-between",
 												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-													className: "flex items-center gap-1.5 text-xs text-muted-foreground font-medium",
-													children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trophy, { className: "h-3.5 w-3.5 text-[var(--gold)] shrink-0" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: story.visaLabel })]
-												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-													className: "flex items-center gap-1.5 text-xs text-muted-foreground/80 pl-5",
-													children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: story.pathwayInfo })
+													className: "flex items-center gap-1.5",
+													children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "h-3.5 w-3.5 text-slate-400" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+														className: "text-[0.72rem] font-bold text-slate-500",
+														children: story.approvalTime
+													})]
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+													className: "text-[0.7rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:translate-x-1.5 transition-transform duration-300 flex items-center gap-1",
+													children: ["View Case ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-3 w-3" })]
 												})]
 											})
 										]
 									})]
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-1 w-full bg-gradient-to-r from-transparent via-[var(--gold)]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" })
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "absolute right-3 bottom-1 text-7xl font-display font-black text-slate-100/55 select-none pointer-events-none transition-colors duration-500 group-hover:text-[var(--gold)]/5 z-0",
+									children: `0${idx + 1}`
+								})
 							]
 						})
 					}, story.name))
+				}),
+				selectedStory && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "fixed inset-0 z-50 flex items-center justify-center p-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "absolute inset-0 bg-[#0b1224]/80 backdrop-blur-sm animate-fade-in",
+						onClick: () => setSelectedStory(null)
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "relative bg-white rounded-[32px] border border-slate-100 w-full max-w-4xl overflow-hidden shadow-2xl z-10 animate-slide-up duration-500 grid md:grid-cols-2",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								onClick: () => setSelectedStory(null),
+								className: "absolute top-4 right-4 z-30 bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-full transition-all duration-300 cursor-pointer",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-4 w-4" })
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "relative bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-200/50",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:16px_16px] opacity-[0.04] pointer-events-none" }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex items-center justify-between border-b-2 border-slate-200 pb-4 mb-6",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "font-mono text-xs font-bold text-slate-400",
+												children: "PASSPORT CONTROL"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "font-mono text-xs font-extrabold text-[var(--gold)]",
+												children: selectedStory.serial
+											})]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "flex justify-center mb-6",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "relative p-2 bg-white rounded-2xl shadow-md border border-slate-200 rotate-[-1.5deg]",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+													src: selectedStory.image,
+													alt: selectedStory.name,
+													className: "w-48 h-56 object-cover rounded-xl grayscale-[15%] filter"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+													className: "absolute -bottom-3 -right-3 w-14 h-14 rounded-full border-2 border-dashed border-[var(--gold)] bg-white flex items-center justify-center shadow-lg rotate-12",
+													children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+														className: "w-11 h-11 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)] flex flex-col items-center justify-center",
+														children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+															className: "font-display font-black text-[7px] text-[var(--gold)] tracking-widest leading-none",
+															children: "APPROVED"
+														}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+															className: "font-display font-black text-[6px] text-[var(--gold)]",
+															children: "MCCOY"
+														})]
+													})
+												})]
+											})
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "grid grid-cols-2 gap-y-4 gap-x-6 text-left",
+											children: [
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "block text-[10px] font-bold text-slate-400 uppercase tracking-wider",
+													children: "Given Name"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "text-sm font-extrabold text-slate-800",
+													children: selectedStory.name
+												})] }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "block text-[10px] font-bold text-slate-400 uppercase tracking-wider",
+													children: "Destination"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+													className: "text-sm font-extrabold text-slate-800 flex items-center gap-1.5",
+													children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+														src: `https://flagcdn.com/w40/${selectedStory.countryCode}.png`,
+														width: "16",
+														alt: "Flag",
+														className: "rounded-sm"
+													}), selectedStory.destination]
+												})] }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "block text-[10px] font-bold text-slate-400 uppercase tracking-wider",
+													children: "Visa Type"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "text-xs font-bold text-slate-700 bg-slate-200/60 px-2 py-0.5 rounded",
+													children: selectedStory.visaLabel
+												})] }),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "block text-[10px] font-bold text-slate-400 uppercase tracking-wider",
+													children: "Speed of Issue"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+													className: "text-xs font-bold text-slate-700 flex items-center gap-1",
+													children: [
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "h-3 w-3 text-[var(--gold)]" }),
+														" ",
+														selectedStory.approvalTime
+													]
+												})] })
+											]
+										})
+									] }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "mt-8 border-t border-slate-200 pt-4 text-center",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+											className: "font-mono text-[9px] text-slate-400",
+											children: [
+												"P<INDMCC<<",
+												selectedStory.name.replace(" ", "&lt;").toUpperCase(),
+												"<<<<<<<<<<<<<<<"
+											]
+										})
+									})
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-8 flex flex-col justify-between bg-white",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "inline-flex items-center gap-1 text-[var(--gold)] font-bold text-xs uppercase tracking-widest mb-3",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileCheck, { className: "h-4 w-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Case Verification" })]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+										className: "font-display text-2xl font-extrabold text-slate-800 tracking-tight text-left mb-4",
+										children: "Journey Details"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "bg-[var(--gold)]/5 border-l-4 border-[var(--gold)] p-4 rounded-r-2xl mb-6 relative",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "absolute top-2 right-4 text-4xl font-display font-black text-[var(--gold)]/20 leading-none",
+											children: "“"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-[0.88rem] text-slate-600 leading-relaxed italic text-justify pr-2",
+											children: selectedStory.testimonial
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3 text-left",
+										children: "Processing Milestones"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "space-y-3.5",
+										children: selectedStory.milestones.map((m, idx) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex items-center gap-3",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "w-5 h-5 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center shrink-0",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "text-[10px] font-extrabold text-emerald-600",
+													children: "✓"
+												})
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-xs font-semibold text-slate-700",
+												children: m
+											})]
+										}, idx))
+									})] })
+								] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "mt-8 pt-6 border-t border-slate-100 flex items-center justify-between",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+										href: "#contact",
+										onClick: () => setSelectedStory(null),
+										className: "w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/90 hover:to-[var(--gold)] text-[#0b1224] text-xs font-extrabold uppercase tracking-widest py-3.5 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300",
+										children: ["Start Your Success Story ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PlaneTakeoff, { className: "h-4 w-4" })]
+									})
+								})]
+							})
+						]
+					})]
 				})
 			]
-		})
+		})]
 	});
 }
 var testimonials = [
 	{
 		name: "Rahul Kurapati",
 		location: "USA",
+		countryCode: "us",
 		program: "Masters in Computer Science",
 		rating: 5,
-		quote: "Mani Abroad Consultancy made my dream of studying in the US a reality. They helped me choose the right university, guided me through the SOP drafting, and prepped me for the visa interview. The support was outstanding!",
+		quote: "mcCoy Global Consultancy made my dream of studying in the US a reality. They helped me choose the right university, guided me through the SOP drafting, and prepped me for the visa interview. The support was outstanding!",
 		initials: "RK"
 	},
 	{
 		name: "Aisha Mohammed",
 		location: "Singapore",
+		countryCode: "sg",
 		program: "Diploma in Logistics Management (NSTC)",
 		rating: 5,
-		quote: "The Singapore 6+6 package (6 months study + 6 months paid internship) recommended by Mani Abroad was a game-changer. They managed the visa process seamlessly and guided me all the way to check-in.",
+		quote: "The Singapore 6+6 package (6 months study + 6 months paid internship) recommended by mcCoy Global was a game-changer. They managed the visa process seamlessly and guided me all the way to check-in.",
 		initials: "AM"
 	},
 	{
 		name: "Dr. Sandeep Yadav",
 		location: "Georgia",
+		countryCode: "ge",
 		program: "MBBS (Doctor of Medicine)",
 		rating: 5,
 		quote: "Getting admission for my MBBS in Georgia was simple and stress-free with their NEET-free counseling process. They guided me through translations, foreign registrations, and even helped with flight ticketing.",
 		initials: "SY"
+	},
+	{
+		name: "Priya Sharma",
+		location: "Canada",
+		countryCode: "ca",
+		program: "Postgraduate in Project Management",
+		rating: 5,
+		quote: "mcCoy Global helped me secure my admission in Canada and guided me through the SDS visa process. Their step-by-step assistance in documentation and GIC setup made the process completely stress-free!",
+		initials: "PS"
+	},
+	{
+		name: "Rohan Das",
+		location: "Australia",
+		countryCode: "au",
+		program: "Bachelor of Business Info Systems",
+		rating: 5,
+		quote: "Extremely thankful to mcCoy for guiding me through my Australian Subclass 500 visa. The visa grant was so fast! Their mock interview sessions prepared me perfectly for the GTE requirements.",
+		initials: "RD"
+	},
+	{
+		name: "Fatima Al-Sayed",
+		location: "United Kingdom",
+		countryCode: "gb",
+		program: "MSc in Data Science · Manchester",
+		rating: 5,
+		quote: "Securing my UK student visa was super easy with mcCoy. They checked all my financial documentation, helped with the VFS process, and followed up at every step until I landed in Manchester.",
+		initials: "FA"
 	}
 ];
 function TestimonialsSection() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
-		className: "bg-gradient-to-b from-background to-muted/40 pt-6 pb-8 sm:pt-8 sm:pb-12 relative overflow-hidden border-b border-slate-100",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mx-auto max-w-7xl px-6",
+	const scrollRef = (0, import_react.useRef)(null);
+	const [scrollPosition, setScrollPosition] = (0, import_react.useState)(0);
+	const handleScroll = (direction) => {
+		if (scrollRef.current) {
+			const { scrollLeft, clientWidth } = scrollRef.current;
+			const scrollAmount = clientWidth * .75;
+			const targetScroll = direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
+			scrollRef.current.scrollTo({
+				left: targetScroll,
+				behavior: "smooth"
+			});
+			setScrollPosition(targetScroll);
+		}
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+		id: "testimonials",
+		className: "bg-[#fcfbf9] pt-6 pb-12 sm:pt-10 sm:pb-16 relative overflow-hidden border-b border-slate-100",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.06] pointer-events-none" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "mx-auto max-w-7xl px-6 relative z-10",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
 				direction: "up",
 				delay: 100,
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "text-left w-full mb-8 flex flex-col items-start",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Quote, { className: "h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Testimonials" })]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-							className: "font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left",
-							children: [
-								"What Our ",
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-[var(--gold)] font-bold",
-									children: "Clients"
-								}),
-								" Say"
-							]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis",
-							children: "Real success stories from students and professionals who successfully migrated, studied, and advanced their careers overseas."
-						})
-					]
-				})
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "grid gap-8 md:grid-cols-3",
-				children: testimonials.map((t, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
-					direction: "up",
-					delay: 200 + index * 150,
-					className: "flex",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "group relative flex flex-col justify-between rounded-3xl border border-border bg-card p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)]/40 hover:shadow-[0_20px_40px_rgba(224,183,109,0.12)] overflow-hidden w-full",
-						style: { boxShadow: "var(--shadow-premium)" },
+					className: "flex flex-col md:flex-row md:items-end justify-between mb-8 w-full",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "text-left flex flex-col items-start max-w-2xl",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" }),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "group-hover:translate-y-[-2px] transition-transform duration-300",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex items-center justify-between mb-6",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-										className: "flex gap-1",
-										children: [...Array(t.rating)].map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Star, { className: "h-4 w-4 fill-[var(--gold)] text-[var(--gold)]" }, i))
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Quote, { className: "h-7 w-7 text-[var(--gold)]/20 group-hover:text-[var(--gold)]/35 transition-colors duration-300" })]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "text-sm leading-relaxed text-muted-foreground italic mb-8 relative z-10",
-									children: [
-										"\"",
-										t.quote,
-										"\""
-									]
-								})]
+								className: "inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Quote, { className: "h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Testimonials" })]
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center gap-4 mt-auto border-t border-border/40 pt-6",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-									className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-xs font-bold text-[#0b1224] tracking-wider uppercase",
-									style: { background: "var(--gradient-gold)" },
-									children: t.initials
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-									className: "font-sans text-sm font-extrabold text-foreground tracking-wide uppercase leading-none",
-									children: t.name
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-									className: "block mt-1.5 text-xs text-muted-foreground",
-									children: [
-										t.program,
-										" · ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", {
-											className: "text-[var(--gold)] font-medium",
-											children: t.location
-										})
-									]
-								})] })]
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+								className: "font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left",
+								children: [
+									"What Our ",
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-[var(--gold)] font-bold",
+										children: "Clients"
+									}),
+									" Say"
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis",
+								children: "Real success stories from students and professionals who successfully migrated, studied, and advanced their careers overseas."
 							})
 						]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-3 mt-4 md:mt-0",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => handleScroll("left"),
+							className: "flex items-center justify-center h-10 w-10 rounded-full border border-slate-200 bg-white hover:border-[var(--gold)] text-slate-500 hover:text-[var(--gold)] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:-translate-x-0.5",
+							"aria-label": "Previous testimonials",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, { className: "h-5 w-5" })
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => handleScroll("right"),
+							className: "flex items-center justify-center h-10 w-10 rounded-full border border-slate-200 bg-white hover:border-[var(--gold)] text-slate-500 hover:text-[var(--gold)] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:translate-x-0.5",
+							"aria-label": "Next testimonials",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: "h-5 w-5" })
+						})]
+					})]
+				})
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "relative w-full overflow-visible",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-[#fcfbf9] to-transparent pointer-events-none z-20" }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-[#fcfbf9] to-transparent pointer-events-none z-20" }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						ref: scrollRef,
+						className: "flex gap-6 overflow-x-auto pb-6 pt-2 px-4 scrollbar-none snap-x snap-mandatory scroll-smooth",
+						style: {
+							scrollbarWidth: "none",
+							msOverflowStyle: "none"
+						},
+						children: testimonials.map((t, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "snap-start shrink-0 w-[290px] sm:w-[350px] md:w-[380px] group relative flex flex-col justify-between rounded-3xl border border-slate-150/70 bg-white p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 bottom-0 left-0 w-[4px] bg-[var(--gold)]/20 group-hover:bg-[var(--gold)] transition-colors duration-300 z-20" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 group-hover:animate-shine pointer-events-none z-20" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "absolute top-8 right-6 text-7xl font-display font-black text-slate-50/50 select-none pointer-events-none transition-colors duration-500 group-hover:text-[var(--gold)]/5 z-0",
+									children: "”"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "relative z-10 flex flex-col h-full justify-between",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center justify-between mb-6",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "flex gap-1 group-hover:scale-105 transition-transform duration-300 origin-left",
+											children: [...Array(t.rating)].map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Star, { className: "h-4.5 w-4.5 fill-[var(--gold)] text-[var(--gold)] drop-shadow-sm" }, i))
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+											className: "inline-flex items-center gap-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 text-[0.62rem] font-extrabold uppercase tracking-widest text-emerald-600 shadow-sm",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "h-3 w-3" }), " Verified"]
+										})]
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+										className: "text-[0.92rem] leading-relaxed text-slate-600 italic mb-8 text-justify pr-2 font-light",
+										children: [
+											"\"",
+											t.quote,
+											"\""
+										]
+									})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center gap-4 mt-auto border-t border-slate-100 pt-6",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-xs font-extrabold text-[#0b1224] tracking-wider uppercase border border-[var(--gold)]/30 shadow-inner group-hover:border-[var(--gold)] transition-colors duration-300",
+											style: { background: "var(--gradient-gold)" },
+											children: t.initials
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "text-left",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+												className: "font-display text-sm font-extrabold text-slate-800 tracking-wide uppercase leading-none group-hover:text-[var(--gold)] transition-colors duration-300",
+												children: t.name
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+												className: "block mt-2 text-[0.72rem] text-slate-500 leading-none",
+												children: [
+													t.program,
+													" · ",
+													/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", {
+														className: "text-[var(--gold)] font-bold flex items-center gap-1 mt-1",
+														children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+															src: `https://flagcdn.com/w40/${t.countryCode}.png`,
+															width: "14",
+															alt: "flag",
+															className: "rounded-sm shadow-sm"
+														}), t.location]
+													})
+												]
+											})]
+										})]
+									})]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "absolute right-3 bottom-1 text-7xl font-display font-black text-slate-100/55 select-none pointer-events-none transition-colors duration-500 group-hover:text-[var(--gold)]/5 z-0",
+									children: `0${index + 1}`
+								})
+							]
+						}, t.name))
 					})
-				}, t.name))
+				]
 			})]
-		})
+		})]
 	});
 }
 var faqs = [
@@ -2617,7 +2512,7 @@ var faqs = [
 		answer: "The UK Youth Mobility Scheme Visa is open to young professionals (typically aged 18 to 30) from participating countries and eligible passport arrangements (including Indian nationals with qualified degrees). It provides a 2-year visa allowing you to work in any job sector in the UK without requiring a local employer sponsorship."
 	},
 	{
-		question: "Does Mani Abroad Consultancy assist with university scholarships and waivers?",
+		question: "Does mcCoy Global assist with university scholarships and waivers?",
 		answer: "Yes, absolutely! We match your academic profile, credentials, and standardized language scores (IELTS, PTE, TOEFL) with active merit-based university scholarships, fee waivers, and assistantship packages to minimize your study costs."
 	},
 	{
@@ -2627,6 +2522,10 @@ var faqs = [
 	{
 		question: "What is the average timeline for securing a student visa?",
 		answer: "University admissions typically take 2 to 6 weeks, while visa processing takes an additional 3 to 8 weeks depending on the destination (e.g., fast-track routes for the UK and USA). We advise starting your application process at least 4 to 6 months before your intended intake."
+	},
+	{
+		question: "Can I work part-time while studying abroad?",
+		answer: "Yes, most study destinations permit international students to work part-time. For instance, the UK, Australia, and Germany generally allow students to work up to 20 hours per week during term time and full-time during semester breaks. We guide you on local work regulations for your specific country."
 	}
 ];
 function FaqSection() {
@@ -2634,11 +2533,54 @@ function FaqSection() {
 	const toggleFaq = (index) => {
 		setOpenIndex(openIndex === index ? null : index);
 	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+	const renderFaqColumn = (items, startIndexOffset, step) => {
+		return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "flex flex-col gap-6 w-full",
+			children: items.map((faq, relativeIdx) => {
+				const actualIndex = relativeIdx * step + startIndexOffset;
+				const isOpen = openIndex === actualIndex;
+				return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
+					direction: "up",
+					delay: 100 + actualIndex * 80,
+					className: "flex",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: `group relative rounded-2xl border transition-all duration-500 bg-white overflow-hidden w-full ${isOpen ? "border-[var(--gold)] shadow-[0_15px_30px_rgba(184,123,44,0.08)]" : "border-slate-150/70 hover:border-[var(--gold)]/60 hover:shadow-[0_10px_20px_rgba(0,0,0,0.03)]"}`,
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `absolute top-0 bottom-0 left-0 w-[4px] transition-colors duration-300 z-20 ${isOpen ? "bg-[var(--gold)]" : "bg-[var(--gold)]/20 group-hover:bg-[var(--gold)]"}` }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+								onClick: () => toggleFaq(actualIndex),
+								className: "w-full flex items-center justify-between text-left p-6 gap-4 cursor-pointer focus:outline-none relative z-10",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex items-center gap-3",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleQuestionMark, { className: `h-5 w-5 shrink-0 transition-colors duration-300 ${isOpen ? "text-[var(--gold)]" : "text-slate-400 group-hover:text-[var(--gold)]"}` }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: `text-[0.88rem] font-extrabold uppercase tracking-wider transition-colors duration-300 ${isOpen ? "text-[var(--gold)]" : "text-slate-700 group-hover:text-slate-800"}`,
+										children: faq.question
+									})]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: `h-5 w-5 shrink-0 transition-all duration-300 ${isOpen ? "rotate-180 text-[var(--gold)]" : "text-slate-450 group-hover:text-slate-700"}` })]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: `grid transition-all duration-300 ease-in-out px-6 relative z-10 ${isOpen ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"}`,
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "overflow-hidden",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "my-3 h-px w-full bg-slate-100" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-sm text-slate-500 leading-relaxed pl-8 text-justify",
+										children: faq.answer
+									})]
+								})
+							})
+						]
+					})
+				}, actualIndex);
+			})
+		});
+	};
+	const leftFaqs = faqs.filter((_, idx) => idx % 2 === 0);
+	const rightFaqs = faqs.filter((_, idx) => idx % 2 === 1);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 		id: "faq",
-		className: "bg-background pt-6 pb-8 sm:pt-8 sm:pb-12 relative overflow-hidden border-b border-slate-100",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mx-auto max-w-7xl px-6",
+		className: "bg-[#fcfbf9] pt-6 pb-12 sm:pt-10 sm:pb-16 relative overflow-hidden border-b border-slate-100",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.06] pointer-events-none" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "mx-auto max-w-7xl px-6 relative z-10",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
 				direction: "up",
 				delay: 100,
@@ -2663,40 +2605,11 @@ function FaqSection() {
 						})
 					]
 				})
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "mx-auto max-w-4xl space-y-4",
-				children: faqs.map((faq, index) => {
-					const isOpen = openIndex === index;
-					return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
-						direction: "up",
-						delay: 100 + index * 80,
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: `group rounded-2xl border transition-all duration-300 bg-card/45 overflow-hidden ${isOpen ? "border-[var(--gold)]/40 shadow-[0_10px_25px_rgba(224,183,109,0.06)]" : "border-border hover:border-border-hover"}`,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-								onClick: () => toggleFaq(index),
-								className: "w-full flex items-center justify-between text-left p-6 gap-4 cursor-pointer focus:outline-none",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex items-center gap-3",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleQuestionMark, { className: `h-5 w-5 shrink-0 transition-colors duration-300 ${isOpen ? "text-[var(--gold)]" : "text-muted-foreground/60"}` }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: `text-[0.92rem] font-bold uppercase tracking-wider ${isOpen ? "text-[var(--gold)]" : "text-foreground"}`,
-										children: faq.question
-									})]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: `h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${isOpen ? "rotate-180 text-[var(--gold)]" : "group-hover:text-foreground"}` })]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: `grid transition-all duration-300 ease-in-out px-6 ${isOpen ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"}`,
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "overflow-hidden",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "my-3 h-px w-full bg-border/40" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "text-sm text-muted-foreground leading-relaxed pl-8",
-										children: faq.answer
-									})]
-								})
-							})]
-						})
-					}, index);
-				})
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "grid gap-6 md:grid-cols-2 items-start",
+				children: [renderFaqColumn(leftFaqs, 0, 2), renderFaqColumn(rightFaqs, 1, 2)]
 			})]
-		})
+		})]
 	});
 }
 function ContactFormSection() {
@@ -2704,7 +2617,7 @@ function ContactFormSection() {
 		name: "",
 		phone: "",
 		email: "",
-		country: "US",
+		country: "us",
 		visaType: "student",
 		message: ""
 	});
@@ -2730,29 +2643,29 @@ function ContactFormSection() {
 				name: "",
 				phone: "",
 				email: "",
-				country: "US",
+				country: "us",
 				visaType: "student",
 				message: ""
 			});
 		}, 1500);
 	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 		id: "contact",
-		className: "bg-background pt-6 pb-8 sm:pt-8 sm:pb-12 relative overflow-hidden border-b border-slate-100 scroll-mt-20",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mx-auto max-w-7xl px-6",
+		className: "bg-white pt-6 pb-12 sm:pt-10 sm:pb-16 relative overflow-hidden border-b border-slate-100 scroll-mt-24",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.05] pointer-events-none" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "mx-auto max-w-7xl px-6 relative z-10",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
 				direction: "up",
 				delay: 100,
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "text-left w-full mb-8 flex flex-col items-start",
+					className: "text-left w-full mb-10 flex flex-col items-start",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Mail, { className: "h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Contact Us" })]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-							className: "font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left",
+							className: "font-display text-4xl leading-tight text-slate-900 sm:text-5xl font-extrabold tracking-tight text-left",
 							children: [
 								"Start Your ",
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
@@ -2764,93 +2677,112 @@ function ContactFormSection() {
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" }),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis",
+							className: "mt-4 text-[1.02rem] text-slate-800 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis font-medium",
 							children: "Ready to explore study or tourism options abroad? Fill out the form below, and our boutique consultant will get back to you with personalized guidance."
 						})
 					]
 				})
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "grid gap-12 lg:grid-cols-12 items-start",
+				className: "grid gap-8 lg:grid-cols-12 items-stretch",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
 					direction: "left",
 					delay: 200,
-					className: "lg:col-span-5 w-full",
+					className: "lg:col-span-5 flex w-full",
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "space-y-8 lg:pr-8",
+						className: "group relative flex flex-col justify-between rounded-3xl border border-slate-200 bg-slate-50/50 p-8 sm:p-10 overflow-hidden w-full transition-all duration-500 hover:border-[var(--gold)]/60 hover:shadow-[0_15px_30px_rgba(184,123,44,0.06)]",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "font-display text-3xl text-foreground",
-								children: "Get In Touch"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "mt-4 text-sm text-muted-foreground leading-relaxed",
-								children: "We believe a visa is a life decision, not just paperwork. Reach out directly via WhatsApp for a quick consultation, or visit us in Hyderabad."
-							})] }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 bottom-0 left-0 w-[4px] bg-[var(--gold)]/20 group-hover:bg-[var(--gold)] transition-colors duration-300 z-20" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "absolute right-4 bottom-2 text-8xl font-display font-black text-slate-200/20 select-none pointer-events-none transition-colors duration-500 group-hover:text-[var(--gold)]/5 z-0",
+								children: "INFO"
+							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-6",
-								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex gap-4",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_15px_rgba(224,183,109,0.15)]",
-											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "h-5 w-5" })
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "font-sans text-xs font-extrabold text-foreground uppercase tracking-wider mt-1",
-											children: "Our Location"
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "mt-2 text-sm text-muted-foreground",
-											children: "Hyderabad, India"
-										})] })]
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex gap-4",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_15px_rgba(224,183,109,0.15)]",
-											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Mail, { className: "h-5 w-5" })
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "font-sans text-xs font-extrabold text-foreground uppercase tracking-wider mt-1",
-											children: "Email Us"
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-											href: "mailto:contact@maniabroad.com",
-											className: "mt-2 block text-sm text-muted-foreground hover:text-[var(--gold)] transition-colors",
-											children: "contact@maniabroad.com"
-										})] })]
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex gap-4",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_15px_rgba(224,183,109,0.15)]",
-											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Phone, { className: "h-5 w-5" })
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "font-sans text-xs font-extrabold text-foreground uppercase tracking-wider mt-1",
-											children: "Call Us"
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-											href: "tel:+918886368886",
-											className: "mt-2 block text-sm text-muted-foreground hover:text-[var(--gold)] transition-colors",
-											children: "+91 88863 68886"
-										})] })]
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex gap-4",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/20 shadow-[0_0_15px_rgba(224,183,109,0.15)]",
-											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "h-5 w-5" })
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "font-sans text-xs font-extrabold text-foreground uppercase tracking-wider mt-1",
-											children: "Business Hours"
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "mt-2 text-sm text-muted-foreground",
-											children: "Mon - Sat: 10:00 AM - 6:30 PM"
-										})] })]
-									})
-								]
+								className: "relative z-10 space-y-8",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+									className: "font-display text-2xl font-extrabold text-slate-900 tracking-tight text-left",
+									children: "Global Liaison Desk"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "mt-3 text-[0.88rem] text-slate-800 leading-relaxed text-justify pr-2 font-medium",
+									children: "We believe a visa is a life decision, not just paperwork. Reach out directly via WhatsApp for a quick consultation, or visit us in Hyderabad."
+								})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-6",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex gap-4 group/item",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 border border-slate-250 shadow-sm group-hover/item:border-[var(--gold)] group-hover/item:text-[var(--gold)] group-hover/item:bg-[var(--gold)]/5 transition-all duration-300",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "h-5 w-5" })
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "text-left font-semibold",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+													className: "font-display text-[0.7rem] font-black text-slate-500 uppercase tracking-widest mt-1",
+													children: "Our Location"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+													className: "mt-1 text-sm font-bold text-slate-900",
+													children: "Hyderabad, India"
+												})]
+											})]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex gap-4 group/item",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 border border-slate-250 shadow-sm group-hover/item:border-[var(--gold)] group-hover/item:text-[var(--gold)] group-hover/item:bg-[var(--gold)]/5 transition-all duration-300",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Mail, { className: "h-5 w-5" })
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "text-left font-semibold",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+													className: "font-display text-[0.7rem] font-black text-slate-500 uppercase tracking-widest mt-1",
+													children: "Email Us"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+													href: "mailto:info@mccoyglobal.com",
+													className: "mt-1 block text-sm font-bold text-slate-900 hover:text-[var(--gold)] transition-colors",
+													children: "info@mccoyglobal.com"
+												})]
+											})]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex gap-4 group/item",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 border border-slate-250 shadow-sm group-hover/item:border-[var(--gold)] group-hover/item:text-[var(--gold)] group-hover/item:bg-[var(--gold)]/5 transition-all duration-300",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Phone, { className: "h-5 w-5" })
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "text-left font-semibold",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+													className: "font-display text-[0.7rem] font-black text-slate-500 uppercase tracking-widest mt-1",
+													children: "Call Us"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+													href: "tel:+918886368886",
+													className: "mt-1 block text-sm font-bold text-slate-900 hover:text-[var(--gold)] transition-colors",
+													children: "+91 88863 68886"
+												})]
+											})]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex gap-4 group/item",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+												className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 border border-slate-250 shadow-sm group-hover/item:border-[var(--gold)] group-hover/item:text-[var(--gold)] group-hover/item:bg-[var(--gold)]/5 transition-all duration-300",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "h-5 w-5" })
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "text-left font-semibold",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+													className: "font-display text-[0.7rem] font-black text-slate-500 uppercase tracking-widest mt-1",
+													children: "Business Hours"
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+													className: "mt-1 text-sm font-bold text-slate-900",
+													children: "Mon - Sat: 10:00 AM - 6:30 PM"
+												})]
+											})]
+										})
+									]
+								})]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "pt-2",
+								className: "pt-8 border-t border-slate-250/30 relative z-10 text-left",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 									href: "https://wa.me/918886368886",
 									target: "_blank",
 									rel: "noopener noreferrer",
-									className: "inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-xs font-extrabold uppercase tracking-widest text-white transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(166,106,33,0.25)] hover:shadow-[0_0_30px_rgba(166,106,33,0.4)]",
+									className: "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-xs font-extrabold uppercase tracking-widest text-[#0b1224] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_4px_12px_rgba(224,183,109,0.3)] hover:shadow-[0_6px_18px_rgba(224,183,109,0.45)]",
 									style: { background: "var(--gradient-gold)" },
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { className: "h-4 w-4" }), "Chat on WhatsApp"]
 								})
@@ -2860,238 +2792,248 @@ function ContactFormSection() {
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollReveal, {
 					direction: "right",
 					delay: 350,
-					className: "lg:col-span-7 w-full",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "relative rounded-3xl border border-border bg-card p-8 sm:p-10",
-						style: { boxShadow: "var(--shadow-premium)" },
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-							onSubmit: handleSubmit,
-							className: "space-y-6",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "grid gap-6 sm:grid-cols-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex flex-col gap-2",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
-											htmlFor: "name",
-											className: "text-[0.68rem] font-extrabold uppercase tracking-wider text-muted-foreground",
-											children: ["Full Name ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "text-[var(--gold)]",
-												children: "*"
-											})]
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-											type: "text",
-											id: "name",
-											value: formData.name,
-											onChange: (e) => setFormData({
-												...formData,
-												name: e.target.value
-											}),
-											placeholder: "e.g. John Doe",
-											className: "rounded-xl border border-border bg-background/50 px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-[var(--gold)] focus:outline-none transition-colors",
-											required: true
-										})]
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex flex-col gap-2",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
-											htmlFor: "phone",
-											className: "text-[0.68rem] font-extrabold uppercase tracking-wider text-muted-foreground",
-											children: ["Phone / WhatsApp ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "text-[var(--gold)]",
-												children: "*"
-											})]
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-											type: "tel",
-											id: "phone",
-											value: formData.phone,
-											onChange: (e) => setFormData({
-												...formData,
-												phone: e.target.value
-											}),
-											placeholder: "e.g. +91 98499 20961",
-											className: "rounded-xl border border-border bg-background/50 px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-[var(--gold)] focus:outline-none transition-colors",
-											required: true
-										})]
-									})]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex flex-col gap-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
-										htmlFor: "email",
-										className: "text-[0.68rem] font-extrabold uppercase tracking-wider text-muted-foreground",
-										children: ["Email Address ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-											className: "text-muted-foreground/40",
-											children: "(Optional)"
-										})]
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-										type: "email",
-										id: "email",
-										value: formData.email,
-										onChange: (e) => setFormData({
-											...formData,
-											email: e.target.value
-										}),
-										placeholder: "e.g. johndoe@gmail.com",
-										className: "rounded-xl border border-border bg-background/50 px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-[var(--gold)] focus:outline-none transition-colors"
-									})]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "grid gap-6 sm:grid-cols-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex flex-col gap-2",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
-											htmlFor: "country",
-											className: "text-[0.68rem] font-extrabold uppercase tracking-wider text-muted-foreground",
-											children: "Preferred Destination"
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "relative",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
-												id: "country",
-												value: formData.country,
+					className: "lg:col-span-7 flex w-full",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "group/form relative rounded-3xl border border-slate-200 bg-white p-8 sm:p-10 w-full transition-all duration-500 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/80 scale-x-0 group-hover/form:scale-x-100 transition-transform duration-500 origin-left z-20" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 group-hover/form:animate-shine pointer-events-none z-20" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-2 mb-6 bg-[var(--gold)]/10 border border-[var(--gold)]/20 px-4 py-2.5 rounded-2xl relative z-10 w-fit",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "h-4 w-4 text-[var(--gold)] shrink-0" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-[0.68rem] font-extrabold uppercase tracking-widest text-[var(--gold)]",
+									children: "Free Confidential Assessment"
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+								onSubmit: handleSubmit,
+								className: "space-y-6 relative z-10",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "grid gap-6 sm:grid-cols-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex flex-col gap-2 text-left",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
+												htmlFor: "name",
+												className: "text-[0.7rem] font-black uppercase tracking-widest text-slate-800",
+												children: ["Full Name ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "text-[var(--gold)]",
+													children: "*"
+												})]
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+												type: "text",
+												id: "name",
+												value: formData.name,
 												onChange: (e) => setFormData({
 													...formData,
-													country: e.target.value
+													name: e.target.value
 												}),
-												className: "w-full rounded-xl border border-border bg-background/50 px-4 py-3.5 text-sm text-foreground focus:border-[var(--gold)] focus:outline-none transition-colors appearance-none cursor-pointer",
-												children: [
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "us",
-														children: "United States"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "gb",
-														children: "United Kingdom"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "au",
-														children: "Australia"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "ca",
-														children: "Canada"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "de",
-														children: "Germany"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "pl",
-														children: "Poland"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "nl",
-														children: "Netherlands"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "it",
-														children: "Italy"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "fr",
-														children: "France"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "cy",
-														children: "Cyprus"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "ge",
-														children: "Georgia"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "ae",
-														children: "United Arab Emirates (Dubai)"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "sg",
-														children: "Singapore"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "my",
-														children: "Malaysia"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "mu",
-														children: "Mauritius"
-													})
-												]
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-												className: "pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-muted-foreground",
-												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDownIcon, {})
+												placeholder: "e.g. John Doe",
+												className: "rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[var(--gold)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/20 transition-all duration-300 font-semibold",
+												required: true
 											})]
-										})]
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex flex-col gap-2",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
-											htmlFor: "visaType",
-											className: "text-[0.68rem] font-extrabold uppercase tracking-wider text-muted-foreground",
-											children: "Visa / Service Pathway"
 										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "relative",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
-												id: "visaType",
-												value: formData.visaType,
+											className: "flex flex-col gap-2 text-left",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
+												htmlFor: "phone",
+												className: "text-[0.7rem] font-black uppercase tracking-widest text-slate-800",
+												children: ["Phone / WhatsApp ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "text-[var(--gold)]",
+													children: "*"
+												})]
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+												type: "tel",
+												id: "phone",
+												value: formData.phone,
 												onChange: (e) => setFormData({
 													...formData,
-													visaType: e.target.value
+													phone: e.target.value
 												}),
-												className: "w-full rounded-xl border border-border bg-background/50 px-4 py-3.5 text-sm text-foreground focus:border-[var(--gold)] focus:outline-none transition-colors appearance-none cursor-pointer",
-												children: [
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "student",
-														children: "Student Visa Pathway"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "tourist",
-														children: "Tourism & Visitor Visa"
-													}),
-													/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
-														value: "other",
-														children: "General Enquiry"
-													})
-												]
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-												className: "pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-muted-foreground",
-												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDownIcon, {})
+												placeholder: "e.g. +91 98499 20961",
+												className: "rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[var(--gold)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/20 transition-all duration-300 font-semibold",
+												required: true
 											})]
 										})]
-									})]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex flex-col gap-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
-										htmlFor: "message",
-										className: "text-[0.68rem] font-extrabold uppercase tracking-wider text-muted-foreground",
-										children: "Describe Your Dream & Profile"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
-										id: "message",
-										rows: 4,
-										value: formData.message,
-										onChange: (e) => setFormData({
-											...formData,
-											message: e.target.value
-										}),
-										placeholder: "Tell us about your educational background, work experience, or any specific details...",
-										className: "rounded-xl border border-border bg-background/50 px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-[var(--gold)] focus:outline-none transition-colors resize-none"
-									})]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-									type: "submit",
-									disabled: isSubmitting,
-									className: "w-full flex items-center justify-center gap-2 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 disabled:opacity-75 hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(166,106,33,0.3)] cursor-pointer",
-									style: { background: "var(--gradient-gold)" },
-									children: isSubmitting ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-4.5 w-4.5 animate-spin rounded-full border-2 border-white border-t-transparent" }), "Submitting Enquiry..."] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "h-4 w-4" }), "Submit Consultation Request"] })
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex items-center justify-center gap-2 text-[0.68rem] text-muted-foreground/60 mt-4",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "h-4 w-4 text-[var(--gold)]" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Your information is encrypted & shared only with our consultant." })]
-								})
-							]
-						})
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex flex-col gap-2 text-left",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
+											htmlFor: "email",
+											className: "text-[0.7rem] font-black uppercase tracking-widest text-slate-800",
+											children: ["Email Address ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-slate-400",
+												children: "(Optional)"
+											})]
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+											type: "email",
+											id: "email",
+											value: formData.email,
+											onChange: (e) => setFormData({
+												...formData,
+												email: e.target.value
+											}),
+											placeholder: "e.g. johndoe@gmail.com",
+											className: "rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[var(--gold)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/20 transition-all duration-300 font-semibold"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "grid gap-6 sm:grid-cols-2 font-semibold",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex flex-col gap-2 text-left",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+												htmlFor: "country",
+												className: "text-[0.7rem] font-black uppercase tracking-widest text-slate-800",
+												children: "Preferred Destination"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "relative",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+													id: "country",
+													value: formData.country,
+													onChange: (e) => setFormData({
+														...formData,
+														country: e.target.value
+													}),
+													className: "w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 focus:border-[var(--gold)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/20 transition-all duration-300 appearance-none cursor-pointer font-bold",
+													children: [
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "us",
+															children: "United States"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "gb",
+															children: "United Kingdom"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "au",
+															children: "Australia"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "ca",
+															children: "Canada"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "de",
+															children: "Germany"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "pl",
+															children: "Poland"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "nl",
+															children: "Netherlands"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "it",
+															children: "Italy"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "fr",
+															children: "France"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "cy",
+															children: "Cyprus"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "ge",
+															children: "Georgia"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "ae",
+															children: "United Arab Emirates (Dubai)"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "sg",
+															children: "Singapore"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "my",
+															children: "Malaysia"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "mu",
+															children: "Mauritius"
+														})
+													]
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+													className: "pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-650",
+													children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDownIcon, {})
+												})]
+											})]
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex flex-col gap-2 text-left",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+												htmlFor: "visaType",
+												className: "text-[0.7rem] font-black uppercase tracking-widest text-slate-800",
+												children: "Visa / Service Pathway"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+												className: "relative",
+												children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+													id: "visaType",
+													value: formData.visaType,
+													onChange: (e) => setFormData({
+														...formData,
+														visaType: e.target.value
+													}),
+													className: "w-full rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 focus:border-[var(--gold)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/20 transition-all duration-300 appearance-none cursor-pointer font-bold",
+													children: [
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "student",
+															children: "Student Visa Pathway"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "tourist",
+															children: "Tourism & Visitor Visa"
+														}),
+														/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+															value: "other",
+															children: "General Enquiry"
+														})
+													]
+												}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+													className: "pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-650",
+													children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDownIcon, {})
+												})]
+											})]
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex flex-col gap-2 text-left",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+											htmlFor: "message",
+											className: "text-[0.7rem] font-black uppercase tracking-widest text-slate-800",
+											children: "Describe Your Dream & Profile"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
+											id: "message",
+											rows: 4,
+											value: formData.message,
+											onChange: (e) => setFormData({
+												...formData,
+												message: e.target.value
+											}),
+											placeholder: "Tell us about your educational background, work experience, or any specific details...",
+											className: "rounded-xl border border-slate-300 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[var(--gold)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/20 transition-all duration-300 resize-none font-semibold"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "submit",
+										disabled: isSubmitting,
+										className: "group/btn w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-xs font-extrabold uppercase tracking-[0.22em] text-[#0b1224] transition-all duration-300 disabled:opacity-75 hover:-translate-y-0.5 shadow-[0_4px_12px_rgba(224,183,109,0.3)] hover:shadow-[0_6px_18px_rgba(224,183,109,0.45)] cursor-pointer",
+										style: { background: "var(--gradient-gold)" },
+										children: isSubmitting ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-[#0b1224] border-t-transparent" }), "Submitting Enquiry..."] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" }), "Submit Consultation Request"] })
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center justify-center gap-2 text-[0.68rem] text-slate-500 mt-4 font-semibold",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "h-4 w-4 text-[var(--gold)]" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Your information is encrypted & shared only with our consultant." })]
+									})
+								]
+							})
+						]
 					})
 				})]
 			})]
-		})
+		})]
 	});
 }
 function ChevronDownIcon() {
@@ -3102,129 +3044,335 @@ function ChevronDownIcon() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" })
 	});
 }
-var columns = [{
-	title: "Explore",
-	items: [
-		"Home",
-		"About",
-		"Services",
-		"Gallery",
-		"Contact"
-	]
-}, {
-	title: "Services",
-	items: [
-		"Student Visa",
-		"Work Visa",
-		"PR & Migration",
-		"Tourist Visa",
-		"Air Ticketing"
-	]
-}];
+var columns = [
+	{
+		title: "Explore",
+		items: [
+			"Home",
+			"About",
+			"Services",
+			"Gallery",
+			"Contact"
+		]
+	},
+	{
+		title: "Services",
+		items: [
+			"Student Visa",
+			"Tourism & Visitor Visa",
+			"Opportunity Card Germany",
+			"Youth Mobility Visa UK",
+			"Flight Ticket Booking",
+			"Education Loan Assistance"
+		]
+	},
+	{
+		title: "Useful Links",
+		items: [
+			"Blog",
+			"FAQs",
+			"Privacy Policy",
+			"Terms & Conditions"
+		]
+	}
+];
 function SiteFooter() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("footer", {
-		className: "text-primary-foreground",
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", {
+		className: "relative overflow-hidden pt-0 pb-8 text-white border-t border-slate-800",
 		style: { background: "var(--gradient-ink)" },
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mx-auto max-w-7xl px-6 py-20",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "grid gap-12 lg:grid-cols-4",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("style", { dangerouslySetInnerHTML: { __html: `
+        @keyframes fly-bg-path {
+          0% {
+            offset-distance: 0%;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            offset-distance: 100%;
+            opacity: 0;
+          }
+        }
+        .animate-flight-bg {
+          animation: fly-bg-path 25s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+          offset-path: path('M -100 280 Q 720 120 1540 50');
+          offset-rotate: auto;
+        }
+      ` } }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
+					className: "absolute inset-0 w-full h-full text-[var(--gold)]/10",
+					viewBox: "0 0 1440 350",
+					fill: "none",
+					preserveAspectRatio: "none",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
+						d: "M -100 280 Q 720 120 1540 50",
+						stroke: "currentColor",
+						strokeWidth: "2.5",
+						strokeDasharray: "6 8",
+						strokeLinecap: "round"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
+						d: "M 1540 50 Q 800 250 -100 280",
+						stroke: "currentColor",
+						strokeWidth: "1",
+						strokeDasharray: "4 6",
+						strokeLinecap: "round",
+						opacity: "0.4"
+					})]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "absolute flex items-center text-[var(--gold)]/90 pointer-events-none animate-flight-bg",
+					style: {
+						left: 0,
+						top: 0
+					},
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-20 h-[1.5px] bg-gradient-to-r from-transparent to-[var(--gold)]/80 mr-1" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plane, { className: "h-5 w-5 rotate-90 fill-[var(--gold)]" })]
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 left-1/4 w-96 h-96 bg-[var(--gold)]/5 rounded-full blur-[120px] pointer-events-none" }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "relative w-full h-[1px] bg-slate-800/80 overflow-hidden mb-10",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "absolute top-1/2 -translate-y-1/2 flex items-center text-[var(--gold)] animate-[fly-across-line_20s_linear_infinite] pointer-events-none",
+					style: { left: "-150px" },
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("style", { dangerouslySetInnerHTML: { __html: `
+            @keyframes fly-across-line {
+              0% { left: -150px; }
+              100% { left: calc(100% + 150px); }
+            }
+          ` } }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-24 h-[1px] bg-gradient-to-r from-transparent to-[var(--gold)] mr-1" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plane, { className: "h-3.5 w-3.5 rotate-90 fill-[var(--gold)]/20" })
+					]
+				})
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mx-auto max-w-7xl px-6 relative z-10",
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "lg:col-span-1",
+						className: "grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 py-6 border-b border-slate-800/80",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center gap-3",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-									className: "flex h-12 w-20 items-center justify-center rounded-lg bg-white p-1.5 overflow-hidden shadow-[0_0_15px_rgba(166,106,33,0.25)]",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-										src: "/logo.png",
-										alt: "mcCoy Global Logo",
-										className: "h-full w-full object-contain"
+								className: "flex flex-col items-start text-left gap-4 col-span-2 md:col-span-1",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center gap-3",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "flex h-11 w-18 items-center justify-center rounded-xl bg-white p-1.5 overflow-hidden shadow-[0_4px_20px_rgba(224,183,109,0.15)] border border-[var(--gold)]/20",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+												src: "/logo.png",
+												alt: "mcCoy Global Logo",
+												className: "h-full w-full object-contain"
+											})
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "text-left",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "font-display text-lg tracking-[0.16em] font-extrabold uppercase text-white block leading-none",
+												children: "mcCoy Global"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-[0.6rem] tracking-[0.3em] uppercase text-[var(--gold)] font-bold block mt-1",
+												children: "Consultancy"
+											})]
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-[0.82rem] leading-relaxed text-slate-300 text-justify pr-2 font-medium",
+										children: "Licensed overseas education and migration consultancy. Honest advice, transparent fees, and a consultant who answers the phone."
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "mt-2 flex items-center gap-3",
+										children: [
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+												href: "https://facebook.com",
+												target: "_blank",
+												rel: "noopener noreferrer",
+												className: "flex h-8.5 w-8.5 items-center justify-center rounded-full border border-primary-foreground/20 text-primary-foreground/75 transition-all duration-300 hover:scale-110 hover:bg-[#1877F2] hover:border-[#1877F2] hover:text-white hover:shadow-[0_0_15px_rgba(24,119,242,0.4)] cursor-pointer",
+												"aria-label": "Facebook",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Facebook, { className: "h-4 w-4 fill-current" })
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+												href: "https://instagram.com",
+												target: "_blank",
+												rel: "noopener noreferrer",
+												className: "flex h-8.5 w-8.5 items-center justify-center rounded-full border border-primary-foreground/20 text-primary-foreground/75 transition-all duration-300 hover:scale-110 hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:border-transparent hover:text-white hover:shadow-[0_0_15px_rgba(238,42,123,0.4)] cursor-pointer",
+												"aria-label": "Instagram",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Instagram, { className: "h-4 w-4" })
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+												href: "https://linkedin.com",
+												target: "_blank",
+												rel: "noopener noreferrer",
+												className: "flex h-8.5 w-8.5 items-center justify-center rounded-full border border-primary-foreground/20 text-primary-foreground/75 transition-all duration-300 hover:scale-110 hover:bg-[#0077B5] hover:border-[#0077B5] hover:text-white hover:shadow-[0_0_15px_rgba(0,119,181,0.4)] cursor-pointer",
+												"aria-label": "LinkedIn",
+												children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Linkedin, { className: "h-4 w-4 fill-current" })
+											})
+										]
 									})
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "font-display text-xl tracking-[0.16em]",
-									children: "mcCoy Global"
+								]
+							}),
+							columns.map((col) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "text-left",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+									className: "text-xs uppercase tracking-[0.25em] text-[var(--gold)] font-black",
+									children: col.title
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+									className: "mt-4 space-y-2.5 font-bold",
+									children: col.items.map((item) => {
+										const href = col.title === "Services" ? "#services" : `#${item.toLowerCase().split(" ")[0] === "home" ? "" : item.toLowerCase().split(" ")[0]}`;
+										return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+											href,
+											className: "text-[0.82rem] text-slate-300 hover:text-[var(--gold)] transition-all duration-300 hover:translate-x-1 block leading-relaxed",
+											children: item
+										}) }, item);
+									})
 								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "mt-6 max-w-sm text-sm leading-relaxed text-primary-foreground/65",
-								children: "Licensed overseas education and migration consultancy. Honest advice, transparent fees, and a consultant who answers the phone."
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "mt-8 h-px w-28",
-								style: { background: "var(--gradient-gold)" }
+							}, col.title)),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "text-left col-span-2 lg:col-span-1",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+									className: "text-xs uppercase tracking-[0.25em] text-[var(--gold)] font-black",
+									children: "Contact Us"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
+									className: "mt-4 space-y-4 text-[0.82rem] text-slate-305 font-bold",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
+											className: "flex items-start gap-2.5",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "h-4.5 w-4.5 text-[var(--gold)] shrink-0 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "block text-[0.58rem] uppercase tracking-wider text-[var(--gold)]/60 font-black",
+												children: "Address"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-white mt-0.5 block",
+												children: "Hyderabad, India"
+											})] })]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
+											className: "flex items-start gap-2.5",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Phone, { className: "h-4.5 w-4.5 text-[var(--gold)] shrink-0 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "block text-[0.58rem] uppercase tracking-wider text-[var(--gold)]/60 font-black",
+												children: "WhatsApp"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+												href: "https://wa.me/918886368886",
+												target: "_blank",
+												rel: "noopener noreferrer",
+												className: "text-white hover:text-[var(--gold)] transition-colors mt-0.5 block",
+												children: "+91 88863 68886"
+											})] })]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
+											className: "flex items-start gap-2.5",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "h-4.5 w-4.5 text-[var(--gold)] shrink-0 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "block text-[0.58rem] uppercase tracking-wider text-[var(--gold)]/60 font-black",
+												children: "Working Hours"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-white mt-0.5 block",
+												children: "Mon - Sat: 10:00 AM - 6:30 PM"
+											})] })]
+										})
+									]
+								})]
 							})
 						]
 					}),
-					columns.map((col) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "lg:col-span-1",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-							className: "text-[0.7rem] uppercase tracking-[0.28em] text-gold",
-							children: col.title
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-							className: "mt-5 space-y-3",
-							children: col.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-								href: `#${item.toLowerCase().split(" ")[0]}`,
-								className: "text-sm text-primary-foreground/70 transition-colors hover:text-gold",
-								children: item
-							}) }, item))
-						})]
-					}, col.title)),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "lg:col-span-1",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-							className: "text-[0.7rem] uppercase tracking-[0.28em] text-gold",
-							children: "Contact Us"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
-							className: "mt-5 space-y-4 text-sm text-primary-foreground/70",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
-									className: "flex items-start gap-3",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "h-4 w-4 text-gold shrink-0 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "block text-[0.62rem] uppercase tracking-wider text-gold/60 font-semibold",
-										children: "Address"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-white text-xs",
-										children: "Hyderabad, India"
-									})] })]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
-									className: "flex items-start gap-3",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Phone, { className: "h-4 w-4 text-gold shrink-0 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "block text-[0.62rem] uppercase tracking-wider text-gold/60 font-semibold",
-										children: "WhatsApp"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-										href: "https://wa.me/919849920961",
-										target: "_blank",
-										rel: "noopener noreferrer",
-										className: "text-white hover:text-gold transition-colors text-xs flex items-center gap-1",
-										children: "+91 98499 20961"
-									})] })]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
-									className: "flex items-start gap-3",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "h-4 w-4 text-gold shrink-0 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "block text-[0.62rem] uppercase tracking-wider text-gold/60 font-semibold",
-										children: "Working Hours"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-white text-xs",
-										children: "10:00 AM - 7:00 PM"
-									})] })]
-								})
-							]
+						className: "flex flex-col lg:flex-row items-center justify-between gap-6 py-6 border-b border-slate-800/85 text-left relative z-10",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-3",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Mail, { className: "h-4.5 w-4.5" })
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+								className: "font-display text-sm font-black uppercase text-white tracking-widest",
+								children: "Stay Updated"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-xs font-semibold text-slate-400 mt-0.5",
+								children: "Subscribe to get the latest updates and offers."
+							})] })]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex flex-col sm:flex-row items-stretch w-full lg:w-auto gap-3",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+								type: "email",
+								placeholder: "Enter your email address",
+								className: "bg-slate-900/60 border border-slate-800 text-white placeholder:text-slate-500 rounded-xl px-4 py-2.5 w-full lg:w-80 focus:border-[var(--gold)] focus:outline-none transition-all duration-300 font-semibold text-sm",
+								required: true
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+								type: "button",
+								onClick: () => toast.success("Subscribed successfully! Thank you for staying updated."),
+								className: "bg-[var(--gold)] hover:bg-[var(--gold)]/90 text-slate-950 px-5 py-2.5 rounded-xl font-bold uppercase tracking-widest text-[0.68rem] flex items-center justify-center gap-2 cursor-pointer transition-transform duration-300 hover:scale-[1.02] shadow-sm hover:shadow",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Subscribe" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "h-3.5 w-3.5" })]
+							})]
 						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex flex-col md:flex-row items-center justify-between gap-6 pt-6 text-[0.68rem] uppercase tracking-widest text-slate-500 font-bold",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+								className: "text-center md:text-left leading-relaxed",
+								children: [
+									"© ",
+									(/* @__PURE__ */ new Date()).getFullYear(),
+									" mcCoy Global Consultancy. All Rights Reserved."
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex flex-wrap items-center justify-center gap-6",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex items-center gap-2 text-slate-400 font-bold border border-slate-800 bg-slate-950/20 px-3.5 py-1.5 rounded-xl shadow-sm hover:border-[var(--gold)]/30 hover:text-white transition-all duration-300 select-none",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-black tracking-tighter",
+										children: "IC"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "text-left leading-none font-sans",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "block text-[10px] font-black text-white tracking-widest uppercase",
+											children: "ICEF"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "block text-[8px] font-medium text-slate-500 tracking-wider uppercase mt-0.5",
+											children: "Accredited Agency"
+										})]
+									})]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex items-center gap-2 text-slate-400 font-bold border border-slate-800 bg-slate-950/20 px-3.5 py-1.5 rounded-xl shadow-sm hover:border-[var(--gold)]/30 hover:text-white transition-all duration-300 select-none",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-black tracking-tighter",
+										children: "AA"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "text-left leading-none font-sans",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "block text-[10px] font-black text-white tracking-widest uppercase",
+											children: "AAERI"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "block text-[8px] font-medium text-slate-500 tracking-wider uppercase mt-0.5",
+											children: "Registered Consultant"
+										})]
+									})]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center justify-center",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-[9px] text-slate-500/80 mr-3 hidden lg:block tracking-widest",
+									children: "DESIGNED WITH 💛 FOR GLOBAL DREAMERS"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+									onClick: () => window.scrollTo({
+										top: 0,
+										behavior: "smooth"
+									}),
+									className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-800 bg-slate-950 text-[var(--gold)] hover:bg-[var(--gold)] hover:text-[#0b1224] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer",
+									"aria-label": "Scroll to top",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plane, { className: "h-4.5 w-4.5 rotate-45 transition-transform duration-500 hover:rotate-[405deg]" })
+								})]
+							})
+						]
 					})
 				]
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "mt-16 flex flex-col gap-4 border-t border-primary-foreground/15 pt-8 text-[0.75rem] uppercase tracking-[0.16em] text-primary-foreground/50 sm:flex-row sm:items-center sm:justify-between",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
-					"© ",
-					(/* @__PURE__ */ new Date()).getFullYear(),
-					" mcCoy Global Consultancy"
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Hyderabad \xA0·\xA0 +91 98499 20961" })]
-			})]
-		})
+			})
+		]
 	});
 }
 function WhatsAppWidget() {
@@ -3247,14 +3395,16 @@ function WhatsAppWidget() {
 		});
 	};
 	(0, import_react.useEffect)(() => {
-		if (!sessionStorage.getItem("whatsapp_prompt_opened")) {
-			const timer = setTimeout(() => {
-				setIsOpen(true);
-				setHasPopped(true);
-				sessionStorage.setItem("whatsapp_prompt_opened", "true");
-			}, 4e3);
-			return () => clearTimeout(timer);
-		}
+		const alreadyOpened = sessionStorage.getItem("whatsapp_prompt_opened");
+		let timer;
+		if (!alreadyOpened) timer = setTimeout(() => {
+			setIsOpen(true);
+			setHasPopped(true);
+			sessionStorage.setItem("whatsapp_prompt_opened", "true");
+		}, 4e3);
+		return () => {
+			if (timer) clearTimeout(timer);
+		};
 	}, []);
 	const handleToggle = () => {
 		setIsOpen(!isOpen);
@@ -3367,7 +3517,6 @@ function Index() {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(WhyChooseUs, {}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExpertiseSection, {}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ServicesSection, {}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(EligibilityPlanner, {}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(GallerySection, {}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TestimonialsSection, {}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FaqSection, {}),
