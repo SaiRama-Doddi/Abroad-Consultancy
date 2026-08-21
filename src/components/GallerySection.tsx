@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { ShieldCheck, Trophy, X, Clock, FileCheck, ArrowRight, PlaneTakeoff } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
@@ -74,6 +75,11 @@ const successStories: SuccessStory[] = [
 export function GallerySection() {
   const [filter, setFilter] = useState<"all" | "student" | "mobility">("all");
   const [selectedStory, setSelectedStory] = useState<SuccessStory | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const filteredStories = successStories.filter(
     (story) => filter === "all" || story.visaType === filter
@@ -227,7 +233,7 @@ export function GallerySection() {
         </div>
 
         {/* PASSPORT DETAIL MODAL */}
-        {selectedStory && (
+        {selectedStory && isClient && createPortal(
           <div className="fixed inset-0 z-[100] overflow-y-auto p-4 sm:p-6 md:p-10 flex items-start justify-center md:items-center">
             {/* Backdrop Blur */}
             <div 
@@ -360,7 +366,8 @@ export function GallerySection() {
               </div>
 
             </div>
-          </div>
+          </div>,
+          document.body
         )}
 
       </div>

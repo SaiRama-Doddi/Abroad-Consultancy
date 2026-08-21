@@ -1,10 +1,12 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
+import { g as require_react_dom } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as toast } from "../_libs/sonner.mjs";
 import { A as FileCheck, B as ChevronLeft, C as Landmark, D as GraduationCap, E as Handshake, F as Coins, G as Award, H as Calendar, I as Clock, K as ArrowUp, L as CircleQuestionMark, M as Eye, N as DollarSign, O as Globe, P as Compass, R as CircleCheck, S as Linkedin, T as Headphones, U as Briefcase, V as ChevronDown, W as BookOpen, _ as MessageSquare, a as Ticket, b as MapPin, c as Star, d as ShieldCheck, f as Send, g as Phone, h as PlaneTakeoff, i as Trophy, j as Facebook, k as FileText, l as Sparkles, m as Plane, n as Users, o as Target, p as Quote, q as ArrowRight, r as User, s as Tag, t as X, u as Shield, v as MessagesSquare, w as Instagram, x as Mail, y as Menu, z as ChevronRight } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Nf_P7FDl.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-lnmY_GYV.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
+var import_react_dom = /* @__PURE__ */ __toESM(require_react_dom());
 var links = [
 	{
 		label: "Home",
@@ -1992,6 +1994,10 @@ var successStories = [
 function GallerySection() {
 	const [filter, setFilter] = (0, import_react.useState)("all");
 	const [selectedStory, setSelectedStory] = (0, import_react.useState)(null);
+	const [isClient, setIsClient] = (0, import_react.useState)(false);
+	(0, import_react.useEffect)(() => {
+		setIsClient(true);
+	}, []);
 	const filteredStories = successStories.filter((story) => filter === "all" || story.visaType === filter);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 		id: "gallery",
@@ -2136,7 +2142,7 @@ function GallerySection() {
 						})
 					}, story.name))
 				}),
-				selectedStory && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				selectedStory && isClient && (0, import_react_dom.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "fixed inset-0 z-[100] overflow-y-auto p-4 sm:p-6 md:p-10 flex items-start justify-center md:items-center",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -2296,7 +2302,7 @@ function GallerySection() {
 							})]
 						})
 					]
-				})
+				}), document.body)
 			]
 		})]
 	});
