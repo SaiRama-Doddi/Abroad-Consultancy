@@ -1,15 +1,13 @@
 import { toast } from "sonner";
 import { 
-  MapPin, 
-  Phone, 
-  Clock, 
-  Instagram, 
-  Facebook, 
-  Linkedin, 
-  Send, 
-  Plane,
-  Mail
-} from "lucide-react";
+  MapPinIcon as MapPin, 
+  PhoneIcon as Phone, 
+  ClockIcon as Clock, 
+  SendIcon as Send, 
+  PlaneIcon as Plane, 
+  MailIcon as Mail 
+} from "./CustomIcons";
+import { Instagram, Facebook, Linkedin } from "lucide-react";
 
 const columns = [
   { title: "Explore", items: ["Home", "About", "Services", "Gallery", "Contact"] },

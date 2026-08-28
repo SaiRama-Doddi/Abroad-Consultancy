@@ -1,4 +1,4 @@
-import { Eye, Target, GraduationCap, Globe, Sparkles, Briefcase, FileText, Users, Award, Handshake } from "lucide-react";
+import { EyeIcon as Eye, TargetIcon as Target, GraduationCapIcon as GraduationCap, GlobeIcon as Globe, SparklesIcon as Sparkles, BriefcaseIcon as Briefcase, FileTextIcon as FileText, UsersIcon as Users, AwardIcon as Award, HandshakeIcon as Handshake } from "./CustomIcons";
 import { ScrollReveal } from "./ScrollReveal";
 import { InteractiveGlobe } from "./InteractiveGlobe";
 import { AnimatedCounter } from "./AnimatedCounter";
@@ -74,10 +74,10 @@ export function AboutSection() {
                     </svg>
                   </div>
 
-                  {/* Floating Thematic Badges */}
+                  {/* Floating Thematic Badges (Desktop Only) */}
                   {/* Badge 1: Study Abroad (Top Left) */}
                   <div 
-                    className="absolute top-6 left-6 z-10 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-white/95 border border-[var(--gold)]/20 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
+                    className="hidden sm:flex sm:absolute top-6 left-6 z-10 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-white/95 border border-[var(--gold)]/20 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
                     style={{ animation: "float-slow 7s ease-in-out infinite" }}
                   >
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15 shadow-sm">
@@ -91,7 +91,7 @@ export function AboutSection() {
 
                   {/* Badge 2: Global Visas (Middle Left) */}
                   <div 
-                    className="absolute top-[46%] left-6 z-10 flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/95 border border-slate-100 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
+                    className="hidden sm:flex sm:absolute top-[46%] left-6 z-10 flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/95 border border-slate-100 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
                     style={{ animation: "float-fast 5s ease-in-out infinite" }}
                   >
                     <div className="flex -space-x-1.5">
@@ -104,7 +104,7 @@ export function AboutSection() {
 
                   {/* Badge 3: Work & Migrate (Bottom Left) */}
                   <div 
-                    className="absolute bottom-6 left-6 z-10 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-white/95 border border-[var(--gold)]/20 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
+                    className="hidden sm:flex sm:absolute bottom-6 left-6 z-10 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-white/95 border border-[var(--gold)]/20 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
                     style={{ animation: "float-medium 6s ease-in-out infinite" }}
                   >
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15 shadow-sm">
@@ -118,7 +118,7 @@ export function AboutSection() {
 
                   {/* Badge 4: 98% Approval (Bottom Right) */}
                   <div 
-                    className="absolute bottom-6 right-6 z-10 flex flex-col items-center justify-center text-center px-5 py-3 rounded-2xl bg-white/95 border border-[var(--gold)]/20 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
+                    className="hidden sm:flex sm:absolute bottom-6 right-6 z-10 flex flex-col items-center justify-center text-center px-5 py-3 rounded-2xl bg-white/95 border border-[var(--gold)]/20 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
                     style={{ animation: "float-slow 7.5s ease-in-out infinite" }}
                   >
                     <span className="block font-display text-2xl sm:text-3xl font-extrabold text-[var(--gold)] leading-none">98%</span>
@@ -127,6 +127,52 @@ export function AboutSection() {
                     </span>
                   </div>
 
+                </div>
+
+                {/* Mobile Badges List (1 per line to prevent text cropping) */}
+                <div className="flex flex-col gap-2.5 p-4 bg-slate-50/50 border-t border-slate-100 sm:hidden relative z-20">
+                  {/* Mobile Badge 1 */}
+                  <div className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                    <div className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15">
+                      <GraduationCap className="h-4.5 w-4.5" />
+                    </div>
+                    <div>
+                      <span className="block text-[0.6rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">Study Abroad</span>
+                      <span className="block text-[0.8rem] font-black text-slate-800 uppercase tracking-wide mt-0.5">Admissions & Visas</span>
+                    </div>
+                  </div>
+
+                  {/* Mobile Badge 2 */}
+                  <div className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                    <div className="flex -space-x-1 shrink-0">
+                      <img src="https://flagcdn.com/w40/gb.png" className="h-4 w-6 rounded-sm object-cover border border-slate-100" alt="UK" />
+                      <img src="https://flagcdn.com/w40/de.png" className="h-4 w-6 rounded-sm object-cover border border-slate-100" alt="Germany" />
+                      <img src="https://flagcdn.com/w40/us.png" className="h-4 w-6 rounded-sm object-cover border border-slate-100" alt="USA" />
+                    </div>
+                    <span className="text-[0.8rem] font-black text-slate-800 uppercase tracking-wider">Global Visas Guidance</span>
+                  </div>
+
+                  {/* Mobile Badge 3 */}
+                  <div className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                    <div className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15">
+                      <Briefcase className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <span className="block text-[0.6rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">Work & Migrate</span>
+                      <span className="block text-[0.8rem] font-black text-slate-800 uppercase tracking-wide mt-0.5">Opportunities & Jobs</span>
+                    </div>
+                  </div>
+
+                  {/* Mobile Badge 4 */}
+                  <div className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                    <div className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15">
+                      <span className="font-display text-[0.85rem] font-black text-[var(--gold)]">98%</span>
+                    </div>
+                    <div>
+                      <span className="block text-[0.6rem] font-extrabold uppercase tracking-wider text-slate-700">Approval Rate</span>
+                      <span className="block text-[0.8rem] font-black text-slate-800 uppercase tracking-wide mt-0.5">Visa Success History</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

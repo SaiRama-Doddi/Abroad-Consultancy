@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { HeroSection } from "@/components/HeroSection";
+import { DestinationsSection } from "@/components/DestinationsSection";
 import { AboutSection } from "@/components/AboutSection";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { ExpertiseSection } from "@/components/ExpertiseSection";
@@ -40,7 +41,7 @@ function Index() {
       <SiteHeader />
       <main>
         <HeroSection />
-        <AboutSection />
+        <DestinationsSection />
         <WhyChooseUs />
         <ExpertiseSection />
         <ServicesSection />
@@ -48,6 +49,7 @@ function Index() {
         <TestimonialsSection />
         <FaqSection />
         <ContactFormSection />
+        <AboutSection />
       </main>
       <SiteFooter />
       <WhatsAppWidget />

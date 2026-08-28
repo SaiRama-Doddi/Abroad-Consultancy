@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { ShieldCheck, Trophy, X, Clock, FileCheck, ArrowRight, PlaneTakeoff } from "lucide-react";
+import { 
+  ShieldCheckIcon as ShieldCheck, 
+  TrophyIcon as Trophy, 
+  CloseIcon as X, 
+  ClockIcon as Clock, 
+  FileCheckIcon as FileCheck, 
+  PlaneTakeoffIcon as PlaneTakeoff 
+} from "./CustomIcons";
+import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface SuccessStory {

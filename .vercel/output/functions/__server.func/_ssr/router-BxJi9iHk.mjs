@@ -1,9 +1,10 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react, t as QueryClientProvider } from "../_libs/react+tanstack__react-query.mjs";
+import { u as CustomIconsDefs } from "./CustomIcons-BWk4yzUI.mjs";
 import { _ as useRouter, c as HeadContent, d as Outlet, f as lazyRouteComponent, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as Toaster } from "../_libs/sonner.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CV89Jb7x.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-BxJi9iHk.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var Toaster$1 = ({ ...props }) => {
@@ -326,6 +327,7 @@ function RootShell({ children }) {
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("head", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HeadContent, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("body", { children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Preloader, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BackgroundFlight, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CustomIconsDefs, {}),
 			children,
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Scripts, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Toaster$1, {})
@@ -339,7 +341,7 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
 	});
 }
-var $$splitComponentImporter = () => import("./routes-lnmY_GYV.mjs");
+var $$splitComponentImporter = () => import("./routes-D2l6dlbl.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({
 	head: () => ({ meta: [
 		{ title: "mcCoy Global Consultancy | Study, Work & Migrate Overseas" },

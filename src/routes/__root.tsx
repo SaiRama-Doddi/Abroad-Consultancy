@@ -11,6 +11,7 @@ import { type ReactNode } from "react";
 import { Toaster } from "../components/ui/sonner";
 import { Preloader } from "../components/Preloader";
 import { BackgroundFlight } from "../components/BackgroundFlight";
+import { CustomIconsDefs } from "../components/CustomIcons";
 
 import "../styles.css";
 
@@ -112,6 +113,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         <Preloader />
         <BackgroundFlight />
+        <CustomIconsDefs />
         {children}
         <Scripts />
         <Toaster />

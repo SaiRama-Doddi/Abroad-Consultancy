@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import { Star, Quote, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
+import { StarIcon as Star, ShieldCheckIcon as ShieldCheck } from "./CustomIcons";
+import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface Testimonial {

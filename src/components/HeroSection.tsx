@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Calendar, User, Globe, FileText, Shield, Handshake } from "lucide-react";
+import { CalendarIcon as Calendar, UserIcon as User, GlobeIcon as Globe, FileTextIcon as FileText, ShieldIcon as Shield, HandshakeIcon as Handshake } from "./CustomIcons";
 
 function renderLetterByLetter(
   text: string,
@@ -67,7 +67,7 @@ export function HeroSection() {
       />
 
       {/* Smooth bottom fade into the page body */}
-      <div 
+      <div
         className="absolute inset-x-0 bottom-0 h-48 pointer-events-none z-[1]"
         style={{
           background: "linear-gradient(to top, #060a15 0%, rgba(6, 10, 21, 0.4) 40%, transparent 100%)"
@@ -75,7 +75,7 @@ export function HeroSection() {
       />
 
       {/* Smooth left-to-right dark gradient overlay for text legibility */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none z-[1]"
         style={{
           background: "linear-gradient(to right, rgba(9, 25, 48, 0.92) 0%, rgba(9, 25, 48, 0.75) 45%, rgba(9, 25, 48, 0.3) 75%, transparent 100%)"
@@ -87,7 +87,7 @@ export function HeroSection() {
         <div className="flex flex-col lg:max-w-3xl">
           {/* Top small header with flight path animation */}
           <div className="flex items-center gap-4 animate-slide-right">
-            <span 
+            <span
               className="text-[0.72rem] font-bold uppercase tracking-[0.45em] text-[var(--gold)]"
               style={{ textShadow: "0 1px 4px rgba(6, 10, 21, 0.9), 0 2px 10px rgba(6, 10, 21, 0.8)" }}
             >
@@ -116,13 +116,13 @@ export function HeroSection() {
 
           {/* Main Title heading (Serif + Sky Blue font with letter-to-letter animation) */}
           <h1 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.8rem] xl:text-[5.5rem] font-semibold leading-[1.05] text-white tracking-tight">
-            <span 
+            <span
               className="block"
               style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
-              {renderLetterByLetter("mcCoy Global", 0.3, 0.1, "animate-letter-in", videoPlaying, 0)}
+              {renderLetterByLetter("McCoy global", 0.3, 0.1, "animate-letter-in", videoPlaying, 0)}
             </span>
-            <span 
+            <span
               className="block mt-2 text-[var(--gold)] font-semibold"
               style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
@@ -134,7 +134,7 @@ export function HeroSection() {
           {/* Subtitle description */}
           <p
             className="mt-4 max-w-xl text-base leading-relaxed text-white animate-fade-rise opacity-0 sm:text-lg"
-            style={{ 
+            style={{
               animationDelay: "0.7s",
               textShadow: "0 2px 10px rgba(6, 10, 21, 0.95), 0 1px 3px rgba(6, 10, 21, 0.9)"
             }}
@@ -177,8 +177,8 @@ export function HeroSection() {
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]">
-                    <Globe className="h-5.5 w-5.5" />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_20px_rgba(224,183,109,0.3)]">
+                    <Globe className="h-9 w-9" />
                   </div>
                   <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
                     Global Opportunities
@@ -194,8 +194,8 @@ export function HeroSection() {
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]">
-                    <FileText className="h-5.5 w-5.5" />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_20px_rgba(224,183,109,0.3)]">
+                    <FileText className="h-9 w-9" />
                   </div>
                   <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
                     Expert Guidance
@@ -211,8 +211,8 @@ export function HeroSection() {
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]">
-                    <Shield className="h-5.5 w-5.5" />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_20px_rgba(224,183,109,0.3)]">
+                    <Shield className="h-9 w-9" />
                   </div>
                   <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
                     Trusted & Reliable
@@ -228,8 +228,8 @@ export function HeroSection() {
             <div className="group transition-all duration-500 hover:-translate-y-1.5">
               <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_15px_rgba(224,183,109,0.2)]">
-                    <Handshake className="h-5.5 w-5.5" />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_20px_rgba(224,183,109,0.3)]">
+                    <Handshake className="h-9 w-9" />
                   </div>
                   <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
                     End-to-End Support
@@ -245,4 +245,4 @@ export function HeroSection() {
       </div>
     </section>
   );
-}
+}

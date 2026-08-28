@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { 
-  Target, 
-  Globe, 
-  Briefcase, 
-  GraduationCap, 
-  FileCheck, 
-  Award, 
-  BookOpen, 
-  DollarSign, 
-  Compass, 
-  Tag,
-  Coins,
-  FileText,
-  MessagesSquare,
-  Sparkles
-} from "lucide-react";
+  TargetIcon as Target, 
+  GlobeIcon as Globe, 
+  BriefcaseIcon as Briefcase, 
+  GraduationCapIcon as GraduationCap, 
+  FileCheckIcon as FileCheck, 
+  AwardIcon as Award, 
+  BookOpenIcon as BookOpen, 
+  CoinsIcon as DollarSign, 
+  CompassIcon as Compass, 
+  PriceTagIcon as Tag,
+  CoinsIcon as Coins,
+  FileTextIcon as FileText,
+  MessageSquareIcon as MessagesSquare,
+  SparklesIcon as Sparkles
+} from "./CustomIcons";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface ExpertiseItem {
@@ -91,52 +91,92 @@ const expertiseItems: ExpertiseItem[] = [
   }
 ];
 
+// Custom 3D Parallax repeatable reveal component
+function FeatureCardReveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] [transform-style:preserve-3d] ${className} ${
+        isVisible 
+          ? "opacity-100 translate-y-0 [transform:rotateX(0deg)_scale(1)]" 
+          : "opacity-0 translate-y-16 [transform:rotateX(12deg)_scale(0.94)]"
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function ExpertiseSection() {
   return (
-    <section className="bg-white pt-6 pb-8 sm:pt-8 sm:pb-12 relative overflow-hidden border-b border-slate-100">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="bg-[#090e1a] text-white pt-16 pb-16 relative overflow-hidden border-b border-slate-800">
+      {/* Decorative background grid elements */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#e0b76d_1.2px,transparent_1.2px)] [background-size:24px_24px]" />
+      
+      {/* Ambient glows behind grid items */}
+      <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--gold)]/3 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/3 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-blue-500/3 rounded-full blur-[130px] pointer-events-none" />
+
+      <div className="mx-auto max-w-7xl px-6 relative z-10">
         
         {/* Section Header */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="text-left w-full mb-8 flex flex-col items-start">
+          <div className="text-left w-full mb-10 flex flex-col items-start">
             {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.08)] mb-3.5">
               <Sparkles className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
               <span>Core Competencies</span>
             </div>
             
-            <h2 className="font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left">
-              Our <span className="text-[var(--gold)] font-bold">Expertise</span>
+            <h2 className="font-display text-4xl leading-tight text-white sm:text-5xl font-black tracking-tight text-left">
+              Our <span className="text-[var(--gold)]">Expertise</span>
             </h2>
 
-            <div className="mt-3 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
+            <div className="mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
 
-            <p className="mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+            <p className="mt-4.5 text-[1.02rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
               We don't just guide you; we ignite your career potential through dedicated end-to-end overseas migration counseling.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Expertise Grid */}
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 [perspective:1000px]">
           {expertiseItems.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <ScrollReveal 
+              <FeatureCardReveal 
                 key={item.title} 
-                direction="up" 
-                delay={100 + (idx % 4) * 100}
-                className="flex"
+                delay={(idx % 4) * 80}
+                className="flex [transform-style:preserve-3d]"
               >
                 <div
-                  className="group relative flex flex-col items-start rounded-3xl border border-slate-200/80 bg-white p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden w-full h-full"
-                  style={{ boxShadow: "0 10px 30px rgba(0,0,0,0.02)" }}
+                  className="group relative flex flex-col items-start rounded-3xl border border-slate-800/80 bg-slate-950/40 p-6 transition-all duration-500 overflow-hidden w-full h-full select-none [transform-style:preserve-3d] hover:border-[var(--gold)]/50 hover:bg-slate-900/60 hover:[transform:rotateX(4deg)_rotateY(-6deg)_translateZ(12px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)]"
                 >
                   {/* Accent gold light glow on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
                   
-                  {/* Huge background progress number */}
-                  <div className="absolute right-4 bottom-3 text-5xl font-black text-slate-100/50 select-none pointer-events-none font-display z-0 group-hover:text-[var(--gold)]/5 transition-colors duration-500">
+                  {/* Huge background progress number - lifts in 3D */}
+                  <div className="absolute right-4 bottom-3 text-5xl font-black select-none pointer-events-none font-display z-0 text-slate-800/35 group-hover:text-[var(--gold)]/10 transition-colors duration-500 [transform:translateZ(25px)]">
                     {String(idx + 1).padStart(2, '0')}
                   </div>
                   
@@ -146,22 +186,25 @@ export function ExpertiseSection() {
                   {/* Gold bar accent at the bottom of the card on hover */}
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
 
-                  {/* Icon Container */}
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--gold)]/5 text-[var(--gold)] border border-[var(--gold)]/15 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105 shadow-sm z-20">
+                  {/* Icon Container - lifts in 3D */}
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-800 bg-slate-900 text-slate-400 group-hover:text-[var(--gold)] group-hover:border-[var(--gold)]/20 transition-all duration-500 shadow-sm z-20 [transform:translateZ(20px)]">
                     <Icon className="h-5.5 w-5.5" />
                   </div>
 
-                  {/* Title */}
-                  <h4 className="mt-4 font-sans text-[0.88rem] font-bold uppercase tracking-wider text-slate-800 group-hover:text-[var(--gold)] transition-colors duration-300 z-20">
-                    {item.title}
-                  </h4>
+                  {/* Title & Description wrapped to lift in 3D */}
+                  <div className="z-20 [transform:translateZ(15px)]">
+                    {/* Title */}
+                    <h4 className="mt-4 font-sans text-[0.88rem] font-bold uppercase tracking-wider text-white group-hover:text-[var(--gold)] transition-colors duration-300">
+                      {item.title}
+                    </h4>
 
-                  {/* Description text justified */}
-                  <p className="mt-2 text-[0.82rem] leading-relaxed text-slate-500 text-justify z-20">
-                    {item.description}
-                  </p>
+                    {/* Description text justified */}
+                    <p className="mt-2 text-[0.82rem] leading-relaxed text-slate-300 text-justify">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </ScrollReveal>
+              </FeatureCardReveal>
             );
           })}
         </div>

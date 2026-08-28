@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { 
-  BookOpen, 
-  Briefcase, 
-  Compass, 
-  ChevronRight, 
-  ChevronLeft, 
-  User, 
-  Phone, 
-  CheckCircle2, 
-  GraduationCap,
-  Sparkles,
-  MapPin,
-  Award
-} from "lucide-react";
+  BookOpenIcon as BookOpen, 
+  BriefcaseIcon as Briefcase, 
+  CompassIcon as Compass, 
+  UserIcon as User, 
+  PhoneIcon as Phone, 
+  CheckCircleIcon as CheckCircle2, 
+  GraduationCapIcon as GraduationCap,
+  SparklesIcon as Sparkles,
+  MapPinIcon as MapPin,
+  AwardIcon as Award
+} from "./CustomIcons";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 import { toast } from "sonner";
 
