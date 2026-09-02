@@ -116,30 +116,34 @@ export function WhyChooseUs() {
           {/* Left Column: CEO Profile Card */}
           <div className="lg:col-span-7 flex">
             <FeatureCardReveal delay={150} className="w-full flex">
-              <div className="group w-full relative rounded-3xl border border-slate-800/80 bg-slate-950/60 p-6 sm:p-8 pb-8 sm:pb-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(184,123,44,0.15)] hover:border-slate-700/80 flex flex-col sm:flex-row items-center gap-8 overflow-hidden">
+              <div className="group w-full relative rounded-3xl border border-slate-800/80 bg-slate-950/60 p-6 sm:p-8 pb-8 sm:pb-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(184,123,44,0.15)] hover:border-slate-700/80 flex flex-col sm:flex-row items-center sm:items-center gap-6 sm:gap-8 overflow-hidden">
                 {/* Accent gold light glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 
                 {/* Gold bar accent at the bottom of the card */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--gold)]" />
 
-                {/* Mr B. Rohit Portrait circular frame */}
-                <div className="relative h-44 w-44 sm:h-48 sm:w-48 shrink-0 rounded-full border-4 border-[var(--gold)]/20 p-1.5 bg-slate-900 flex items-center justify-center shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
-                  <div className="h-full w-full rounded-full overflow-hidden bg-slate-950">
+                {/* Mr B. Rohit Portrait: Large prominent square/rectangle frame */}
+                <div className="relative w-full sm:w-60 md:w-72 h-64 sm:h-72 md:h-80 shrink-0 rounded-2xl sm:rounded-3xl border-2 border-[var(--gold)]/30 p-1 bg-slate-900 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group-hover:border-[var(--gold)]/60 transition-all duration-500 select-none">
+                  <div className="h-full w-full rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950 relative">
                     <img 
                       src={founderImg} 
-                      alt="Mr B. Rohit" 
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                      alt="Mr B. Rohit - Founder & Managing Director" 
+                      className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 pointer-events-none" 
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
                   </div>
-                  {/* Decorative curved gold ring accent overlay */}
-                  <div className="absolute inset-0 rounded-full border border-dashed border-[var(--gold)]/40 animate-[spin_40s_linear_infinite] pointer-events-none" />
+                  {/* Gold corner badge */}
+                  <div className="absolute top-2.5 right-2.5 flex items-center gap-1 rounded-lg bg-slate-950/85 backdrop-blur-md border border-[var(--gold)]/35 px-2.5 py-1 text-[0.62rem] font-bold text-[var(--gold)] shadow-md">
+                    <Star className="h-2.5 w-2.5 fill-[var(--gold)]" />
+                    <span>Founder</span>
+                  </div>
                 </div>
 
                 {/* CEO Info & Quote */}
                 <div className="flex flex-col justify-center flex-1 text-center sm:text-left z-10">
                   {/* Capsule Highlight Badge */}
-                  <div className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 px-3.5 py-1 text-[0.68rem] font-bold uppercase tracking-wider text-[var(--gold)] mb-4 self-center sm:self-start shadow-sm">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 px-3.5 py-1 text-[0.68rem] font-bold uppercase tracking-wider text-[var(--gold)] mb-4 self-center sm:self-start shadow-sm">
                     <Star className="h-2.5 w-2.5 fill-[var(--gold)]" />
                     <span>Top Advisory Leadership</span>
                   </div>
@@ -155,7 +159,7 @@ export function WhyChooseUs() {
                   {/* Quote text block */}
                   <div className="relative">
                     <span className="absolute -top-3.5 -left-3.5 font-serif text-4xl text-[var(--gold)]/35 select-none">“</span>
-                    <p className="text-[0.88rem] leading-relaxed text-slate-300 italic relative z-10 px-2 text-justify">
+                    <p className="text-[0.88rem] leading-relaxed text-slate-300 italic relative z-10 px-2 text-justify select-text">
                       Our mission is to shape clear, stress-free visa pathways and secure admissions in world-class institutions with absolute transparency and integrity.
                     </p>
                     <span className="absolute -bottom-5 -right-1.5 font-serif text-4xl text-[var(--gold)]/35 select-none">”</span>
