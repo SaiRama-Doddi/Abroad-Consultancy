@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GraduationCapIcon as GraduationCap, GlobeIcon as Globe, CheckCircleIcon as CheckCircle } from "./CustomIcons";
+import { GraduationCap, Globe, CheckCircle } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface Destination {
@@ -162,8 +162,19 @@ export function DestinationsSection() {
               transform: translateX(-50%);
             }
           }
+          @keyframes infinite-scroll-up {
+            0% {
+              transform: translateY(0);
+            }
+            100% {
+              transform: translateY(-50%);
+            }
+          }
           .animate-infinite-scroll {
             animation: infinite-scroll 45s linear infinite;
+          }
+          .animate-infinite-scroll-up {
+            animation: infinite-scroll-up 32s linear infinite;
           }
           .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -254,35 +265,82 @@ export function DestinationsSection() {
           </ScrollReveal>
         </div>
 
-        {/* Mobile View: 2-column grid stack matching user screenshot */}
+        {/* Mobile View: Vertical Upward Infinite Scrolling Marquee (smooth continuous loop) */}
         <div className="block md:hidden">
           <ScrollReveal direction="up" delay={200}>
-            <div className="grid gap-3 grid-cols-2">
-              {destinations.map((country) => (
-                <div key={`${country.code}-mobile`} className="group relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/60 shadow-[0_10px_30px_rgba(0,0,0,0.03)] bg-slate-900">
-                  {/* Background Destination Flag (Full Card) */}
-                  <img 
-                    src={`https://flagcdn.com/w320/${country.code}.png`} 
-                    alt={`${country.name} Flag`} 
-                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                  />
-
-                  {/* Subtle dark gradient mask for high legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent z-10" />
-
-                  {/* Country Pill Badge Overlay at the bottom */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white px-2.5 py-1.5 rounded-full shadow-lg border border-slate-100 min-w-[100px] justify-center z-10 transition-transform duration-300 group-hover:scale-105">
-                    <div className="h-4.5 w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0">
-                      <img 
-                        src={`https://flagcdn.com/w40/${country.code}.png`} 
-                        className="h-full w-full object-cover scale-125" 
-                        alt={`${country.name} Flag`} 
+            <div className="relative w-full h-[460px] xs:h-[500px] overflow-hidden">
+              {/* Vertical Upward Moving Container */}
+              <div className="flex flex-col animate-infinite-scroll-up hover:[animation-play-state:paused] active:[animation-play-state:paused] select-none">
+                {/* Track 1 (Original List) */}
+                <div className="grid grid-cols-2 gap-2.5 xs:gap-3 pb-2.5 xs:pb-3">
+                  {destinations.map((country) => (
+                    <div
+                      key={`${country.code}-mobile-track1`}
+                      className="group relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/60 shadow-[0_10px_30px_rgba(0,0,0,0.03)] bg-slate-900"
+                    >
+                      {/* Background Destination Flag (Full Card) */}
+                      <img
+                        src={`https://flagcdn.com/w320/${country.code}.png`}
+                        alt={`${country.name} Flag`}
+                        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                        loading="lazy"
                       />
+
+                      {/* Subtle dark gradient mask for high legibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent z-10" />
+
+                      {/* Country Pill Badge Overlay at the bottom */}
+                      <div className="absolute bottom-2.5 xs:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white px-2 py-1 xs:px-2.5 xs:py-1.5 rounded-full shadow-lg border border-slate-100 min-w-[80px] xs:min-w-[100px] max-w-[90%] justify-center z-10 transition-transform duration-300 group-hover:scale-105">
+                        <div className="h-3.5 w-3.5 xs:h-4.5 xs:w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0">
+                          <img
+                            src={`https://flagcdn.com/w40/${country.code}.png`}
+                            className="h-full w-full object-cover scale-125"
+                            alt={`${country.name} Flag`}
+                          />
+                        </div>
+                        <span className="text-[0.55rem] xs:text-[0.6rem] font-black text-slate-800 uppercase tracking-wider truncate">
+                          {country.shortName || country.name}
+                        </span>
+                      </div>
                     </div>
-                    <span className="text-[0.6rem] font-black text-slate-800 uppercase tracking-wider">{country.shortName || country.name}</span>
-                  </div>
+                  ))}
                 </div>
-              ))}
+
+                {/* Track 2 (Identical Duplicate for Seamless Infinite Loop) */}
+                <div className="grid grid-cols-2 gap-2.5 xs:gap-3 pb-2.5 xs:pb-3" aria-hidden="true">
+                  {destinations.map((country) => (
+                    <div
+                      key={`${country.code}-mobile-track2`}
+                      className="group relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/60 shadow-[0_10px_30px_rgba(0,0,0,0.03)] bg-slate-900"
+                    >
+                      {/* Background Destination Flag (Full Card) */}
+                      <img
+                        src={`https://flagcdn.com/w320/${country.code}.png`}
+                        alt={`${country.name} Flag`}
+                        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                        loading="lazy"
+                      />
+
+                      {/* Subtle dark gradient mask for high legibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent z-10" />
+
+                      {/* Country Pill Badge Overlay at the bottom */}
+                      <div className="absolute bottom-2.5 xs:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white px-2 py-1 xs:px-2.5 xs:py-1.5 rounded-full shadow-lg border border-slate-100 min-w-[80px] xs:min-w-[100px] max-w-[90%] justify-center z-10 transition-transform duration-300 group-hover:scale-105">
+                        <div className="h-3.5 w-3.5 xs:h-4.5 xs:w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0">
+                          <img
+                            src={`https://flagcdn.com/w40/${country.code}.png`}
+                            className="h-full w-full object-cover scale-125"
+                            alt={`${country.name} Flag`}
+                          />
+                        </div>
+                        <span className="text-[0.55rem] xs:text-[0.6rem] font-black text-slate-800 uppercase tracking-wider truncate">
+                          {country.shortName || country.name}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </ScrollReveal>
         </div>

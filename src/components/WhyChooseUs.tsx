@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
+import founderImg from "../assets/Founder.jpeg";
 import { 
-  HandshakeIcon as Handshake, 
-  HeadphonesIcon as Headphones, 
-  CheckCircleIcon as CheckCircle2, 
-  TrophyIcon as Trophy, 
-  GraduationCapIcon as GraduationCap, 
-  LandmarkIcon as Landmark, 
-  GlobeIcon as Globe, 
-  CalendarIcon as Calendar, 
-  ShieldCheckIcon as ShieldCheck, 
-  StarIcon as Star
-} from "./CustomIcons";
+  Handshake, 
+  Headphones, 
+  CheckCircle2, 
+  Trophy, 
+  GraduationCap, 
+  Landmark, 
+  Globe, 
+  Calendar, 
+  ShieldCheck, 
+  Star 
+} from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 import { AnimatedCounter } from "./AnimatedCounter";
 
@@ -122,12 +123,12 @@ export function WhyChooseUs() {
                 {/* Gold bar accent at the bottom of the card */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--gold)]" />
 
-                {/* Mani Kumar Portrait circular frame */}
+                {/* Mr B. Rohit Portrait circular frame */}
                 <div className="relative h-44 w-44 sm:h-48 sm:w-48 shrink-0 rounded-full border-4 border-[var(--gold)]/20 p-1.5 bg-slate-900 flex items-center justify-center shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
                   <div className="h-full w-full rounded-full overflow-hidden bg-slate-950">
                     <img 
-                      src="/founder.png" 
-                      alt="Mani Kumar" 
+                      src={founderImg} 
+                      alt="Mr B. Rohit" 
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" 
                     />
                   </div>
@@ -143,7 +144,7 @@ export function WhyChooseUs() {
                     <span>Top Advisory Leadership</span>
                   </div>
 
-                  <h3 className="font-display text-3xl font-black text-white tracking-tight leading-none">Mani Kumar</h3>
+                  <h3 className="font-display text-3xl font-black text-white tracking-tight leading-none">Mr B. Rohit</h3>
                   <span className="block mt-2.5 text-[0.78rem] font-bold uppercase tracking-[0.18em] text-[var(--gold)] leading-none">
                     Founder & Managing Director
                   </span>

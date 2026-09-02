@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PlaneIcon as Plane, MenuIcon as Menu, CloseIcon as X } from "./CustomIcons";
+import { Plane, Menu, X } from "lucide-react";
 
 const links = [
   { label: "Home", href: "#home" },
