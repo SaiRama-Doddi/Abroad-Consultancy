@@ -14,6 +14,12 @@ export default defineConfig({
     }),
     nitro({
       preset: "vercel",
+      inlineDynamicImports: true,
+      rolldownConfig: {
+        output: {
+          inlineDynamicImports: true,
+        },
+      },
     }),
     viteReact(),
   ],
