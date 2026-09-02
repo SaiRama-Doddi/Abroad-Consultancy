@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { 
-  ShieldCheckIcon as ShieldCheck, 
-  TrophyIcon as Trophy, 
-  CloseIcon as X, 
-  ClockIcon as Clock, 
-  FileCheckIcon as FileCheck, 
-  PlaneTakeoffIcon as PlaneTakeoff 
-} from "./CustomIcons";
-import { ArrowRight } from "lucide-react";
+  ShieldCheck, 
+  Trophy, 
+  X, 
+  Clock, 
+  FileCheck, 
+  PlaneTakeoff,
+  ArrowRight 
+} from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface SuccessStory {
@@ -36,7 +36,7 @@ const successStories: SuccessStory[] = [
     image: "/student-usa.png",
     approvalTime: "12 Days",
     serial: "MCC-US-8924",
-    testimonial: "mcCoy Global made my dream of studying in the USA a reality. Their expert guidance on SOP drafting and visa interview prep was flawless. Highly recommended!",
+    testimonial: "McCoy Global made my dream of studying in the USA a reality. Their expert guidance on SOP drafting and visa interview prep was flawless. Highly recommended!",
     milestones: ["Profile Evaluated", "I-20 Received", "Visa Slot Booked", "Visa Approved"]
   },
   {
@@ -49,7 +49,7 @@ const successStories: SuccessStory[] = [
     image: "/student-germany.png",
     approvalTime: "18 Days",
     serial: "MCC-DE-4412",
-    testimonial: "Securing my Germany Opportunity Card was seamless thanks to mcCoy. They helped me with point calculation and document verification. Best consultancy ever!",
+    testimonial: "Securing my Germany Opportunity Card was seamless thanks to McCoy. They helped me with point calculation and document verification. Best consultancy ever!",
     milestones: ["Points Audited", "Anabin Certified", "Embassy Interview", "Card Issued"]
   },
   {
@@ -75,7 +75,7 @@ const successStories: SuccessStory[] = [
     image: "/student-singapore.png",
     approvalTime: "14 Days",
     serial: "MCC-SG-3810",
-    testimonial: "Thanks to mcCoy, I got my Singapore student visa and an internship placement at a leading logistics firm. Their guidance changed my career.",
+    testimonial: "Thanks to McCoy, I got my Singapore student visa and an internship placement at a leading logistics firm. Their guidance changed my career.",
     milestones: ["University Offer", "ICA Application", "STP Approval", "Entry Granted"]
   }
 ];
@@ -116,7 +116,7 @@ export function GallerySection() {
             <div className="mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
 
             <p className="mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
-              Real approvals from ambitious students and professionals who achieved their dreams abroad with mcCoy Global Consultancy.
+              Real approvals from ambitious students and professionals who achieved their dreams abroad with McCoy Global Consultancy.
             </p>
           </div>
         </ScrollReveal>

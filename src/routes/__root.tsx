@@ -11,7 +11,6 @@ import { type ReactNode } from "react";
 import { Toaster } from "../components/ui/sonner";
 import { Preloader } from "../components/Preloader";
 import { BackgroundFlight } from "../components/BackgroundFlight";
-import { CustomIconsDefs } from "../components/CustomIcons";
 
 import "../styles.css";
 
@@ -77,10 +76,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "mcCoy Global Consultancy" },
+      { title: "McCoy Global Consultancy" },
       { name: "description", content: "Study, Work & Migrate Overseas" },
-      { name: "author", content: "mcCoy Global Consultancy" },
-      { property: "og:title", content: "mcCoy Global Consultancy" },
+      { name: "author", content: "McCoy Global Consultancy" },
+      { property: "og:title", content: "McCoy Global Consultancy" },
       { property: "og:description", content: "Study, Work & Migrate Overseas" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -113,7 +112,6 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         <Preloader />
         <BackgroundFlight />
-        <CustomIconsDefs />
         {children}
         <Scripts />
         <Toaster />

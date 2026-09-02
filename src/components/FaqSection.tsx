@@ -17,7 +17,7 @@ const faqs: FaqItem[] = [
     answer: "The UK Youth Mobility Scheme Visa is open to young professionals (typically aged 18 to 30) from participating countries and eligible passport arrangements (including Indian nationals with qualified degrees). It provides a 2-year visa allowing you to work in any job sector in the UK without requiring a local employer sponsorship."
   },
   {
-    question: "Does mcCoy Global assist with university scholarships and waivers?",
+    question: "Does McCoy Global assist with university scholarships and waivers?",
     answer: "Yes, absolutely! We match your academic profile, credentials, and standardized language scores (IELTS, PTE, TOEFL) with active merit-based university scholarships, fee waivers, and assistantship packages to minimize your study costs."
   },
   {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CalendarIcon as Calendar, UserIcon as User, GlobeIcon as Globe, FileTextIcon as FileText, ShieldIcon as Shield, HandshakeIcon as Handshake } from "./CustomIcons";
+import { Calendar, User, Globe, FileText, Shield, Handshake } from "lucide-react";
 
 function renderLetterByLetter(
   text: string,

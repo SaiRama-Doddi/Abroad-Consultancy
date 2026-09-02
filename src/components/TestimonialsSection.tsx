@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
-import { StarIcon as Star, ShieldCheckIcon as ShieldCheck } from "./CustomIcons";
-import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, ShieldCheck, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface Testimonial {
@@ -20,7 +19,7 @@ const testimonials: Testimonial[] = [
     countryCode: "us",
     program: "Masters in Computer Science",
     rating: 5,
-    quote: "mcCoy Global Consultancy made my dream of studying in the US a reality. They helped me choose the right university, guided me through the SOP drafting, and prepped me for the visa interview. The support was outstanding!",
+    quote: "McCoy Global Consultancy made my dream of studying in the US a reality. They helped me choose the right university, guided me through the SOP drafting, and prepped me for the visa interview. The support was outstanding!",
     initials: "RK"
   },
   {
@@ -29,7 +28,7 @@ const testimonials: Testimonial[] = [
     countryCode: "sg",
     program: "Diploma in Logistics Management (NSTC)",
     rating: 5,
-    quote: "The Singapore 6+6 package (6 months study + 6 months paid internship) recommended by mcCoy Global was a game-changer. They managed the visa process seamlessly and guided me all the way to check-in.",
+    quote: "The Singapore 6+6 package (6 months study + 6 months paid internship) recommended by McCoy Global was a game-changer. They managed the visa process seamlessly and guided me all the way to check-in.",
     initials: "AM"
   },
   {
@@ -47,7 +46,7 @@ const testimonials: Testimonial[] = [
     countryCode: "ca",
     program: "Postgraduate in Project Management",
     rating: 5,
-    quote: "mcCoy Global helped me secure my admission in Canada and guided me through the SDS visa process. Their step-by-step assistance in documentation and GIC setup made the process completely stress-free!",
+    quote: "McCoy Global helped me secure my admission in Canada and guided me through the SDS visa process. Their step-by-step assistance in documentation and GIC setup made the process completely stress-free!",
     initials: "PS"
   },
   {
@@ -56,7 +55,7 @@ const testimonials: Testimonial[] = [
     countryCode: "au",
     program: "Bachelor of Business Info Systems",
     rating: 5,
-    quote: "Extremely thankful to mcCoy for guiding me through my Australian Subclass 500 visa. The visa grant was so fast! Their mock interview sessions prepared me perfectly for the GTE requirements.",
+    quote: "Extremely thankful to McCoy for guiding me through my Australian Subclass 500 visa. The visa grant was so fast! Their mock interview sessions prepared me perfectly for the GTE requirements.",
     initials: "RD"
   },
   {
@@ -65,7 +64,7 @@ const testimonials: Testimonial[] = [
     countryCode: "gb",
     program: "MSc in Data Science · Manchester",
     rating: 5,
-    quote: "Securing my UK student visa was super easy with mcCoy. They checked all my financial documentation, helped with the VFS process, and followed up at every step until I landed in Manchester.",
+    quote: "Securing my UK student visa was super easy with McCoy. They checked all my financial documentation, helped with the VFS process, and followed up at every step until I landed in Manchester.",
     initials: "FA"
   }
 ];

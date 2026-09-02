@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { 
-  MailIcon as Mail, 
-  PhoneIcon as Phone, 
-  MapPinIcon as MapPin, 
-  ClockIcon as Clock, 
-  SendIcon as Send, 
-  MessageSquareIcon as MessageSquare, 
-  ShieldCheckIcon as ShieldCheck 
-} from "./CustomIcons";
+  Mail, 
+  Phone, 
+  MapPin, 
+  Clock, 
+  Send, 
+  MessageSquare, 
+  ShieldCheck 
+} from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
 export function ContactFormSection() {

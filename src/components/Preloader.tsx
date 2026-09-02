@@ -111,12 +111,12 @@ export function Preloader() {
 
         {/* Circular Logo Card */}
         <div className="relative z-10 flex h-28 w-44 items-center justify-center rounded-2xl bg-white p-4 shadow-[0_15px_50px_rgba(224,183,109,0.22)] border-2 border-[var(--gold)]/30 transition-transform duration-700 animate-[pulse_2s_infinite]">
-          <img src="/logo.png" alt="mcCoy Global Logo" className="h-full w-full object-contain" />
+          <img src="/logo.png" alt="McCoy Global Logo" className="h-full w-full object-contain" />
         </div>
 
         {/* Slogan Title */}
         <h1 className="mt-8 font-display text-2xl tracking-[0.2em] font-extrabold uppercase text-white animate-[pulse_2.5s_infinite]">
-          mcCoy Global
+          McCoy Global
         </h1>
         <span className="text-[0.72rem] tracking-[0.42em] uppercase text-[var(--gold)] font-bold mt-2.5">
           Consultancy

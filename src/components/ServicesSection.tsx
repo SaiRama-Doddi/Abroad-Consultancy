@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { 
-  GraduationCapIcon as GraduationCap, 
-  PlaneIcon as Plane, 
-  GlobeIcon as Globe, 
-  CheckCircleIcon as CheckCircle2, 
-  BookOpenIcon as BookOpen, 
-  BriefcaseIcon as Briefcase, 
-  TicketIcon as Ticket, 
-  LandmarkIcon as Landmark 
-} from "./CustomIcons";
-import { ChevronRight } from "lucide-react";
+  GraduationCap, 
+  Plane, 
+  Globe, 
+  CheckCircle2, 
+  BookOpen, 
+  Briefcase, 
+  Ticket, 
+  Landmark,
+  ChevronRight 
+} from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface Country {
@@ -313,29 +313,144 @@ export function ServicesSection() {
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
 
-        {/* Section Header */}
+        {/* Destinations Explorer Title (Global Opportunities) */}
         <ScrollReveal direction="up" delay={100}>
           <div className="text-left w-full mb-10 flex flex-col items-start">
+            {/* Premium Capsule Subtitle Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.08)] mb-3.5">
+              <Globe className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
+              <span>Global Opportunities</span>
+            </div>
+
+            <h2 className="font-display text-4xl leading-tight text-white sm:text-5xl font-black tracking-tight text-left">
+              Explore Study <span className="text-[var(--gold)]">Destinations</span>
+            </h2>
+
+            <div className="mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
+
+            <p className="mt-4.5 text-[1.02rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+              Select a region below to filter available countries and explore educational pathways.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        {/* Region Filter Tabs */}
+        <div className="flex flex-wrap justify-start gap-2.5 mb-10">
+          {(["all", "hubs", "europe", "asia"] as const).map((region) => (
+            <button
+              key={region}
+              onClick={() => setSelectedRegion(region)}
+              className={`rounded-full px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 border ${selectedRegion === region
+                  ? "text-[#0b1224] border-transparent shadow-[0_0_15px_rgba(224,183,109,0.3)] scale-105"
+                  : "text-slate-400 hover:text-white bg-slate-950/40 border-slate-800"
+                }`}
+              style={{
+                background: selectedRegion === region ? "var(--gradient-gold)" : undefined
+              }}
+            >
+              {region === "all" && "All Countries"}
+              {region === "hubs" && "Major Hubs"}
+              {region === "europe" && "Europe"}
+              {region === "asia" && "Asia & Middle East"}
+            </button>
+          ))}
+        </div>
+
+        {/* Countries Grid: 5 columns on desktop, responsive across all screen sizes */}
+        <div className="grid gap-4 sm:gap-5 lg:gap-5 grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-16 [perspective:1000px]">
+          {filteredCountries.map((country, idx) => (
+            <FeatureCardReveal
+              key={country.name}
+              delay={80 + (idx % 5) * 60}
+              className="flex [transform-style:preserve-3d]"
+            >
+              <div
+                className="group relative flex flex-col justify-between rounded-2xl border border-slate-800/80 bg-slate-950/40 transition-all duration-500 overflow-hidden w-full [transform-style:preserve-3d] hover:border-[var(--gold)]/55 hover:bg-slate-900/60 hover:[transform:rotateX(4deg)_rotateY(-4deg)_translateZ(12px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)] select-text"
+              >
+                {/* Accent gold light glow on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+
+                {/* Top Half: Full Country Flag Background with name overlay */}
+                <div className="h-32 sm:h-36 md:h-38 relative overflow-hidden w-full flex items-center justify-center rounded-t-2xl border-b border-slate-800/80">
+                  {/* Full Flag background - occupies the entire top half */}
+                  <img 
+                    src={`https://flagcdn.com/w640/${country.code}.png`}
+                    className="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
+                    alt={`${country.name} Flag Background`}
+                  />
+                  {/* Country Name overlay - lifts in 3D */}
+                  <div className="relative z-10 [transform:translateZ(25px)] text-center px-2">
+                    <span className="font-display text-base sm:text-lg md:text-xl font-black text-white tracking-tight uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                      {country.name}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bottom Half: Details content */}
+                <div className="p-4 sm:p-4.5 flex flex-col flex-1 justify-between bg-slate-950/20 [transform:translateZ(15px)] z-20">
+                  <div>
+                    {/* Popular courses */}
+                    <div className="text-[0.75rem] sm:text-[0.78rem] font-bold text-slate-300 leading-snug">
+                      <span className="text-[var(--gold)] uppercase tracking-wider text-[0.64rem] block mb-1">Popular programs</span>
+                      <p className="line-clamp-2">{country.courses.join(", ")}</p>
+                    </div>
+
+                    {/* Highlights */}
+                    {country.highlights && country.highlights.length > 0 && (
+                      <p className="mt-2.5 text-[0.70rem] leading-snug text-slate-400 font-medium line-clamp-2">
+                        {country.highlights.join(" · ")}
+                      </p>
+                    )}
+
+                    {/* Eligibility details */}
+                    {country.eligibility && (
+                      <div className="mt-2.5 text-[0.65rem] text-slate-400 font-bold uppercase tracking-wider leading-none truncate">
+                        Eligibility: <span className="text-white">{country.eligibility}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* View Guide link with right arrow */}
+                  <div 
+                    onClick={() => {
+                      const el = document.getElementById("contact");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="mt-4 pt-3 border-t border-slate-800/80 flex items-center gap-1 text-[0.70rem] font-black uppercase tracking-wider text-[var(--gold)] hover:text-[var(--gold)]/90 cursor-pointer self-start"
+                  >
+                    <span>View Guide</span>
+                    <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
+                </div>
+
+              </div>
+            </FeatureCardReveal>
+          ))}
+        </div>
+
+        {/* Section Header (Visa Services) */}
+        <ScrollReveal direction="up" delay={150}>
+          <div className="text-left w-full mb-10 flex flex-col items-start pt-10 border-t border-slate-800">
             {/* Premium Capsule Subtitle Badge */}
             <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.08)] mb-3.5">
               <Globe className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
               <span>Our Services</span>
             </div>
 
-            <h2 className="font-display text-4xl leading-tight text-white sm:text-5xl font-black tracking-tight text-left">
-              Visa <span className="text-[var(--gold)]">Pathways</span> & Destinations
-            </h2>
+            <h3 className="font-display text-3xl sm:text-4xl leading-tight text-white font-black tracking-tight text-left">
+              Visa <span className="text-[var(--gold)]">Pathways</span> & Solutions
+            </h3>
 
             <div className="mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
 
-            <p className="mt-4.5 text-[1.02rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
-              mcCoy Global Consultancy provides comprehensive solutions, from standard student visa arrangements to tourist visa facilitation across the globe.
+            <p className="mt-4.5 text-[0.98rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+              McCoy Global Consultancy provides comprehensive solutions, from standard student visa arrangements to tourist visa facilitation across the globe.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Visa Services Row */}
-        <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 mb-12 [perspective:1000px]">
+        <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 [perspective:1000px]">
           {visaServices.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -345,7 +460,7 @@ export function ServicesSection() {
                 className="flex [transform-style:preserve-3d]"
               >
                 <div
-                  className="group relative flex flex-col justify-between rounded-3xl border border-slate-800/80 bg-slate-950/40 p-6 sm:p-8 transition-all duration-500 overflow-hidden w-full select-none [transform-style:preserve-3d] hover:border-[var(--gold)]/50 hover:bg-slate-900/60 hover:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(10px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)]"
+                  className="group relative flex flex-col justify-between rounded-3xl border border-slate-800/80 bg-slate-950/40 p-6 sm:p-8 transition-all duration-500 overflow-hidden w-full [transform-style:preserve-3d] hover:border-[var(--gold)]/50 hover:bg-slate-900/60 hover:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(10px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)] select-text"
                 >
                   {/* Top gold bar accent on hover */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
@@ -428,121 +543,6 @@ export function ServicesSection() {
               </FeatureCardReveal>
             );
           })}
-        </div>
-
-        {/* Destinations Explorer Title */}
-        <ScrollReveal direction="up" delay={150}>
-          <div className="text-left w-full mb-10 flex flex-col items-start pt-10 border-t border-slate-800">
-            {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.08)] mb-3.5">
-              <Globe className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
-              <span>Global Opportunities</span>
-            </div>
-
-            <h3 className="font-display text-3xl leading-tight text-white font-black tracking-tight text-left">
-              Explore Study <span className="text-[var(--gold)]">Destinations</span>
-            </h3>
-
-            <div className="mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
-
-            <p className="mt-4.5 text-[0.98rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
-              Select a region below to filter available countries and explore educational pathways.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Region Filter Tabs */}
-        <div className="flex flex-wrap justify-start gap-2.5 mb-10">
-          {(["all", "hubs", "europe", "asia"] as const).map((region) => (
-            <button
-              key={region}
-              onClick={() => setSelectedRegion(region)}
-              className={`rounded-full px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 border ${selectedRegion === region
-                  ? "text-[#0b1224] border-transparent shadow-[0_0_15px_rgba(224,183,109,0.3)] scale-105"
-                  : "text-slate-400 hover:text-white bg-slate-950/40 border-slate-800"
-                }`}
-              style={{
-                background: selectedRegion === region ? "var(--gradient-gold)" : undefined
-              }}
-            >
-              {region === "all" && "All Countries"}
-              {region === "hubs" && "Major Hubs"}
-              {region === "europe" && "Europe"}
-              {region === "asia" && "Asia & Middle East"}
-            </button>
-          ))}
-        </div>
-
-        {/* Countries Grid */}
-        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 [perspective:1000px]">
-          {filteredCountries.map((country, idx) => (
-            <FeatureCardReveal
-              key={country.name}
-              delay={100 + (idx % 3) * 100}
-              className="flex [transform-style:preserve-3d]"
-            >
-              <div
-                className="group relative flex flex-col justify-between rounded-3xl border border-slate-800/80 bg-slate-950/40 transition-all duration-500 overflow-hidden w-full select-none [transform-style:preserve-3d] hover:border-[var(--gold)]/55 hover:bg-slate-900/60 hover:[transform:rotateX(4deg)_rotateY(-4deg)_translateZ(12px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)]"
-              >
-                {/* Accent gold light glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
-
-                {/* Top Half: Full Country Flag Background with name overlay */}
-                <div className="h-44 sm:h-48 relative overflow-hidden w-full flex items-center justify-center rounded-t-3xl border-b border-slate-800/80">
-                  {/* Full Flag background - occupies the entire top half */}
-                  <img 
-                    src={`https://flagcdn.com/w640/${country.code}.png`}
-                    className="absolute inset-0 w-full h-full object-cover brightness-[0.45] group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
-                    alt={`${country.name} Flag Background`}
-                  />
-                  {/* Country Name overlay - lifts in 3D */}
-                  <div className="relative z-10 [transform:translateZ(25px)]">
-                    <span className="font-display text-2xl font-black text-white tracking-tight uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                      {country.name}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Bottom Half: Details content styled like second image */}
-                <div className="p-6 sm:p-8 flex flex-col flex-1 justify-between bg-slate-950/20 [transform:translateZ(15px)] z-20">
-                  <div>
-                    {/* Popular courses */}
-                    <p className="text-[0.82rem] font-bold text-slate-300 leading-relaxed text-justify">
-                      <span className="text-[var(--gold)] uppercase tracking-wider text-[0.74rem] block mb-1">Popular programs</span>
-                      {country.courses.join(", ")}
-                    </p>
-
-                    {/* Highlights */}
-                    {country.highlights && country.highlights.length > 0 && (
-                      <p className="mt-4 text-[0.80rem] leading-relaxed text-slate-400 font-medium text-justify">
-                        {country.highlights.join(" · ")}
-                      </p>
-                    )}
-
-                    {/* Eligibility details */}
-                    {country.eligibility && (
-                      <div className="mt-4 text-[0.72rem] text-slate-400 font-bold uppercase tracking-wider leading-none">
-                        Eligibility: <span className="text-white">{country.eligibility}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* View Guide link with right arrow */}
-                  <div 
-                    onClick={() => {
-                      const el = document.getElementById("contact");
-                      if (el) el.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-1.5 text-[0.75rem] font-black uppercase tracking-wider text-[var(--gold)] hover:text-[var(--gold)]/90 cursor-pointer self-start"
-                  >
-                    <span>View {country.name} Guide</span>
-                    <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </div>
-
-              </div>
-            </FeatureCardReveal>
-          ))}
         </div>
 
       </div>

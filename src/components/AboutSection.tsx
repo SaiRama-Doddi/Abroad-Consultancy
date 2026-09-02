@@ -1,4 +1,4 @@
-import { EyeIcon as Eye, TargetIcon as Target, GraduationCapIcon as GraduationCap, GlobeIcon as Globe, SparklesIcon as Sparkles, BriefcaseIcon as Briefcase, FileTextIcon as FileText, UsersIcon as Users, AwardIcon as Award, HandshakeIcon as Handshake } from "./CustomIcons";
+import { Eye, Target, GraduationCap, Globe, Sparkles, Briefcase, FileText, Users, Award, Handshake } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 import { InteractiveGlobe } from "./InteractiveGlobe";
 import { AnimatedCounter } from "./AnimatedCounter";
@@ -192,7 +192,7 @@ export function AboutSection() {
               <div className="h-px w-24 bg-gradient-to-r from-[var(--gold)] to-transparent" />
               
               <p className="text-[1.02rem] leading-relaxed text-slate-600 text-justify">
-                mcCoy Global Consultancy is a boutique overseas advisory built on one
+                McCoy Global Consultancy is a boutique overseas advisory built on one
                 simple belief: a visa is not paperwork, it is a <span className="text-[var(--gold)] font-semibold animate-pulse">life decision</span>. We sit
                 with you, understand your profile, and shape a route that actually
                 fits — study, skilled work, or family migration.

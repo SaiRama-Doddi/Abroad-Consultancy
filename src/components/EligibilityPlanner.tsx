@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { 
-  BookOpenIcon as BookOpen, 
-  BriefcaseIcon as Briefcase, 
-  CompassIcon as Compass, 
-  UserIcon as User, 
-  PhoneIcon as Phone, 
-  CheckCircleIcon as CheckCircle2, 
-  GraduationCapIcon as GraduationCap,
-  SparklesIcon as Sparkles,
-  MapPinIcon as MapPin,
-  AwardIcon as Award
-} from "./CustomIcons";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+  BookOpen, 
+  Briefcase, 
+  Compass, 
+  User, 
+  Phone, 
+  CheckCircle2, 
+  GraduationCap,
+  Sparkles,
+  MapPin,
+  Award,
+  ChevronRight, 
+  ChevronLeft 
+} from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 import { toast } from "sonner";
 
@@ -83,7 +84,7 @@ export function EligibilityPlanner() {
       }
       return {
         title: `Student Visa Admission Route (${countryName})`,
-        desc: `You are eligible for direct Bachelors or Masters admission pathways in the ${countryName}. mcCoy Global Consultancy will handle your university matching, documentation, and visa filing.`,
+        desc: `You are eligible for direct Bachelors or Masters admission pathways in the ${countryName}. McCoy Global Consultancy will handle your university matching, documentation, and visa filing.`,
         features: ["Priority scholarship application assistance", "Post-study work permit arrangement (up to 3 years)", "Complete pre-departure briefings"]
       };
     } else if (goal === "migrate") {

@@ -172,7 +172,7 @@ export function WhyChooseUs() {
               return (
                 <FeatureCardReveal key={feat.title} delay={200 + idx * 150} className="w-full flex [transform-style:preserve-3d]">
                   <div
-                    className="group relative flex gap-4 sm:gap-5 rounded-2xl border border-slate-800/80 bg-slate-950/40 hover:border-[var(--gold)]/50 hover:bg-slate-900/60 p-5 sm:p-6 transition-all duration-500 overflow-hidden w-full select-none [transform-style:preserve-3d] hover:[transform:rotateX(4deg)_rotateY(-6deg)_translateZ(12px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)]"
+                    className="group relative flex gap-4 sm:gap-5 rounded-2xl border border-slate-800/80 bg-slate-950/40 hover:border-[var(--gold)]/50 hover:bg-slate-900/60 p-5 sm:p-6 transition-all duration-500 overflow-hidden w-full [transform-style:preserve-3d] hover:[transform:rotateX(4deg)_rotateY(-6deg)_translateZ(12px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)] select-text"
                   >
                     {/* Hover light overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

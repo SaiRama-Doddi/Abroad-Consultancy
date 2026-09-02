@@ -110,10 +110,10 @@ export function SiteFooter() {
           <div className="flex flex-col items-start text-left gap-4 col-span-2 md:col-span-1">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-18 items-center justify-center rounded-xl bg-white p-1.5 overflow-hidden shadow-[0_4px_20px_rgba(224,183,109,0.15)] border border-[var(--gold)]/20">
-                <img src="/logo.png" alt="mcCoy Global Logo" className="h-full w-full object-contain" />
+                <img src="/logo.png" alt="McCoy Global Logo" className="h-full w-full object-contain" />
               </div>
               <div className="text-left">
-                <span className="font-display text-lg tracking-[0.16em] font-extrabold uppercase text-white block leading-none">mcCoy Global</span>
+                <span className="font-display text-lg tracking-[0.16em] font-extrabold uppercase text-white block leading-none">McCoy Global</span>
                 <span className="text-[0.6rem] tracking-[0.3em] uppercase text-[var(--gold)] font-bold block mt-1">Consultancy</span>
               </div>
             </div>
@@ -255,7 +255,7 @@ export function SiteFooter() {
           
           {/* Copyright */}
           <p className="text-center md:text-left leading-relaxed">
-            © {new Date().getFullYear()} mcCoy Global Consultancy. All Rights Reserved.
+            © {new Date().getFullYear()} McCoy Global Consultancy. All Rights Reserved.
           </p>
 
           {/* Accredited Badges */}

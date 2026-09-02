@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import docImg from "../assets/Document and Verification.jpg";
+import examImg from "../assets/Exam and training.png";
 import { 
   Target, 
   Globe, 
@@ -21,6 +23,7 @@ interface ExpertiseItem {
   title: string;
   description: string;
   image: string;
+  imagePosition?: string;
   icon: React.ComponentType<any>;
 }
 
@@ -29,6 +32,7 @@ const expertiseItems: ExpertiseItem[] = [
     title: "Personalized Guidance",
     description: "Tailored counseling sessions focusing on your unique career goals, budget, and migration plans.",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80",
+    imagePosition: "center 18%",
     icon: Target
   },
   {
@@ -76,13 +80,14 @@ const expertiseItems: ExpertiseItem[] = [
   {
     title: "Visa Counseling",
     description: "Strategic embassy interview drills, checklist audits, and flawless filing to maximize approval rates.",
-    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=700&q=80",
+    imagePosition: "center 18%",
     icon: Compass
   },
   {
     title: "Discounts & Exam Training",
     description: "Access exclusive application fee waivers, partner university scholarships, and exam test vouchers.",
-    image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&w=700&q=80",
+    image: examImg,
     icon: Tag
   },
   {
@@ -94,7 +99,7 @@ const expertiseItems: ExpertiseItem[] = [
   {
     title: "Documentation & Verification",
     description: "Precision compiling, apostille notarization, translation, and verification of all academic records.",
-    image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=700&q=80",
+    image: docImg,
     icon: FileText
   },
   {
@@ -184,7 +189,7 @@ export function ExpertiseSection() {
                 className="flex [transform-style:preserve-3d]"
               >
                 <div
-                  className="group relative flex flex-col rounded-3xl border border-slate-800/80 bg-slate-950/50 p-3.5 sm:p-4 transition-all duration-500 overflow-hidden w-full h-full select-none [transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:[transform:rotateX(4deg)_rotateY(-5deg)_translateZ(14px)] hover:shadow-[0_22px_55px_rgba(184,123,44,0.18)]"
+                  className="group relative flex flex-col rounded-3xl border border-slate-800/80 bg-slate-950/50 p-3.5 sm:p-4 transition-all duration-500 overflow-hidden w-full h-full [transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:[transform:rotateX(4deg)_rotateY(-5deg)_translateZ(14px)] hover:shadow-[0_22px_55px_rgba(184,123,44,0.18)]"
                 >
                   {/* Accent gold light glow on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
@@ -193,11 +198,12 @@ export function ExpertiseSection() {
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
 
                   {/* Big Image Section with Left-Top Logo */}
-                  <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden bg-slate-900 shrink-0 [transform-style:preserve-3d]">
+                  <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden bg-slate-900 shrink-0 select-none [transform-style:preserve-3d]">
                     <img 
                       src={item.image} 
                       alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+                      style={{ objectPosition: item.imagePosition || "center" }}
                       loading="lazy"
                     />
                     
@@ -208,22 +214,17 @@ export function ExpertiseSection() {
                     <div className="absolute top-3 left-3 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-950/85 backdrop-blur-md border border-[var(--gold)]/35 text-[var(--gold)] shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--gold)] group-hover:text-slate-950 group-hover:border-[var(--gold)] z-20 [transform:translateZ(20px)]">
                       <Icon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-6" />
                     </div>
-
-                    {/* Number Badge Top Right */}
-                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-slate-950/70 backdrop-blur-md border border-slate-800/80 text-[0.68rem] font-bold text-slate-300 font-mono z-20">
-                      #{String(idx + 1).padStart(2, '0')}
-                    </div>
                   </div>
 
-                  {/* Followed by Content (Title & Description) */}
-                  <div className="flex flex-col flex-1 pt-4 pb-2 px-1.5 z-20 [transform:translateZ(15px)]">
+                  {/* Followed by Content (Title & Description) - Fully Selectable & Copyable */}
+                  <div className="flex flex-col flex-1 pt-4 pb-2 px-1.5 z-20 [transform:translateZ(15px)] select-text">
                     {/* Title */}
-                    <h4 className="font-sans text-[0.92rem] sm:text-[0.98rem] font-bold uppercase tracking-wide text-white group-hover:text-[var(--gold)] transition-colors duration-300 leading-snug">
+                    <h4 className="font-sans text-[0.92rem] sm:text-[0.98rem] font-bold uppercase tracking-wide text-white group-hover:text-[var(--gold)] transition-colors duration-300 leading-snug select-text cursor-text">
                       {item.title}
                     </h4>
 
                     {/* Description text */}
-                    <p className="mt-2 text-[0.82rem] leading-relaxed text-slate-300 text-justify">
+                    <p className="mt-2 text-[0.82rem] leading-relaxed text-slate-300 text-justify select-text cursor-text">
                       {item.description}
                     </p>
                   </div>

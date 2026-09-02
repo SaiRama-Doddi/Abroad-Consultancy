@@ -65,11 +65,11 @@ export function SiteHeader() {
           onClick={() => setActiveLink("Home")}
         >
           <div className="flex h-10 w-16 sm:h-12 sm:w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5 overflow-hidden transition-transform duration-300 group-hover:scale-105 shadow-[0_0_15px_rgba(166,106,33,0.25)]">
-            <img src="/logo.png" alt="mcCoy Global Logo" className="h-full w-full object-contain" />
+            <img src="/logo.png" alt="McCoy Global Logo" className="h-full w-full object-contain" />
           </div>
           <div className="flex flex-col">
             <span className="font-sans text-[1.15rem] sm:text-[1.4rem] font-black tracking-[0.03em] text-white leading-none drop-shadow-[0_2px_8px_rgba(255,255,255,0.15)]">
-              mcCoy <span className="animate-gold-shimmer font-black text-transparent bg-clip-text drop-shadow-[0_2px_10px_rgba(224,183,109,0.35)]">Global</span>
+              McCoy <span className="animate-gold-shimmer font-black text-transparent bg-clip-text drop-shadow-[0_2px_10px_rgba(224,183,109,0.35)]">Global</span>
             </span>
             <span className="font-sans text-[0.55rem] sm:text-[0.68rem] tracking-[0.36em] text-[var(--gold)] font-bold leading-none uppercase mt-1.5 sm:mt-2.5 drop-shadow-[0_1px_5px_rgba(224,183,109,0.25)]">
               Consultancy

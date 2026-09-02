@@ -16,13 +16,13 @@ import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "mcCoy Global Consultancy | Study, Work & Migrate Overseas" },
+      { title: "McCoy Global Consultancy | Study, Work & Migrate Overseas" },
       {
         name: "description",
         content:
-          "mcCoy Global Consultancy guides you from first enquiry to airport check-in — student visas, work visas, PR and migration handled end to end.",
+          "McCoy Global Consultancy guides you from first enquiry to airport check-in — student visas, work visas, PR and migration handled end to end.",
       },
-      { property: "og:title", content: "mcCoy Global Consultancy | Study, Work & Migrate Overseas" },
+      { property: "og:title", content: "McCoy Global Consultancy | Study, Work & Migrate Overseas" },
       {
         property: "og:description",
         content:
@@ -41,6 +41,7 @@ function Index() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <AboutSection />
         <DestinationsSection />
         <WhyChooseUs />
         <ExpertiseSection />
@@ -49,7 +50,6 @@ function Index() {
         <TestimonialsSection />
         <FaqSection />
         <ContactFormSection />
-        <AboutSection />
       </main>
       <SiteFooter />
       <WhatsAppWidget />
