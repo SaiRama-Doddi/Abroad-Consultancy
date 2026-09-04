@@ -29,6 +29,7 @@ interface Destination {
   workRights?: string;
   intakes?: string;
   avgTuition?: string;
+  pathway?: string;
   highlights?: string[];
   description?: string;
 }
@@ -287,18 +288,25 @@ const destinations: Destination[] = [
     code: "mu",
     region: "Africa / Indian Ocean",
     image: "https://images.unsplash.com/photo-1589979482837-e74f2e145060?auto=format&fit=crop&w=600&q=80",
-    courses: ["Diploma in Business Management", "Hospitality & Tourism Management"],
+    courses: [
+      "Diploma in Business Management", 
+      "Hospitality & Tourism Management",
+      "Pathway to UK, Australia & Canada"
+    ],
     eligibility: "10th Class pass students can apply ✅ (Age 18+)",
-    workRights: "20 hrs/week part-time work & Young Professional visa pathways",
-    intakes: "January & July",
-    avgTuition: "$3,000 – $6,000 / year",
+    workRights: "20 hrs/week part-time work & Pathway to UK, Australia, Canada",
+    intakes: "Once in every 3 months",
+    avgTuition: "Only $4,200 USD (Below ₹4 Lakhs)",
+    pathway: "Direct Pathway to UK, Australia & Canada",
     highlights: [
+      "Pathway to UK, Australia & Canada",
+      "Only $4,200 USD Tuition Fee (Below ₹4 Lakhs)",
+      "Intakes once in every 3 months",
       "10th Class pass students eligible for direct foundation & diploma entry",
       "Visa sponsored directly by institutions with visa-on-arrival facilitation",
-      "No IELTS test score required for qualifying applicants",
-      "Tropical island setting with bilingual English and French learning environment"
+      "No IELTS test score required for qualifying applicants"
     ],
-    description: "Mauritius provides a relaxed, affordable island pathway for international hospitality and business management with simplified student visa procedures."
+    description: "Mauritius provides a cost-effective, high-opportunity pathway to the UK, Australia, and Canada with simplified visa procedures, quarterly intakes, and total fees below ₹4 Lakhs ($4,200 USD)."
   }
 ];
 
@@ -665,6 +673,23 @@ export function DestinationsSection() {
                 <p className="text-[0.88rem] sm:text-[0.95rem] text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
                   {selectedCountry.description}
                 </p>
+              )}
+
+              {/* Transfer Pathway Banner (if specified) */}
+              {selectedCountry.pathway && (
+                <div className="rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-50 via-sky-50 to-indigo-50/40 p-3.5 sm:p-4 flex items-center gap-3.5 shadow-xs">
+                  <div className="h-10 w-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <Plane className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <span className="text-[0.66rem] font-bold uppercase tracking-wider text-blue-700 block">
+                      Transfer Pathway
+                    </span>
+                    <span className="text-[0.92rem] font-extrabold text-slate-900 block">
+                      {selectedCountry.pathway}
+                    </span>
+                  </div>
+                </div>
               )}
 
               {/* Grid of Key Features & Details */}
