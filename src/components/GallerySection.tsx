@@ -98,24 +98,24 @@ export function GallerySection() {
       {/* Background Subtle Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.06] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 relative z-10">
         
         {/* Section Header */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="text-left w-full mb-8 flex flex-col items-start">
+          <div className="text-left w-full mb-6 sm:mb-8 flex flex-col items-start">
             {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3">
-              <Trophy className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-3.5 sm:px-4 py-1 sm:py-1.5 text-[0.7rem] sm:text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3">
+              <Trophy className="h-3 sm:h-3.5 w-3 sm:w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
               <span>Success Stories</span>
             </div>
             
-            <h2 className="font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left">
+            <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-800 text-left">
               Visa <span className="text-[var(--gold)] font-bold">Success</span> Gallery
             </h2>
 
-            <div className="mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
+            <div className="mt-3 sm:mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
 
-            <p className="mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+            <p className="mt-3.5 sm:mt-4 text-[0.92rem] sm:text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
               Real approvals from ambitious students and professionals who achieved their dreams abroad with McCoy Global Consultancy.
             </p>
           </div>
@@ -123,12 +123,12 @@ export function GallerySection() {
 
         {/* Gallery Filter Tabs (Left-aligned to match design guidelines) */}
         <ScrollReveal direction="up" delay={200}>
-          <div className="flex justify-start gap-2 mb-8 overflow-x-auto pb-2 scrollbar-thin">
+          <div className="flex justify-start gap-2 mb-6 sm:mb-8 overflow-x-auto pb-2 scrollbar-thin">
             {(["all", "student", "mobility"] as const).map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}
-                className={`rounded-full px-5 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                className={`rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-[0.68rem] sm:text-[0.72rem] font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em] transition-all duration-300 whitespace-nowrap cursor-pointer ${
                   filter === type
                     ? "text-[#0b1224] shadow-[0_4px_12px_rgba(224,183,109,0.25)] scale-105"
                     : "text-slate-500 hover:text-slate-800 hover:bg-slate-50 bg-white border border-slate-100"
@@ -145,28 +145,28 @@ export function GallerySection() {
           </div>
         </ScrollReveal>
 
-        {/* Gallery Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Gallery Grid: 2 columns on mobile, 4 columns on desktop */}
+        <div className="grid gap-3 sm:gap-6 lg:gap-8 grid-cols-2 lg:grid-cols-4">
           {filteredStories.map((story, idx) => (
             <ScrollReveal 
               key={story.name} 
               direction="up" 
-              delay={150 + (idx % 4) * 100} 
+              delay={150 + (idx % 4) * 80} 
               className="flex"
             >
               <div
                 onClick={() => setSelectedStory(story)}
-                className="group relative flex flex-col justify-between rounded-3xl border border-slate-150/70 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] w-full cursor-pointer"
+                className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-150/70 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] w-full cursor-pointer"
               >
                 {/* Top gold bar accent panel */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
+                <div className="absolute top-0 left-0 right-0 h-1 sm:h-1.5 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
 
                 {/* Shine effect overlay */}
                 <div className="absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 group-hover:animate-shine pointer-events-none z-20" />
 
                 <div className="relative z-10 flex flex-col h-full">
                   {/* Photo Container */}
-                  <div className="relative h-64 w-full overflow-hidden bg-slate-50">
+                  <div className="relative h-36 sm:h-52 md:h-64 w-full overflow-hidden bg-slate-50">
                     <img
                       src={story.image}
                       alt={story.name}
@@ -174,65 +174,64 @@ export function GallerySection() {
                     />
                     
                     {/* Visa Approved pill */}
-                    <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-full bg-emerald-500/90 backdrop-blur-sm px-3.5 py-1.5 text-[0.62rem] font-extrabold uppercase tracking-widest text-white shadow-md">
-                      <ShieldCheck className="h-3.5 w-3.5" />
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-20 flex items-center gap-1 sm:gap-1.5 rounded-full bg-emerald-500/90 backdrop-blur-sm px-2 py-0.5 sm:px-3.5 sm:py-1.5 text-[0.52rem] sm:text-[0.62rem] font-extrabold uppercase tracking-wider text-white shadow-md">
+                      <ShieldCheck className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
                       <span>Approved</span>
                     </div>
 
                     {/* Serial watermark label */}
-                    <div className="absolute bottom-3 right-4 z-20 font-mono text-[9px] font-semibold text-white/70 bg-black/35 backdrop-blur-sm px-2 py-0.5 rounded">
+                    <div className="absolute bottom-1.5 right-2 sm:bottom-3 sm:right-4 z-20 font-mono text-[7px] sm:text-[9px] font-semibold text-white/70 bg-black/35 backdrop-blur-sm px-1.5 py-0.5 rounded">
                       {story.serial}
                     </div>
                   </div>
 
                   {/* Info Panel with security watermark */}
-                  <div className="p-6 relative flex-grow flex flex-col justify-between">
+                  <div className="p-3 sm:p-5 md:p-6 relative flex-grow flex flex-col justify-between">
                     {/* Faint 'PASSPORT' Watermark in background */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none">
-                      <span className="font-display font-black text-6xl tracking-widest uppercase">VISA</span>
+                      <span className="font-display font-black text-4xl sm:text-6xl tracking-widest uppercase">VISA</span>
                     </div>
 
                     <div>
                       {/* Country info */}
-                      <div className="flex items-center gap-2 mb-3.5">
+                      <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3.5">
                         <img 
                           src={`https://flagcdn.com/w40/${story.countryCode}.png`} 
-                          width="22"
                           alt={`${story.destination} Flag`}
-                          className="rounded-sm border border-slate-100 shadow-sm"
+                          className="w-4 sm:w-5.5 rounded-sm border border-slate-100 shadow-sm"
                         />
-                        <span className="text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">
+                        <span className="text-[0.58rem] sm:text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">
                           {story.destination}
                         </span>
                       </div>
 
                       {/* Name */}
-                      <h4 className="font-display text-[1.15rem] text-slate-800 font-extrabold group-hover:text-[var(--gold)] transition-colors duration-300">
+                      <h4 className="font-display text-[0.88rem] sm:text-[1.05rem] md:text-[1.15rem] text-slate-800 font-extrabold group-hover:text-[var(--gold)] transition-colors duration-300 leading-tight line-clamp-1">
                         {story.name}
                       </h4>
 
                       {/* Visa Label */}
-                      <p className="mt-2 text-[0.82rem] text-slate-500 leading-snug">
+                      <p className="mt-1 sm:mt-2 text-[0.68rem] sm:text-[0.82rem] text-slate-500 leading-snug line-clamp-2">
                         {story.pathwayInfo}
                       </p>
                     </div>
 
                     {/* Footer Row */}
-                    <div className="mt-5 pt-4 border-t border-slate-100/80 flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="h-3.5 w-3.5 text-slate-400" />
-                        <span className="text-[0.72rem] font-bold text-slate-500">{story.approvalTime}</span>
+                    <div className="mt-3 sm:mt-5 pt-2.5 sm:pt-4 border-t border-slate-100/80 flex items-center justify-between">
+                      <div className="flex items-center gap-1 sm:gap-1.5">
+                        <Clock className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5 text-slate-400" />
+                        <span className="text-[0.58rem] sm:text-[0.72rem] font-bold text-slate-500">{story.approvalTime}</span>
                       </div>
                       
-                      <span className="text-[0.7rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:translate-x-1.5 transition-transform duration-300 flex items-center gap-1">
-                        View Case <ArrowRight className="h-3 w-3" />
+                      <span className="text-[0.58rem] sm:text-[0.7rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:translate-x-1 transition-transform duration-300 flex items-center gap-0.5 sm:gap-1">
+                        View <ArrowRight className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                       </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Faint Background Indexing Watermark */}
-                <div className="absolute right-3 bottom-1 text-7xl font-display font-black text-slate-100/55 select-none pointer-events-none transition-colors duration-500 group-hover:text-[var(--gold)]/5 z-0">
+                <div className="absolute right-2 bottom-0 text-4xl sm:text-7xl font-display font-black text-slate-100/55 select-none pointer-events-none transition-colors duration-500 group-hover:text-[var(--gold)]/5 z-0">
                   {`0${idx + 1}`}
                 </div>
               </div>

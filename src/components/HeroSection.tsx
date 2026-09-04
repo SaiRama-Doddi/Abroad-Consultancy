@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Calendar, User, Globe, FileText, Shield, Handshake } from "lucide-react";
+import { Calendar, Globe, FileText, Shield, Handshake } from "lucide-react";
 
 function renderLetterByLetter(
   text: string,
@@ -33,14 +33,7 @@ function renderLetterByLetter(
 }
 
 export function HeroSection() {
-  const [videoPlaying, setVideoPlaying] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setVideoPlaying(true);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, []);
+  const [videoPlaying, setVideoPlaying] = useState(true);
 
   return (
     <section
@@ -85,13 +78,14 @@ export function HeroSection() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
         <div className="flex flex-col lg:max-w-3xl">
-          {/* Top small header with flight path animation */}
+          {/* Top small header with flight path animation & education badge */}
           <div className="flex items-center gap-4 animate-slide-right">
             <span
-              className="text-[0.72rem] font-bold uppercase tracking-[0.45em] text-[var(--gold)]"
-              style={{ textShadow: "0 1px 4px rgba(6, 10, 21, 0.9), 0 2px 10px rgba(6, 10, 21, 0.8)" }}
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/30 bg-[var(--gold)]/10 px-3.5 py-1 text-[0.72rem] font-bold uppercase tracking-[0.35em] text-[var(--gold)] backdrop-blur-md"
+              style={{ textShadow: "0 1px 4px rgba(6, 10, 21, 0.9)" }}
             >
-              Study &nbsp;&middot;&nbsp; Work &nbsp;&middot;&nbsp; Migrate
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] animate-pulse" />
+              Global Study &middot; Work &middot; Migrate
             </span>
             <div className="relative w-36 h-8 overflow-visible hidden sm:block">
               <svg className="w-full h-full overflow-visible" viewBox="0 0 120 30" fill="none">
@@ -114,19 +108,19 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Main Title heading (Serif + Sky Blue font with letter-to-letter animation) */}
-          <h1 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.8rem] xl:text-[5.5rem] font-semibold leading-[1.05] text-white tracking-tight">
+          {/* Main Title heading (Modern Global Education & Abroad Consultancy Typography) */}
+          <h1 className="mt-4 font-montserrat text-4xl sm:text-5xl md:text-6xl lg:text-[4.6rem] xl:text-[5.4rem] font-black leading-[1.06] text-white tracking-tight">
             <span
               className="block"
-              style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
+              style={{ textShadow: "0 2px 14px rgba(6, 10, 21, 0.95), 0 4px 35px rgba(6, 10, 21, 0.85), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
-              {renderLetterByLetter("McCoy global", 0.3, 0.1, "animate-letter-in", videoPlaying, 0)}
+              {renderLetterByLetter("McCoy Global", 0.1, 0.04, "animate-letter-in", videoPlaying, 0)}
             </span>
             <span
-              className="block mt-2 text-[var(--gold)] font-semibold"
-              style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
+              className="block mt-1 text-[var(--gold)] font-extrabold uppercase tracking-[0.06em]"
+              style={{ textShadow: "0 2px 14px rgba(6, 10, 21, 0.95), 0 4px 35px rgba(6, 10, 21, 0.85), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
-              {renderLetterByLetter("Consultancy", 0.3, 0.1, "animate-letter-in", videoPlaying, 12)}
+              {renderLetterByLetter("Consultancy", 0.1, 0.04, "animate-letter-in", videoPlaying, 12)}
             </span>
           </h1>
 
@@ -155,14 +149,6 @@ export function HeroSection() {
             >
               <Calendar className="h-4 w-4" />
               Free Consultation
-            </a>
-            <a
-              href="#about"
-              className="flex items-center justify-center gap-2.5 rounded-lg border border-white/30 bg-[#060a15]/30 backdrop-blur-sm px-6 sm:px-8 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:border-[var(--gold)] hover:text-[var(--gold)] hover:bg-[var(--gold)]/10 hover:scale-105 w-full sm:w-auto"
-              style={{ textShadow: "0 1px 3px rgba(6, 10, 21, 0.8)" }}
-            >
-              <User className="h-4 w-4" />
-              About Us
             </a>
           </div>
         </div>

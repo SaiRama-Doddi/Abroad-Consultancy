@@ -15,7 +15,9 @@ import {
   Coins, 
   FileText, 
   MessageSquare as MessagesSquare, 
-  Sparkles 
+  Sparkles,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
@@ -146,6 +148,66 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
 }
 
 export function ExpertiseSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const resetPauseTimeout = () => {
+    setIsPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 3000);
+  };
+
+  // Auto-scroll loop for mobile cards (speed tuned to 1400ms)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (typeof window !== "undefined" && window.innerWidth < 640 && !isPaused && scrollRef.current) {
+        const container = scrollRef.current;
+        const card = container.querySelector('.expertise-item-card') as HTMLElement;
+        const cardWidth = card ? card.offsetWidth : 290;
+        const scrollAmount = cardWidth + 16;
+        
+        const nextIndex = (activeIndex + 1) % expertiseItems.length;
+        container.scrollTo({
+          left: nextIndex * scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    }, 1400);
+
+    return () => {
+      clearInterval(interval);
+      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    };
+  }, [activeIndex, isPaused]);
+
+  const scroll = (direction: 'left' | 'right') => {
+    resetPauseTimeout();
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const card = container.querySelector('.expertise-item-card') as HTMLElement;
+      const cardWidth = card ? card.offsetWidth : 290;
+      const scrollAmount = cardWidth + 16;
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const card = container.querySelector('.expertise-item-card') as HTMLElement;
+      const cardWidth = card ? card.offsetWidth : 290;
+      const index = Math.round(container.scrollLeft / (cardWidth + 16));
+      setActiveIndex(Math.min(Math.max(0, index), expertiseItems.length - 1));
+    }
+  };
+
   return (
     <section id="expertise" className="bg-[#090e1a] text-white pt-16 pb-20 relative overflow-hidden border-b border-slate-800">
       {/* Decorative background grid elements */}
@@ -155,11 +217,11 @@ export function ExpertiseSection() {
       <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--gold)]/3 rounded-full blur-[130px] pointer-events-none" />
       <div className="absolute bottom-1/3 right-1/3 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-blue-500/3 rounded-full blur-[130px] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="text-left w-full mb-12 flex flex-col items-start">
+          <div className="text-left w-full mb-8 sm:mb-12 flex flex-col items-start">
             {/* Premium Capsule Subtitle Badge */}
             <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.08)] mb-3.5">
               <Sparkles className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
@@ -175,21 +237,55 @@ export function ExpertiseSection() {
             <p className="mt-4.5 text-[1.02rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
               We don't just guide you; we ignite your career potential through dedicated end-to-end overseas migration counseling.
             </p>
+
+            {/* Mobile Scroll Controls & Status (Only on small screens) */}
+            <div className="flex sm:hidden items-center justify-between w-full mt-6 pt-3 border-t border-slate-800/60">
+              <div className="flex items-center gap-2 text-xs">
+                <span className="font-bold text-[var(--gold)]">{activeIndex + 1}</span>
+                <span className="text-slate-500">/</span>
+                <span className="text-slate-400 font-medium">{expertiseItems.length}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => scroll('left')}
+                  disabled={activeIndex === 0}
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-800 bg-slate-900/90 text-slate-300 disabled:opacity-30 disabled:pointer-events-none hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors active:scale-95 shadow-sm"
+                  aria-label="Previous expertise card"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => scroll('right')}
+                  disabled={activeIndex === expertiseItems.length - 1}
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-800 bg-slate-900/90 text-slate-300 disabled:opacity-30 disabled:pointer-events-none hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors active:scale-95 shadow-sm"
+                  aria-label="Next expertise card"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
 
-        {/* Expertise Grid */}
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 [perspective:1000px]">
+        {/* Expertise Cards Container: Horizontal Snap-Scroll on Mobile, Grid on Tablet/Desktop */}
+        <div 
+          ref={scrollRef}
+          onScroll={handleScroll}
+          onTouchStart={resetPauseTimeout}
+          onMouseEnter={resetPauseTimeout}
+          className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 px-1 sm:px-0 snap-x snap-mandatory sm:snap-none scroll-smooth scrollbar-none [perspective:1000px]"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {expertiseItems.map((item, idx) => {
             const Icon = item.icon;
             return (
               <FeatureCardReveal 
                 key={item.title} 
                 delay={(idx % 4) * 80}
-                className="flex [transform-style:preserve-3d]"
+                className="expertise-item-card shrink-0 w-[82vw] max-w-[310px] sm:w-auto sm:shrink snap-center sm:snap-align-none flex [transform-style:preserve-3d]"
               >
                 <div
-                  className="group relative flex flex-col rounded-3xl border border-slate-800/80 bg-slate-950/50 p-3.5 sm:p-4 transition-all duration-500 overflow-hidden w-full h-full [transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:[transform:rotateX(4deg)_rotateY(-5deg)_translateZ(14px)] hover:shadow-[0_22px_55px_rgba(184,123,44,0.18)]"
+                  className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/50 p-3 sm:p-4 transition-all duration-500 overflow-hidden w-full h-full [transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:[transform:rotateX(4deg)_rotateY(-5deg)_translateZ(14px)] hover:shadow-[0_22px_55px_rgba(184,123,44,0.18)]"
                 >
                   {/* Accent gold light glow on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
@@ -198,7 +294,7 @@ export function ExpertiseSection() {
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
 
                   {/* Big Image Section with Left-Top Logo */}
-                  <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden bg-slate-900 shrink-0 select-none [transform-style:preserve-3d]">
+                  <div className="relative w-full h-40 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 shrink-0 select-none [transform-style:preserve-3d]">
                     <img 
                       src={item.image} 
                       alt={item.title}
@@ -211,20 +307,20 @@ export function ExpertiseSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
 
                     {/* Left Top Logo / Icon Box */}
-                    <div className="absolute top-3 left-3 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-950/85 backdrop-blur-md border border-[var(--gold)]/35 text-[var(--gold)] shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--gold)] group-hover:text-slate-950 group-hover:border-[var(--gold)] z-20 [transform:translateZ(20px)]">
-                      <Icon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-6" />
+                    <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl bg-slate-950/85 backdrop-blur-md border border-[var(--gold)]/35 text-[var(--gold)] shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--gold)] group-hover:text-slate-950 group-hover:border-[var(--gold)] z-20 [transform:translateZ(20px)]">
+                      <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:rotate-6" />
                     </div>
                   </div>
 
                   {/* Followed by Content (Title & Description) - Fully Selectable & Copyable */}
-                  <div className="flex flex-col flex-1 pt-4 pb-2 px-1.5 z-20 [transform:translateZ(15px)] select-text">
+                  <div className="flex flex-col flex-1 pt-3 sm:pt-4 pb-1.5 sm:pb-2 px-1 sm:px-1.5 z-20 [transform:translateZ(15px)] select-text">
                     {/* Title */}
-                    <h4 className="font-sans text-[0.92rem] sm:text-[0.98rem] font-bold uppercase tracking-wide text-white group-hover:text-[var(--gold)] transition-colors duration-300 leading-snug select-text cursor-text">
+                    <h4 className="font-sans text-[0.88rem] sm:text-[0.98rem] font-bold uppercase tracking-wide text-white group-hover:text-[var(--gold)] transition-colors duration-300 leading-snug select-text cursor-text">
                       {item.title}
                     </h4>
 
                     {/* Description text */}
-                    <p className="mt-2 text-[0.82rem] leading-relaxed text-slate-300 text-justify select-text cursor-text">
+                    <p className="mt-1.5 sm:mt-2 text-[0.78rem] sm:text-[0.82rem] leading-relaxed text-slate-300 text-justify select-text cursor-text">
                       {item.description}
                     </p>
                   </div>
@@ -232,6 +328,33 @@ export function ExpertiseSection() {
               </FeatureCardReveal>
             );
           })}
+        </div>
+
+        {/* Mobile Pagination Indicator Dots */}
+        <div className="flex sm:hidden justify-center items-center gap-1.5 mt-4">
+          {expertiseItems.map((_, dotIdx) => (
+            <button
+              key={dotIdx}
+              onClick={() => {
+                resetPauseTimeout();
+                if (scrollRef.current) {
+                  const container = scrollRef.current;
+                  const card = container.querySelector('.expertise-item-card') as HTMLElement;
+                  const cardWidth = card ? card.offsetWidth : 290;
+                  container.scrollTo({
+                    left: dotIdx * (cardWidth + 16),
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                dotIdx === activeIndex 
+                  ? 'w-6 bg-[var(--gold)]' 
+                  : 'w-1.5 bg-slate-800'
+              }`}
+              aria-label={`Go to slide ${dotIdx + 1}`}
+            />
+          ))}
         </div>
 
       </div>

@@ -128,52 +128,6 @@ export function AboutSection() {
                   </div>
 
                 </div>
-
-                {/* Mobile Badges List (1 per line to prevent text cropping) */}
-                <div className="flex flex-col gap-2.5 p-4 bg-slate-50/50 border-t border-slate-100 sm:hidden relative z-20">
-                  {/* Mobile Badge 1 */}
-                  <div className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                    <div className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15">
-                      <GraduationCap className="h-4.5 w-4.5" />
-                    </div>
-                    <div>
-                      <span className="block text-[0.6rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">Study Abroad</span>
-                      <span className="block text-[0.8rem] font-black text-slate-800 uppercase tracking-wide mt-0.5">Admissions & Visas</span>
-                    </div>
-                  </div>
-
-                  {/* Mobile Badge 2 */}
-                  <div className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                    <div className="flex -space-x-1 shrink-0">
-                      <img src="https://flagcdn.com/w40/gb.png" className="h-4 w-6 rounded-sm object-cover border border-slate-100" alt="UK" />
-                      <img src="https://flagcdn.com/w40/de.png" className="h-4 w-6 rounded-sm object-cover border border-slate-100" alt="Germany" />
-                      <img src="https://flagcdn.com/w40/us.png" className="h-4 w-6 rounded-sm object-cover border border-slate-100" alt="USA" />
-                    </div>
-                    <span className="text-[0.8rem] font-black text-slate-800 uppercase tracking-wider">Global Visas Guidance</span>
-                  </div>
-
-                  {/* Mobile Badge 3 */}
-                  <div className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                    <div className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15">
-                      <Briefcase className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <span className="block text-[0.6rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">Work & Migrate</span>
-                      <span className="block text-[0.8rem] font-black text-slate-800 uppercase tracking-wide mt-0.5">Opportunities & Jobs</span>
-                    </div>
-                  </div>
-
-                  {/* Mobile Badge 4 */}
-                  <div className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-                    <div className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15">
-                      <span className="font-display text-[0.85rem] font-black text-[var(--gold)]">98%</span>
-                    </div>
-                    <div>
-                      <span className="block text-[0.6rem] font-extrabold uppercase tracking-wider text-slate-700">Approval Rate</span>
-                      <span className="block text-[0.8rem] font-black text-slate-800 uppercase tracking-wide mt-0.5">Visa Success History</span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -246,61 +200,77 @@ export function AboutSection() {
       </div>
 
       {/* Vision & Mission Cards Row */}
-      <div className="mx-auto max-w-7xl px-6 mt-12 sm:mt-16">
-        <div className="grid gap-8 md:grid-cols-2">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 mt-8 sm:mt-12">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 md:gap-6">
           {/* Vision Card */}
-          <ScrollReveal direction="up" delay={150}>
+          <ScrollReveal direction="up" delay={150} className="h-full">
             <div 
-              className="group relative rounded-3xl border border-slate-200/85 bg-white p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--gold)]/25 hover:shadow-[0_25px_50px_rgba(224,183,109,0.08)] overflow-hidden"
-              style={{ boxShadow: "var(--shadow-premium)" }}
+              className="group relative h-full flex flex-col justify-between rounded-xl sm:rounded-2xl border border-slate-200/85 bg-white p-3.5 sm:p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--gold)]/30 hover:shadow-[0_15px_35px_rgba(224,183,109,0.08)] overflow-hidden"
+              style={{ boxShadow: "0 10px 30px -15px rgba(6, 10, 21, 0.07)" }}
             >
               {/* Left edge gold accent bar */}
-              <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[var(--gold)]/30 group-hover:bg-[var(--gold)] transition-colors duration-500" />
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[var(--gold)]/35 group-hover:bg-[var(--gold)] transition-colors duration-500" />
               
-              {/* Soft decorative background gradient and glowing top-right flare on hover */}
+              {/* Soft decorative background gradient on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[var(--gold)]/6 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               
-              <div className="flex items-center gap-5">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/5 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-[0_0_20px_rgba(224,183,109,0.05)]">
-                  <Eye className="h-6.5 w-6.5" />
+              <div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3.5">
+                  <div className="flex h-8 w-8 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-lg sm:rounded-xl bg-[var(--gold)]/5 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-300 group-hover:scale-105 shadow-sm">
+                    <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </div>
+                  <div>
+                    <span className="block text-[0.52rem] sm:text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[var(--gold)] mb-0.5 leading-none">Our Identity</span>
+                    <h3 className="font-display text-sm sm:text-xl font-bold text-slate-800 leading-tight">Our Vision</h3>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[0.7rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] mb-1 leading-none">Our Identity</span>
-                  <h3 className="font-display text-2xl text-slate-800 leading-none">Our Vision</h3>
-                </div>
+
+                {/* Mobile concise text */}
+                <p className="mt-2.5 text-[0.72rem] leading-snug text-slate-500 text-justify sm:hidden">
+                  Connecting ambitious students with premier global universities & overseas careers.
+                </p>
+
+                {/* Desktop concise text */}
+                <p className="mt-3 text-[0.88rem] leading-relaxed text-slate-500 text-justify hidden sm:block">
+                  To connect local talent with top global universities and international career pathways, making borderless education seamless, transparent, and accessible.
+                </p>
               </div>
-              <p className="mt-6 text-[1.02rem] leading-relaxed text-slate-500 text-justify">
-                To be the most trusted and client-centric global advisory, recognized for bridging the gap between local talent and international opportunities. We envision a world where borderless career and academic pursuits are seamless, straightforward, and accessible to every ambitious mind.
-              </p>
             </div>
           </ScrollReveal>
 
           {/* Mission Card */}
-          <ScrollReveal direction="up" delay={300}>
+          <ScrollReveal direction="up" delay={300} className="h-full">
             <div 
-              className="group relative rounded-3xl border border-slate-200/85 bg-white p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--gold)]/25 hover:shadow-[0_25px_50px_rgba(224,183,109,0.08)] overflow-hidden"
-              style={{ boxShadow: "var(--shadow-premium)" }}
+              className="group relative h-full flex flex-col justify-between rounded-xl sm:rounded-2xl border border-slate-200/85 bg-white p-3.5 sm:p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--gold)]/30 hover:shadow-[0_15px_35px_rgba(224,183,109,0.08)] overflow-hidden"
+              style={{ boxShadow: "0 10px 30px -15px rgba(6, 10, 21, 0.07)" }}
             >
               {/* Left edge gold accent bar */}
-              <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[var(--gold)]/30 group-hover:bg-[var(--gold)] transition-colors duration-500" />
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[var(--gold)]/35 group-hover:bg-[var(--gold)] transition-colors duration-500" />
               
-              {/* Soft decorative background gradient and glowing top-right flare on hover */}
+              {/* Soft decorative background gradient on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[var(--gold)]/6 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               
-              <div className="flex items-center gap-5">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/5 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-[0_0_20px_rgba(224,183,109,0.05)]">
-                  <Target className="h-6.5 w-6.5" />
+              <div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3.5">
+                  <div className="flex h-8 w-8 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-lg sm:rounded-xl bg-[var(--gold)]/5 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-300 group-hover:scale-105 shadow-sm">
+                    <Target className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </div>
+                  <div>
+                    <span className="block text-[0.52rem] sm:text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[var(--gold)] mb-0.5 leading-none">Our Commitment</span>
+                    <h3 className="font-display text-sm sm:text-xl font-bold text-slate-800 leading-tight">Our Mission</h3>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[0.7rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] mb-1 leading-none">Our Commitment</span>
-                  <h3 className="font-display text-2xl text-slate-800 leading-none">Our Mission</h3>
-                </div>
+
+                {/* Mobile concise text */}
+                <p className="mt-2.5 text-[0.72rem] leading-snug text-slate-500 text-justify sm:hidden">
+                  Providing honest counseling and end-to-end visa guidance with a proven 98% success rate.
+                </p>
+
+                {/* Desktop concise text */}
+                <p className="mt-3 text-[0.88rem] leading-relaxed text-slate-500 text-justify hidden sm:block">
+                  To empower students with tailored counseling, flawless documentation, and expert visa assistance, consistently maintaining a 98% approval rate.
+                </p>
               </div>
-              <p className="mt-6 text-[1.02rem] leading-relaxed text-slate-500 text-justify">
-                To empower students and professionals with honest, transparent, and tailored counseling. We commit to supporting our clients at every touchpoint—from counseling and documentation to application tracking, visa training, and final check-in, maintaining a 98% approval rate.
-              </p>
             </div>
           </ScrollReveal>
         </div>

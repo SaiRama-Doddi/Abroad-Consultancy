@@ -39,7 +39,7 @@ export function WhatsAppWidget() {
 
       {/* Direct WhatsApp Redirect Floating Link Button */}
       <a 
-        href="https://wa.me/918886368886?text=Hi%20Mr%20B.%20Rohit,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20enquire%20about%20visa%20options."
+        href="https://wa.me/918886368886?text=Hi%20Mr.%20B.%20Rohith,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20enquire%20about%20visa%20options."
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => toast.success("Redirecting to WhatsApp chat...")}

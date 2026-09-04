@@ -63,6 +63,12 @@
   --color-gold-soft: var(--gold-soft);
   --color-ink: var(--ink);
   --font-display: var(--display-font);
+  --font-montserrat: var(--montserrat-font);
+  --font-outfit: var(--outfit-font);
+  --font-jakarta: var(--jakarta-font);
+  --font-inter: var(--inter-font);
+  --font-serif: var(--serif-font);
+  --font-cinzel: var(--cinzel-font);
   --font-body: var(--body-font);
   --font-sans: var(--body-font);
 }
@@ -94,8 +100,14 @@
   --gradient-gold: linear-gradient(100deg, var(--gold), var(--gold));
   --gradient-ink: linear-gradient(160deg, oklch(0.19 0.05 258), oklch(0.28 0.07 255));
   --shadow-premium: 0 30px 70px -30px color-mix(in oklab, var(--ink) 45%, transparent);
-  --display-font: "Karla", system-ui, sans-serif;
-  --body-font: "Karla", system-ui, sans-serif;
+  --display-font: "Montserrat", "Outfit", "Plus Jakarta Sans", sans-serif;
+  --montserrat-font: "Montserrat", sans-serif;
+  --outfit-font: "Outfit", sans-serif;
+  --jakarta-font: "Plus Jakarta Sans", sans-serif;
+  --inter-font: "Inter", sans-serif;
+  --serif-font: "Playfair Display", Georgia, serif;
+  --cinzel-font: "Cinzel", serif;
+  --body-font: "Plus Jakarta Sans", system-ui, sans-serif;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
