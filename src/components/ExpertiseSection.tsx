@@ -27,6 +27,8 @@ interface ExpertiseItem {
   image: string;
   imagePosition?: string;
   icon: React.ComponentType<any>;
+  color?: string;
+  bg?: string;
 }
 
 const expertiseItems: ExpertiseItem[] = [
@@ -35,80 +37,106 @@ const expertiseItems: ExpertiseItem[] = [
     description: "Tailored counseling sessions focusing on your unique career goals, budget, and migration plans.",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80",
     imagePosition: "center 18%",
-    icon: Target
+    icon: Target,
+    color: "text-sky-400",
+    bg: "bg-sky-500/15 border-sky-400/35 shadow-[0_0_15px_rgba(56,189,248,0.22)] group-hover:bg-sky-500/25 group-hover:border-sky-400/60"
   },
   {
     title: "Pre & Post-Landing Support",
     description: "End-to-end guidance from departure checks and forex to setting up accommodation in your new country.",
     image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=80",
-    icon: Globe
+    icon: Globe,
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/15 border-emerald-400/35 shadow-[0_0_15px_rgba(52,211,153,0.22)] group-hover:bg-emerald-500/25 group-hover:border-emerald-400/60"
   },
   {
     title: "Career Counseling",
     description: "Expert direction to map your academic strengths and passions to high-growth global professions.",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80",
-    icon: Briefcase
+    icon: Briefcase,
+    color: "text-amber-400",
+    bg: "bg-amber-500/15 border-amber-400/35 shadow-[0_0_15px_rgba(245,158,11,0.22)] group-hover:bg-amber-500/25 group-hover:border-amber-400/60"
   },
   {
     title: "Country & Course Selection",
     description: "Data-driven matching to pair you with the right specialization and world-class accredited universities.",
     image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=700&q=80",
-    icon: GraduationCap
+    icon: GraduationCap,
+    color: "text-purple-400",
+    bg: "bg-purple-500/15 border-purple-400/35 shadow-[0_0_15px_rgba(192,132,252,0.22)] group-hover:bg-purple-500/25 group-hover:border-purple-400/60"
   },
   {
     title: "Application Assistance",
     description: "Meticulous review and crafting of essays, SOPs, letters of recommendation, and fast-track submissions.",
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=700&q=80",
-    icon: FileCheck
+    icon: FileCheck,
+    color: "text-rose-400",
+    bg: "bg-rose-500/15 border-rose-400/35 shadow-[0_0_15px_rgba(244,63,94,0.22)] group-hover:bg-rose-500/25 group-hover:border-rose-400/60"
   },
   {
     title: "Admission in Top Universities",
     description: "Direct advisory pathways to secure confirmed acceptance in world-ranked institutions across the globe.",
     image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=700&q=80",
-    icon: Award
+    icon: Award,
+    color: "text-yellow-400",
+    bg: "bg-yellow-500/15 border-yellow-400/35 shadow-[0_0_15px_rgba(250,204,21,0.22)] group-hover:bg-yellow-500/25 group-hover:border-yellow-400/60"
   },
   {
     title: "Test Prep Coaching",
     description: "Structured coaching for IELTS, PTE, TOEFL, and GRE with simulated mock tests and strategy reviews.",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80",
-    icon: BookOpen
+    icon: BookOpen,
+    color: "text-blue-400",
+    bg: "bg-blue-500/15 border-blue-400/35 shadow-[0_0_15px_rgba(59,130,246,0.22)] group-hover:bg-blue-500/25 group-hover:border-blue-400/60"
   },
   {
     title: "Financial Advice",
     description: "Structured planning for tuition budgets, living fund requirements, blocked accounts, and forex transfers.",
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=700&q=80",
-    icon: DollarSign
+    icon: DollarSign,
+    color: "text-teal-400",
+    bg: "bg-teal-500/15 border-teal-400/35 shadow-[0_0_15px_rgba(45,212,191,0.22)] group-hover:bg-teal-500/25 group-hover:border-teal-400/60"
   },
   {
     title: "Visa Counseling",
     description: "Strategic embassy interview drills, checklist audits, and flawless filing to maximize approval rates.",
     image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=700&q=80",
     imagePosition: "center 18%",
-    icon: Compass
+    icon: Compass,
+    color: "text-orange-400",
+    bg: "bg-orange-500/15 border-orange-400/35 shadow-[0_0_15px_rgba(249,115,22,0.22)] group-hover:bg-orange-500/25 group-hover:border-orange-400/60"
   },
   {
     title: "Discounts & Exam Training",
     description: "Access exclusive application fee waivers, partner university scholarships, and exam test vouchers.",
     image: examImg,
-    icon: Tag
+    icon: Tag,
+    color: "text-fuchsia-400",
+    bg: "bg-fuchsia-500/15 border-fuchsia-400/35 shadow-[0_0_15px_rgba(217,70,239,0.22)] group-hover:bg-fuchsia-500/25 group-hover:border-fuchsia-400/60"
   },
   {
     title: "Student Educational Loans",
     description: "Fast collateral and non-collateral loan sanctioning through top nationalized and private banking partners.",
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=700&q=80",
-    icon: Coins
+    icon: Coins,
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/15 border-emerald-400/35 shadow-[0_0_15px_rgba(16,185,129,0.22)] group-hover:bg-emerald-500/25 group-hover:border-emerald-400/60"
   },
   {
     title: "Documentation & Verification",
     description: "Precision compiling, apostille notarization, translation, and verification of all academic records.",
     image: docImg,
-    icon: FileText
+    icon: FileText,
+    color: "text-cyan-400",
+    bg: "bg-cyan-500/15 border-cyan-400/35 shadow-[0_0_15px_rgba(6,182,212,0.22)] group-hover:bg-cyan-500/25 group-hover:border-cyan-400/60"
   },
   {
     title: "Free Mock Interviews",
     description: "Simulated 1-on-1 embassy and admissions interviews with real-time feedback from seasoned visa experts.",
     image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=80",
-    icon: MessagesSquare
+    icon: MessagesSquare,
+    color: "text-violet-400",
+    bg: "bg-violet-500/15 border-violet-400/35 shadow-[0_0_15px_rgba(139,92,246,0.22)] group-hover:bg-violet-500/25 group-hover:border-violet-400/60"
   }
 ];
 
@@ -329,7 +357,7 @@ export function ExpertiseSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
 
                     {/* Left Top Logo / Icon Box */}
-                    <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl bg-slate-950/85 backdrop-blur-md border border-[var(--gold)]/35 text-[var(--gold)] shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--gold)] group-hover:text-slate-950 group-hover:border-[var(--gold)] z-20 sm:[transform:translateZ(20px)]">
+                    <div className={`absolute top-2.5 sm:top-3 left-2.5 sm:left-3 flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl backdrop-blur-md border ${item.bg || "bg-slate-950/85 border-[var(--gold)]/35"} ${item.color || "text-[var(--gold)]"} shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 z-20 sm:[transform:translateZ(20px)]`}>
                       <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:rotate-6" />
                     </div>
                   </div>

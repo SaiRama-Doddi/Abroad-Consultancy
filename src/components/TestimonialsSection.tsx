@@ -92,11 +92,11 @@ export function TestimonialsSection() {
       {/* Background Dot Matrix Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:24px_24px] opacity-[0.06] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 relative z-10">
         
         {/* Section Header with Slider Navigation Controls */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 w-full">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 w-full">
             <div className="text-left flex flex-col items-start max-w-2xl">
               {/* Premium Capsule Subtitle Badge */}
               <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3">
@@ -104,32 +104,32 @@ export function TestimonialsSection() {
                 <span className="text-amber-300 tracking-[0.22em] font-extrabold">Testimonials</span>
               </div>
               
-              <h2 className="font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left">
+              <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-slate-800 text-left">
                 What Our <span className="text-[var(--gold)] font-bold">Clients</span> Say
               </h2>
 
-              <div className="mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
+              <div className="mt-3 sm:mt-3.5 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
 
-              <p className="mt-4 text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+              <p className="mt-3.5 sm:mt-4 text-[0.92rem] sm:text-[1.02rem] text-slate-500 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
                 Real success stories from students and professionals who successfully migrated, studied, and advanced their careers overseas.
               </p>
             </div>
 
             {/* Premium Navigation Controls */}
-            <div className="flex items-center gap-3 mt-4 md:mt-0">
+            <div className="flex items-center gap-2 sm:gap-3 mt-4 md:mt-0">
               <button
                 onClick={() => handleScroll("left")}
-                className="flex items-center justify-center h-10 w-10 rounded-full border border-slate-200 bg-white hover:border-[var(--gold)] text-slate-500 hover:text-[var(--gold)] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:-translate-x-0.5"
+                className="flex items-center justify-center h-9 w-9 sm:h-10 sm:w-10 rounded-full border border-slate-200 bg-white hover:border-[var(--gold)] text-slate-500 hover:text-[var(--gold)] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:-translate-x-0.5"
                 aria-label="Previous testimonials"
               >
-                <ChevronLeft className="h-5 w-5" />
+                <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
               <button
                 onClick={() => handleScroll("right")}
-                className="flex items-center justify-center h-10 w-10 rounded-full border border-slate-200 bg-white hover:border-[var(--gold)] text-slate-500 hover:text-[var(--gold)] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:translate-x-0.5"
+                className="flex items-center justify-center h-9 w-9 sm:h-10 sm:w-10 rounded-full border border-slate-200 bg-white hover:border-[var(--gold)] text-slate-500 hover:text-[var(--gold)] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:translate-x-0.5"
                 aria-label="Next testimonials"
               >
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
             </div>
           </div>
@@ -137,22 +137,22 @@ export function TestimonialsSection() {
 
         {/* Testimonials Slider Wrapper with Gradient Fade Overlays */}
         <div className="relative w-full overflow-visible">
-          {/* Left Edge Gradient Fade */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-[#fcfbf9] to-transparent pointer-events-none z-20" />
+          {/* Left Edge Gradient Fade (desktop only to prevent covering cards on mobile) */}
+          <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-[#fcfbf9] to-transparent pointer-events-none z-20" />
           
-          {/* Right Edge Gradient Fade */}
-          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-[#fcfbf9] to-transparent pointer-events-none z-20" />
+          {/* Right Edge Gradient Fade (desktop only to prevent covering cards on mobile) */}
+          <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-[#fcfbf9] to-transparent pointer-events-none z-20" />
 
           {/* Draggable/Scrollable Row */}
           <div 
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto pb-6 pt-2 px-4 scrollbar-none snap-x snap-mandatory scroll-smooth"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex gap-4 sm:gap-6 overflow-x-auto pb-6 pt-2 px-3 sm:px-0 -mx-3 sm:mx-0 scrollbar-none snap-x snap-mandatory scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPadding: '0 0.75rem' }}
           >
             {testimonials.map((t, index) => (
               <div 
                 key={t.name}
-                className="snap-start shrink-0 w-[290px] sm:w-[350px] md:w-[380px] group relative flex flex-col justify-between rounded-3xl border border-slate-150/70 bg-white p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden"
+                className="snap-center sm:snap-start shrink-0 w-[84vw] max-w-[340px] sm:w-[350px] md:w-[380px] group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-150/70 bg-white p-5 sm:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden"
               >
                 {/* Thick vertical left-border gold highlight */}
                 <div className="absolute top-0 bottom-0 left-0 w-[4px] bg-[var(--gold)]/20 group-hover:bg-[var(--gold)] transition-colors duration-300 z-20" />
@@ -219,6 +219,8 @@ export function TestimonialsSection() {
                 </div>
               </div>
             ))}
+            {/* End spacer so the last card has trailing breathing room and is never cropped */}
+            <div className="shrink-0 w-3 sm:hidden pointer-events-none" aria-hidden="true" />
           </div>
         </div>
 

@@ -121,21 +121,18 @@ export function GallerySection() {
           </div>
         </ScrollReveal>
 
-        {/* Gallery Filter Tabs (Left-aligned to match design guidelines) */}
+        {/* Gallery Filter Tabs (Left-aligned, flex-wrap to prevent horizontal dragging) */}
         <ScrollReveal direction="up" delay={200}>
-          <div className="flex justify-start gap-2 mb-6 sm:mb-8 overflow-x-auto pb-2 scrollbar-thin">
+          <div className="flex flex-wrap items-center justify-start gap-2 mb-6 sm:mb-8">
             {(["all", "student", "mobility"] as const).map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}
-                className={`rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-[0.68rem] sm:text-[0.72rem] font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em] transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                className={`rounded-full px-3.5 sm:px-5 py-1.5 sm:py-2.5 text-[0.66rem] sm:text-[0.72rem] font-extrabold uppercase tracking-[0.14em] sm:tracking-[0.2em] transition-all duration-300 whitespace-nowrap cursor-pointer ${
                   filter === type
-                    ? "text-[#0b1224] shadow-[0_4px_12px_rgba(224,183,109,0.25)] scale-105"
-                    : "text-slate-500 hover:text-slate-800 hover:bg-slate-50 bg-white border border-slate-100"
+                    ? "text-white bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 border border-emerald-400/30 shadow-[0_4px_14px_rgba(16,185,129,0.35)] ring-1 ring-emerald-400/40"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 bg-white border border-slate-200/80 shadow-sm"
                 }`}
-                style={{
-                  background: filter === type ? "var(--gradient-gold)" : undefined
-                }}
               >
                 {type === "all" && "All Approvals"}
                 {type === "student" && "Student Visas"}

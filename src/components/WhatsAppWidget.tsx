@@ -22,19 +22,19 @@ export function WhatsAppWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 font-sans">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2.5 sm:gap-3 font-sans">
       
       {/* Scroll to Top (Up Arrow) Button */}
       <button
         onClick={scrollToTop}
-        className={`group flex h-12 w-12 items-center justify-center rounded-full bg-[#0a1122]/90 border border-[var(--gold)]/35 text-white transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-[var(--gold)] hover:text-[#0b1224] hover:border-[var(--gold)] cursor-pointer ${
+        className={`group flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#0a1122]/90 border border-[var(--gold)]/35 text-white transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-110 hover:bg-[var(--gold)] hover:text-[#0b1224] hover:border-[var(--gold)] cursor-pointer ${
           showScrollTop 
             ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" 
             : "translate-y-4 opacity-0 scale-75 pointer-events-none absolute"
         }`}
         aria-label="Scroll to top"
       >
-        <ArrowUp className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+        <ArrowUp className="h-4.5 w-4.5 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
       </button>
 
       {/* Direct WhatsApp Redirect Floating Link Button */}
@@ -43,7 +43,7 @@ export function WhatsAppWidget() {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => toast.success("Redirecting to WhatsApp chat...")}
-        className="group flex h-14 w-14 items-center justify-center rounded-full text-white transition-all duration-300 shadow-[0_8px_30px_rgba(37,211,102,0.3)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(37,211,102,0.45)] cursor-pointer"
+        className="group flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full text-white transition-all duration-300 shadow-[0_8px_30px_rgba(37,211,102,0.3)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(37,211,102,0.45)] cursor-pointer"
         style={{ background: "linear-gradient(135deg, #128C7E, #25D366)" }}
         aria-label="Chat on WhatsApp"
       >
