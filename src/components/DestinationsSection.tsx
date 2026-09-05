@@ -780,7 +780,7 @@ export function DestinationsSection() {
               
               {/* Short Country Overview */}
               {selectedCountry.description && (
-                <p className="text-[0.88rem] sm:text-[0.95rem] text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                <p className="text-[0.88rem] sm:text-[0.95rem] text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-100 text-justify">
                   {selectedCountry.description}
                 </p>
               )}
@@ -879,7 +879,7 @@ export function DestinationsSection() {
                               )}
                             </div>
                             {benefit.desc && (
-                              <p className="text-[0.74rem] sm:text-[0.78rem] text-slate-600 mt-0.5 leading-relaxed">
+                              <p className="text-[0.74rem] sm:text-[0.78rem] text-slate-600 mt-0.5 leading-relaxed text-justify">
                                 {benefit.desc}
                               </p>
                             )}
