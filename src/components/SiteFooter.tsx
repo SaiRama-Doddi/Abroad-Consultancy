@@ -182,31 +182,37 @@ export function SiteFooter() {
           <div className="text-left col-span-2 lg:col-span-1">
             <h3 className="text-xs uppercase tracking-[0.25em] text-[var(--gold)] font-black">Contact Us</h3>
             <ul className="mt-4 space-y-4 text-[0.82rem] text-slate-305 font-bold">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="h-4.5 w-4.5 text-[var(--gold)] shrink-0 mt-0.5" />
+              <li className="flex items-start gap-3">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-rose-500/15 border border-rose-400/35 text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.2)] mt-0.5">
+                  <MapPin className="h-4 w-4" />
+                </div>
                 <div>
-                  <span className="block text-[0.58rem] uppercase tracking-wider text-[var(--gold)]/60 font-black">Address</span>
+                  <span className="block text-[0.58rem] uppercase tracking-wider text-rose-400/90 font-black">Address</span>
                   <span className="text-white mt-0.5 block">Hyderabad, India</span>
                 </div>
               </li>
-              <li className="flex items-start gap-2.5">
-                <Phone className="h-4.5 w-4.5 text-[var(--gold)] shrink-0 mt-0.5" />
+              <li className="flex items-start gap-3">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-400/35 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.2)] mt-0.5">
+                  <Phone className="h-4 w-4" />
+                </div>
                 <div>
-                  <span className="block text-[0.58rem] uppercase tracking-wider text-[var(--gold)]/60 font-black">WhatsApp</span>
+                  <span className="block text-[0.58rem] uppercase tracking-wider text-emerald-400/90 font-black">WhatsApp</span>
                   <a 
                     href="https://wa.me/918886368886" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-white hover:text-[var(--gold)] transition-colors mt-0.5 block"
+                    className="text-white hover:text-emerald-400 transition-colors mt-0.5 block"
                   >
                     +91 88863 68886
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-2.5">
-                <Clock className="h-4.5 w-4.5 text-[var(--gold)] shrink-0 mt-0.5" />
+              <li className="flex items-start gap-3">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 border border-amber-400/35 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.2)] mt-0.5">
+                  <Clock className="h-4 w-4" />
+                </div>
                 <div>
-                  <span className="block text-[0.58rem] uppercase tracking-wider text-[var(--gold)]/60 font-black">Working Hours</span>
+                  <span className="block text-[0.58rem] uppercase tracking-wider text-amber-400/90 font-black">Working Hours</span>
                   <span className="text-white mt-0.5 block">Mon - Sat: 10:00 AM - 6:30 PM</span>
                 </div>
               </li>
@@ -220,8 +226,8 @@ export function SiteFooter() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 py-6 border-b border-slate-800/85 text-left relative z-10">
           {/* Stay Updated Title */}
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15">
-              <Mail className="h-4.5 w-4.5" />
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-500/15 text-sky-400 border border-sky-400/35 shadow-[0_0_15px_rgba(56,189,248,0.25)]">
+              <Mail className="h-5 w-5" />
             </div>
             <div>
               <h4 className="font-display text-sm font-black uppercase text-white tracking-widest">Stay Updated</h4>

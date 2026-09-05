@@ -124,7 +124,7 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
           setIsVisible(entry.isIntersecting);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.1, rootMargin: "50px 0px" }
     );
 
     if (ref.current) {
@@ -137,10 +137,10 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] [transform-style:preserve-3d] ${className} ${
+      className={`transition-all duration-700 ease-out sm:[transform-style:preserve-3d] ${className} ${
         isVisible 
-          ? "opacity-100 translate-y-0 [transform:rotateX(0deg)_scale(1)]" 
-          : "opacity-0 translate-y-16 [transform:rotateX(12deg)_scale(0.94)]"
+          ? "opacity-100 translate-y-0 sm:[transform:rotateX(0deg)_scale(1)]" 
+          : "opacity-0 translate-y-4 sm:translate-y-16 sm:[transform:rotateX(12deg)_scale(0.94)]"
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
@@ -160,25 +160,37 @@ export function ExpertiseSection() {
     if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
     pauseTimeoutRef.current = setTimeout(() => {
       setIsPaused(false);
-    }, 3000);
+    }, 4000);
   };
 
-  // Auto-scroll loop for mobile cards (speed tuned to 1400ms)
+  const scrollToCard = (index: number) => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const cards = container.querySelectorAll('.expertise-item-card');
+      const targetCard = cards[index] as HTMLElement;
+      if (targetCard) {
+        const targetLeft = targetCard.offsetLeft - container.offsetLeft - (container.clientWidth - targetCard.clientWidth) / 2;
+        container.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
+  // Auto-scroll loop for mobile cards (only runs when section is visible in viewport)
   useEffect(() => {
     const interval = setInterval(() => {
       if (typeof window !== "undefined" && window.innerWidth < 640 && !isPaused && scrollRef.current) {
         const container = scrollRef.current;
-        const card = container.querySelector('.expertise-item-card') as HTMLElement;
-        const cardWidth = card ? card.offsetWidth : 290;
-        const scrollAmount = cardWidth + 16;
-        
+        // Do not auto-scroll if the section is not in user's vertical viewport
+        const rect = container.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
         const nextIndex = (activeIndex + 1) % expertiseItems.length;
-        container.scrollTo({
-          left: nextIndex * scrollAmount,
-          behavior: 'smooth'
-        });
+        scrollToCard(nextIndex);
       }
-    }, 1400);
+    }, 3500);
 
     return () => {
       clearInterval(interval);
@@ -188,25 +200,33 @@ export function ExpertiseSection() {
 
   const scroll = (direction: 'left' | 'right') => {
     resetPauseTimeout();
-    if (scrollRef.current) {
-      const container = scrollRef.current;
-      const card = container.querySelector('.expertise-item-card') as HTMLElement;
-      const cardWidth = card ? card.offsetWidth : 290;
-      const scrollAmount = cardWidth + 16;
-      container.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
+    const targetIdx = direction === 'left' 
+      ? Math.max(0, activeIndex - 1) 
+      : Math.min(expertiseItems.length - 1, activeIndex + 1);
+    scrollToCard(targetIdx);
   };
 
   const handleScroll = () => {
     if (scrollRef.current) {
       const container = scrollRef.current;
-      const card = container.querySelector('.expertise-item-card') as HTMLElement;
-      const cardWidth = card ? card.offsetWidth : 290;
-      const index = Math.round(container.scrollLeft / (cardWidth + 16));
-      setActiveIndex(Math.min(Math.max(0, index), expertiseItems.length - 1));
+      const cards = container.querySelectorAll('.expertise-item-card');
+      if (cards.length === 0) return;
+      
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+      let closestIdx = 0;
+      let minDistance = Infinity;
+
+      cards.forEach((cardEl, idx) => {
+        const el = cardEl as HTMLElement;
+        const cardCenter = el.offsetLeft + el.offsetWidth / 2;
+        const dist = Math.abs(containerCenter - cardCenter);
+        if (dist < minDistance) {
+          minDistance = dist;
+          closestIdx = idx;
+        }
+      });
+
+      setActiveIndex(closestIdx);
     }
   };
 
@@ -275,8 +295,8 @@ export function ExpertiseSection() {
           onScroll={handleScroll}
           onTouchStart={resetPauseTimeout}
           onMouseEnter={resetPauseTimeout}
-          className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 px-1 sm:px-0 snap-x snap-mandatory sm:snap-none scroll-smooth scrollbar-none [perspective:1000px]"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory sm:snap-none scroll-smooth scrollbar-none sm:[perspective:1000px]"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPadding: '0 1rem' }}
         >
           {expertiseItems.map((item, idx) => {
             const Icon = item.icon;
@@ -284,10 +304,10 @@ export function ExpertiseSection() {
               <FeatureCardReveal 
                 key={item.title} 
                 delay={(idx % 4) * 80}
-                className="expertise-item-card shrink-0 w-[82vw] max-w-[310px] sm:w-auto sm:shrink snap-center sm:snap-align-none flex [transform-style:preserve-3d]"
+                className="expertise-item-card shrink-0 w-[85vw] max-w-[320px] sm:w-auto sm:shrink snap-center sm:snap-align-none flex sm:[transform-style:preserve-3d]"
               >
                 <div
-                  className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/50 p-3 sm:p-4 transition-all duration-500 overflow-hidden w-full h-full [transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:[transform:rotateX(4deg)_rotateY(-5deg)_translateZ(14px)] hover:shadow-[0_22px_55px_rgba(184,123,44,0.18)]"
+                  className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/50 p-3.5 sm:p-4 transition-all duration-500 overflow-hidden w-full h-full sm:[transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:sm:[transform:rotateX(4deg)_rotateY(-5deg)_translateZ(14px)] hover:shadow-[0_22px_55px_rgba(184,123,44,0.18)]"
                 >
                   {/* Accent gold light glow on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
@@ -296,7 +316,7 @@ export function ExpertiseSection() {
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
 
                   {/* Big Image Section with Left-Top Logo */}
-                  <div className="relative w-full h-40 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 shrink-0 select-none [transform-style:preserve-3d]">
+                  <div className="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 shrink-0 select-none sm:[transform-style:preserve-3d]">
                     <img 
                       src={item.image} 
                       alt={item.title}
@@ -309,13 +329,13 @@ export function ExpertiseSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
 
                     {/* Left Top Logo / Icon Box */}
-                    <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl bg-slate-950/85 backdrop-blur-md border border-[var(--gold)]/35 text-[var(--gold)] shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--gold)] group-hover:text-slate-950 group-hover:border-[var(--gold)] z-20 [transform:translateZ(20px)]">
+                    <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl bg-slate-950/85 backdrop-blur-md border border-[var(--gold)]/35 text-[var(--gold)] shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--gold)] group-hover:text-slate-950 group-hover:border-[var(--gold)] z-20 sm:[transform:translateZ(20px)]">
                       <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:rotate-6" />
                     </div>
                   </div>
 
                   {/* Followed by Content (Title & Description) - Fully Selectable & Copyable */}
-                  <div className="flex flex-col flex-1 pt-3 sm:pt-4 pb-1.5 sm:pb-2 px-1 sm:px-1.5 z-20 [transform:translateZ(15px)] select-text">
+                  <div className="flex flex-col flex-1 pt-3 sm:pt-4 pb-1.5 sm:pb-2 px-1 sm:px-1.5 z-20 sm:[transform:translateZ(15px)] select-text">
                     {/* Title */}
                     <h4 className="font-sans text-[0.88rem] sm:text-[0.98rem] font-bold uppercase tracking-wide text-white group-hover:text-[var(--gold)] transition-colors duration-300 leading-snug select-text cursor-text">
                       {item.title}
@@ -330,6 +350,9 @@ export function ExpertiseSection() {
               </FeatureCardReveal>
             );
           })}
+          
+          {/* End spacer so the last card has trailing breathing room and is never cropped */}
+          <div className="shrink-0 w-2 sm:hidden pointer-events-none" aria-hidden="true" />
         </div>
 
         {/* Mobile Pagination Indicator Dots */}
@@ -339,15 +362,7 @@ export function ExpertiseSection() {
               key={dotIdx}
               onClick={() => {
                 resetPauseTimeout();
-                if (scrollRef.current) {
-                  const container = scrollRef.current;
-                  const card = container.querySelector('.expertise-item-card') as HTMLElement;
-                  const cardWidth = card ? card.offsetWidth : 290;
-                  container.scrollTo({
-                    left: dotIdx * (cardWidth + 16),
-                    behavior: 'smooth'
-                  });
-                }
+                scrollToCard(dotIdx);
               }}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 dotIdx === activeIndex 

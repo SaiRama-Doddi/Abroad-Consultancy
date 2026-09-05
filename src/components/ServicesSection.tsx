@@ -18,6 +18,8 @@ const visaServices = [
     title: "Student Visa",
     icon: GraduationCap,
     image: "/service-student.jpg",
+    color: "text-sky-400",
+    bg: "bg-sky-500/15 border-sky-400/35 shadow-[0_0_18px_rgba(56,189,248,0.22)] group-hover:bg-sky-500/25 group-hover:border-sky-400/60",
     description: "Unlock global educational opportunities. We guide you from choosing the right university to submission and approval. Access quality education with high visa success rates.",
     features: [
       "End-to-end admission counseling",
@@ -30,6 +32,8 @@ const visaServices = [
     title: "Tourism & Visitor Visa",
     icon: Plane,
     image: "/service-tourist.jpg",
+    color: "text-cyan-400",
+    bg: "bg-cyan-500/15 border-cyan-400/35 shadow-[0_0_18px_rgba(6,182,212,0.22)] group-hover:bg-cyan-500/25 group-hover:border-cyan-400/60",
     description: "Travel the world with zero stress. Whether it is visiting family, exploring destinations, or business meetings, we manage your visa formalities quickly and transparently.",
     features: [
       "Fast-track visa processing options",
@@ -43,6 +47,8 @@ const visaServices = [
     countryCode: "de",
     icon: Briefcase,
     image: "/service-germany.jpg",
+    color: "text-amber-400",
+    bg: "bg-amber-500/15 border-amber-400/35 shadow-[0_0_18px_rgba(245,158,11,0.22)] group-hover:bg-amber-500/25 group-hover:border-amber-400/60",
     description: "Explore Germany's points-based job-seeking visa (Chancenkarte). We assess your eligibility, calculate points, and handle submissions for specialized visa programs.",
     features: [
       "Germany Opportunity Card (Chancenkarte)",
@@ -56,6 +62,8 @@ const visaServices = [
     countryCode: "gb",
     icon: Globe,
     image: "/service-uk.jpg",
+    color: "text-rose-400",
+    bg: "bg-rose-500/15 border-rose-400/35 shadow-[0_0_18px_rgba(244,63,94,0.22)] group-hover:bg-rose-500/25 group-hover:border-rose-400/60",
     description: "Live and work in the United Kingdom for up to 2 years. Our advisors help you navigate the qualifying criteria, age limits, financial requirements, and biometric registrations.",
     features: [
       "Age 18-30 Eligibility Assessment",
@@ -68,6 +76,8 @@ const visaServices = [
     title: "Flight Ticket Booking",
     icon: Ticket,
     image: "/service-flight.jpg",
+    color: "text-purple-400",
+    bg: "bg-purple-500/15 border-purple-400/35 shadow-[0_0_18px_rgba(192,132,252,0.22)] group-hover:bg-purple-500/25 group-hover:border-purple-400/60",
     description: "Fly out with ease and comfort. We secure the best routes, optimal flight schedules, and special student discount fares for your flights to any global destination.",
     features: [
       "Student baggage allowance deals",
@@ -80,6 +90,8 @@ const visaServices = [
     title: "Education Loan Assistance",
     icon: Landmark,
     image: "/service-loan.jpg",
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/15 border-emerald-400/35 shadow-[0_0_18px_rgba(52,211,153,0.22)] group-hover:bg-emerald-500/25 group-hover:border-emerald-400/60",
     description: "Finance your overseas education stress-free. We partner with leading financial institutions to secure quick approvals, low-interest student loans, and collateral-free options.",
     features: [
       "Pre-visa approval loan letters",
@@ -102,7 +114,7 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
           setIsVisible(entry.isIntersecting);
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.1, rootMargin: "50px 0px" }
     );
 
     if (ref.current) {
@@ -115,10 +127,10 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] [transform-style:preserve-3d] ${className} ${
+      className={`transition-all duration-700 ease-out lg:[transform-style:preserve-3d] ${className} ${
         isVisible 
-          ? "opacity-100 translate-y-0 [transform:rotateX(0deg)_scale(1)]" 
-          : "opacity-0 translate-y-16 [transform:rotateX(12deg)_scale(0.94)]"
+          ? "opacity-100 translate-y-0 lg:[transform:rotateX(0deg)_scale(1)]" 
+          : "opacity-0 translate-y-4 lg:translate-y-16 lg:[transform:rotateX(12deg)_scale(0.94)]"
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
@@ -138,25 +150,36 @@ export function ServicesSection() {
     if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
     pauseTimeoutRef.current = setTimeout(() => {
       setIsPaused(false);
-    }, 3000);
+    }, 4000);
   };
 
-  // Auto-scroll loop for mobile cards (speed tuned to 1400ms)
+  const scrollToCard = (index: number) => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const cards = container.querySelectorAll('.service-item-card');
+      const targetCard = cards[index] as HTMLElement;
+      if (targetCard) {
+        const targetLeft = targetCard.offsetLeft - container.offsetLeft - (container.clientWidth - targetCard.clientWidth) / 2;
+        container.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
+  // Auto-scroll loop for mobile cards (only runs when section is visible in viewport)
   useEffect(() => {
     const interval = setInterval(() => {
       if (typeof window !== "undefined" && window.innerWidth < 1024 && !isPaused && scrollRef.current) {
         const container = scrollRef.current;
-        const card = container.querySelector('.service-item-card') as HTMLElement;
-        const cardWidth = card ? card.offsetWidth : 320;
-        const scrollAmount = cardWidth + 16;
-        
+        const rect = container.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
         const nextIndex = (activeIndex + 1) % visaServices.length;
-        container.scrollTo({
-          left: nextIndex * scrollAmount,
-          behavior: 'smooth'
-        });
+        scrollToCard(nextIndex);
       }
-    }, 1400);
+    }, 3500);
 
     return () => {
       clearInterval(interval);
@@ -166,25 +189,33 @@ export function ServicesSection() {
 
   const scroll = (direction: 'left' | 'right') => {
     resetPauseTimeout();
-    if (scrollRef.current) {
-      const container = scrollRef.current;
-      const card = container.querySelector('.service-item-card') as HTMLElement;
-      const cardWidth = card ? card.offsetWidth : 320;
-      const scrollAmount = cardWidth + 16;
-      container.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
+    const targetIdx = direction === 'left' 
+      ? Math.max(0, activeIndex - 1) 
+      : Math.min(visaServices.length - 1, activeIndex + 1);
+    scrollToCard(targetIdx);
   };
 
   const handleScroll = () => {
     if (scrollRef.current) {
       const container = scrollRef.current;
-      const card = container.querySelector('.service-item-card') as HTMLElement;
-      const cardWidth = card ? card.offsetWidth : 320;
-      const index = Math.round(container.scrollLeft / (cardWidth + 16));
-      setActiveIndex(Math.min(Math.max(0, index), visaServices.length - 1));
+      const cards = container.querySelectorAll('.service-item-card');
+      if (cards.length === 0) return;
+      
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+      let closestIdx = 0;
+      let minDistance = Infinity;
+
+      cards.forEach((cardEl, idx) => {
+        const el = cardEl as HTMLElement;
+        const cardCenter = el.offsetLeft + el.offsetWidth / 2;
+        const dist = Math.abs(containerCenter - cardCenter);
+        if (dist < minDistance) {
+          minDistance = dist;
+          closestIdx = idx;
+        }
+      });
+
+      setActiveIndex(closestIdx);
     }
   };
 
@@ -271,8 +302,8 @@ export function ServicesSection() {
           onScroll={handleScroll}
           onTouchStart={resetPauseTimeout}
           onMouseEnter={resetPauseTimeout}
-          className="flex lg:grid lg:grid-cols-2 gap-4 sm:gap-8 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 px-1 lg:px-0 snap-x snap-mandatory lg:snap-none scroll-smooth scrollbar-none [perspective:1000px]"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex lg:grid lg:grid-cols-2 gap-4 sm:gap-8 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory lg:snap-none scroll-smooth scrollbar-none lg:[perspective:1000px]"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPadding: '0 1rem' }}
         >
           {visaServices.map((service, index) => {
             const Icon = service.icon;
@@ -280,10 +311,10 @@ export function ServicesSection() {
               <FeatureCardReveal
                 key={service.title}
                 delay={150 + index * 80}
-                className="service-item-card shrink-0 w-[86vw] max-w-[360px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex [transform-style:preserve-3d]"
+                className="service-item-card shrink-0 w-[86vw] max-w-[360px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d]"
               >
                 <div
-                  className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/40 p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full [transform-style:preserve-3d] hover:border-[var(--gold)]/50 hover:bg-slate-900/60 hover:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(10px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)] select-text"
+                  className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/40 p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] hover:border-[var(--gold)]/50 hover:bg-slate-900/60 hover:lg:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(10px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)] select-text"
                 >
                   {/* Top gold bar accent on hover */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
@@ -302,7 +333,7 @@ export function ServicesSection() {
                       <div>
                         {/* Icon & Title */}
                         <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-5">
-                          <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border border-slate-800 bg-slate-900 text-slate-400 group-hover:text-[var(--gold)] group-hover:border-[var(--gold)]/20 transition-all duration-500 shadow-sm">
+                          <div className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border ${service.bg} ${service.color} transition-all duration-500 shadow-sm`}>
                             <Icon className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
                           </div>
                           <h3 className="font-display text-lg sm:text-xl font-black text-white group-hover:text-[var(--gold)] transition-colors duration-300 tracking-tight leading-snug">
@@ -366,6 +397,9 @@ export function ServicesSection() {
               </FeatureCardReveal>
             );
           })}
+          
+          {/* End spacer so the last card has trailing breathing room and is never cropped */}
+          <div className="shrink-0 w-2 lg:hidden pointer-events-none" aria-hidden="true" />
         </div>
 
         {/* Mobile Pagination Indicator Dots */}
@@ -374,15 +408,8 @@ export function ServicesSection() {
             <button
               key={dotIdx}
               onClick={() => {
-                if (scrollRef.current) {
-                  const container = scrollRef.current;
-                  const card = container.querySelector('.service-item-card') as HTMLElement;
-                  const cardWidth = card ? card.offsetWidth : 320;
-                  container.scrollTo({
-                    left: dotIdx * (cardWidth + 16),
-                    behavior: 'smooth'
-                  });
-                }
+                resetPauseTimeout();
+                scrollToCard(dotIdx);
               }}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 dotIdx === activeIndex 

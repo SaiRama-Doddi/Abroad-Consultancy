@@ -93,7 +93,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[72vh] lg:min-h-[68vh] items-center overflow-hidden pt-16 sm:pt-20 pb-4 sm:pb-6 bg-[#060a15]"
+      className="relative flex min-h-[72vh] lg:min-h-[68vh] items-center overflow-hidden pt-24 sm:pt-28 lg:pt-24 pb-4 sm:pb-6 bg-[#060a15]"
     >
       {/* Background Video with high clarity & vibrancy */}
       <video
@@ -134,7 +134,7 @@ export function HeroSection() {
           {/* Top small header with flight path animation */}
           <div className="flex items-center gap-4 animate-slide-right">
             <span
-              className="text-[0.72rem] font-bold uppercase tracking-[0.45em] text-[var(--gold)]"
+              className="text-[0.68rem] sm:text-[0.72rem] font-bold uppercase tracking-[0.22em] sm:tracking-[0.35em] md:tracking-[0.45em] text-[var(--gold)] whitespace-nowrap"
               style={{ textShadow: "0 1px 4px rgba(6, 10, 21, 0.9), 0 2px 10px rgba(6, 10, 21, 0.8)" }}
             >
               Study &nbsp;&middot;&nbsp; Work &nbsp;&middot;&nbsp; Migrate

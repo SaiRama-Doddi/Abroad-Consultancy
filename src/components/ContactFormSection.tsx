@@ -334,25 +334,24 @@ export function ContactFormSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group/btn w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-xs font-extrabold uppercase tracking-[0.22em] text-[#0b1224] transition-all duration-300 disabled:opacity-75 hover:-translate-y-0.5 shadow-[0_4px_12px_rgba(224,183,109,0.3)] hover:shadow-[0_6px_18px_rgba(224,183,109,0.45)] cursor-pointer"
-                  style={{ background: "var(--gradient-gold)" }}
+                  className="group/btn w-full flex items-center justify-center gap-2.5 px-5 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl text-[0.78rem] sm:text-sm font-extrabold uppercase tracking-wide sm:tracking-wider text-white bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 border border-emerald-400/30 transition-all duration-300 disabled:opacity-70 hover:-translate-y-0.5 active:scale-[0.99] shadow-[0_6px_20px_rgba(16,185,129,0.35)] hover:shadow-[0_8px_25px_rgba(16,185,129,0.5)] cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#0b1224] border-t-transparent" />
-                      Submitting Enquiry...
+                      <div className="h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      <span>Submitting Enquiry...</span>
                     </>
                   ) : (
                     <>
-                      <Send className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                      Submit Consultation Request
+                      <Send className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-0.5 text-white" />
+                      <span>Submit Consultation Request</span>
                     </>
                   )}
                 </button>
 
                 {/* Secure Seal */}
                 <div className="flex items-center justify-center gap-2 text-[0.68rem] text-slate-500 mt-4 font-semibold">
-                  <ShieldCheck className="h-4 w-4 text-[var(--gold)]" />
+                  <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
                   <span>Your information is encrypted & shared only with our consultant.</span>
                 </div>
 
