@@ -1,4 +1,4 @@
-import { GraduationCap, Briefcase } from "lucide-react";
+import { GraduationCap, Briefcase, Plane } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 import { InteractiveGlobe } from "./InteractiveGlobe";
 import { AnimatedCounter } from "./AnimatedCounter";
@@ -379,9 +379,9 @@ export function AboutSection() {
           {/* Right Column: Premium Text Content */}
           <ScrollReveal direction="right" delay={300}>
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] self-start">
-                <span>About Us</span>
-                <span className="text-xs shrink-0 select-none">✈️</span>
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] self-start">
+                <Plane className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400 animate-pulse" />
+                <span className="text-amber-300 tracking-[0.22em] font-extrabold">About Us</span>
               </div>
               
               <h2 className="font-display text-4xl leading-tight text-slate-800 sm:text-5xl">

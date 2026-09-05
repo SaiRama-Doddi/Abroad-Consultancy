@@ -32,25 +32,78 @@ function renderLetterByLetter(
   });
 }
 
+const HIGHLIGHT_CARDS = [
+  {
+    icon: Globe,
+    title: "Global Opportunities",
+    description: "Access premier universities, top study destinations, and high-demand global career pathways worldwide.",
+    color: {
+      bg: "bg-gradient-to-br from-cyan-500/25 via-blue-500/20 to-sky-600/30",
+      border: "border-cyan-400/40",
+      text: "text-cyan-300",
+      shadow: "shadow-[0_0_20px_rgba(6,182,212,0.35)]",
+      hoverBg: "group-hover:bg-cyan-500/30",
+      hoverBorder: "group-hover:border-cyan-300/70"
+    }
+  },
+  {
+    icon: FileText,
+    title: "Expert Guidance",
+    description: "Personalized end-to-end counseling covering university shortlisting, documentation, and visa approvals.",
+    color: {
+      bg: "bg-gradient-to-br from-amber-500/25 via-yellow-500/20 to-orange-600/30",
+      border: "border-amber-400/40",
+      text: "text-amber-300",
+      shadow: "shadow-[0_0_20px_rgba(245,158,11,0.35)]",
+      hoverBg: "group-hover:bg-amber-500/30",
+      hoverBorder: "group-hover:border-amber-300/70"
+    }
+  },
+  {
+    icon: Shield,
+    title: "Trusted & Reliable",
+    description: "Transparent and ethical advisory with accredited institutional partnerships you can always depend on.",
+    color: {
+      bg: "bg-gradient-to-br from-emerald-500/25 via-teal-500/20 to-green-600/30",
+      border: "border-emerald-400/40",
+      text: "text-emerald-300",
+      shadow: "shadow-[0_0_20px_rgba(16,185,129,0.35)]",
+      hoverBg: "group-hover:bg-emerald-500/30",
+      hoverBorder: "group-hover:border-emerald-300/70"
+    }
+  },
+  {
+    icon: Handshake,
+    title: "End-to-End Support",
+    description: "Comprehensive assistance from profile assessment to pre-departure, accommodation, and airport reception.",
+    color: {
+      bg: "bg-gradient-to-br from-purple-500/25 via-fuchsia-500/20 to-indigo-600/30",
+      border: "border-purple-400/40",
+      text: "text-purple-300",
+      shadow: "shadow-[0_0_20px_rgba(168,85,247,0.35)]",
+      hoverBg: "group-hover:bg-purple-500/30",
+      hoverBorder: "group-hover:border-purple-300/70"
+    }
+  }
+];
+
 export function HeroSection() {
   const [videoPlaying, setVideoPlaying] = useState(true);
 
   return (
     <section
       id="home"
-      className="relative flex min-h-[90vh] lg:min-h-[85vh] items-center overflow-hidden pt-24 pb-4 sm:pb-6 lg:pb-8"
-      style={{
-        background: "linear-gradient(100deg, #091930 0%, #0a2e5c 35%, #0284c7 70%, #38bdf8 100%)"
-      }}
+      className="relative flex min-h-[72vh] lg:min-h-[68vh] items-center overflow-hidden pt-16 sm:pt-20 pb-4 sm:pb-6 bg-[#060a15]"
     >
-      {/* Background Video blended with the sky-blue gradient */}
+      {/* Background Video with high clarity & vibrancy */}
       <video
-        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 animate-slow-pan"
+        className="absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 animate-slow-pan"
         style={{
-          opacity: 0.65
+          opacity: 0.85,
+          maxHeight: "640px"
         }}
-        src="/hero-flight.mp4"
-        poster="/hero-fallback.jpg"
+        src="/hero-cheerful-graduates-toss.mp4"
+        poster="/hero-graduation.jpg"
         autoPlay
         muted
         loop
@@ -61,31 +114,30 @@ export function HeroSection() {
 
       {/* Smooth bottom fade into the page body */}
       <div
-        className="absolute inset-x-0 bottom-0 h-48 pointer-events-none z-[1]"
+        className="absolute inset-x-0 bottom-0 h-40 pointer-events-none z-[1]"
         style={{
-          background: "linear-gradient(to top, #060a15 0%, rgba(6, 10, 21, 0.4) 40%, transparent 100%)"
+          background: "linear-gradient(to top, #060a15 20%, rgba(6, 10, 21, 0.6) 65%, transparent 100%)"
         }}
       />
 
-      {/* Smooth left-to-right dark gradient overlay for text legibility */}
+      {/* Focused text legibility gradient on the left side only - leaves video crystal clear on center & right */}
       <div
         className="absolute inset-0 pointer-events-none z-[1]"
         style={{
-          background: "linear-gradient(to right, rgba(9, 25, 48, 0.92) 0%, rgba(9, 25, 48, 0.75) 45%, rgba(9, 25, 48, 0.3) 75%, transparent 100%)"
+          background: "linear-gradient(to right, rgba(6, 10, 21, 0.95) 0%, rgba(6, 10, 21, 0.82) 32%, rgba(6, 10, 21, 0.35) 55%, transparent 75%)"
         }}
       />
 
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
         <div className="flex flex-col lg:max-w-3xl">
-          {/* Top small header with flight path animation & education badge */}
+          {/* Top small header with flight path animation */}
           <div className="flex items-center gap-4 animate-slide-right">
             <span
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/30 bg-[var(--gold)]/10 px-3.5 py-1 text-[0.72rem] font-bold uppercase tracking-[0.35em] text-[var(--gold)] backdrop-blur-md"
-              style={{ textShadow: "0 1px 4px rgba(6, 10, 21, 0.9)" }}
+              className="text-[0.72rem] font-bold uppercase tracking-[0.45em] text-[var(--gold)]"
+              style={{ textShadow: "0 1px 4px rgba(6, 10, 21, 0.9), 0 2px 10px rgba(6, 10, 21, 0.8)" }}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] animate-pulse" />
-              Global Study &middot; Work &middot; Migrate
+              Study &nbsp;&middot;&nbsp; Work &nbsp;&middot;&nbsp; Migrate
             </span>
             <div className="relative w-36 h-8 overflow-visible hidden sm:block">
               <svg className="w-full h-full overflow-visible" viewBox="0 0 120 30" fill="none">
@@ -108,17 +160,17 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Main Title heading (Modern Global Education & Abroad Consultancy Typography) */}
-          <h1 className="mt-4 font-montserrat text-4xl sm:text-5xl md:text-6xl lg:text-[4.6rem] xl:text-[5.4rem] font-black leading-[1.06] text-white tracking-tight">
+          {/* Main Title heading (Serif + Italic Gold font as shown in screenshot) */}
+          <h1 className="mt-4 font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[4.8rem] xl:text-[5.5rem] leading-[1.05] tracking-tight">
             <span
-              className="block"
-              style={{ textShadow: "0 2px 14px rgba(6, 10, 21, 0.95), 0 4px 35px rgba(6, 10, 21, 0.85), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
+              className="block font-semibold text-white"
+              style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
               {renderLetterByLetter("McCoy Global", 0.1, 0.04, "animate-letter-in", videoPlaying, 0)}
             </span>
             <span
-              className="block mt-1 text-[var(--gold)] font-extrabold uppercase tracking-[0.06em]"
-              style={{ textShadow: "0 2px 14px rgba(6, 10, 21, 0.95), 0 4px 35px rgba(6, 10, 21, 0.85), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
+              className="block mt-1 sm:mt-2 text-[var(--gold)] font-normal italic"
+              style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
               {renderLetterByLetter("Consultancy", 0.1, 0.04, "animate-letter-in", videoPlaying, 12)}
             </span>
@@ -137,14 +189,14 @@ export function HeroSection() {
             right country to boarding the flight with confidence.
           </p>
 
-          {/* CTA Action Buttons */}
+          {/* CTA Action Button */}
           <div
             className="mt-5 flex flex-col sm:flex-row flex-wrap gap-4 animate-fade-rise opacity-0"
             style={{ animationDelay: "0.9s" }}
           >
             <a
               href="#contact"
-              className="flex items-center justify-center gap-2.5 rounded-lg px-6 sm:px-8 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(166,106,33,0.45)] w-full sm:w-auto"
+              className="flex items-center justify-center gap-2.5 rounded-lg px-7 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(166,106,33,0.45)] w-full sm:w-auto"
               style={{ background: "var(--gradient-gold)" }}
             >
               <Calendar className="h-4 w-4" />
@@ -153,79 +205,41 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Bottom Cards wrapped in glassmorphic box */}
+        {/* Bottom Highlights - Aligned & Justified Cards */}
         <div
-          className="mt-8 w-full rounded-2xl border border-white/10 bg-[#060a15]/65 p-5 backdrop-blur-lg md:p-6 animate-slide-up opacity-0 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+          className="mt-6 w-full rounded-2xl border border-white/10 bg-[#060a15]/75 p-4 sm:p-5 backdrop-blur-xl animate-slide-up opacity-0 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           style={{ animationDelay: "1.1s" }}
         >
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Card 1 */}
-            <div className="group transition-all duration-500 hover:-translate-y-1.5">
-              <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_20px_rgba(224,183,109,0.3)]">
-                    <Globe className="h-9 w-9" />
-                  </div>
-                  <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
-                    Global Opportunities
-                  </h3>
-                </div>
-                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors">
-                  Access top study, work and migration destinations worldwide.
-                </p>
-              </div>
-            </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+            {HIGHLIGHT_CARDS.map((card, idx) => {
+              const Icon = card.icon;
+              return (
+                <div
+                  key={idx}
+                  className="group flex flex-col justify-between h-full rounded-xl border border-white/5 bg-white/[0.025] p-4 sm:p-5 transition-all duration-300 hover:border-white/15 hover:bg-white/[0.06] hover:-translate-y-1 shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
+                >
+                  <div>
+                    {/* Consistent Height Header: Colorful Icons and Titles perfectly aligned */}
+                    <div className="flex items-center gap-3.5 min-h-[48px]">
+                      <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${card.color.bg} ${card.color.text} border ${card.color.border} transition-all duration-500 group-hover:rotate-6 ${card.color.hoverBg} ${card.color.hoverBorder} group-hover:scale-110 ${card.color.shadow}`}>
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <h3 className="font-sans text-xs sm:text-[0.88rem] font-bold tracking-wider text-white uppercase leading-snug">
+                        {card.title}
+                      </h3>
+                    </div>
 
-            {/* Card 2 */}
-            <div className="group transition-all duration-500 hover:-translate-y-1.5">
-              <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_20px_rgba(224,183,109,0.3)]">
-                    <FileText className="h-9 w-9" />
+                    {/* Justified Description Text */}
+                    <p
+                      className="mt-3.5 text-xs sm:text-[0.84rem] leading-relaxed text-white/80 group-hover:text-white transition-colors"
+                      style={{ textAlign: "justify", textJustify: "inter-word" }}
+                    >
+                      {card.description}
+                    </p>
                   </div>
-                  <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
-                    Expert Guidance
-                  </h3>
                 </div>
-                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors">
-                  Personalized support from application to visa and beyond.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="group transition-all duration-500 hover:-translate-y-1.5">
-              <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_20px_rgba(224,183,109,0.3)]">
-                    <Shield className="h-9 w-9" />
-                  </div>
-                  <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
-                    Trusted & Reliable
-                  </h3>
-                </div>
-                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors">
-                  Transparent process with ethical advice you can always count on.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 4 */}
-            <div className="group transition-all duration-500 hover:-translate-y-1.5">
-              <div className="group-hover:translate-y-[-2px] transition-transform duration-300">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--gold)]/15 text-[var(--gold)] border border-[var(--gold)]/25 transition-all duration-500 group-hover:rotate-6 group-hover:bg-[var(--gold)]/25 group-hover:scale-110 shadow-[0_0_20px_rgba(224,183,109,0.3)]">
-                    <Handshake className="h-9 w-9" />
-                  </div>
-                  <h3 className="font-sans text-sm sm:text-base font-extrabold tracking-wider text-white uppercase">
-                    End-to-End Support
-                  </h3>
-                </div>
-                <p className="mt-4 text-xs sm:text-sm leading-relaxed text-white/80 group-hover:text-white transition-colors">
-                  We're with you at every step of your journey, until you reach your destination.
-                </p>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>

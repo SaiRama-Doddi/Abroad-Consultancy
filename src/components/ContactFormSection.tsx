@@ -68,9 +68,9 @@ export function ContactFormSection() {
         <ScrollReveal direction="up" delay={100}>
           <div className="text-left w-full mb-10 flex flex-col items-start">
             {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3">
-              <Mail className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
-              <span>Contact Us</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3">
+              <Mail className="h-3.5 w-3.5 shrink-0 fill-amber-400/20 text-amber-400 animate-pulse" />
+              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Contact Us</span>
             </div>
             
             <h2 className="font-display text-4xl leading-tight text-slate-900 sm:text-5xl font-extrabold tracking-tight text-left">
@@ -113,25 +113,25 @@ export function ContactFormSection() {
                 <div className="space-y-6">
                   {/* Address */}
                   <div className="flex gap-4 group/item">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 border border-slate-250 shadow-sm group-hover/item:border-[var(--gold)] group-hover/item:text-[var(--gold)] group-hover/item:bg-[var(--gold)]/5 transition-all duration-300">
-                      <MapPin className="h-5 w-5" />
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-rose-50 to-rose-100/80 border border-rose-200/90 text-rose-600 shadow-[0_4px_14px_rgba(244,63,94,0.14)] group-hover/item:scale-110 group-hover/item:shadow-[0_6px_18px_rgba(244,63,94,0.25)] transition-all duration-300">
+                      <MapPin className="h-5 w-5 fill-rose-500/20 text-rose-600" />
                     </div>
                     <div className="text-left font-semibold">
-                      <h4 className="font-display text-[0.7rem] font-black text-slate-500 uppercase tracking-widest mt-1">Our Location</h4>
+                      <h4 className="font-display text-[0.7rem] font-black text-rose-600 uppercase tracking-widest mt-1">Our Location</h4>
                       <p className="mt-1 text-sm font-bold text-slate-900">Hyderabad, India</p>
                     </div>
                   </div>
 
                   {/* Email */}
                   <div className="flex gap-4 group/item">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 border border-slate-250 shadow-sm group-hover/item:border-[var(--gold)] group-hover/item:text-[var(--gold)] group-hover/item:bg-[var(--gold)]/5 transition-all duration-300">
-                      <Mail className="h-5 w-5" />
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-50 to-blue-100/80 border border-sky-200/90 text-sky-600 shadow-[0_4px_14px_rgba(2,132,199,0.14)] group-hover/item:scale-110 group-hover/item:shadow-[0_6px_18px_rgba(2,132,199,0.25)] transition-all duration-300">
+                      <Mail className="h-5 w-5 fill-sky-500/20 text-sky-600" />
                     </div>
                     <div className="text-left font-semibold">
-                      <h4 className="font-display text-[0.7rem] font-black text-slate-500 uppercase tracking-widest mt-1">Email Us</h4>
+                      <h4 className="font-display text-[0.7rem] font-black text-sky-600 uppercase tracking-widest mt-1">Email Us</h4>
                       <a 
                         href="mailto:info@mccoyglobal.com" 
-                        className="mt-1 block text-sm font-bold text-slate-900 hover:text-[var(--gold)] transition-colors"
+                        className="mt-1 block text-sm font-bold text-slate-900 hover:text-sky-600 transition-colors"
                       >
                         info@mccoyglobal.com
                       </a>
@@ -140,14 +140,14 @@ export function ContactFormSection() {
 
                   {/* Phone */}
                   <div className="flex gap-4 group/item">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 border border-slate-250 shadow-sm group-hover/item:border-[var(--gold)] group-hover/item:text-[var(--gold)] group-hover/item:bg-[var(--gold)]/5 transition-all duration-300">
-                      <Phone className="h-5 w-5" />
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-50 to-teal-100/80 border border-emerald-200/90 text-emerald-600 shadow-[0_4px_14px_rgba(16,185,129,0.14)] group-hover/item:scale-110 group-hover/item:shadow-[0_6px_18px_rgba(16,185,129,0.25)] transition-all duration-300">
+                      <Phone className="h-5 w-5 fill-emerald-500/20 text-emerald-600" />
                     </div>
                     <div className="text-left font-semibold">
-                      <h4 className="font-display text-[0.7rem] font-black text-slate-500 uppercase tracking-widest mt-1">Call Us</h4>
+                      <h4 className="font-display text-[0.7rem] font-black text-emerald-600 uppercase tracking-widest mt-1">Call Us</h4>
                       <a 
                         href="tel:+918886368886" 
-                        className="mt-1 block text-sm font-bold text-slate-900 hover:text-[var(--gold)] transition-colors"
+                        className="mt-1 block text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors"
                       >
                         +91 88863 68886
                       </a>
@@ -156,11 +156,11 @@ export function ContactFormSection() {
 
                   {/* Business Hours */}
                   <div className="flex gap-4 group/item">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 border border-slate-250 shadow-sm group-hover/item:border-[var(--gold)] group-hover/item:text-[var(--gold)] group-hover/item:bg-[var(--gold)]/5 transition-all duration-300">
-                      <Clock className="h-5 w-5" />
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-50 to-orange-100/80 border border-amber-200/90 text-amber-600 shadow-[0_4px_14px_rgba(245,158,11,0.14)] group-hover/item:scale-110 group-hover/item:shadow-[0_6px_18px_rgba(245,158,11,0.25)] transition-all duration-300">
+                      <Clock className="h-5 w-5 fill-amber-500/20 text-amber-600" />
                     </div>
                     <div className="text-left font-semibold">
-                      <h4 className="font-display text-[0.7rem] font-black text-slate-500 uppercase tracking-widest mt-1">Business Hours</h4>
+                      <h4 className="font-display text-[0.7rem] font-black text-amber-600 uppercase tracking-widest mt-1">Business Hours</h4>
                       <p className="mt-1 text-sm font-bold text-slate-900">Mon - Sat: 10:00 AM - 6:30 PM</p>
                     </div>
                   </div>
@@ -173,11 +173,17 @@ export function ContactFormSection() {
                   href="https://wa.me/918886368886"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-xs font-extrabold uppercase tracking-widest text-[#0b1224] transition-all duration-300 hover:-translate-y-0.5 shadow-[0_4px_12px_rgba(224,183,109,0.3)] hover:shadow-[0_6px_18px_rgba(224,183,109,0.45)]"
-                  style={{ background: "var(--gradient-gold)" }}
+                  className="inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-extrabold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.03] shadow-[0_6px_20px_rgba(37,211,102,0.35)] hover:shadow-[0_8px_25px_rgba(37,211,102,0.5)] border border-emerald-400/30 group"
+                  style={{ background: "linear-gradient(135deg, #128C7E 0%, #25D366 100%)" }}
                 >
-                  <MessageSquare className="h-4 w-4" />
-                  Chat on WhatsApp
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    className="h-4.5 w-4.5 fill-white transition-transform duration-300 group-hover:scale-110 shrink-0"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.458L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.45 5.556 0 10.074-4.513 10.077-10.067.001-2.69-1.04-5.218-2.929-7.11A9.97 9.97 0 0 0 12.008 1.54c-5.561 0-10.08 4.515-10.084 10.07a10.024 10.024 0 0 0 1.536 5.25l-.995 3.638 3.738-.98c1.554.849 3.037 1.282 4.444 1.282zm9.99-6.313c-.274-.137-1.62-.8-1.874-.892-.254-.092-.44-.137-.625.137-.184.274-.71.892-.87 1.077-.16.184-.32.208-.593.07-.273-.137-1.155-.425-2.2-1.358-.813-.726-1.362-1.623-1.522-1.897-.16-.273-.017-.42.12-.556.123-.122.274-.32.41-.48.137-.16.183-.273.273-.456.09-.184.046-.346-.023-.483-.069-.137-.625-1.506-.856-2.062-.225-.54-.472-.466-.647-.476-.168-.008-.361-.01-.555-.01-.194 0-.51.073-.777.366-.267.293-1.02 1.002-1.02 2.443s1.045 2.825 1.19 3.018c.146.193 2.056 3.14 4.978 4.4 1.127.487 2.008.777 2.687.992.684.218 1.307.187 1.8.114.55-.082 1.62-.662 1.848-1.27.228-.609.228-1.13.16-1.24-.07-.11-.255-.2-.53-.337z"/>
+                  </svg>
+                  <span>Chat on WhatsApp</span>
                 </a>
               </div>
             </div>
@@ -195,9 +201,9 @@ export function ContactFormSection() {
               <div className="absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 group-hover/form:animate-shine pointer-events-none z-20" />
 
               {/* Free Assessment Badge Banner */}
-              <div className="flex items-center gap-2 mb-6 bg-[var(--gold)]/10 border border-[var(--gold)]/20 px-4 py-2.5 rounded-2xl relative z-10 w-fit">
-                <ShieldCheck className="h-4 w-4 text-[var(--gold)] shrink-0" />
-                <span className="text-[0.68rem] font-extrabold uppercase tracking-widest text-[var(--gold)]">Free Confidential Assessment</span>
+              <div className="flex items-center gap-2 mb-6 bg-[#0b1224] border border-amber-400/40 px-4 py-2 rounded-xl relative z-10 w-fit shadow-sm">
+                <ShieldCheck className="h-4 w-4 text-amber-400 shrink-0" />
+                <span className="text-[0.68rem] font-extrabold uppercase tracking-widest text-amber-300">Free Confidential Assessment</span>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">

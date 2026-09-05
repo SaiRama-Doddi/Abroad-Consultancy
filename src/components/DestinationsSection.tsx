@@ -13,10 +13,20 @@ import {
   Mail, 
   ExternalLink,
   MessageCircle,
-  Plane
+  Plane,
+  Home,
+  Car,
+  ShieldCheck,
+  Gift
 } from "lucide-react";
 import { toast } from "sonner";
 import { ScrollReveal } from "./ScrollReveal";
+
+export interface DestinationBenefit {
+  title: string;
+  desc?: string;
+  badge?: string;
+}
 
 interface Destination {
   name: string;
@@ -24,6 +34,7 @@ interface Destination {
   code: string;
   image: string;
   region?: string;
+  totalCourse?: string;
   courses: string[];
   eligibility: string;
   workRights?: string;
@@ -31,6 +42,7 @@ interface Destination {
   avgTuition?: string;
   pathway?: string;
   highlights?: string[];
+  benefits?: DestinationBenefit[];
   description?: string;
 }
 
@@ -212,18 +224,48 @@ const destinations: Destination[] = [
     code: "cy",
     region: "Europe",
     image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80",
-    courses: ["Foundation Course", "Bachelors Degrees", "Hospitality & MBA"],
-    eligibility: "Intermediate Pass students can apply ✅ (12th Pass with 45%+)",
-    workRights: "20 hours per week part-time work permitted during semesters",
+    courses: [
+      "Bachelors Degrees (Min 55% in Intermediate)", 
+      "Masters Degrees (Min 55% in Degree)", 
+      "Hospitality & MBA Programs"
+    ],
+    eligibility: "• Intermediate min 55% required for Bachelors\n• Degree min 55% required for Masters\n• IELTS is Mandatory: 6.0 Band for Bachelors & 6.5 Band for Masters",
+    workRights: "Part-time work permitted during semesters (Earn up to ₹2 Lakhs Rupees per month)",
     intakes: "February, June & October",
     avgTuition: "€3,000 – €5,500 / year",
     highlights: [
-      "Extremely high visa success rate with hassle-free documentation",
-      "No IELTS mandatory for qualifying students; direct institutional assessment",
-      "Safe, English-speaking Mediterranean island community with pleasant climate",
-      "Credit transfer pathways to UK and EU partner universities"
+      "Intermediate min 55% required for Bachelors",
+      "Degree min 55% required for Masters",
+      "IELTS Mandatory: 6.0 Band for Bachelors & 6.5 Band for Masters",
+      "Airport pickup - Free",
+      "Free accommodation for 1 month included",
+      "Earn up to ₹2 Lakhs Rupees per month",
+      "Schengen Visa soon ✅ (Explore 29+ countries with one Visa)",
+      "Safe Mediterranean island with pleasant climate & low living costs"
     ],
-    description: "Cyprus provides an accessible European higher education option with smooth admission criteria, warm Mediterranean living, and affordable tuition fees."
+    benefits: [
+      {
+        title: "Airport Pickup - Free",
+        desc: "Complimentary airport welcome and direct transfer straight to your student accommodation.",
+        badge: "Free Service"
+      },
+      {
+        title: "Free Accommodation for 1 Month",
+        desc: "1 month free accommodation provided upon arrival to ensure a smooth and comfortable start.",
+        badge: "Free Stay"
+      },
+      {
+        title: "Earn Up to ₹2 Lakhs Rupees per Month",
+        desc: "High earning potential up to ₹2,00,000/month through student part-time and seasonal employment.",
+        badge: "High Income"
+      },
+      {
+        title: "Schengen Visa Soon ✅",
+        desc: "Explore 29+ countries with one Visa! Cyprus is actively entering the Schengen Area for seamless European travel.",
+        badge: "Explore 29+ Countries"
+      }
+    ],
+    description: "Cyprus offers world-class European education. Requirements: Intermediate min 55% for Bachelors, Degree min 55% for Masters, and IELTS mandatory (6.0 for Bachelors / 6.5 for Masters). Enjoy free airport pickup, 1 month free accommodation, earn up to ₹2 Lakhs/month, and gain upcoming Schengen Visa access across 29+ European countries!"
   },
   {
     name: "United Arab Emirates",
@@ -288,25 +330,62 @@ const destinations: Destination[] = [
     code: "mu",
     region: "Africa / Indian Ocean",
     image: "https://images.unsplash.com/photo-1589979482837-e74f2e145060?auto=format&fit=crop&w=600&q=80",
+    totalCourse: "1 Year",
     courses: [
+      "Total Course: 1 Year", 
       "Diploma in Business Management", 
       "Hospitality & Tourism Management",
-      "Pathway to UK, Australia & Canada"
+      "Pathway to UK, Australia, Canada & Europe"
     ],
     eligibility: "10th Class pass students can apply ✅ (Age 18+)",
-    workRights: "20 hrs/week part-time work & Pathway to UK, Australia, Canada",
+    workRights: "Work permit for 2 years after 1 year course ✅ (Part-time work permitted)",
     intakes: "Once in every 3 months",
     avgTuition: "Only $4,200 USD (Below ₹4 Lakhs)",
-    pathway: "Direct Pathway to UK, Australia & Canada",
+    pathway: "Direct Pathway to UK, Australia, Canada & Europe countries for work",
     highlights: [
-      "Pathway to UK, Australia & Canada",
+      "Total Course: 1 Year duration",
+      "1 Month Free Accommodation included",
+      "Part-time assistance (Earn up to ₹1 Lakh rupees per month)",
+      "Airport pickup - Free",
+      "Work permit for 2 years after 1 year course ✅",
+      "Pathway to UK, Australia, Canada & Europe countries for work",
       "Only $4,200 USD Tuition Fee (Below ₹4 Lakhs)",
       "Intakes once in every 3 months",
-      "10th Class pass students eligible for direct foundation & diploma entry",
-      "Visa sponsored directly by institutions with visa-on-arrival facilitation",
-      "No IELTS test score required for qualifying applicants"
+      "10th Class pass students eligible for direct admission"
     ],
-    description: "Mauritius provides a cost-effective, high-opportunity pathway to the UK, Australia, and Canada with simplified visa procedures, quarterly intakes, and total fees below ₹4 Lakhs ($4,200 USD)."
+    benefits: [
+      {
+        title: "1 Month Free Accommodation",
+        desc: "Complimentary student housing during your first month to help you settle in comfortably.",
+        badge: "Free Stay"
+      },
+      {
+        title: "Part Time Assistance",
+        desc: "Hands-on support, resume guidance, and job placement assistance to secure legal part-time work.",
+        badge: "Job Support"
+      },
+      {
+        title: "Earn Up to 1 Lakh Rupees per Month",
+        desc: "High part-time student earning potential (up to ₹1,00,000/mo) to support tuition and living costs.",
+        badge: "High Income"
+      },
+      {
+        title: "Airport Pickup - Free",
+        desc: "Complimentary airport welcome and direct private transfer straight to your accommodation.",
+        badge: "Free Service"
+      },
+      {
+        title: "Work Permit for 2 Years after 1 Year Course ✅",
+        desc: "Direct transition to a 2-year post-study open work permit immediately upon completing the 1-year course.",
+        badge: "2-Yr Work Visa"
+      },
+      {
+        title: "Pathway to UK - Australia - Canada - Europe Countries for Work",
+        desc: "Direct global credit transfer and employer sponsorship pathways to work in the UK, Australia, Canada, and Europe.",
+        badge: "Global Career"
+      }
+    ],
+    description: "Mauritius offers a fast-track 1-year course featuring 1 month free accommodation, part-time assistance earning up to ₹1 Lakh/month, free airport pickup, a guaranteed 2-year post-study work permit, and direct work pathways to the UK, Australia, Canada, and Europe."
   }
 ];
 
@@ -350,8 +429,9 @@ export function DestinationsSection() {
   };
 
   const handleWhatsAppClick = (country: Destination) => {
+    const courseText = country.totalCourse ? ` (${country.totalCourse} course)` : "";
     const message = encodeURIComponent(
-      `Hi McCoy Global Consultancy, I am interested in studying in ${country.name}. Could you please send me the complete country guide, eligibility criteria, and fee details?`
+      `Hi McCoy Global Consultancy, I am interested in studying in ${country.name}${courseText}. Could you please send me the complete country guide, benefits package, eligibility criteria, and fee details?`
     );
     window.open(`https://wa.me/917993356064?text=${message}`, "_blank");
   };
@@ -367,9 +447,9 @@ export function DestinationsSection() {
         {/* Section Title */}
         <ScrollReveal direction="up" delay={100}>
           <div className="text-center flex flex-col items-center mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-2.5">
-              <Globe className="h-3.5 w-3.5 shrink-0 animate-pulse text-[var(--gold)]" />
-              <span>Study Destinations</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-2.5">
+              <Globe className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
+              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Study Destinations</span>
             </div>
             
             <h2 className="font-display text-4xl sm:text-5xl font-black tracking-tight text-slate-900 leading-tight">
@@ -441,6 +521,14 @@ export function DestinationsSection() {
                           className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                         />
 
+                        {/* Total Course Badge if available */}
+                        {country.totalCourse && (
+                          <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2.5 py-1 text-[0.62rem] font-bold shadow-md border border-white/20">
+                            <Sparkles className="h-2.5 w-2.5 text-amber-300" />
+                            <span>{country.totalCourse} Course</span>
+                          </div>
+                        )}
+
                         {/* Subtle dark gradient mask for high legibility */}
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/75" />
 
@@ -487,6 +575,14 @@ export function DestinationsSection() {
                           alt={`${country.name} Flag`} 
                           className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                         />
+
+                        {/* Total Course Badge if available */}
+                        {country.totalCourse && (
+                          <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2.5 py-1 text-[0.62rem] font-bold shadow-md border border-white/20">
+                            <Sparkles className="h-2.5 w-2.5 text-amber-300" />
+                            <span>{country.totalCourse} Course</span>
+                          </div>
+                        )}
 
                         {/* Subtle dark gradient mask for high legibility */}
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/75" />
@@ -544,6 +640,13 @@ export function DestinationsSection() {
                         loading="lazy"
                       />
 
+                      {/* Total Course Badge if available */}
+                      {country.totalCourse && (
+                        <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2 py-0.5 text-[0.55rem] font-bold shadow-md border border-white/20">
+                          <span>{country.totalCourse} Course</span>
+                        </div>
+                      )}
+
                       {/* Subtle dark gradient mask for high legibility */}
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent z-10" />
 
@@ -581,6 +684,13 @@ export function DestinationsSection() {
                         className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
+
+                      {/* Total Course Badge if available */}
+                      {country.totalCourse && (
+                        <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2 py-0.5 text-[0.55rem] font-bold shadow-md border border-white/20">
+                          <span>{country.totalCourse} Course</span>
+                        </div>
+                      )}
 
                       {/* Subtle dark gradient mask for high legibility */}
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent z-10" />
@@ -692,14 +802,110 @@ export function DestinationsSection() {
                 </div>
               )}
 
+              {/* EXTRA BLOCK: Exclusive Benefits & Package Inclusions */}
+              {selectedCountry.benefits && selectedCountry.benefits.length > 0 && (
+                <div className="rounded-2xl border-2 border-amber-300/80 bg-gradient-to-br from-amber-50/90 via-orange-50/40 to-emerald-50/40 p-4 sm:p-5 shadow-sm relative overflow-hidden">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5 pb-2.5 border-b border-amber-200/80">
+                    <div className="flex items-center gap-2.5">
+                      <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-amber-500 to-[var(--gold)] text-white flex items-center justify-center shadow-xs shrink-0">
+                        <Gift className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[0.68rem] font-black uppercase tracking-widest text-amber-800">
+                            Exclusive Student Inclusions
+                          </span>
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[0.6rem] font-black bg-emerald-600 text-white shadow-xs">
+                            Package Benefits
+                          </span>
+                        </div>
+                        <h4 className="text-sm sm:text-base font-black text-slate-900 leading-tight">
+                          Special Benefits Included with Admission
+                        </h4>
+                      </div>
+                    </div>
+                    {selectedCountry.totalCourse && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-amber-300 px-3 py-1 text-xs font-bold shadow-xs">
+                        <Clock className="h-3.5 w-3.5 text-amber-400" />
+                        <span>Total Course: {selectedCountry.totalCourse}</span>
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Benefits Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                    {selectedCountry.benefits.map((benefit, idx) => {
+                      const getBenefitIcon = () => {
+                        const t = benefit.title.toLowerCase();
+                        if (t.includes("airport") || t.includes("pickup")) {
+                          return <Car className="h-4 w-4 text-indigo-600 shrink-0" />;
+                        }
+                        if (t.includes("accommodation") || t.includes("stay") || t.includes("housing")) {
+                          return <Home className="h-4 w-4 text-amber-600 shrink-0" />;
+                        }
+                        if (t.includes("earn") || t.includes("rupees") || t.includes("lakh")) {
+                          return <Coins className="h-4 w-4 text-emerald-600 shrink-0" />;
+                        }
+                        if (t.includes("schengen") || t.includes("countries") || t.includes("pathway") || t.includes("europe")) {
+                          return <Globe className="h-4 w-4 text-purple-600 shrink-0" />;
+                        }
+                        if (t.includes("permit") || t.includes("visa")) {
+                          return <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />;
+                        }
+                        if (t.includes("part time") || t.includes("job") || t.includes("assistance")) {
+                          return <Briefcase className="h-4 w-4 text-blue-600 shrink-0" />;
+                        }
+                        return <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />;
+                      };
+                      const icon = getBenefitIcon();
+
+                      return (
+                        <div 
+                          key={idx}
+                          className="flex items-start gap-3 p-3 rounded-xl bg-white/95 border border-amber-200/70 shadow-xs hover:border-amber-400 transition-all group"
+                        >
+                          <div className="p-2 rounded-lg bg-amber-50/80 border border-amber-100 group-hover:scale-105 transition-transform shrink-0">
+                            {icon}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="font-bold text-slate-900 text-[0.84rem] sm:text-[0.88rem] leading-snug">
+                                {benefit.title}
+                              </span>
+                              {benefit.badge && (
+                                <span className="shrink-0 text-[0.6rem] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                                  {benefit.badge}
+                                </span>
+                              )}
+                            </div>
+                            {benefit.desc && (
+                              <p className="text-[0.74rem] sm:text-[0.78rem] text-slate-600 mt-0.5 leading-relaxed">
+                                {benefit.desc}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
               {/* Grid of Key Features & Details */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 
                 {/* Programs Available */}
                 <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
-                  <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider mb-2">
-                    <GraduationCap className="h-4 w-4" />
-                    <span>Popular Programs</span>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider">
+                      <GraduationCap className="h-4 w-4" />
+                      <span>Popular Programs</span>
+                    </div>
+                    {selectedCountry.totalCourse && (
+                      <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 text-[0.66rem] font-extrabold text-amber-900">
+                        Duration: {selectedCountry.totalCourse}
+                      </span>
+                    )}
                   </div>
                   <ul className="space-y-1">
                     {selectedCountry.courses.map((course, idx) => (
@@ -717,7 +923,7 @@ export function DestinationsSection() {
                     <FileText className="h-4 w-4" />
                     <span>Entry Requirements</span>
                   </div>
-                  <p className="text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium leading-snug">
+                  <p className="text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium leading-snug whitespace-pre-line">
                     {selectedCountry.eligibility}
                   </p>
                 </div>

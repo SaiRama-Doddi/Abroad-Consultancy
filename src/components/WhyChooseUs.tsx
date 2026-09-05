@@ -16,12 +16,48 @@ import { ScrollReveal } from "./ScrollReveal";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 const stats = [
-  { value: "98% Success", label: "Visa Approval Rate", icon: Trophy },
-  { value: "5000+ Students", label: "Secured Admissions", icon: GraduationCap },
-  { value: "1500+ Universities", label: "Global Tie-ups", icon: Landmark },
-  { value: "30+ Countries", label: "Global Partnerships", icon: Globe },
-  { value: "12+ Years", label: "Guiding Aspirants", icon: Calendar },
-  { value: "Most Trusted", label: "Advisory in Hyderabad", icon: ShieldCheck }
+  { 
+    value: "98% Success", 
+    label: "Visa Approval Rate", 
+    icon: Trophy,
+    color: "text-amber-400",
+    bg: "bg-amber-500/15 border-amber-400/30 shadow-[0_0_15px_rgba(251,191,36,0.25)]",
+  },
+  { 
+    value: "5000+ Students", 
+    label: "Secured Admissions", 
+    icon: GraduationCap,
+    color: "text-sky-400",
+    bg: "bg-sky-500/15 border-sky-400/30 shadow-[0_0_15px_rgba(56,189,248,0.25)]",
+  },
+  { 
+    value: "1500+ Universities", 
+    label: "Global Tie-ups", 
+    icon: Landmark,
+    color: "text-rose-400",
+    bg: "bg-rose-500/15 border-rose-400/30 shadow-[0_0_15px_rgba(244,63,94,0.25)]",
+  },
+  { 
+    value: "30+ Countries", 
+    label: "Global Partnerships", 
+    icon: Globe,
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/15 border-emerald-400/30 shadow-[0_0_15px_rgba(52,211,153,0.25)]",
+  },
+  { 
+    value: "12+ Years", 
+    label: "Guiding Aspirants", 
+    icon: Calendar,
+    color: "text-purple-400",
+    bg: "bg-purple-500/15 border-purple-400/30 shadow-[0_0_15px_rgba(192,132,252,0.25)]",
+  },
+  { 
+    value: "Most Trusted", 
+    label: "Advisory in Hyderabad", 
+    icon: ShieldCheck,
+    color: "text-orange-400",
+    bg: "bg-orange-500/15 border-orange-400/30 shadow-[0_0_15px_rgba(249,115,22,0.25)]",
+  }
 ];
 
 const features = [
@@ -29,19 +65,28 @@ const features = [
     title: "Trusted Customers",
     description: "Thousands of students trust our guidance to secure top global university admissions.",
     mobileDesc: "Thousands of students trust our guidance for top university admissions.",
-    icon: Handshake
+    icon: Handshake,
+    color: "text-sky-400",
+    bg: "bg-sky-500/15 border-sky-400/35 shadow-[0_0_18px_rgba(56,189,248,0.25)] group-hover:bg-sky-500/25 group-hover:border-sky-400/60",
+    numColor: "text-sky-400/20 group-hover:text-sky-400/40"
   },
   {
     title: "24/7 Support",
     description: "Dedicated 24/7 team assisting with applications, documentation, and visas.",
     mobileDesc: "Dedicated 24/7 team assisting with applications, documents, and visas.",
-    icon: Headphones
+    icon: Headphones,
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/15 border-emerald-400/35 shadow-[0_0_18px_rgba(52,211,153,0.25)] group-hover:bg-emerald-500/25 group-hover:border-emerald-400/60",
+    numColor: "text-emerald-400/20 group-hover:text-emerald-400/40"
   },
   {
     title: "Trusted Consultant",
     description: "Certified counselors with years of expertise guiding your entire visa process.",
     mobileDesc: "Certified counselors guiding every step of your visa process.",
-    icon: CheckCircle2
+    icon: CheckCircle2,
+    color: "text-purple-400",
+    bg: "bg-purple-500/15 border-purple-400/35 shadow-[0_0_18px_rgba(192,132,252,0.25)] group-hover:bg-purple-500/25 group-hover:border-purple-400/60",
+    numColor: "text-purple-400/20 group-hover:text-purple-400/40"
   }
 ];
 
@@ -53,7 +98,9 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry) {
+          setIsVisible(entry.isIntersecting);
+        }
       },
       { threshold: 0.2, rootMargin: "0px 0px -100px 0px" }
     );
@@ -96,9 +143,9 @@ export function WhyChooseUs() {
         <ScrollReveal direction="up" delay={100}>
           <div className="text-left w-full mb-8 sm:mb-10 flex flex-col items-start">
             {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-3.5 sm:px-4 py-1 sm:py-1.5 text-[0.7rem] sm:text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.08)] mb-3">
-              <Star className="h-3 sm:h-3.5 w-3 sm:w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
-              <span>Why Choose Us</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3">
+              <Star className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400 animate-pulse" />
+              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Why Choose Us</span>
             </div>
             
             <h2 className="font-display text-3xl sm:text-5xl font-black tracking-tight leading-tight text-white text-left">
@@ -146,9 +193,9 @@ export function WhyChooseUs() {
                 {/* CEO Info & Quote */}
                 <div className="flex flex-col justify-center flex-1 text-center sm:text-left z-10">
                   {/* Capsule Highlight Badge */}
-                  <div className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 px-3 sm:px-3.5 py-0.5 sm:py-1 text-[0.64rem] sm:text-[0.68rem] font-bold uppercase tracking-wider text-[var(--gold)] mb-2.5 sm:mb-3 self-center sm:self-start shadow-sm">
-                    <Star className="h-2.5 w-2.5 fill-[var(--gold)]" />
-                    <span>Top Advisory Leadership</span>
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-[#0b1224] border border-amber-400/50 px-3.5 py-1 text-[0.64rem] sm:text-[0.68rem] font-black uppercase tracking-wider text-amber-300 mb-2.5 sm:mb-3 self-center sm:self-start shadow-sm">
+                    <Star className="h-2.5 w-2.5 fill-amber-400 text-amber-400" />
+                    <span className="text-amber-300">Top Advisory Leadership</span>
                   </div>
 
                   <h3 className="font-serif text-2xl sm:text-3xl lg:text-[2rem] font-bold text-white tracking-normal leading-tight">
@@ -187,13 +234,13 @@ export function WhyChooseUs() {
                     <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     
                     {/* Background card number - lifts in 3D */}
-                    <div className="absolute right-3 sm:right-4 top-1 sm:top-2 text-2xl sm:text-4xl font-extrabold select-none pointer-events-none font-display text-slate-800/25 group-hover:text-[var(--gold)]/10 transition-all duration-500 [transform:translateZ(30px)]">
+                    <div className={`absolute right-3 sm:right-4 top-1 sm:top-2 text-2xl sm:text-4xl font-extrabold select-none pointer-events-none font-display ${feat.numColor} transition-all duration-500 [transform:translateZ(30px)]`}>
                       {String(idx + 1).padStart(2, '0')}
                     </div>
                     
-                    {/* Icon container in gold circle - lifts in 3D */}
-                    <div className="flex h-9 w-9 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-lg sm:rounded-full border border-slate-800 bg-slate-900 text-slate-400 group-hover:text-[var(--gold)] group-hover:border-[var(--gold)]/20 transition-all duration-500 shadow-sm [transform:translateZ(20px)]">
-                      <Icon className="h-4.5 w-4.5 sm:h-5.5 sm:w-5.5" />
+                    {/* Icon container in colorful rounded box - lifts in 3D */}
+                    <div className={`flex h-9 w-9 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border ${feat.bg} ${feat.color} transition-all duration-500 shadow-sm [transform:translateZ(20px)]`}>
+                      <Icon className="h-4.5 w-4.5 sm:h-6 sm:w-6" />
                     </div>
                     
                     {/* Text Content - lifts in 3D */}
@@ -222,7 +269,7 @@ export function WhyChooseUs() {
               return (
                 <FeatureCardReveal key={s.label} delay={idx * 60} className="w-full flex [transform-style:preserve-3d]">
                   <div className="flex items-center gap-3.5 group min-w-0 [transform-style:preserve-3d] hover:[transform:translateZ(10px)] transition-transform duration-300">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-[var(--gold)] border border-slate-800/80 transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--gold)]/10 group-hover:border-[var(--gold)]/20 shadow-sm">
+                    <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border ${s.bg} ${s.color} transition-all duration-300 group-hover:scale-110 shadow-sm`}>
                       <Icon className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">

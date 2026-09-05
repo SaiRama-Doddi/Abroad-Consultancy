@@ -98,7 +98,9 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry) {
+          setIsVisible(entry.isIntersecting);
+        }
       },
       { threshold: 0.12, rootMargin: "0px 0px -50px 0px" }
     );
@@ -219,9 +221,9 @@ export function ServicesSection() {
         <ScrollReveal direction="up" delay={100}>
           <div className="text-left w-full mb-8 sm:mb-10 flex flex-col items-start">
             {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.08)] mb-3.5">
-              <Sparkles className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
-              <span>Our Services</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3.5">
+              <Sparkles className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400 animate-pulse" />
+              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Our Services</span>
             </div>
 
             <h2 className="font-display text-4xl sm:text-5xl leading-tight text-white font-black tracking-tight text-left">

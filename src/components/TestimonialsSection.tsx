@@ -99,9 +99,9 @@ export function TestimonialsSection() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 w-full">
             <div className="text-left flex flex-col items-start max-w-2xl">
               {/* Premium Capsule Subtitle Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3">
-                <Quote className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
-                <span>Testimonials</span>
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3">
+                <Quote className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400 animate-pulse" />
+                <span className="text-amber-300 tracking-[0.22em] font-extrabold">Testimonials</span>
               </div>
               
               <h2 className="font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left">

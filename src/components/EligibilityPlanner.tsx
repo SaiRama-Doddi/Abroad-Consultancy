@@ -35,6 +35,8 @@ const countries = [
   { id: "AU", name: "Australia", code: "au", visa: "Subclass 500 Student Visa / Work Rights" },
   { id: "DE", name: "Germany", code: "de", visa: "Opportunity Card (Chancenkarte) / Student Visa" },
   { id: "CA", name: "Canada", code: "ca", visa: "Study Permit / Express Entry" },
+  { id: "MU", name: "Mauritius", code: "mu", visa: "1-Yr Course • 2-Yr Work Permit" },
+  { id: "CY", name: "Cyprus", code: "cy", visa: "Intermediate/Degree 55% • IELTS 6/6.5 • Schengen Soon" },
   { id: "SG", name: "Singapore", code: "sg", visa: "Student Pass / Training Work Permit" },
 ];
 
@@ -75,6 +77,32 @@ export function EligibilityPlanner() {
     const countryName = countryObj ? countryObj.name : "";
     
     if (goal === "study") {
+      if (selectedCountry === "MU") {
+        return {
+          title: "Mauritius 1-Year Fast-Track Study & Work Route",
+          desc: "Great choice! Mauritius offers an accelerated 1-Year Course with 1 month free accommodation, part-time assistance earning up to ₹1 Lakh/month, free airport pickup, and a 2-year post-study work permit with global pathways to the UK, Australia, Canada, and Europe.",
+          features: [
+            "Total Course: 1 Year (10th/12th Pass Eligible)",
+            "1 Month Free Accommodation & Free Airport Pickup",
+            "Part-Time Assistance (Earn up to ₹1 Lakh/month)",
+            "Work permit for 2 years after 1 year course ✅",
+            "Pathway to UK, Australia, Canada & Europe countries for work"
+          ]
+        };
+      }
+      if (selectedCountry === "CY") {
+        return {
+          title: "Cyprus European Degree & Work Route",
+          desc: "Excellent choice! Cyprus offers accredited European degree pathways with Intermediate min 55% for Bachelors and Degree min 55% for Masters (IELTS 6.0/6.5). Enjoy free airport pickup, 1 month free accommodation, earn up to ₹2 Lakhs/month, and gain upcoming Schengen access across 29+ countries!",
+          features: [
+            "Intermediate min 55% (Bachelors) / Degree min 55% (Masters)",
+            "IELTS Mandatory: 6.0 Band (Bachelors) & 6.5 Band (Masters)",
+            "Free Airport Pickup & 1 Month Free Accommodation",
+            "Earn up to ₹2 Lakhs Rupees per Month (Part-time work)",
+            "Schengen Visa soon ✅ (Explore 29+ countries with one Visa)"
+          ]
+        };
+      }
       if (selectedCountry === "GB") {
         return {
           title: "UK Higher Education & Youth Mobility Route",
@@ -88,6 +116,28 @@ export function EligibilityPlanner() {
         features: ["Priority scholarship application assistance", "Post-study work permit arrangement (up to 3 years)", "Complete pre-departure briefings"]
       };
     } else if (goal === "migrate") {
+      if (selectedCountry === "MU") {
+        return {
+          title: "Mauritius Study-to-Work & Global Career Route",
+          desc: "Mauritius provides a direct 1-year academic bridge leading straight to a 2-year post-study work permit with guaranteed pathways to migrate and work in the UK, Australia, Canada, and Europe.",
+          features: [
+            "1-Year Fast-Track Program + 2-Year Post-Study Work Permit ✅",
+            "Earn up to ₹1 Lakh/month with local part-time assistance",
+            "Direct work transfer pathways to UK, Australia, Canada & Europe"
+          ]
+        };
+      }
+      if (selectedCountry === "CY") {
+        return {
+          title: "Cyprus Study-to-Work & Schengen Career Route",
+          desc: "Cyprus provides high student earning potential (up to ₹2 Lakhs/month) with legal part-time employment, 1 month free accommodation, free airport pickup, and upcoming Schengen Zone integration.",
+          features: [
+            "Earn up to ₹2 Lakhs Rupees per Month through legal work",
+            "1 Month Free Accommodation + Free Airport Pickup",
+            "Upcoming Schengen Zone integration to explore 29+ European countries"
+          ]
+        };
+      }
       if (selectedCountry === "DE") {
         return {
           title: "Germany Opportunity Card (Chancenkarte)",
@@ -140,9 +190,9 @@ export function EligibilityPlanner() {
         <ScrollReveal direction="up" delay={100}>
           <div className="text-left w-full mb-8 flex flex-col items-start">
             {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/25 px-4 py-1.5 text-[0.75rem] font-bold uppercase tracking-[0.25em] text-[var(--gold)] shadow-[0_0_15px_rgba(224,183,109,0.1)] mb-3">
-              <Compass className="h-3.5 w-3.5 shrink-0 fill-[var(--gold)]/20 animate-pulse text-[var(--gold)]" />
-              <span>Interactive Tool</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3">
+              <Compass className="h-3.5 w-3.5 shrink-0 fill-amber-400/20 text-amber-400 animate-pulse" />
+              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Interactive Tool</span>
             </div>
             
             <h2 className="font-display text-4xl leading-tight text-slate-800 sm:text-5xl font-extrabold tracking-tight text-left">

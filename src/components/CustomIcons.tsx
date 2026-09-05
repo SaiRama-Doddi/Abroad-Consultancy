@@ -395,8 +395,8 @@ export function ShieldCheckIcon({ className, size, ...props }: IconProps) {
   );
 }
 
-export function ShieldIcon({ className, size, ...props }: IconProps) {
-  return <ShieldCheckIcon className={className} size={size} {...props} />;
+export function ShieldIcon(props: IconProps) {
+  return <ShieldCheckIcon {...props} />;
 }
 
 // 9. File Text Icon: Detailed visa application document with checkmark
