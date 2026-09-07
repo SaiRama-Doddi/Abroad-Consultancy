@@ -267,18 +267,19 @@ export function ExpertiseSection() {
               </p>
             </div>
 
-            {/* Interactive Scrolling Controls */}
-            <div className="flex flex-wrap items-center gap-3 self-start lg:self-end bg-slate-950/70 border border-slate-800/90 rounded-2xl sm:rounded-full px-4 py-2 backdrop-blur-md shadow-lg">
+            {/* Interactive Scrolling Controls - Compact Single-Row Pill on Mobile */}
+            <div className="flex items-center gap-1.5 sm:gap-3 self-start lg:self-end bg-slate-950/80 border border-slate-800/90 rounded-full px-2.5 sm:px-4 py-1 sm:py-2 backdrop-blur-md shadow-md max-w-full overflow-x-auto shrink-0">
               {/* Live Auto-Scroll Status Indicator */}
-              <div className="flex items-center gap-2 pr-3 border-r border-slate-800">
-                <span className="relative flex h-2.5 w-2.5">
+              <div className="flex items-center gap-1.5 sm:gap-2 pr-2 sm:pr-3 border-r border-slate-800 shrink-0">
+                <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
                   {!isPaused && (
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   )}
-                  <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isPaused ? 'bg-amber-400' : 'bg-emerald-500'}`} />
+                  <span className={`relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 ${isPaused ? 'bg-amber-400' : 'bg-emerald-500'}`} />
                 </span>
-                <span className="text-xs font-semibold text-slate-300 whitespace-nowrap">
-                  {isPaused ? "Paused" : "Continuous Flow"}
+                <span className="text-[10px] sm:text-xs font-semibold text-slate-300 whitespace-nowrap">
+                  <span className="sm:hidden">{isPaused ? "Paused" : "Flow"}</span>
+                  <span className="hidden sm:inline">{isPaused ? "Paused" : "Continuous Flow"}</span>
                 </span>
               </div>
 
@@ -286,22 +287,22 @@ export function ExpertiseSection() {
               <button
                 type="button"
                 onClick={() => setIsPaused(!isPaused)}
-                className="flex items-center gap-1.5 text-xs font-bold text-[var(--gold)] hover:text-amber-300 transition-colors cursor-pointer px-2.5 py-1 rounded-lg hover:bg-slate-900"
+                className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs font-bold text-[var(--gold)] hover:text-amber-300 transition-colors cursor-pointer px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-md hover:bg-slate-900 shrink-0"
                 title={isPaused ? "Resume continuous auto-scroll" : "Pause auto-scroll"}
               >
-                {isPaused ? <Play className="h-3.5 w-3.5 fill-current" /> : <Pause className="h-3.5 w-3.5 fill-current" />}
+                {isPaused ? <Play className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-current" /> : <Pause className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-current" />}
                 <span>{isPaused ? "Resume" : "Pause"}</span>
               </button>
 
               {/* Left / Right Direction Controls */}
-              <div className="flex items-center gap-1 pl-2 border-l border-slate-800">
+              <div className="flex items-center gap-0.5 sm:gap-1 pl-1.5 sm:pl-2 border-l border-slate-800 shrink-0">
                 <button
                   type="button"
                   onClick={() => {
                     setScrollDirection("reverse");
                     setIsPaused(false);
                   }}
-                  className={`p-1.5 rounded-full transition-all cursor-pointer ${
+                  className={`p-1 sm:p-1.5 rounded-full transition-all cursor-pointer ${
                     scrollDirection === "reverse" && !isPaused
                       ? "bg-[var(--gold)] text-slate-950 shadow-sm" 
                       : "text-slate-400 hover:text-white hover:bg-slate-800/80"
@@ -309,7 +310,7 @@ export function ExpertiseSection() {
                   title="Scroll Right"
                   aria-label="Scroll right"
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <ChevronLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </button>
                 <button
                   type="button"
@@ -317,7 +318,7 @@ export function ExpertiseSection() {
                     setScrollDirection("normal");
                     setIsPaused(false);
                   }}
-                  className={`p-1.5 rounded-full transition-all cursor-pointer ${
+                  className={`p-1 sm:p-1.5 rounded-full transition-all cursor-pointer ${
                     scrollDirection === "normal" && !isPaused
                       ? "bg-[var(--gold)] text-slate-950 shadow-sm" 
                       : "text-slate-400 hover:text-white hover:bg-slate-800/80"
@@ -325,7 +326,7 @@ export function ExpertiseSection() {
                   title="Scroll Left"
                   aria-label="Scroll left"
                 >
-                  <ChevronRight className="h-4 w-4" />
+                  <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </button>
               </div>
             </div>
