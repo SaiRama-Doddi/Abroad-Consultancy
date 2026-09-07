@@ -260,16 +260,16 @@ export function SiteFooter() {
             </div>
             
             {/* Unified Sleek Container */}
-            <div className="rounded-2xl bg-slate-950/70 border border-slate-800/90 p-3 sm:p-4 shadow-md w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-1 gap-3 sm:gap-3.5">
+            <div className="rounded-2xl bg-slate-950/70 border border-slate-800/90 p-2.5 sm:p-3.5 shadow-md w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-1 gap-2.5 sm:gap-3">
               
               {/* Item 1: Address */}
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800/70">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rose-500/15 border border-rose-400/35 text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)]">
-                  <MapPin className="h-4.5 w-4.5" />
+              <div className="flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-slate-900/50 border border-slate-800/70">
+                <div className="flex h-8 w-8 sm:h-8.5 sm:w-8.5 shrink-0 items-center justify-center rounded-xl bg-rose-500/15 border border-rose-400/35 text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)]">
+                  <MapPin className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
                 </div>
                 <div className="min-w-0">
                   <span className="block text-[0.58rem] uppercase tracking-wider text-rose-400/90 font-black">Address</span>
-                  <span className="text-white mt-0.5 block text-[0.82rem] font-semibold whitespace-nowrap">Hyderabad, India</span>
+                  <span className="text-white mt-0.5 block text-[0.78rem] sm:text-[0.82rem] font-semibold whitespace-nowrap truncate">Hyderabad, India</span>
                 </div>
               </div>
 
@@ -278,10 +278,10 @@ export function SiteFooter() {
                 href="https://wa.me/918886368886" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800/70 group hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all duration-200 cursor-pointer"
+                className="flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-slate-900/50 border border-slate-800/70 group hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all duration-200 cursor-pointer"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-400/35 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
-                  <Phone className="h-4.5 w-4.5" />
+                <div className="flex h-8 w-8 sm:h-8.5 sm:w-8.5 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-400/35 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+                  <Phone className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-1.5">
@@ -290,21 +290,21 @@ export function SiteFooter() {
                       Chat
                     </span>
                   </div>
-                  <span className="text-white group-hover:text-emerald-400 transition-colors mt-0.5 block text-[0.82rem] font-bold tracking-wide whitespace-nowrap">
+                  <span className="text-white group-hover:text-emerald-400 transition-colors mt-0.5 block text-[0.78rem] sm:text-[0.82rem] font-bold tracking-wide whitespace-nowrap">
                     +91 88863 68886
                   </span>
                 </div>
               </a>
 
               {/* Item 3: Working Hours */}
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800/70">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 border border-amber-400/35 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)]">
-                  <Clock className="h-4.5 w-4.5" />
+              <div className="flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-slate-900/50 border border-slate-800/70">
+                <div className="flex h-8 w-8 sm:h-8.5 sm:w-8.5 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 border border-amber-400/35 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)]">
+                  <Clock className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
                 </div>
                 <div className="min-w-0">
                   <span className="block text-[0.58rem] uppercase tracking-wider text-amber-400/90 font-black">Working Hours</span>
-                  <span className="text-white mt-0.5 block text-[0.82rem] font-semibold whitespace-nowrap">
-                    Mon – Sat: 10AM – 6:30PM
+                  <span className="text-white mt-0.5 block text-[0.74rem] sm:text-[0.78rem] xl:text-[0.82rem] font-semibold leading-tight">
+                    <span>Mon – Sat: </span><span className="whitespace-nowrap">10AM – 6:30PM</span>
                   </span>
                 </div>
               </div>
