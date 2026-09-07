@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { 
   Mail, 
@@ -21,6 +21,18 @@ export function ContactFormSection() {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const handleCountrySelect = (e: Event) => {
+      const customEvent = e as CustomEvent<{ countryCode: string }>;
+      if (customEvent.detail?.countryCode) {
+        const code = customEvent.detail.countryCode.toLowerCase();
+        setFormData((prev) => ({ ...prev, country: code }));
+      }
+    };
+    window.addEventListener("select-country", handleCountrySelect);
+    return () => window.removeEventListener("select-country", handleCountrySelect);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -192,7 +204,8 @@ export function ContactFormSection() {
           {/* Right Column: Premium Contact Form */}
           <ScrollReveal direction="right" delay={350} className="lg:col-span-7 flex w-full">
             <div 
-              className="group/form relative rounded-3xl border border-slate-200 bg-white p-8 sm:p-10 w-full transition-all duration-500 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden"
+              id="free-assessment"
+              className="group/form relative rounded-3xl border border-slate-200 bg-white p-8 sm:p-10 w-full transition-all duration-500 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] overflow-hidden scroll-mt-28"
             >
               {/* Top gold bar accent panel */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/80 scale-x-0 group-hover/form:scale-x-100 transition-transform duration-500 origin-left z-20" />

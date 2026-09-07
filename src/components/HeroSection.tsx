@@ -161,9 +161,9 @@ export function HeroSection() {
           </div>
 
           {/* Main Title heading (Serif + Italic Gold font as shown in screenshot) */}
-          <h1 className="mt-4 font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[4.8rem] xl:text-[5.5rem] leading-[1.05] tracking-tight">
+          <h1 className="mt-4 font-serif text-[2.35rem] xs:text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[4.8rem] xl:text-[5.5rem] leading-[1.08] tracking-tight">
             <span
-              className="block font-semibold text-white"
+              className="block font-semibold text-white whitespace-nowrap"
               style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
               {renderLetterByLetter("McCoy Global", 0.1, 0.04, "animate-letter-in", videoPlaying, 0)}

@@ -19,7 +19,6 @@ import {
   ShieldCheck,
   Gift
 } from "lucide-react";
-import { toast } from "sonner";
 import { ScrollReveal } from "./ScrollReveal";
 
 export interface DestinationBenefit {
@@ -417,15 +416,23 @@ export function DestinationsSection() {
 
   const handleContactClick = (country: Destination) => {
     setSelectedCountry(null);
-    toast.success(`Country selected: ${country.name}!`, {
-      description: "Fill out the contact form below to receive your customized admission & visa guide."
-    });
     
-    // Smooth scroll to contact section
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+    // Notify contact form to pre-select this destination country
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("select-country", { detail: { countryCode: country.code } }));
     }
+
+    // Smooth scroll directly to the form in contact section
+    setTimeout(() => {
+      const formElement = document.getElementById("free-assessment") || document.getElementById("contact");
+      if (formElement) {
+        formElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => {
+          const nameInput = document.getElementById("name");
+          if (nameInput) nameInput.focus();
+        }, 500);
+      }
+    }, 150);
   };
 
   const handleWhatsAppClick = (country: Destination) => {
@@ -723,7 +730,7 @@ export function DestinationsSection() {
       {/* ========================================================================= */}
       {selectedCountry && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-md animate-fade-in overflow-y-auto"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-md animate-fade-in overflow-y-auto"
           onClick={() => setSelectedCountry(null)}
           role="dialog"
           aria-modal="true"
@@ -976,35 +983,36 @@ export function DestinationsSection() {
             </div>
 
             {/* Modal Bottom Action Bar (View Guide, Contact & WhatsApp) */}
-            <div className="p-3.5 sm:p-5 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
-              <div className="text-center sm:text-left">
-                <span className="block text-[0.7rem] font-extrabold uppercase tracking-widest text-[var(--gold)]">
+            <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2.5 shrink-0">
+              <div className="text-center sm:text-left w-full sm:w-auto">
+                <span className="block text-[0.66rem] sm:text-[0.72rem] font-extrabold uppercase tracking-widest text-[var(--gold)]">
                   Free Admission Assessment
                 </span>
-                <span className="text-xs text-slate-500 hidden sm:block">
+                <span className="text-[0.7rem] text-slate-500 hidden sm:block">
                   Personalized university shortlist & visa roadmap
                 </span>
               </div>
 
-              <div className="flex items-center gap-2.5 w-full sm:w-auto">
+              <div className="flex items-center justify-center sm:justify-end gap-2 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => handleWhatsAppClick(selectedCountry)}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-50 text-emerald-700 px-4 py-2.5 text-xs font-bold transition-all hover:bg-emerald-600 hover:text-white hover:scale-105 shadow-sm cursor-pointer"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 rounded-lg sm:rounded-xl border border-emerald-500/30 bg-emerald-50 text-emerald-700 px-3 py-1.5 sm:px-3.5 sm:py-2 text-[0.72rem] sm:text-xs font-bold transition-all hover:bg-emerald-600 hover:text-white hover:scale-105 shadow-sm cursor-pointer whitespace-nowrap"
                   title="Chat directly on WhatsApp"
                 >
-                  <MessageCircle className="h-4 w-4 fill-current" />
+                  <MessageCircle className="h-3.5 w-3.5 fill-current shrink-0" />
                   <span>WhatsApp</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => handleContactClick(selectedCountry)}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-xl text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(224,183,109,0.4)] shadow-md cursor-pointer"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 rounded-lg sm:rounded-xl text-white px-3.5 py-1.5 sm:px-4 sm:py-2 text-[0.72rem] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(224,183,109,0.4)] shadow-sm cursor-pointer whitespace-nowrap"
                   style={{ background: "var(--gradient-gold)" }}
+                  title="Navigate to Free Assessment Form"
                 >
                   <span>View Guide & Contact</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-3.5 w-3.5 shrink-0" />
                 </button>
               </div>
             </div>

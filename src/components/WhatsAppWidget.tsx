@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
-import { toast } from "sonner";
 
 export function WhatsAppWidget() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +17,25 @@ export function WhatsAppWidget() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const checkModal = () => {
+      setIsModalOpen(document.body.style.overflow === "hidden");
+    };
+    // Check initially
+    checkModal();
+    const observer = new MutationObserver(checkModal);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["style"] });
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  if (isModalOpen) return null;
+
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2.5 sm:gap-3 font-sans">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2.5 sm:gap-3 font-sans transition-opacity duration-300">
       
       {/* Scroll to Top (Up Arrow) Button */}
       <button
@@ -42,7 +55,6 @@ export function WhatsAppWidget() {
         href="https://wa.me/918886368886?text=Hi%20Mr.%20B.%20Rohith,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20enquire%20about%20visa%20options."
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => toast.success("Redirecting to WhatsApp chat...")}
         className="group flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full text-white transition-all duration-300 shadow-[0_8px_30px_rgba(37,211,102,0.3)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(37,211,102,0.45)] cursor-pointer"
         style={{ background: "linear-gradient(135deg, #128C7E, #25D366)" }}
         aria-label="Chat on WhatsApp"

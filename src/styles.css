@@ -345,8 +345,17 @@
 @utility animate-shine {
   animation: shine 0.8s ease-in-out;
 }
+@keyframes expertise-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
-
-
+@utility animate-expertise-scroll {
+  animation: expertise-scroll 55s linear infinite;
+}
 
 

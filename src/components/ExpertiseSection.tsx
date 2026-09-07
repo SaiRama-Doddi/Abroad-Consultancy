@@ -17,7 +17,9 @@ import {
   MessageSquare as MessagesSquare, 
   Sparkles,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Pause,
+  Play
 } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
@@ -140,175 +142,188 @@ const expertiseItems: ExpertiseItem[] = [
   }
 ];
 
-// Custom 3D Parallax repeatable reveal component
-function FeatureCardReveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+function ExpertiseCard({ item }: { item: ExpertiseItem }) {
+  const Icon = item.icon;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry) {
-          setIsVisible(entry.isIntersecting);
-        }
-      },
-      { threshold: 0.1, rootMargin: "50px 0px" }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
+  const handleNavigateToAssessment = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const el = document.getElementById("free-assessment") || document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        const nameInput = document.getElementById("name");
+        if (nameInput) nameInput.focus();
+      }, 600);
     }
-
-    return () => observer.disconnect();
-  }, []);
+  };
 
   return (
     <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out sm:[transform-style:preserve-3d] ${className} ${
-        isVisible 
-          ? "opacity-100 translate-y-0 sm:[transform:rotateX(0deg)_scale(1)]" 
-          : "opacity-0 translate-y-4 sm:translate-y-16 sm:[transform:rotateX(12deg)_scale(0.94)]"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      onClick={handleNavigateToAssessment}
+      className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/60 p-3.5 sm:p-4 transition-all duration-500 overflow-hidden w-[280px] sm:w-[320px] md:w-[340px] shrink-0 h-[395px] sm:h-[415px] select-none hover:border-[var(--gold)]/60 hover:bg-slate-900/90 hover:shadow-[0_20px_50px_rgba(184,123,44,0.18)] hover:-translate-y-2 cursor-pointer"
     >
-      {children}
+      {/* Accent gold light glow on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+      
+      {/* Gold bar accent at the bottom of the card on hover */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
+
+      {/* Big Image Section with Left-Top Logo */}
+      <div className="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 shrink-0 select-none">
+        <img 
+          src={item.image} 
+          alt={item.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+          style={{ objectPosition: item.imagePosition || "center" }}
+          loading="lazy"
+        />
+        
+        {/* Subtle dark gradient overlay at the bottom of the image for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
+
+        {/* Left Top Logo / Icon Box */}
+        <div className={`absolute top-2.5 sm:top-3 left-2.5 sm:left-3 flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl backdrop-blur-md border ${item.bg || "bg-slate-950/85 border-[var(--gold)]/35"} ${item.color || "text-[var(--gold)]"} shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 z-20`}>
+          <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:rotate-6" />
+        </div>
+      </div>
+
+      {/* Followed by Content (Title & Description) - Fully Selectable & Copyable */}
+      <div className="flex flex-col flex-1 pt-3.5 sm:pt-4 pb-1 sm:pb-1.5 px-1 sm:px-1.5 z-20 justify-between select-text">
+        <div>
+          {/* Title */}
+          <h4 className="font-sans text-[0.88rem] sm:text-[0.98rem] font-bold uppercase tracking-wide text-white group-hover:text-[var(--gold)] transition-colors duration-300 leading-snug">
+            {item.title}
+          </h4>
+
+          {/* Description text */}
+          <p className="mt-2 text-[0.78rem] sm:text-[0.82rem] leading-relaxed text-slate-300 line-clamp-3">
+            {item.description}
+          </p>
+        </div>
+
+        {/* Card footer detail - click to navigate to Free Confidential Assessment */}
+        <a
+          href="#free-assessment"
+          onClick={handleNavigateToAssessment}
+          className="pt-3 flex items-center justify-between border-t border-slate-800/70 text-[0.74rem] font-semibold text-slate-400 group-hover:text-[var(--gold)] hover:text-[var(--gold)] transition-colors cursor-pointer"
+          title="Navigate to Free Confidential Assessment"
+        >
+          <span className="group-hover:underline underline-offset-4">Explore Guidance</span>
+          <span className="text-sm transition-transform duration-300 group-hover:translate-x-1 font-bold text-[var(--gold)]">→</span>
+        </a>
+      </div>
     </div>
   );
 }
 
 export function ExpertiseSection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const resetPauseTimeout = () => {
-    setIsPaused(true);
-    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
-    pauseTimeoutRef.current = setTimeout(() => {
-      setIsPaused(false);
-    }, 4000);
-  };
-
-  const scrollToCard = (index: number) => {
-    if (scrollRef.current) {
-      const container = scrollRef.current;
-      const cards = container.querySelectorAll('.expertise-item-card');
-      const targetCard = cards[index] as HTMLElement;
-      if (targetCard) {
-        const targetLeft = targetCard.offsetLeft - container.offsetLeft - (container.clientWidth - targetCard.clientWidth) / 2;
-        container.scrollTo({
-          left: Math.max(0, targetLeft),
-          behavior: 'smooth'
-        });
-      }
-    }
-  };
-
-  // Auto-scroll loop for mobile cards (only runs when section is visible in viewport)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (typeof window !== "undefined" && window.innerWidth < 640 && !isPaused && scrollRef.current) {
-        const container = scrollRef.current;
-        // Do not auto-scroll if the section is not in user's vertical viewport
-        const rect = container.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-
-        const nextIndex = (activeIndex + 1) % expertiseItems.length;
-        scrollToCard(nextIndex);
-      }
-    }, 3500);
-
-    return () => {
-      clearInterval(interval);
-      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
-    };
-  }, [activeIndex, isPaused]);
-
-  const scroll = (direction: 'left' | 'right') => {
-    resetPauseTimeout();
-    const targetIdx = direction === 'left' 
-      ? Math.max(0, activeIndex - 1) 
-      : Math.min(expertiseItems.length - 1, activeIndex + 1);
-    scrollToCard(targetIdx);
-  };
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      const container = scrollRef.current;
-      const cards = container.querySelectorAll('.expertise-item-card');
-      if (cards.length === 0) return;
-      
-      const containerCenter = container.scrollLeft + container.clientWidth / 2;
-      let closestIdx = 0;
-      let minDistance = Infinity;
-
-      cards.forEach((cardEl, idx) => {
-        const el = cardEl as HTMLElement;
-        const cardCenter = el.offsetLeft + el.offsetWidth / 2;
-        const dist = Math.abs(containerCenter - cardCenter);
-        if (dist < minDistance) {
-          minDistance = dist;
-          closestIdx = idx;
-        }
-      });
-
-      setActiveIndex(closestIdx);
-    }
-  };
+  const [scrollDirection, setScrollDirection] = useState<"normal" | "reverse">("normal");
 
   return (
     <section id="expertise" className="bg-[#090e1a] text-white pt-16 pb-20 relative overflow-hidden border-b border-slate-800">
+      {/* Inline styles for continuous infinite horizontal scroll */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes expertise-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-expertise-scroll {
+          animation: expertise-scroll 55s linear infinite;
+        }
+      `}} />
+
       {/* Decorative background grid elements */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#e0b76d_1.2px,transparent_1.2px)] [background-size:24px_24px]" />
       
-      {/* Ambient glows behind grid items */}
+      {/* Ambient glows behind items */}
       <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--gold)]/3 rounded-full blur-[130px] pointer-events-none" />
       <div className="absolute bottom-1/3 right-1/3 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-blue-500/3 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
-        
         {/* Section Header */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="text-left w-full mb-8 sm:mb-12 flex flex-col items-start">
-            {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3.5">
-              <Sparkles className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400 animate-pulse" />
-              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Core Competencies</span>
-            </div>
-            
-            <h2 className="font-display text-4xl leading-tight text-white sm:text-5xl font-black tracking-tight text-left">
-              Our <span className="text-[var(--gold)]">Expertise</span>
-            </h2>
-
-            <div className="mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
-
-            <p className="mt-4.5 text-[1.02rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
-              We don't just guide you; we ignite your career potential through dedicated end-to-end overseas migration counseling.
-            </p>
-
-            {/* Mobile Scroll Controls & Status (Only on small screens) */}
-            <div className="flex sm:hidden items-center justify-between w-full mt-6 pt-3 border-t border-slate-800/60">
-              <div className="flex items-center gap-2 text-xs">
-                <span className="font-bold text-[var(--gold)]">{activeIndex + 1}</span>
-                <span className="text-slate-500">/</span>
-                <span className="text-slate-400 font-medium">{expertiseItems.length}</span>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between w-full mb-10 sm:mb-14 gap-6">
+            <div className="flex flex-col items-start max-w-2xl">
+              {/* Premium Capsule Subtitle Badge */}
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3.5">
+                <Sparkles className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400 animate-pulse" />
+                <span className="text-amber-300 tracking-[0.22em] font-extrabold">Core Competencies</span>
               </div>
-              <div className="flex items-center gap-2">
+              
+              <h2 className="font-display text-4xl leading-tight text-white sm:text-5xl font-black tracking-tight text-left">
+                Our <span className="text-[var(--gold)]">Expertise</span>
+              </h2>
+
+              <div className="mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
+
+              <p className="mt-4.5 text-[1.02rem] text-slate-400 leading-relaxed text-left">
+                We don't just guide you; we ignite your career potential through dedicated end-to-end overseas migration counseling.
+              </p>
+            </div>
+
+            {/* Interactive Scrolling Controls */}
+            <div className="flex flex-wrap items-center gap-3 self-start lg:self-end bg-slate-950/70 border border-slate-800/90 rounded-2xl sm:rounded-full px-4 py-2 backdrop-blur-md shadow-lg">
+              {/* Live Auto-Scroll Status Indicator */}
+              <div className="flex items-center gap-2 pr-3 border-r border-slate-800">
+                <span className="relative flex h-2.5 w-2.5">
+                  {!isPaused && (
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  )}
+                  <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isPaused ? 'bg-amber-400' : 'bg-emerald-500'}`} />
+                </span>
+                <span className="text-xs font-semibold text-slate-300 whitespace-nowrap">
+                  {isPaused ? "Paused" : "Continuous Flow"}
+                </span>
+              </div>
+
+              {/* Pause / Resume button */}
+              <button
+                type="button"
+                onClick={() => setIsPaused(!isPaused)}
+                className="flex items-center gap-1.5 text-xs font-bold text-[var(--gold)] hover:text-amber-300 transition-colors cursor-pointer px-2.5 py-1 rounded-lg hover:bg-slate-900"
+                title={isPaused ? "Resume continuous auto-scroll" : "Pause auto-scroll"}
+              >
+                {isPaused ? <Play className="h-3.5 w-3.5 fill-current" /> : <Pause className="h-3.5 w-3.5 fill-current" />}
+                <span>{isPaused ? "Resume" : "Pause"}</span>
+              </button>
+
+              {/* Left / Right Direction Controls */}
+              <div className="flex items-center gap-1 pl-2 border-l border-slate-800">
                 <button
-                  onClick={() => scroll('left')}
-                  disabled={activeIndex === 0}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-800 bg-slate-900/90 text-slate-300 disabled:opacity-30 disabled:pointer-events-none hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors active:scale-95 shadow-sm"
-                  aria-label="Previous expertise card"
+                  type="button"
+                  onClick={() => {
+                    setScrollDirection("reverse");
+                    setIsPaused(false);
+                  }}
+                  className={`p-1.5 rounded-full transition-all cursor-pointer ${
+                    scrollDirection === "reverse" && !isPaused
+                      ? "bg-[var(--gold)] text-slate-950 shadow-sm" 
+                      : "text-slate-400 hover:text-white hover:bg-slate-800/80"
+                  }`}
+                  title="Scroll Right"
+                  aria-label="Scroll right"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <button
-                  onClick={() => scroll('right')}
-                  disabled={activeIndex === expertiseItems.length - 1}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-800 bg-slate-900/90 text-slate-300 disabled:opacity-30 disabled:pointer-events-none hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors active:scale-95 shadow-sm"
-                  aria-label="Next expertise card"
+                  type="button"
+                  onClick={() => {
+                    setScrollDirection("normal");
+                    setIsPaused(false);
+                  }}
+                  className={`p-1.5 rounded-full transition-all cursor-pointer ${
+                    scrollDirection === "normal" && !isPaused
+                      ? "bg-[var(--gold)] text-slate-950 shadow-sm" 
+                      : "text-slate-400 hover:text-white hover:bg-slate-800/80"
+                  }`}
+                  title="Scroll Left"
+                  aria-label="Scroll left"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
@@ -316,92 +331,53 @@ export function ExpertiseSection() {
             </div>
           </div>
         </ScrollReveal>
+      </div>
 
-        {/* Expertise Cards Container: Horizontal Snap-Scroll on Mobile, Grid on Tablet/Desktop */}
-        <div 
-          ref={scrollRef}
-          onScroll={handleScroll}
-          onTouchStart={resetPauseTimeout}
-          onMouseEnter={resetPauseTimeout}
-          className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory sm:snap-none scroll-smooth scrollbar-none sm:[perspective:1000px]"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPadding: '0 1rem' }}
-        >
-          {expertiseItems.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <FeatureCardReveal 
-                key={item.title} 
-                delay={(idx % 4) * 80}
-                className="expertise-item-card shrink-0 w-[85vw] max-w-[320px] sm:w-auto sm:shrink snap-center sm:snap-align-none flex sm:[transform-style:preserve-3d]"
-              >
-                <div
-                  className="group relative flex flex-col rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/50 p-3.5 sm:p-4 transition-all duration-500 overflow-hidden w-full h-full sm:[transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:sm:[transform:rotateX(4deg)_rotateY(-5deg)_translateZ(14px)] hover:shadow-[0_22px_55px_rgba(184,123,44,0.18)]"
-                >
-                  {/* Accent gold light glow on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
-                  
-                  {/* Gold bar accent at the bottom of the card on hover */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
+      {/* Horizontal Continuous Infinite Scrolling Track */}
+      <ScrollReveal direction="up" delay={200}>
+        <div className="relative w-full overflow-hidden py-4">
+          {/* Left & Right gradient fade masks for smooth seamless edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 md:w-36 bg-gradient-to-r from-[#090e1a] via-[#090e1a]/80 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 md:w-36 bg-gradient-to-l from-[#090e1a] via-[#090e1a]/80 to-transparent z-20 pointer-events-none" />
 
-                  {/* Big Image Section with Left-Top Logo */}
-                  <div className="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 shrink-0 select-none sm:[transform-style:preserve-3d]">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
-                      style={{ objectPosition: item.imagePosition || "center" }}
-                      loading="lazy"
-                    />
-                    
-                    {/* Subtle dark gradient overlay at the bottom of the image for contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
+          {/* Marquee Row */}
+          <div 
+            className="flex w-max select-none cursor-grab active:cursor-grabbing hover:[animation-play-state:paused]"
+            style={{
+              animationName: "expertise-scroll",
+              animationDuration: "55s",
+              animationTimingFunction: "linear",
+              animationIterationCount: "infinite",
+              animationPlayState: isPaused ? "paused" : "running",
+              animationDirection: scrollDirection === "reverse" ? "reverse" : "normal",
+            }}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => {
+              setTimeout(() => setIsPaused(false), 2500);
+            }}
+          >
+            {/* Track 1: Original 13 Expertise Cards */}
+            <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0">
+              {expertiseItems.map((item) => (
+                <ExpertiseCard key={`track1-${item.title}`} item={item} />
+              ))}
+            </div>
 
-                    {/* Left Top Logo / Icon Box */}
-                    <div className={`absolute top-2.5 sm:top-3 left-2.5 sm:left-3 flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-lg sm:rounded-xl backdrop-blur-md border ${item.bg || "bg-slate-950/85 border-[var(--gold)]/35"} ${item.color || "text-[var(--gold)]"} shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 group-hover:scale-110 z-20 sm:[transform:translateZ(20px)]`}>
-                      <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:rotate-6" />
-                    </div>
-                  </div>
-
-                  {/* Followed by Content (Title & Description) - Fully Selectable & Copyable */}
-                  <div className="flex flex-col flex-1 pt-3 sm:pt-4 pb-1.5 sm:pb-2 px-1 sm:px-1.5 z-20 sm:[transform:translateZ(15px)] select-text">
-                    {/* Title */}
-                    <h4 className="font-sans text-[0.88rem] sm:text-[0.98rem] font-bold uppercase tracking-wide text-white group-hover:text-[var(--gold)] transition-colors duration-300 leading-snug select-text cursor-text">
-                      {item.title}
-                    </h4>
-
-                    {/* Description text */}
-                    <p className="mt-1.5 sm:mt-2 text-[0.78rem] sm:text-[0.82rem] leading-relaxed text-slate-300 text-justify select-text cursor-text">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </FeatureCardReveal>
-            );
-          })}
-          
-          {/* End spacer so the last card has trailing breathing room and is never cropped */}
-          <div className="shrink-0 w-2 sm:hidden pointer-events-none" aria-hidden="true" />
+            {/* Track 2: Duplicate for seamless gapless loop */}
+            <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0" aria-hidden="true">
+              {expertiseItems.map((item) => (
+                <ExpertiseCard key={`track2-${item.title}`} item={item} />
+              ))}
+            </div>
+          </div>
         </div>
+      </ScrollReveal>
 
-        {/* Mobile Pagination Indicator Dots */}
-        <div className="flex sm:hidden justify-center items-center gap-1.5 mt-4">
-          {expertiseItems.map((_, dotIdx) => (
-            <button
-              key={dotIdx}
-              onClick={() => {
-                resetPauseTimeout();
-                scrollToCard(dotIdx);
-              }}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                dotIdx === activeIndex 
-                  ? 'w-6 bg-[var(--gold)]' 
-                  : 'w-1.5 bg-slate-800'
-              }`}
-              aria-label={`Go to slide ${dotIdx + 1}`}
-            />
-          ))}
-        </div>
-
+      {/* Helper caption below marquee */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 mt-6">
+        <p className="text-center text-xs text-slate-500 font-medium tracking-wide">
+          ✦ Hover or tap any competency card to pause & explore in detail
+        </p>
       </div>
     </section>
   );
