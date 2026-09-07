@@ -121,10 +121,10 @@ export function SiteFooter() {
         {/* =========================================================================
             MIDDLE SECTION: Responsive Grid (Brand, Explore, Useful Links, Services, Contact)
             ========================================================================= */}
-        <div className="grid gap-6 sm:gap-8 grid-cols-2 md:grid-cols-12 lg:grid-cols-12 py-6 sm:py-10 border-b border-slate-800/80">
+        <div className="grid gap-6 sm:gap-8 grid-cols-2 md:grid-cols-12 xl:grid-cols-12 py-6 sm:py-10 border-b border-slate-800/80">
           
           {/* Column 1: Brand Info & Social Links */}
-          <div className="flex flex-col items-start text-left gap-4 col-span-2 md:col-span-6 lg:col-span-3">
+          <div className="flex flex-col items-start text-left gap-4 col-span-2 md:col-span-12 xl:col-span-3">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-18 items-center justify-center rounded-xl bg-white p-1.5 overflow-hidden shadow-[0_4px_20px_rgba(224,183,109,0.15)] border border-[var(--gold)]/20 shrink-0">
                 <img src="/logo.png" alt="McCoy Global Logo" className="h-full w-full object-contain" />
@@ -134,7 +134,7 @@ export function SiteFooter() {
                 <span className="text-[0.6rem] tracking-[0.3em] uppercase text-[var(--gold)] font-bold block mt-1">Consultancy</span>
               </div>
             </div>
-            <p className="text-[0.84rem] leading-relaxed text-slate-300 text-left pr-2 font-medium">
+            <p className="text-[0.84rem] leading-relaxed text-slate-300 text-left pr-2 font-medium max-w-xl">
               Licensed overseas education and migration consultancy. Honest advice,
               transparent fees, and a consultant who answers the phone.
             </p>
@@ -189,7 +189,7 @@ export function SiteFooter() {
           </div>
 
           {/* Column 2: Explore */}
-          <div className="text-left col-span-1 md:col-span-3 lg:col-span-2">
+          <div className="text-left col-span-1 md:col-span-4 xl:col-span-2">
             <div className="flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] shrink-0" />
               <h3 className="text-xs uppercase tracking-[0.2em] text-[var(--gold)] font-black">Explore</h3>
@@ -210,7 +210,7 @@ export function SiteFooter() {
           </div>
 
           {/* Column 3: Useful Links */}
-          <div className="text-left col-span-1 md:col-span-3 lg:col-span-2">
+          <div className="text-left col-span-1 md:col-span-4 xl:col-span-2">
             <div className="flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] shrink-0" />
               <h3 className="text-xs uppercase tracking-[0.2em] text-[var(--gold)] font-black">Useful Links</h3>
@@ -231,12 +231,12 @@ export function SiteFooter() {
           </div>
 
           {/* Column 4: Services */}
-          <div className="text-left col-span-2 md:col-span-6 lg:col-span-2">
+          <div className="text-left col-span-2 md:col-span-4 xl:col-span-2">
             <div className="flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] shrink-0" />
               <h3 className="text-xs uppercase tracking-[0.2em] text-[var(--gold)] font-black">Services</h3>
             </div>
-            {/* 2-column subgrid on mobile to save vertical scrolling and balance layout */}
+            {/* 2-column subgrid on mobile, 1 column on tablet & desktop */}
             <ul className="grid grid-cols-2 md:grid-cols-1 gap-x-4 gap-y-2 font-bold">
               {serviceLinks.map((item) => (
                 <li key={item.name}>
@@ -252,67 +252,63 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* Column 5: Contact Details - Fully Responsive Card */}
-          <div className="text-left col-span-2 md:col-span-6 lg:col-span-3">
+          {/* Column 5: Contact Details - Responsive 3-Card Strip on Tablet, Vertical Stack on Desktop */}
+          <div className="text-left col-span-2 md:col-span-12 xl:col-span-3">
             <div className="flex items-center gap-2 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] shrink-0" />
               <h3 className="text-xs uppercase tracking-[0.2em] text-[var(--gold)] font-black">Contact Us</h3>
             </div>
             
             {/* Unified Sleek Container */}
-            <div className="rounded-2xl bg-slate-950/70 border border-slate-800/90 p-3.5 sm:p-4 space-y-3 shadow-md w-full">
-              {/* Address */}
-              <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-rose-500/15 border border-rose-400/35 text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)]">
-                  <MapPin className="h-4 w-4" />
+            <div className="rounded-2xl bg-slate-950/70 border border-slate-800/90 p-3 sm:p-4 shadow-md w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-1 gap-3 sm:gap-3.5">
+              
+              {/* Item 1: Address */}
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800/70">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rose-500/15 border border-rose-400/35 text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)]">
+                  <MapPin className="h-4.5 w-4.5" />
                 </div>
                 <div className="min-w-0">
-                  <span className="block text-[0.58rem] uppercase tracking-wider text-rose-400/90 font-black whitespace-nowrap">Address</span>
+                  <span className="block text-[0.58rem] uppercase tracking-wider text-rose-400/90 font-black">Address</span>
                   <span className="text-white mt-0.5 block text-[0.82rem] font-semibold whitespace-nowrap">Hyderabad, India</span>
                 </div>
               </div>
 
-              <div className="h-[1px] bg-slate-800/70 w-full" />
-
-              {/* WhatsApp / Phone with direct Chat badge */}
+              {/* Item 2: WhatsApp / Phone with direct Chat badge */}
               <a 
                 href="https://wa.me/918886368886" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center justify-between gap-2 group hover:bg-emerald-500/10 -mx-1.5 px-1.5 py-1 rounded-xl transition-all duration-200 cursor-pointer"
+                className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800/70 group hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all duration-200 cursor-pointer"
               >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-400/35 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
-                    <Phone className="h-4 w-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <span className="block text-[0.58rem] uppercase tracking-wider text-emerald-400/90 font-black whitespace-nowrap">WhatsApp & Call</span>
-                    </div>
-                    <span className="text-white group-hover:text-emerald-400 transition-colors mt-0.5 block text-[0.82rem] font-semibold tracking-wide whitespace-nowrap">
-                      +91 88863 68886
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-400/35 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+                  <Phone className="h-4.5 w-4.5" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-1.5">
+                    <span className="block text-[0.58rem] uppercase tracking-wider text-emerald-400/90 font-black whitespace-nowrap">WhatsApp & Call</span>
+                    <span className="text-[0.55rem] bg-emerald-500/20 text-emerald-400 border border-emerald-500/35 px-1.5 py-0.2 rounded-full font-bold uppercase tracking-wider shrink-0 transition-transform group-hover:scale-105">
+                      Chat
                     </span>
                   </div>
+                  <span className="text-white group-hover:text-emerald-400 transition-colors mt-0.5 block text-[0.82rem] font-bold tracking-wide whitespace-nowrap">
+                    +91 88863 68886
+                  </span>
                 </div>
-                <span className="text-[0.62rem] bg-emerald-500/20 text-emerald-400 border border-emerald-500/35 px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider shrink-0 transition-transform group-hover:scale-105">
-                  Chat
-                </span>
               </a>
 
-              <div className="h-[1px] bg-slate-800/70 w-full" />
-
-              {/* Working Hours */}
-              <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 border border-amber-400/35 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)]">
-                  <Clock className="h-4 w-4" />
+              {/* Item 3: Working Hours */}
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800/70">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 border border-amber-400/35 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)]">
+                  <Clock className="h-4.5 w-4.5" />
                 </div>
                 <div className="min-w-0">
-                  <span className="block text-[0.58rem] uppercase tracking-wider text-amber-400/90 font-black whitespace-nowrap">Working Hours</span>
+                  <span className="block text-[0.58rem] uppercase tracking-wider text-amber-400/90 font-black">Working Hours</span>
                   <span className="text-white mt-0.5 block text-[0.82rem] font-semibold whitespace-nowrap">
                     Mon – Sat: 10AM – 6:30PM
                   </span>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
