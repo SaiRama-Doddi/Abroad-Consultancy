@@ -6,15 +6,18 @@ export function Preloader() {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Start fading out after the flight takeoff completes (2.3s)
+    // Start fading out fast (0.9s) so logo loading is quick and snappy
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
-    }, 2300);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("preloaderDone"));
+      }
+    }, 900);
 
-    // Completely unmount after transition completes (3s)
+    // Completely unmount in 1.4s
     const removeTimer = setTimeout(() => {
       setShow(false);
-    }, 3000);
+    }, 1400);
 
     return () => {
       clearTimeout(fadeTimer);
@@ -111,7 +114,7 @@ export function Preloader() {
 
         {/* Circular Logo Card */}
         <div className="relative z-10 flex h-28 w-44 items-center justify-center rounded-2xl bg-white p-4 shadow-[0_15px_50px_rgba(224,183,109,0.22)] border-2 border-[var(--gold)]/30 transition-transform duration-700 animate-[pulse_2s_infinite]">
-          <img src="/logo.png" alt="McCoy Global Logo" className="h-full w-full object-contain" />
+          <img src="/logo.png" alt="McCoy Global Logo" className="h-full w-full object-contain" loading="eager" decoding="sync" />
         </div>
 
         {/* Slogan Title */}

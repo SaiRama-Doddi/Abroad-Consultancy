@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Calendar, Globe, FileText, Shield, Handshake } from "lucide-react";
 
 function renderLetterByLetter(
@@ -7,7 +7,8 @@ function renderLetterByLetter(
   charStagger: number,
   animateClass: string,
   active: boolean,
-  startIndex: number = 0
+  startIndex: number = 0,
+  extraCharClass: string = ""
 ) {
   let charIndex = startIndex;
   return text.split(" ").map((word, wi) => {
@@ -20,7 +21,7 @@ function renderLetterByLetter(
           return (
             <span
               key={ci}
-              className={`${active ? animateClass : "opacity-0"} inline-block`}
+              className={`${active ? animateClass : "opacity-0"} ${extraCharClass} inline-block`}
               style={{ animationDelay: `${delay}s` }}
             >
               {ch}
@@ -87,8 +88,100 @@ const HIGHLIGHT_CARDS = [
   }
 ];
 
+function HighlightCardItem({
+  card,
+  idx
+}: {
+  card: (typeof HIGHLIGHT_CARDS)[0];
+  idx: number;
+}) {
+  const [visible, setVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+
+    // Triggers while scrolling into viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        } else {
+          // Reset when scrolled out so it transitions dynamically while scrolling
+          setVisible(false);
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const Icon = card.icon;
+
+  // Alternating transition: Even cards slide Left to Right, Odd cards drop Top to Bottom
+  const isLeftToRight = idx % 2 === 0;
+
+  const transitionClasses = visible
+    ? "translate-x-0 translate-y-0 opacity-100 scale-100"
+    : isLeftToRight
+    ? "-translate-x-20 translate-y-0 opacity-0 scale-[0.95]"
+    : "translate-x-0 -translate-y-16 opacity-0 scale-[0.95]";
+
+  return (
+    <div
+      ref={cardRef}
+      className={`group flex flex-col justify-between h-full rounded-xl border border-white/10 bg-white/[0.035] p-3.5 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all duration-700 ease-out hover:border-white/20 hover:bg-white/[0.07] hover:-translate-y-1 will-change-transform ${transitionClasses}`}
+    >
+      <div>
+        {/* Consistent Height Header: Responsive Icons and Titles */}
+        <div className="flex items-center gap-3 sm:gap-3.5 min-h-[44px] sm:min-h-[48px]">
+          <div
+            className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl ${card.color.bg} ${card.color.text} border ${card.color.border} transition-all duration-500 group-hover:rotate-6 ${card.color.hoverBg} ${card.color.hoverBorder} group-hover:scale-110 ${card.color.shadow}`}
+          >
+            <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
+          </div>
+          <h3 className="font-sans text-xs sm:text-[0.88rem] font-bold tracking-wider text-white uppercase leading-snug">
+            {card.title}
+          </h3>
+        </div>
+
+        {/* Responsive Description Text */}
+        <p className="mt-2.5 sm:mt-3.5 text-xs sm:text-[0.84rem] leading-relaxed text-white/80 group-hover:text-white transition-colors text-left sm:text-justify">
+          {card.description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function HeroSection() {
   const [videoPlaying, setVideoPlaying] = useState(true);
+  const [animationStarted, setAnimationStarted] = useState(false);
+
+  useEffect(() => {
+    const handlePreloaderDone = () => {
+      setAnimationStarted(true);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("preloaderDone", handlePreloaderDone);
+    }
+
+    // Snappy fallback so mobile heading starts promptly with fast preloader (0.95s)
+    const timer = setTimeout(() => {
+      setAnimationStarted(true);
+    }, 950);
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("preloaderDone", handlePreloaderDone);
+      }
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <section
@@ -160,28 +253,57 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Main Title heading (Serif + Italic Gold font as shown in screenshot) */}
+          {/* Main Title heading (Each letter of McCoy Global falls down, Consultancy with decreased shade) */}
           <h1 className="mt-4 font-serif text-[2.35rem] xs:text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[4.8rem] xl:text-[5.5rem] leading-[1.08] tracking-tight">
             <span
               className="block font-semibold text-white whitespace-nowrap"
-              style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
+              style={{ textShadow: "0 2px 14px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
             >
-              {renderLetterByLetter("McCoy Global", 0.1, 0.04, "animate-letter-in", videoPlaying, 0)}
+              {renderLetterByLetter("McCoy Global", 0.04, 0.08, "animate-letter-drop", animationStarted, 0)}
             </span>
-            <span
-              className="block mt-1 sm:mt-2 text-[var(--gold)] font-normal italic"
-              style={{ textShadow: "0 2px 12px rgba(6, 10, 21, 0.95), 0 4px 30px rgba(6, 10, 21, 0.8), 0 1px 2px rgba(6, 10, 21, 0.95)" }}
+            <span 
+              className="relative inline-block mt-1 sm:mt-2 font-normal italic animate-gold-glow select-none"
+              style={{ textShadow: "0 2px 8px rgba(0, 0, 0, 0.35)" }}
             >
-              {renderLetterByLetter("Consultancy", 0.1, 0.04, "animate-letter-in", videoPlaying, 12)}
+              {renderLetterByLetter(
+                "Consultancy",
+                0.95,
+                0.05,
+                "animate-letter-drop-gold",
+                animationStarted,
+                11,
+                "text-gold-metallic"
+              )}
+              {/* Luxury Accent Sparkles */}
+              <span className="absolute -top-1 -right-4 sm:-right-6 pointer-events-none" aria-hidden="true">
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-amber-200 animate-sparkle-1 filter drop-shadow-[0_0_8px_rgba(250,204,21,0.95)]"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 0L14.2 9.8L24 12L14.2 14.2L12 24L9.8 14.2L0 12L9.8 9.8L12 0Z" />
+                </svg>
+              </span>
+              <span className="absolute -top-2 left-2 sm:left-3 pointer-events-none" aria-hidden="true">
+                <svg
+                  className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-yellow-100 animate-sparkle-2 filter drop-shadow-[0_0_6px_rgba(254,240,138,0.9)]"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 0L14.2 9.8L24 12L14.2 14.2L12 24L9.8 14.2L0 12L9.8 9.8L12 0Z" />
+                </svg>
+              </span>
             </span>
           </h1>
 
 
           {/* Subtitle description */}
           <p
-            className="mt-4 max-w-xl text-base leading-relaxed text-white animate-fade-rise opacity-0 sm:text-lg"
+            className={`mt-4 max-w-xl text-base leading-relaxed text-white sm:text-lg transition-all duration-700 ${
+              animationStarted ? "animate-fade-rise opacity-100" : "opacity-0"
+            }`}
             style={{
-              animationDelay: "0.7s",
+              animationDelay: "1.55s",
               textShadow: "0 2px 10px rgba(6, 10, 21, 0.95), 0 1px 3px rgba(6, 10, 21, 0.9)"
             }}
           >
@@ -191,8 +313,10 @@ export function HeroSection() {
 
           {/* CTA Action Button */}
           <div
-            className="mt-5 flex flex-col sm:flex-row flex-wrap gap-4 animate-fade-rise opacity-0"
-            style={{ animationDelay: "0.9s" }}
+            className={`mt-5 flex flex-col sm:flex-row flex-wrap gap-4 transition-all duration-700 ${
+              animationStarted ? "animate-fade-rise opacity-100" : "opacity-0"
+            }`}
+            style={{ animationDelay: "1.75s" }}
           >
             <a
               href="#contact"
@@ -205,41 +329,12 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Bottom Highlights - Aligned & Justified Cards */}
-        <div
-          className="mt-6 w-full rounded-2xl border border-white/10 bg-[#060a15]/75 p-4 sm:p-5 backdrop-blur-xl animate-slide-up opacity-0 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-          style={{ animationDelay: "1.1s" }}
-        >
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
-            {HIGHLIGHT_CARDS.map((card, idx) => {
-              const Icon = card.icon;
-              return (
-                <div
-                  key={idx}
-                  className="group flex flex-col justify-between h-full rounded-xl border border-white/5 bg-white/[0.025] p-4 sm:p-5 transition-all duration-300 hover:border-white/15 hover:bg-white/[0.06] hover:-translate-y-1 shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
-                >
-                  <div>
-                    {/* Consistent Height Header: Colorful Icons and Titles perfectly aligned */}
-                    <div className="flex items-center gap-3.5 min-h-[48px]">
-                      <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${card.color.bg} ${card.color.text} border ${card.color.border} transition-all duration-500 group-hover:rotate-6 ${card.color.hoverBg} ${card.color.hoverBorder} group-hover:scale-110 ${card.color.shadow}`}>
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="font-sans text-xs sm:text-[0.88rem] font-bold tracking-wider text-white uppercase leading-snug">
-                        {card.title}
-                      </h3>
-                    </div>
-
-                    {/* Justified Description Text */}
-                    <p
-                      className="mt-3.5 text-xs sm:text-[0.84rem] leading-relaxed text-white/80 group-hover:text-white transition-colors"
-                      style={{ textAlign: "justify", textJustify: "inter-word" }}
-                    >
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+        {/* Bottom Highlights - Responsive Cards with Left-to-Right and Top-to-Bottom Transitions */}
+        <div className="mt-6 sm:mt-8 w-full rounded-2xl border border-white/10 bg-[#060a15]/80 p-3.5 sm:p-5 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch">
+            {HIGHLIGHT_CARDS.map((card, idx) => (
+              <HighlightCardItem key={idx} card={card} idx={idx} />
+            ))}
           </div>
         </div>
       </div>

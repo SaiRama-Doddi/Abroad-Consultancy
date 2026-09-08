@@ -234,6 +234,102 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
+@keyframes slide-diagonal {
+  0% {
+    opacity: 0;
+    transform: translate(-45px, -35px) scale(0.96);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 1;
+    transform: translate(5px, 4px) scale(1.01);
+    filter: blur(0);
+  }
+  85% {
+    transform: translate(-1px, -1px) scale(0.998);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes letter-fall-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1.15) rotate(-3deg);
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  72% {
+    transform: translateY(7px) scale(0.97) rotate(0.8deg);
+  }
+  86% {
+    transform: translateY(-2px) scale(1.01) rotate(-0.2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes letter-fall-gold {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1.15) rotate(-3deg);
+    filter: blur(5px) brightness(1.25);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0) brightness(1.12);
+  }
+  72% {
+    transform: translateY(7px) scale(0.97) rotate(0.8deg);
+  }
+  86% {
+    transform: translateY(-2px) scale(1.01) rotate(-0.2deg);
+    filter: brightness(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+    filter: blur(0) brightness(1);
+  }
+}
+
+@keyframes gold-glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 2px 8px rgba(245, 180, 50, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 2px 14px rgba(250, 204, 21, 0.5)) brightness(1.08);
+  }
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.2) rotate(70deg);
+  }
+  60% {
+    opacity: 0.8;
+    transform: scale(0.85) rotate(135deg);
+  }
+  85% {
+    opacity: 0;
+    transform: scale(0.2) rotate(180deg);
+  }
+}
+
 @keyframes gold-shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
@@ -256,6 +352,33 @@
   animation: letter-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@utility animate-letter-drop {
+  animation: letter-fall-down 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-letter-drop-gold {
+  animation: letter-fall-gold 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-gold-glow {
+  animation: gold-glow-pulse 3.5s ease-in-out infinite;
+}
+
+@utility animate-sparkle-1 {
+  animation: sparkle-twinkle 3.2s ease-in-out 1.2s infinite;
+}
+
+@utility animate-sparkle-2 {
+  animation: sparkle-twinkle 3.5s ease-in-out 2.5s infinite;
+}
+
+@utility text-gold-metallic {
+  background: linear-gradient(180deg, #ffffff 0%, #fff6d6 18%, #fde08b 42%, #f5b027 72%, #df8e12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 @utility animate-line-grow {
   transform-origin: left;
   animation: line-grow 1.4s 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -275,6 +398,10 @@
 
 @utility animate-slide-left {
   animation: slide-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-slide-diagonal {
+  animation: slide-diagonal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @utility animate-gold-shimmer {
