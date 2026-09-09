@@ -110,8 +110,9 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry) {
-          setIsVisible(entry.isIntersecting);
+        if (entry && entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.1, rootMargin: "50px 0px" }

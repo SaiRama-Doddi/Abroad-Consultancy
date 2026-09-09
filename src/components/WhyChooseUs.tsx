@@ -98,19 +98,20 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry) {
-          setIsVisible(entry.isIntersecting);
+        if (entry && entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.2, rootMargin: "0px 0px -100px 0px" }
+      { threshold: 0.1 }
     );
 
-  if (ref.current) {
-    observer.observe(ref.current);
-  }
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
-  return () => observer.disconnect();
-}, []);
+    return () => observer.disconnect();
+  }, []);
 
 return (
   <div

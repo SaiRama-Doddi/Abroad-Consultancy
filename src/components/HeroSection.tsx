@@ -90,50 +90,60 @@ const HIGHLIGHT_CARDS = [
 
 function HighlightCardItem({
   card,
-  idx
+  idx,
+  parentReady = false,
 }: {
   card: (typeof HIGHLIGHT_CARDS)[0];
   idx: number;
+  parentReady?: boolean;
 }) {
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
 
-    // Triggers while scrolling into viewport
+    // Dynamically transitions both when scrolling down and when scrolling up
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-        } else {
-          // Reset when scrolled out so it transitions dynamically while scrolling
-          setVisible(false);
-        }
+        setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      {
+        threshold: 0.06,
+        rootMargin: "25px 0px -25px 0px",
+      }
     );
 
     observer.observe(el);
+
+    // Initial check on mount so cards are visible immediately if in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setIsVisible(true);
+    }
+
     return () => observer.disconnect();
-  }, []);
+  }, [parentReady]);
 
   const Icon = card.icon;
 
   // Alternating transition: Even cards slide Left to Right, Odd cards drop Top to Bottom
   const isLeftToRight = idx % 2 === 0;
 
-  const transitionClasses = visible
+  const transitionClasses = isVisible
     ? "translate-x-0 translate-y-0 opacity-100 scale-100"
     : isLeftToRight
-    ? "-translate-x-20 translate-y-0 opacity-0 scale-[0.95]"
-    : "translate-x-0 -translate-y-16 opacity-0 scale-[0.95]";
+    ? "-translate-x-7 sm:-translate-x-12 translate-y-0 opacity-0 scale-[0.97]"
+    : "translate-x-0 -translate-y-6 sm:-translate-y-9 opacity-0 scale-[0.97]";
 
   return (
     <div
       ref={cardRef}
-      className={`group flex flex-col justify-between h-full rounded-xl border border-white/10 bg-white/[0.035] p-3.5 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all duration-700 ease-out hover:border-white/20 hover:bg-white/[0.07] hover:-translate-y-1 will-change-transform ${transitionClasses}`}
+      className={`group flex flex-col justify-between h-full rounded-xl border border-white/10 bg-white/[0.035] p-3.5 sm:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all duration-[420ms] ease-out hover:border-white/20 hover:bg-white/[0.07] hover:-translate-y-1 active:scale-[0.98] will-change-transform will-change-[opacity] ${transitionClasses}`}
+      style={{
+        transitionDelay: `${idx * 65}ms`,
+      }}
     >
       <div>
         {/* Consistent Height Header: Responsive Icons and Titles */}
@@ -333,7 +343,12 @@ export function HeroSection() {
         <div className="mt-6 sm:mt-8 w-full rounded-2xl border border-white/10 bg-[#060a15]/80 p-3.5 sm:p-5 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch">
             {HIGHLIGHT_CARDS.map((card, idx) => (
-              <HighlightCardItem key={idx} card={card} idx={idx} />
+              <HighlightCardItem
+                key={idx}
+                card={card}
+                idx={idx}
+                parentReady={animationStarted}
+              />
             ))}
           </div>
         </div>
