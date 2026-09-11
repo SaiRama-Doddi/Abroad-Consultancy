@@ -373,13 +373,6 @@ export function ExpertiseSection() {
           </div>
         </div>
       </ScrollReveal>
-
-      {/* Helper caption below marquee */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 mt-6">
-        <p className="text-center text-xs text-slate-500 font-medium tracking-wide">
-          ✦ Hover or tap any competency card to pause & explore in detail
-        </p>
-      </div>
     </section>
   );
 }
