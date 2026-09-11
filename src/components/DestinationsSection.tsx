@@ -999,12 +999,12 @@ export function DestinationsSection() {
         {/* ROW 2: Tourism & Visitor Visa (Right to Left Scrolling)                   */}
         {/* ========================================================================= */}
         <div className="mt-8 sm:mt-12 pt-2">
-          {/* Side Heading: Tourism and Visitor Visa */}
+          {/* Side Heading: Tourism & Visitor Visa */}
           <ScrollReveal direction="up" delay={100}>
             <div className="flex items-center gap-3 mb-4">
               <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] shrink-0">
                 <Plane className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
-                <h3 className="text-amber-300 tracking-[0.22em] font-extrabold text-[0.72rem] sm:text-[0.75rem] uppercase m-0 p-0">Tourism and Visitor Visa</h3>
+                <h3 className="text-amber-300 tracking-[0.22em] font-extrabold text-[0.72rem] sm:text-[0.75rem] uppercase m-0 p-0">Tourism & Visitor Visa</h3>
               </div>
               <div className="h-px flex-1 bg-gradient-to-r from-amber-400/40 via-slate-200 to-transparent" />
             </div>
