@@ -199,10 +199,10 @@ export function WhyChooseUs() {
                     <span className="text-amber-300">Top Advisory Leadership</span>
                   </div>
 
-                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-[2rem] font-bold text-white tracking-normal leading-tight">
+                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-[2.1rem] font-black text-white tracking-normal leading-tight drop-shadow-sm">
                     Mr. B. Rohith
                   </h3>
-                  <span className="block mt-1.5 sm:mt-2 text-[0.74rem] sm:text-[0.78rem] font-bold uppercase tracking-[0.18em] text-[var(--gold)] leading-none">
+                  <span className="block mt-1.5 sm:mt-2 text-[0.74rem] sm:text-[0.78rem] font-extrabold uppercase tracking-[0.18em] text-[var(--gold)] leading-none">
                     Founder & Managing Director
                   </span>
 
