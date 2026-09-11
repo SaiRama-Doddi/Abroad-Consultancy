@@ -251,12 +251,11 @@ export function WhyChooseUs() {
                     
                     {/* Text Content - lifts in 3D */}
                     <div className="flex-1 min-w-0 [transform:translateZ(15px)] pr-6 sm:pr-8">
-                      <h3 className="font-sans text-[0.78rem] sm:text-[0.88rem] font-bold text-white tracking-wider uppercase mb-0.5 sm:mb-1.5 leading-snug">
+                      <h3 className="font-sans text-[0.82rem] sm:text-[0.88rem] font-bold text-white tracking-wider uppercase mb-0 sm:mb-1 leading-snug">
                         {feat.title}
                       </h3>
-                      <p className="text-[0.72rem] sm:text-[0.82rem] leading-snug sm:leading-relaxed text-slate-300 text-justify">
-                        <span className="sm:hidden">{feat.mobileDesc}</span>
-                        <span className="hidden sm:inline">{feat.description}</span>
+                      <p className="hidden sm:block text-[0.82rem] leading-relaxed text-slate-300 text-justify mt-1">
+                        {feat.description}
                       </p>
                     </div>
                   </div>
