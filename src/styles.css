@@ -509,11 +509,16 @@
   height: 15rem;
   border-radius: 1.25rem;
   overflow: hidden;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45), 0 0 15px rgba(224, 183, 109, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  will-change: transform, opacity;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 20px rgba(224, 183, 109, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  will-change: transform, opacity, filter;
   user-select: none;
   background-color: #0b1224;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.fan-card:hover {
+  border-color: rgba(224, 183, 109, 0.6);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.75), 0 0 30px rgba(224, 183, 109, 0.35);
 }
 @media (min-width: 640px) {
   .fan-card {

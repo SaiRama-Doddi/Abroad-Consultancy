@@ -17,13 +17,13 @@ const MAX_VISIBLE = 7;
 const HALF = 3;
 
 const FAN_POSITIONS = [
-  { rot: -21, scale: 0.7756, x: -30, y: 7.3, zIndex: 1 },
-  { rot: -14, scale: 0.8498, x: -22, y: 4.0, zIndex: 2 },
-  { rot: -7,  scale: 0.9346, x: -11, y: 1.3, zIndex: 3 },
-  { rot: 0,   scale: 1.0,    x: 0,   y: 0.0, zIndex: 10 },
-  { rot: 7,   scale: 0.9346, x: 11,  y: 1.3, zIndex: 3 },
-  { rot: 14,  scale: 0.8498, x: 22,  y: 4.0, zIndex: 2 },
-  { rot: 21,  scale: 0.7756, x: 30,  y: 7.3, zIndex: 1 },
+  { rot: -21, scale: 0.74, x: -30, y: 7.3, zIndex: 1, opacity: 0.35, filter: "brightness(0.38) saturate(0.50) contrast(0.85)" },
+  { rot: -14, scale: 0.82, x: -22, y: 4.0, zIndex: 3, opacity: 0.58, filter: "brightness(0.58) saturate(0.70) contrast(0.90)" },
+  { rot: -7,  scale: 0.91, x: -11, y: 1.3, zIndex: 6, opacity: 0.80, filter: "brightness(0.80) saturate(0.88) contrast(0.95)" },
+  { rot: 0,   scale: 1.0,  x: 0,   y: 0.0, zIndex: 12, opacity: 1.0,  filter: "brightness(1.0) saturate(1.0) contrast(1.0)" },
+  { rot: 7,   scale: 0.91, x: 11,  y: 1.3, zIndex: 6, opacity: 0.80, filter: "brightness(0.80) saturate(0.88) contrast(0.95)" },
+  { rot: 14,  scale: 0.82, x: 22,  y: 4.0, zIndex: 3, opacity: 0.58, filter: "brightness(0.58) saturate(0.70) contrast(0.90)" },
+  { rot: 21,  scale: 0.74, x: 30,  y: 7.3, zIndex: 1, opacity: 0.35, filter: "brightness(0.38) saturate(0.50) contrast(0.85)" },
 ];
 
 function getResponsiveMultiplier(width: number) {
@@ -58,12 +58,21 @@ function getSlotConfig(totalCards: number, slot: number) {
   const center = totalCards >> 1;
   const distance = totalCards > 1 ? (slot - center) / center : 0;
   const absDistance = Math.abs(distance);
+  
+  // Front cards (center) are crisp and clear; back cards become progressively dull
+  const opacity = +(1.0 - 0.65 * absDistance).toFixed(3);
+  const brightness = +(1.0 - 0.62 * absDistance).toFixed(3);
+  const saturate = +(1.0 - 0.50 * absDistance).toFixed(3);
+  const contrast = +(1.0 - 0.15 * absDistance).toFixed(3);
+
   return {
     rot: distance * 21,
-    scale: 1.0 - 0.2244 * absDistance * absDistance,
+    scale: +(1.0 - 0.26 * absDistance * absDistance).toFixed(4),
     x: distance * 30,
     y: absDistance * absDistance * 7.3,
-    zIndex: 10 - Math.abs(slot - center),
+    zIndex: Math.max(1, 12 - Math.round(absDistance * 9)),
+    opacity,
+    filter: `brightness(${brightness}) saturate(${saturate}) contrast(${contrast})`,
   };
 }
 
@@ -134,31 +143,32 @@ export default function SocialCards({ cards }: SocialCardsProps) {
       const wasVisible = previouslyVisible.has(cardIndex);
 
       if (slot !== undefined) {
-        const { x, y, rot, scale, zIndex } = config(slot);
+        const { x, y, rot, scale, zIndex, opacity, filter } = config(slot);
         const target = {
           x: `${x * multiplier}rem`,
           y: `${y * hMult}rem`,
           rotation: rot,
           scale,
-          opacity: 1,
+          opacity,
+          filter,
           zIndex,
         };
 
         if (isFirstMount) {
-          gsap.set(card, { x: 0, y: `${12 * hMult}rem`, rotation: 0, scale: 0.5, opacity: 0 });
+          gsap.set(card, { x: 0, y: `${12 * hMult}rem`, rotation: 0, scale: 0.5, opacity: 0, filter: "brightness(0.3) saturate(0.4)" });
           gsap.to(card, { ...target, duration: 1.2, ease: "elastic.out(1.05,.78)", delay: 0.2 + slot * 0.06, onComplete: onCardDone });
         } else if (!wasVisible) {
           const enterX = direction === "right" ? 40 : -40;
-          gsap.set(card, { x: `${enterX}rem`, y: `${y * hMult}rem`, rotation: direction === "right" ? 30 : -30, scale: 0.5, opacity: 0 });
+          gsap.set(card, { x: `${enterX}rem`, y: `${y * hMult}rem`, rotation: direction === "right" ? 30 : -30, scale: 0.5, opacity: 0, filter: "brightness(0.3) saturate(0.4)" });
           gsap.to(card, { ...target, duration: 0.6, ease: "power2.out", onComplete: onCardDone });
         } else {
           gsap.to(card, { ...target, duration: 0.5, ease: "power2.out", onComplete: onCardDone });
         }
       } else if (wasVisible) {
         const exitX = direction === "right" ? -40 : 40;
-        gsap.to(card, { x: `${exitX}rem`, opacity: 0, scale: 0.5, rotation: direction === "right" ? -30 : 30, duration: 0.4, ease: "power2.in", zIndex: 0 });
+        gsap.to(card, { x: `${exitX}rem`, opacity: 0, scale: 0.5, rotation: direction === "right" ? -30 : 30, filter: "brightness(0.2)", duration: 0.4, ease: "power2.in", zIndex: 0 });
       } else if (isFirstMount) {
-        gsap.set(card, { opacity: 0, scale: 0.3, x: 0, y: 0, zIndex: 0 });
+        gsap.set(card, { opacity: 0, scale: 0.3, x: 0, y: 0, zIndex: 0, filter: "brightness(0.2)" });
       }
     });
 
@@ -186,6 +196,9 @@ export default function SocialCards({ cards }: SocialCardsProps) {
         let targetY = base.y * hM;
         let targetRot = base.rot;
         let targetScale = base.scale;
+        let targetOpacity = base.opacity;
+        let targetFilter = base.filter;
+        let targetZIndex = base.zIndex;
         let delay = 0;
 
         if (hoveredSlot !== null) {
@@ -194,7 +207,10 @@ export default function SocialCards({ cards }: SocialCardsProps) {
 
           if (slot === hoveredSlot) {
             targetY -= 2.5 * hM;
-            targetScale *= 1.08;
+            targetScale = Math.max(1.06, base.scale * 1.12);
+            targetOpacity = 1.0;
+            targetFilter = "brightness(1.08) saturate(1.05) contrast(1.0)";
+            targetZIndex = 35; // Hovered front card on top
           } else {
             const normalized = centerSlot > 0 ? (slot - centerSlot) / centerSlot : 0;
             const pushStrength = 8 * (1 - Math.abs(normalized)) * (1 + 0.2 * Math.max(0, 3 - distance));
@@ -207,6 +223,13 @@ export default function SocialCards({ cards }: SocialCardsProps) {
               targetRot += 3 / (distance + 1);
             }
 
+            // Unhovered cards become more dull and stay behind
+            const dullDistance = Math.min(3, distance);
+            targetOpacity = Math.max(0.25, 0.58 - dullDistance * 0.12);
+            const b = Math.max(0.35, 0.55 - dullDistance * 0.10);
+            targetFilter = `brightness(${b}) saturate(0.55) contrast(0.85)`;
+            targetZIndex = Math.max(1, 10 - distance * 2);
+
             if (slot === visibleEntries.length - 1 && hoveredSlot < centerSlot) targetY -= 1 * hM;
             if (slot === 0 && hoveredSlot > centerSlot) targetY -= 1 * hM;
           }
@@ -215,10 +238,18 @@ export default function SocialCards({ cards }: SocialCardsProps) {
         }
 
         gsap.to(el, {
-          x: `${targetX}rem`, y: `${targetY}rem`, rotation: targetRot, scale: targetScale,
-          duration: 0.5, delay, ease: "elastic.out(1,.75)", overwrite: "auto",
+          x: `${targetX}rem`,
+          y: `${targetY}rem`,
+          rotation: targetRot,
+          scale: targetScale,
+          opacity: targetOpacity,
+          filter: targetFilter,
+          duration: 0.5,
+          delay,
+          ease: "elastic.out(1,.75)",
+          overwrite: "auto",
         });
-        gsap.set(el, { zIndex: base.zIndex });
+        gsap.set(el, { zIndex: targetZIndex });
       });
     };
 
