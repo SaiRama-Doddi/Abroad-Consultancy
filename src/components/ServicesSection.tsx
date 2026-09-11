@@ -238,6 +238,33 @@ export function ServicesSection() {
     return title;
   };
 
+  const handleServiceClick = (service: (typeof visaServices)[0]) => {
+    if (
+      service.title.toLowerCase().includes("tourism") ||
+      service.title.toLowerCase().includes("visitor") ||
+      service.title.toLowerCase().includes("destination")
+    ) {
+      const el = document.getElementById("destinations");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+
+    if (service.countryCode && typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("select-country", { detail: { countryCode: service.countryCode } }));
+    }
+
+    const el = document.getElementById("free-assessment") || document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        const nameInput = document.getElementById("name");
+        if (nameInput) nameInput.focus();
+      }, 450);
+    }
+  };
+
   return (
     <section id="services" className="bg-[#090e1a] text-white pt-16 pb-20 relative overflow-hidden border-b border-slate-800">
       {/* Decorative background grid elements */}
@@ -308,6 +335,7 @@ export function ServicesSection() {
         >
           {visaServices.map((service, index) => {
             const Icon = service.icon;
+            const isTourOrMap = service.title.toLowerCase().includes("tourism") || service.title.toLowerCase().includes("visitor");
             return (
               <FeatureCardReveal
                 key={service.title}
@@ -315,7 +343,8 @@ export function ServicesSection() {
                 className="service-item-card shrink-0 w-[86vw] max-w-[360px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d]"
               >
                 <div
-                  className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/40 p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] hover:border-[var(--gold)]/50 hover:bg-slate-900/60 hover:lg:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(10px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)] select-text"
+                  onClick={() => handleServiceClick(service)}
+                  className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/40 p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] hover:border-[var(--gold)]/50 hover:bg-slate-900/60 hover:lg:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(10px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)] cursor-pointer select-none"
                 >
                   {/* Top gold bar accent on hover */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
@@ -364,13 +393,9 @@ export function ServicesSection() {
 
                       {/* Bottom Action Details Link */}
                       <div 
-                        onClick={() => {
-                          const el = document.getElementById("contact");
-                          if (el) el.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className="mt-5 sm:mt-8 pt-3 sm:pt-4 border-t border-slate-800 flex items-center justify-between text-[0.66rem] sm:text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:text-[var(--gold)]/90 cursor-pointer"
+                        className="mt-5 sm:mt-8 pt-3 sm:pt-4 border-t border-slate-800 flex items-center justify-between text-[0.66rem] sm:text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:text-[var(--gold)]/90"
                       >
-                        <span>Enquire Details</span>
+                        <span>{isTourOrMap ? "Explore Destinations & Maps" : "Enquire Details"}</span>
                         <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                       </div>
                     </div>

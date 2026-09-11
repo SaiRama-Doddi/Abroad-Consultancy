@@ -193,6 +193,18 @@ export function HeroSection() {
     };
   }, []);
 
+  const handleConsultationClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById("free-assessment") || document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        const nameInput = document.getElementById("name");
+        if (nameInput) nameInput.focus();
+      }, 450);
+    }
+  };
+
   return (
     <section
       id="home"
@@ -330,7 +342,8 @@ export function HeroSection() {
           >
             <a
               href="#contact"
-              className="flex items-center justify-center gap-2.5 rounded-lg px-7 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(166,106,33,0.45)] w-full sm:w-auto"
+              onClick={handleConsultationClick}
+              className="flex items-center justify-center gap-2.5 rounded-lg px-7 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(166,106,33,0.45)] w-full sm:w-auto cursor-pointer"
               style={{ background: "var(--gradient-gold)" }}
             >
               <Calendar className="h-4 w-4" />

@@ -93,6 +93,28 @@ export function GallerySection() {
     (story) => filter === "all" || story.visaType === filter
   );
 
+  const handleStartSuccessClick = (story: SuccessStory) => {
+    setSelectedStory(null);
+
+    if (story.countryCode && typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("select-country", { detail: { countryCode: story.countryCode } })
+      );
+    }
+
+    setTimeout(() => {
+      const formElement =
+        document.getElementById("free-assessment") || document.getElementById("contact");
+      if (formElement) {
+        formElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => {
+          const nameInput = document.getElementById("name");
+          if (nameInput) nameInput.focus();
+        }, 450);
+      }
+    }, 150);
+  };
+
   return (
     <section id="gallery" className="bg-[#fcfbf9] pt-6 pb-12 sm:pt-10 sm:pb-16 relative overflow-hidden border-b border-slate-100">
       {/* Background Subtle Grid */}
@@ -359,13 +381,13 @@ export function GallerySection() {
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                  <a 
-                    href="#contact"
-                    onClick={() => setSelectedStory(null)}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/90 hover:to-[var(--gold)] text-[#0b1224] text-xs font-extrabold uppercase tracking-widest py-3.5 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                  <button 
+                    type="button"
+                    onClick={() => handleStartSuccessClick(selectedStory)}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/90 hover:to-[var(--gold)] text-[#0b1224] text-xs font-extrabold uppercase tracking-widest py-3.5 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                   >
                     Start Your Success Story <PlaneTakeoff className="h-4 w-4" />
-                  </a>
+                  </button>
                 </div>
               </div>
 

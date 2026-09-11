@@ -35,9 +35,16 @@ const countries = [
   { id: "AU", name: "Australia", code: "au", visa: "Subclass 500 Student Visa / Work Rights" },
   { id: "DE", name: "Germany", code: "de", visa: "Opportunity Card (Chancenkarte) / Student Visa" },
   { id: "CA", name: "Canada", code: "ca", visa: "Study Permit / Express Entry" },
+  { id: "EU", name: "Europe (Schengen)", code: "eu", visa: "29+ Countries • Subsidized Tuition • EU Blue Card" },
   { id: "MU", name: "Mauritius", code: "mu", visa: "1-Yr Course • 2-Yr Work Permit" },
+  { id: "MV", name: "Maldives", code: "mv", visa: "1-Yr Luxury Resort Course • Paid Island Internship" },
   { id: "CY", name: "Cyprus", code: "cy", visa: "Intermediate/Degree 55% • IELTS 6/6.5 • Schengen Soon" },
-  { id: "SG", name: "Singapore", code: "sg", visa: "Student Pass / Training Work Permit" },
+  { id: "SG", name: "Singapore", code: "sg", visa: "6+6 Study & Paid Internship • Fast Visa" },
+  { id: "MY", name: "Malaysia", code: "my", visa: "UK/Aus Twinning Degrees • Affordable Living" },
+  { id: "TH", name: "Thailand", code: "th", visa: "Luxury Hospitality • 5-Star Hotel Internship" },
+  { id: "ID", name: "Indonesia", code: "id", visa: "Hospitality & Business • Affordable Fees" },
+  { id: "VN", name: "Vietnam", code: "vn", visa: "RMIT Australia Degrees • Tech Boom" },
+  { id: "LK", name: "Sri Lanka", code: "lk", visa: "UK/Aus Credit Transfers • Direct Entry" },
 ];
 
 const educations = [

@@ -49,6 +49,29 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleContactNavigate = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    setActiveLink("Contact");
+    const el = document.getElementById("free-assessment") || document.getElementById("contact");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        const nameInput = document.getElementById("name");
+        if (nameInput) nameInput.focus();
+      }, 450);
+    }
+  };
+
+  const handleNavLinkClick = (e: React.MouseEvent, link: (typeof links)[0]) => {
+    if (link.label === "Contact") {
+      handleContactNavigate(e);
+      return;
+    }
+    setActiveLink(link.label);
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 border-b border-primary-foreground/5 ${
@@ -85,7 +108,7 @@ export function SiteHeader() {
               <a
                 key={l.label}
                 href={l.href}
-                onClick={() => setActiveLink(l.label)}
+                onClick={(e) => handleNavLinkClick(e, l)}
                 className={`relative text-[0.72rem] font-extrabold uppercase tracking-[0.18em] transition-all duration-300 py-2.5 flex items-center justify-center ${
                   isActive
                     ? "text-[#0b1224] px-7 gap-2"
@@ -109,7 +132,8 @@ export function SiteHeader() {
         <div className="hidden lg:flex animate-slide-left" style={{ animationDelay: "0.5s" }}>
           <a
             href="#contact"
-            className="flex items-center gap-2.5 rounded-lg border border-[var(--gold)] bg-[#0b1224] px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-105 hover:bg-[var(--gold)] hover:text-[#0b1224] hover:shadow-[0_0_20px_rgba(166,106,33,0.45)] group"
+            onClick={handleContactNavigate}
+            className="flex items-center gap-2.5 rounded-lg border border-[var(--gold)] bg-[#0b1224] px-6 py-2.5 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-105 hover:bg-[var(--gold)] hover:text-[#0b1224] hover:shadow-[0_0_20px_rgba(166,106,33,0.45)] group cursor-pointer"
           >
             <Plane className="h-3.5 w-3.5 -rotate-45 text-[var(--gold)] group-hover:text-[#0b1224] transition-colors" />
             Enquire Now
@@ -119,7 +143,8 @@ export function SiteHeader() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="flex items-center justify-center p-2 text-white/80 hover:text-white lg:hidden"
+          className="flex items-center justify-center p-2 text-white/80 hover:text-white lg:hidden cursor-pointer"
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -135,11 +160,8 @@ export function SiteHeader() {
                 <a
                   key={l.label}
                   href={l.href}
-                  onClick={() => {
-                    setActiveLink(l.label);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`text-xs font-semibold uppercase tracking-[0.2em] transition-colors py-2 border-b border-white/5 ${
+                  onClick={(e) => handleNavLinkClick(e, l)}
+                  className={`text-xs font-semibold uppercase tracking-[0.2em] transition-colors py-2 border-b border-white/5 cursor-pointer ${
                     isActive ? "text-[var(--gold)]" : "text-white/75 hover:text-white"
                   }`}
                 >
@@ -149,8 +171,8 @@ export function SiteHeader() {
             })}
             <a
               href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 flex items-center justify-center gap-2 rounded-lg py-3 text-xs font-bold uppercase tracking-[0.2em] text-white border border-[var(--gold)] bg-[#0b1224] hover:bg-[var(--gold)] hover:text-[#0b1224] transition-all duration-300 group"
+              onClick={handleContactNavigate}
+              className="mt-2 flex items-center justify-center gap-2 rounded-lg py-3 text-xs font-bold uppercase tracking-[0.2em] text-white border border-[var(--gold)] bg-[#0b1224] hover:bg-[var(--gold)] hover:text-[#0b1224] transition-all duration-300 group cursor-pointer"
             >
               <Plane className="h-4 w-4 -rotate-45 text-[var(--gold)] group-hover:text-[#0b1224] transition-colors" />
               Enquire Now

@@ -385,6 +385,162 @@ const destinations: Destination[] = [
       }
     ],
     description: "Mauritius offers a fast-track 1-year course featuring 1 month free accommodation, part-time assistance earning up to ₹1 Lakh/month, free airport pickup, a guaranteed 2-year post-study work permit, and direct work pathways to the UK, Australia, Canada, and Europe."
+  },
+  {
+    name: "Indonesia",
+    shortName: "Indonesia",
+    code: "id",
+    region: "Southeast Asia",
+    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80",
+    courses: ["Hospitality & Tourism Management", "International Business", "Tropical Medicine & Health", "Culinary Arts"],
+    eligibility: "10th / 12th / Bachelors Pass with 45%+ marks (No IELTS required for select institutes)",
+    workRights: "Paid luxury resort internships and part-time training permitted",
+    intakes: "February & September (Rolling intakes available)",
+    avgTuition: "$2,000 – $4,500 / year",
+    highlights: [
+      "Affordable international universities in Bali, Jakarta & Yogyakarta",
+      "World-class tourism & luxury resort management internship placements",
+      "Low living expenses with safe multicultural student communities",
+      "Fast student visa issuance with simplified documentation"
+    ],
+    description: "Indonesia is Southeast Asia's largest economy, offering high-standard English programs, low tuition fees, and rich career training in world-class hospitality and global commerce."
+  },
+  {
+    name: "Sri Lanka",
+    shortName: "Sri Lanka",
+    code: "lk",
+    region: "South Asia",
+    image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80",
+    courses: ["UK Twinning Bachelors Degrees", "Hospitality Management", "Information Technology", "Medical / Pre-Med Pathways"],
+    eligibility: "10th / 12th Pass with 50%+ marks (Direct admissions available)",
+    workRights: "Internship & credit transfer pathways to UK, Australia & Canada",
+    intakes: "January, May & September",
+    avgTuition: "$2,500 – $5,000 / year",
+    highlights: [
+      "Earn prestigious British & Australian university degrees at 1/3rd tuition costs",
+      "Direct credit transfer pathways to UK, Australia, and Canada",
+      "Close proximity to India with minimal visa paperwork and fast approvals",
+      "English-medium curriculum across modern international campuses"
+    ],
+    description: "Sri Lanka offers affordable pathways to UK and Australian degrees through accredited international branch institutes, with seamless credit transfers to Western universities."
+  },
+  {
+    name: "Vietnam",
+    shortName: "Vietnam",
+    code: "vn",
+    region: "Southeast Asia",
+    image: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80",
+    courses: ["Global Business & Trade", "Computer Science & AI", "Hospitality & Culinary Arts", "RMIT Australian Campus Degrees"],
+    eligibility: "12th / Bachelors Pass with 50%+ (IELTS waiver options available)",
+    workRights: "Part-time work permitted during studies & post-study tech job placements",
+    intakes: "February, June & October",
+    avgTuition: "$3,000 – $8,000 / year",
+    highlights: [
+      "Home to RMIT University Vietnam (Australian accredited degree at low tuition)",
+      "Asia's fastest-growing economic dragon with massive tech and manufacturing job growth",
+      "Low cost of accommodation and vibrant multicultural lifestyle",
+      "Modern international university campuses in Ho Chi Minh City and Hanoi"
+    ],
+    description: "Vietnam is a dynamic Asian hub with rapid economic growth, offering premier Western branch campuses like RMIT Australia and affordable, high-caliber higher education."
+  },
+  {
+    name: "Thailand",
+    shortName: "Thailand",
+    code: "th",
+    region: "Southeast Asia",
+    image: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80",
+    courses: ["International Hospitality & Hotel Management", "Business Administration (BBA/MBA)", "Design & Digital Media", "Aviation & Logistics"],
+    eligibility: "10th / 12th / Degree Pass with 45%+ (No IELTS required for select universities)",
+    workRights: "Guaranteed paid 5-star luxury resort & hotel internships",
+    intakes: "January, June & August",
+    avgTuition: "$2,500 – $5,500 / year",
+    highlights: [
+      "World capital of luxury hospitality with guaranteed paid hotel training",
+      "Low cost of living, safe student environment, and international lifestyle",
+      "Easy and straightforward student ED visa processing",
+      "Dual degrees affiliated with Swiss, British, and US universities"
+    ],
+    description: "Thailand is a premier destination for hospitality, international business, and creative design, celebrated for paid 5-star hotel internships and world-famous hospitality culture."
+  },
+  {
+    name: "Maldives",
+    shortName: "Maldives",
+    code: "mv",
+    region: "South Asia / Indian Ocean",
+    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80",
+    totalCourse: "1 Year",
+    courses: [
+      "Total Course: 1 Year", 
+      "Luxury Resort Management", 
+      "Hospitality & Culinary Operations", 
+      "Marine & Tourism Studies"
+    ],
+    eligibility: "10th / 12th Pass (Age 18+) • Minimum 45% marks • No IELTS required",
+    workRights: "Guaranteed paid internships in 5-star luxury island resorts",
+    intakes: "Rolling admissions every 2-3 months",
+    avgTuition: "$3,500 – $5,800 / program",
+    highlights: [
+      "Total Course: 1 Year duration",
+      "Direct paid placement in world-class 5-star luxury island resorts",
+      "Free 5-star resort food & accommodation included during internship",
+      "10th / 12th Pass eligible with fast 1-2 week visa processing",
+      "High USD earnings with tips and service charges",
+      "Direct recruitment pathway to luxury hotel chains in Dubai & Europe"
+    ],
+    benefits: [
+      {
+        title: "5-Star Resort Accommodation - Free",
+        desc: "Full complimentary luxury resort housing, chef-prepared meals, and uniform provided during industry internship.",
+        badge: "Free Stay & Food"
+      },
+      {
+        title: "Paid Luxury Resort Internship",
+        desc: "Earn monthly stipends + service charge tips in US Dollars while gaining hands-on 5-star island resort experience.",
+        badge: "USD Earnings"
+      },
+      {
+        title: "Global Hospitality Career Pathway",
+        desc: "Direct recruitment pipeline to premier hotel chains across Dubai, Europe, and international cruise ships.",
+        badge: "Global Career"
+      }
+    ],
+    description: "Maldives offers a high-impact 1-year luxury resort hospitality program featuring guaranteed paid 5-star resort internships, free accommodation & meals, USD earnings, and direct career placement across top international hotel chains."
+  },
+  {
+    name: "Europe (Schengen)",
+    shortName: "Europe",
+    code: "eu",
+    region: "European Union",
+    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
+    courses: ["Bachelors Degrees", "Masters & MBA Programs", "Schengen Pathway Diplomas", "Foundation Programs"],
+    eligibility: "Intermediate / Bachelors Pass with 50%+ (IELTS waiver options available)",
+    workRights: "Part-time work permitted during studies & 1-2 Years Post-Study Work / Job Seeker Visa",
+    intakes: "September/October (Fall) & January/February (Spring)",
+    avgTuition: "€2,000 – €8,000 / year (Government Subsidized Options)",
+    highlights: [
+      "Single student visa grants unrestricted travel access across 29+ European Schengen countries",
+      "Low or zero tuition fees at prestigious European state universities",
+      "EU Blue Card & permanent residency pathway for IT, engineering and healthcare graduates",
+      "English-taught curriculum with globally respected ECTS credit accreditation"
+    ],
+    benefits: [
+      {
+        title: "Explore 29+ Schengen Nations",
+        desc: "Travel freely across 29 European member countries without separate border visas.",
+        badge: "29+ Countries"
+      },
+      {
+        title: "Affordable European Tuition",
+        desc: "Access subsidized government tuition with world-class faculty and research labs.",
+        badge: "Subsidized Fee"
+      },
+      {
+        title: "EU Blue Card & Stayback",
+        desc: "Generous post-study job seeker visa with direct transition to EU skilled work residence.",
+        badge: "EU Blue Card"
+      }
+    ],
+    description: "Europe offers academic excellence, subsidized tuition, and the freedom to explore 29+ Schengen countries with seamless post-study work rights and EU Blue Card career opportunities."
   }
 ];
 
@@ -470,27 +626,29 @@ export function DestinationsSection() {
 
         {/* Style tag to create smooth infinite scrolling marquee effect */}
         <style dangerouslySetInnerHTML={{__html: `
-          @keyframes infinite-scroll {
+          @keyframes infinite-scroll-left {
             0% {
-              transform: translateX(0);
+              transform: translate3d(0, 0, 0);
             }
             100% {
-              transform: translateX(-50%);
+              transform: translate3d(-50%, 0, 0);
             }
           }
-          @keyframes infinite-scroll-up {
+          @keyframes infinite-scroll-right {
             0% {
-              transform: translateY(0);
+              transform: translate3d(-50%, 0, 0);
             }
             100% {
-              transform: translateY(-50%);
+              transform: translate3d(0, 0, 0);
             }
           }
           .animate-infinite-scroll {
-            animation: infinite-scroll 45s linear infinite;
+            animation: infinite-scroll-left 55s linear infinite;
+            will-change: transform;
           }
-          .animate-infinite-scroll-up {
-            animation: infinite-scroll-up 32s linear infinite;
+          .animate-infinite-scroll-left-mobile {
+            animation: infinite-scroll-left 38s linear infinite;
+            will-change: transform;
           }
           .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -504,9 +662,13 @@ export function DestinationsSection() {
         {/* Desktop/Laptop View: Premium horizontal infinite scrolling track */}
         <div className="hidden md:block">
           <ScrollReveal direction="up" delay={200}>
-            <div className="relative w-full -mx-6 px-6 overflow-hidden">
+            <div className="relative w-full -mx-6 px-6 overflow-hidden py-6 -my-4">
+              {/* Left/Right Edge Fade Gradients */}
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />
+
               {/* Scrollable Row (Infinite loop) */}
-              <div className="flex animate-infinite-scroll hover:[animation-play-state:paused] w-max select-none">
+              <div className="flex animate-infinite-scroll hover:[animation-play-state:paused] w-max select-none py-3">
                 
                 {/* Track 1 (Original List) */}
                 <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0">
@@ -515,24 +677,28 @@ export function DestinationsSection() {
                       key={`${country.code}-track1`}
                       type="button"
                       onClick={() => setSelectedCountry(country)}
-                      className="w-[180px] sm:w-[220px] md:w-[280px] shrink-0 text-left focus:outline-none group cursor-pointer"
+                      className="w-[180px] sm:w-[220px] md:w-[280px] shrink-0 text-left focus:outline-none group cursor-pointer relative hover:z-30 p-1"
                       title={`Click to view ${country.name} Guide`}
                     >
                       {/* Card Container (Perfect Square) */}
-                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-slate-200/60 shadow-[0_10px_30px_rgba(0,0,0,0.03)] group-hover:shadow-[0_20px_45px_rgba(184,123,44,0.2)] group-hover:border-[var(--gold)]/50 transition-all duration-500 bg-slate-900 group-hover:-translate-y-1.5">
+                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-slate-200/80 shadow-[0_8px_25px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_45px_rgba(184,123,44,0.25)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-2">
                         
                         {/* Background Destination Flag (Full Card) */}
                         <img 
                           src={`https://flagcdn.com/w640/${country.code}.png`} 
                           alt={`${country.name} Flag`} 
-                          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                          className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
                         />
 
                         {/* Total Course Badge if available */}
-                        {country.totalCourse && (
+                        {country.totalCourse ? (
                           <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2.5 py-1 text-[0.62rem] font-bold shadow-md border border-white/20">
                             <Sparkles className="h-2.5 w-2.5 text-amber-300" />
                             <span>{country.totalCourse} Course</span>
+                          </div>
+                        ) : (
+                          <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2.5 py-1 text-[0.58rem] font-black uppercase tracking-wider border border-amber-400/30">
+                            <span>{country.region || "Global"}</span>
                           </div>
                         )}
 
@@ -570,24 +736,28 @@ export function DestinationsSection() {
                       key={`${country.code}-track2`}
                       type="button"
                       onClick={() => setSelectedCountry(country)}
-                      className="w-[180px] sm:w-[220px] md:w-[280px] shrink-0 text-left focus:outline-none group cursor-pointer"
+                      className="w-[180px] sm:w-[220px] md:w-[280px] shrink-0 text-left focus:outline-none group cursor-pointer relative hover:z-30 p-1"
                       title={`Click to view ${country.name} Guide`}
                     >
                       {/* Card Container (Perfect Square) */}
-                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-slate-200/60 shadow-[0_10px_30px_rgba(0,0,0,0.03)] group-hover:shadow-[0_20px_45px_rgba(184,123,44,0.2)] group-hover:border-[var(--gold)]/50 transition-all duration-500 bg-slate-900 group-hover:-translate-y-1.5">
+                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-slate-200/80 shadow-[0_8px_25px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_45px_rgba(184,123,44,0.25)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-2">
                         
                         {/* Background Destination Flag (Full Card) */}
                         <img 
                           src={`https://flagcdn.com/w640/${country.code}.png`} 
                           alt={`${country.name} Flag`} 
-                          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                          className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
                         />
 
                         {/* Total Course Badge if available */}
-                        {country.totalCourse && (
+                        {country.totalCourse ? (
                           <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2.5 py-1 text-[0.62rem] font-bold shadow-md border border-white/20">
                             <Sparkles className="h-2.5 w-2.5 text-amber-300" />
                             <span>{country.totalCourse} Course</span>
+                          </div>
+                        ) : (
+                          <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2.5 py-1 text-[0.58rem] font-black uppercase tracking-wider border border-amber-400/30">
+                            <span>{country.region || "Global"}</span>
                           </div>
                         )}
 
@@ -623,101 +793,135 @@ export function DestinationsSection() {
           </ScrollReveal>
         </div>
 
-        {/* Mobile View: Vertical Upward Infinite Scrolling Marquee (smooth continuous loop) */}
+        {/* Mobile View: Single Line Continuous Horizontal Infinite Scrolling with Pause-on-Touch */}
         <div className="block md:hidden">
           <ScrollReveal direction="up" delay={200}>
-            <div className="relative w-full h-[460px] xs:h-[500px] overflow-hidden">
-              {/* Vertical Upward Moving Container */}
-              <div className="flex flex-col animate-infinite-scroll-up hover:[animation-play-state:paused] active:[animation-play-state:paused] select-none">
-                {/* Track 1 (Original List) */}
-                <div className="grid grid-cols-2 gap-2.5 xs:gap-3 pb-2.5 xs:pb-3">
+            <div className="relative w-full -mx-6 px-6 overflow-hidden py-4 -my-2">
+              {/* Subtle edge fade gradients */}
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />
+
+              {/* Single Continuous Scrolling Track */}
+              <div className="flex animate-infinite-scroll-left-mobile hover:[animation-play-state:paused] active:[animation-play-state:paused] w-max select-none py-2">
+                {/* Track 1 */}
+                <div className="flex gap-2.5 pr-2.5 shrink-0">
                   {destinations.map((country) => (
                     <button
                       key={`${country.code}-mobile-track1`}
                       type="button"
                       onClick={() => setSelectedCountry(country)}
-                      className="group relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/60 shadow-[0_10px_30px_rgba(0,0,0,0.03)] active:scale-95 transition-transform bg-slate-900 text-left focus:outline-none cursor-pointer"
+                      className="w-[145px] xs:w-[165px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
                       title={`Tap to view ${country.name} Guide`}
                     >
-                      {/* Background Destination Flag (Full Card) */}
-                      <img
-                        src={`https://flagcdn.com/w320/${country.code}.png`}
-                        alt={`${country.name} Flag`}
-                        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                        loading="lazy"
-                      />
+                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_28px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
+                        {/* Background Destination Flag / Map visual */}
+                        <img
+                          src={`https://flagcdn.com/w320/${country.code}.png`}
+                          alt={`${country.name} Flag`}
+                          className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
 
-                      {/* Total Course Badge if available */}
-                      {country.totalCourse && (
-                        <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2 py-0.5 text-[0.55rem] font-bold shadow-md border border-white/20">
-                          <span>{country.totalCourse} Course</span>
+                        {/* Total Course Badge or Key Tag */}
+                        {country.totalCourse ? (
+                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2 py-0.5 text-[0.55rem] font-bold shadow-md border border-white/20">
+                            <Sparkles className="h-2 w-2 text-amber-300" />
+                            <span>{country.totalCourse} Course</span>
+                          </div>
+                        ) : (
+                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2 py-0.5 text-[0.52rem] font-black uppercase tracking-wider border border-amber-400/30">
+                            <span>{country.region || "Global"}</span>
+                          </div>
+                        )}
+
+                        {/* Dark gradient mask */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/80" />
+
+                        {/* Hover & Touch Overlay Hint */}
+                        <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 bg-slate-950/25 backdrop-blur-[1px]">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.58rem] font-extrabold uppercase tracking-wider text-white shadow-md">
+                            View Guide
+                          </span>
                         </div>
-                      )}
 
-                      {/* Subtle dark gradient mask for high legibility */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent z-10" />
-
-                      {/* Country Pill Badge Overlay at the bottom */}
-                      <div className="absolute bottom-2.5 xs:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2 py-1 xs:px-2.5 xs:py-1.5 rounded-full shadow-lg border border-slate-100 min-w-[80px] xs:min-w-[100px] max-w-[90%] justify-center z-10 transition-transform duration-300 group-hover:scale-105">
-                        <div className="h-3.5 w-3.5 xs:h-4.5 xs:w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0">
-                          <img
-                            src={`https://flagcdn.com/w40/${country.code}.png`}
-                            className="h-full w-full object-cover scale-125"
-                            alt={`${country.name} Flag`}
-                          />
+                        {/* Country Pill Badge Overlay at bottom */}
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md border border-slate-100 min-w-[85px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
+                          <div className="h-3.5 w-3.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                            <img
+                              src={`https://flagcdn.com/w40/${country.code}.png`}
+                              className="h-full w-full object-cover scale-125"
+                              alt={`${country.name} Flag`}
+                            />
+                          </div>
+                          <span className="text-[0.58rem] font-black text-slate-800 uppercase tracking-wider truncate">
+                            {country.shortName || country.name}
+                          </span>
                         </div>
-                        <span className="text-[0.55rem] xs:text-[0.6rem] font-black text-slate-800 uppercase tracking-wider truncate">
-                          {country.shortName || country.name}
-                        </span>
                       </div>
                     </button>
                   ))}
                 </div>
 
-                {/* Track 2 (Identical Duplicate for Seamless Infinite Loop) */}
-                <div className="grid grid-cols-2 gap-2.5 xs:gap-3 pb-2.5 xs:pb-3" aria-hidden="true">
+                {/* Track 2 (Clone for Infinite Loop) */}
+                <div className="flex gap-2.5 pr-2.5 shrink-0" aria-hidden="true">
                   {destinations.map((country) => (
                     <button
                       key={`${country.code}-mobile-track2`}
                       type="button"
                       onClick={() => setSelectedCountry(country)}
-                      className="group relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/60 shadow-[0_10px_30px_rgba(0,0,0,0.03)] active:scale-95 transition-transform bg-slate-900 text-left focus:outline-none cursor-pointer"
+                      className="w-[145px] xs:w-[165px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
                       title={`Tap to view ${country.name} Guide`}
                     >
-                      {/* Background Destination Flag (Full Card) */}
-                      <img
-                        src={`https://flagcdn.com/w320/${country.code}.png`}
-                        alt={`${country.name} Flag`}
-                        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                        loading="lazy"
-                      />
+                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_28px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
+                        <img
+                          src={`https://flagcdn.com/w320/${country.code}.png`}
+                          alt={`${country.name} Flag`}
+                          className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
 
-                      {/* Total Course Badge if available */}
-                      {country.totalCourse && (
-                        <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2 py-0.5 text-[0.55rem] font-bold shadow-md border border-white/20">
-                          <span>{country.totalCourse} Course</span>
+                        {country.totalCourse ? (
+                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2 py-0.5 text-[0.55rem] font-bold shadow-md border border-white/20">
+                            <Sparkles className="h-2 w-2 text-amber-300" />
+                            <span>{country.totalCourse} Course</span>
+                          </div>
+                        ) : (
+                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2 py-0.5 text-[0.52rem] font-black uppercase tracking-wider border border-amber-400/30">
+                            <span>{country.region || "Global"}</span>
+                          </div>
+                        )}
+
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/80" />
+
+                        {/* Hover & Touch Overlay Hint */}
+                        <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 bg-slate-950/25 backdrop-blur-[1px]">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.58rem] font-extrabold uppercase tracking-wider text-white shadow-md">
+                            View Guide
+                          </span>
                         </div>
-                      )}
 
-                      {/* Subtle dark gradient mask for high legibility */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent z-10" />
-
-                      {/* Country Pill Badge Overlay at the bottom */}
-                      <div className="absolute bottom-2.5 xs:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2 py-1 xs:px-2.5 xs:py-1.5 rounded-full shadow-lg border border-slate-100 min-w-[80px] xs:min-w-[100px] max-w-[90%] justify-center z-10 transition-transform duration-300 group-hover:scale-105">
-                        <div className="h-3.5 w-3.5 xs:h-4.5 xs:w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0">
-                          <img
-                            src={`https://flagcdn.com/w40/${country.code}.png`}
-                            className="h-full w-full object-cover scale-125"
-                            alt={`${country.name} Flag`}
-                          />
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md border border-slate-100 min-w-[85px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
+                          <div className="h-3.5 w-3.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                            <img
+                              src={`https://flagcdn.com/w40/${country.code}.png`}
+                              className="h-full w-full object-cover scale-125"
+                              alt={`${country.name} Flag`}
+                            />
+                          </div>
+                          <span className="text-[0.58rem] font-black text-slate-800 uppercase tracking-wider truncate">
+                            {country.shortName || country.name}
+                          </span>
                         </div>
-                        <span className="text-[0.55rem] xs:text-[0.6rem] font-black text-slate-800 uppercase tracking-wider truncate">
-                          {country.shortName || country.name}
-                        </span>
                       </div>
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Mobile Interaction Hint */}
+              <div className="flex items-center justify-center gap-1.5 text-[0.7rem] font-medium text-slate-500 pt-2">
+                <Sparkles className="h-3 w-3 text-amber-500 shrink-0" />
+                <span>Tap any country to open full admission guide & eligibility</span>
               </div>
             </div>
           </ScrollReveal>
