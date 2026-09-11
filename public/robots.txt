@@ -1,4 +1,20 @@
+# ==============================================================================
+# McCoy Global Consultancy - Search Engine Robots Exclusion Protocol
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /favicon.svg
+Allow: /favicon.png
+Allow: /apple-touch-icon.png
+Allow: /site.webmanifest
+
+# Crawlers
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
@@ -10,5 +26,12 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: Applebot
 Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Sitemap Index Declaration
+Sitemap: https://mccoyglobal.in/sitemap.xml
+Sitemap: https://www.mccoyglobal.in/sitemap.xml

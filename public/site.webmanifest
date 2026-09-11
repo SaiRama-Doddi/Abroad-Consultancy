@@ -1,0 +1,31 @@
+{
+  "name": "McCoy Global Consultancy | Study, Work & Migrate Overseas",
+  "short_name": "McCoy Global",
+  "description": "Premier overseas education and immigration consultancy in Hyderabad. Expert guidance for USA, UK, Canada, Australia, Germany Opportunity Card, Europe Schengen, Singapore, and global visa pathways.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060a15",
+  "theme_color": "#0b1224",
+  "orientation": "portrait-primary",
+  "categories": ["education", "travel", "business"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "apple touch icon"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Main Homepage / Brand Domain (Top Search Priority 1.0) -->
+  <url>
+    <loc>https://mccoyglobal.in/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mccoyglobal.in/logo.png</image:loc>
+      <image:title>McCoy Global Consultancy Logo</image:title>
+      <image:caption>Premier Abroad Education and Immigration Consultancy</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Visa Pathways & Solutions (Services) -->
+  <url>
+    <loc>https://mccoyglobal.in/#services</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Study Destinations & Global Maps -->
+  <url>
+    <loc>https://mccoyglobal.in/#destinations</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Free Assessment & Contact Form -->
+  <url>
+    <loc>https://mccoyglobal.in/#free-assessment</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://mccoyglobal.in/#contact</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- About Us & Consultancy Leadership -->
+  <url>
+    <loc>https://mccoyglobal.in/#about</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://mccoyglobal.in/#why-us</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Visa Success Gallery & Approvals -->
+  <url>
+    <loc>https://mccoyglobal.in/#gallery</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Core Competencies & Advisory Expertise -->
+  <url>
+    <loc>https://mccoyglobal.in/#expertise</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Student Testimonials -->
+  <url>
+    <loc>https://mccoyglobal.in/#testimonials</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Frequently Asked Questions (FAQ) -->
+  <url>
+    <loc>https://mccoyglobal.in/#faq</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+</urlset>
