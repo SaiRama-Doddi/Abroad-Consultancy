@@ -11,6 +11,8 @@ export interface CardItem {
 
 interface SocialCardsProps {
   cards: CardItem[];
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
 }
 
 const MAX_VISIBLE = 7;
@@ -79,15 +81,22 @@ function getSlotConfig(totalCards: number, slot: number) {
 const ARROW_CLASSES =
   "relative flex items-center justify-center rounded-full border-[1.5px] border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-[16px] text-black/40 dark:text-white/55 cursor-pointer shrink-0 z-30 outline-none shadow-[0_4px_20px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:border-black/25 dark:hover:border-white/25 hover:text-black/70 dark:hover:text-white/80 active:opacity-70 transition-colors duration-300 before:content-[''] before:absolute before:inset-[3px] before:rounded-full before:border before:border-black/[0.04] dark:before:border-white/[0.04] before:pointer-events-none";
 
-export default function SocialCards({ cards }: SocialCardsProps) {
+export default function SocialCards({ 
+  cards,
+  autoPlay = true,
+  autoPlayInterval = 2800
+}: SocialCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
   const hasEntered = useRef(false);
   const directionRef = useRef<"left" | "right" | null>(null);
   const prevVisible = useRef<Set<number>>(new Set());
+  const [isPaused, setIsPaused] = useState(false);
+  const touchPauseTimer = useRef<NodeJS.Timeout | null>(null);
 
   const totalCards = cards.length;
   const needsPagination = totalCards > MAX_VISIBLE;
+  const canCycle = totalCards > 1;
   const [centerIndex, setCenterIndex] = useState(needsPagination ? HALF : totalCards >> 1);
 
   const getVisibleMap = useCallback((center: number) => {
@@ -103,13 +112,33 @@ export default function SocialCards({ cards }: SocialCardsProps) {
   }, [totalCards, needsPagination, cards]);
 
   const cycle = useCallback((direction: "left" | "right") => {
-    if (isAnimating.current || !needsPagination) return;
+    if (isAnimating.current || !canCycle) return;
     isAnimating.current = true;
     directionRef.current = direction;
     setCenterIndex(prev =>
       direction === "right" ? (prev + 1) % totalCards : (prev - 1 + totalCards) % totalCards
     );
-  }, [totalCards, needsPagination]);
+  }, [totalCards, canCycle]);
+
+  const jumpToCard = useCallback((targetIndex: number) => {
+    if (isAnimating.current || targetIndex === centerIndex || !canCycle) return;
+    isAnimating.current = true;
+    directionRef.current = targetIndex > centerIndex ? "right" : "left";
+    setCenterIndex(targetIndex);
+  }, [centerIndex, canCycle]);
+
+  // Automatic continuous horizontal scrolling / fanning effect
+  useEffect(() => {
+    if (!autoPlay || totalCards <= 1 || isPaused) return;
+
+    const timer = setInterval(() => {
+      if (!isAnimating.current) {
+        cycle("right");
+      }
+    }, autoPlayInterval);
+
+    return () => clearInterval(timer);
+  }, [autoPlay, autoPlayInterval, isPaused, totalCards, cycle]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -290,7 +319,19 @@ export default function SocialCards({ cards }: SocialCardsProps) {
   );
 
   return (
-    <section className="flex flex-col items-center w-full py-4 lg:py-8 px-4 md:px-8 relative z-20">
+    <section 
+      className="flex flex-col items-center w-full py-4 lg:py-8 px-4 md:px-8 relative z-20"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => {
+        setIsPaused(true);
+        if (touchPauseTimer.current) clearTimeout(touchPauseTimer.current);
+      }}
+      onTouchEnd={() => {
+        if (touchPauseTimer.current) clearTimeout(touchPauseTimer.current);
+        touchPauseTimer.current = setTimeout(() => setIsPaused(false), 2000);
+      }}
+    >
       <div className="flex items-center justify-center w-full max-w-[90rem]">
         <div ref={containerRef} className="fan-layout flex relative justify-center items-center w-full max-w-[80rem]">
           {cards.map((card, index) => {
@@ -308,14 +349,21 @@ export default function SocialCards({ cards }: SocialCardsProps) {
         </div>
       </div>
 
-      {needsPagination && (
+      {canCycle && (
         <div className="flex items-center justify-center gap-4 mt-4 md:mt-6 z-30">
           <button className={`${ARROW_CLASSES} w-10 h-10 md:w-12 md:h-12`} onClick={() => cycle("left")} aria-label="Previous">
             {chevron("left")}
           </button>
           <div className="flex items-center gap-2">
             {cards.map((_, i) => (
-              <span key={i} className={`w-2 h-2 rounded-full transition-all duration-300 ${i === centerIndex ? "bg-[var(--gold)] scale-[1.3]" : "bg-white/20"}`} />
+              <button
+                key={i}
+                onClick={() => jumpToCard(i)}
+                aria-label={`Jump to slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  i === centerIndex ? "w-6 bg-[var(--gold)] scale-110 shadow-[0_0_10px_rgba(224,183,109,0.5)]" : "w-2 bg-white/20 hover:bg-white/50"
+                }`}
+              />
             ))}
           </div>
           <button className={`${ARROW_CLASSES} w-10 h-10 md:w-12 md:h-12`} onClick={() => cycle("right")} aria-label="Next">
