@@ -104,6 +104,11 @@ function HighlightCardItem({
     const el = cardRef.current;
     if (!el) return;
 
+    if (typeof window !== "undefined" && window.innerWidth < 640) {
+      setIsVisible(true);
+      return;
+    }
+
     // Dynamically transitions both when scrolling down and when scrolling up
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -170,6 +175,76 @@ function HighlightCardItem({
 export function HeroSection() {
   const [videoPlaying, setVideoPlaying] = useState(true);
   const [animationStarted, setAnimationStarted] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const resetPauseTimeout = () => {
+    setIsPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 4000);
+  };
+
+  const scrollToHighlightCard = (index: number) => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const cards = container.querySelectorAll('.hero-highlight-card');
+      const targetCard = cards[index] as HTMLElement;
+      if (targetCard) {
+        const targetLeft = targetCard.offsetLeft - container.offsetLeft - (container.clientWidth - targetCard.clientWidth) / 2;
+        container.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
+  const handleHighlightScroll = () => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      const cards = container.querySelectorAll('.hero-highlight-card');
+      if (cards.length === 0) return;
+      
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+      let closestIdx = 0;
+      let minDistance = Infinity;
+
+      cards.forEach((cardEl, idx) => {
+        const el = cardEl as HTMLElement;
+        const cardCenter = el.offsetLeft + el.offsetWidth / 2;
+        const dist = Math.abs(containerCenter - cardCenter);
+        if (dist < minDistance) {
+          minDistance = dist;
+          closestIdx = idx;
+        }
+      });
+
+      setActiveCardIndex(closestIdx);
+    }
+  };
+
+  // Auto-scroll loop for mobile highlight cards
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (typeof window !== "undefined" && window.innerWidth < 640 && !isPaused && scrollRef.current) {
+        const container = scrollRef.current;
+        const rect = container.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+        const nextIndex = (activeCardIndex + 1) % HIGHLIGHT_CARDS.length;
+        scrollToHighlightCard(nextIndex);
+      }
+    }, 3800);
+
+    return () => {
+      clearInterval(interval);
+      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    };
+  }, [activeCardIndex, isPaused]);
 
   useEffect(() => {
     const handlePreloaderDone = () => {
@@ -352,15 +427,52 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Bottom Highlights - Responsive Cards with Left-to-Right and Top-to-Bottom Transitions */}
-        <div className="mt-6 sm:mt-8 w-full rounded-2xl border border-white/10 bg-[#060a15]/80 p-3.5 sm:p-5 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch">
+        {/* Bottom Highlights - Responsive Horizontal Carousel on Mobile / 4-Col Grid on Desktop */}
+        <div className="mt-6 sm:mt-8 w-full rounded-2xl border border-white/10 bg-[#060a15]/80 p-3 sm:p-5 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative">
+          
+          {/* Edge fade gradients for mobile horizontal overflow hint */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#060a15] to-transparent z-20 sm:hidden" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#060a15] to-transparent z-20 sm:hidden" />
+
+          {/* Cards Track */}
+          <div
+            ref={scrollRef}
+            onScroll={handleHighlightScroll}
+            onTouchStart={resetPauseTimeout}
+            onMouseEnter={resetPauseTimeout}
+            className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 items-stretch overflow-x-auto sm:overflow-x-visible pb-1 sm:pb-0 -mx-1 px-1 sm:mx-0 sm:px-0 snap-x snap-mandatory sm:snap-none scroll-smooth scrollbar-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {HIGHLIGHT_CARDS.map((card, idx) => (
-              <HighlightCardItem
+              <div
                 key={idx}
-                card={card}
-                idx={idx}
-                parentReady={animationStarted}
+                className="hero-highlight-card shrink-0 w-[84vw] xs:w-[290px] sm:w-auto sm:shrink snap-center sm:snap-align-none flex flex-col"
+              >
+                <HighlightCardItem
+                  card={card}
+                  idx={idx}
+                  parentReady={animationStarted}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Pagination Indicator Dots */}
+          <div className="flex sm:hidden justify-center items-center gap-1.5 mt-3">
+            {HIGHLIGHT_CARDS.map((_, dotIdx) => (
+              <button
+                key={dotIdx}
+                type="button"
+                onClick={() => {
+                  resetPauseTimeout();
+                  scrollToHighlightCard(dotIdx);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  dotIdx === activeCardIndex 
+                    ? 'w-6 bg-[var(--gold)] shadow-[0_0_8px_rgba(224,183,109,0.5)]' 
+                    : 'w-1.5 bg-white/20'
+                }`}
+                aria-label={`Go to highlight card ${dotIdx + 1}`}
               />
             ))}
           </div>
