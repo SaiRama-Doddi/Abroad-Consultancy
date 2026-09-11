@@ -197,7 +197,7 @@ function ExpertiseCard({ item }: { item: ExpertiseItem }) {
           </h4>
 
           {/* Description text */}
-          <p className="mt-2 text-[0.78rem] sm:text-[0.82rem] leading-relaxed text-slate-300 line-clamp-3">
+          <p className="mt-2 text-[0.78rem] sm:text-[0.82rem] leading-relaxed text-slate-300 line-clamp-3 text-justify">
             {item.description}
           </p>
         </div>
@@ -234,7 +234,7 @@ export function ExpertiseSection() {
           }
         }
         .animate-expertise-scroll {
-          animation: expertise-scroll 55s linear infinite;
+          animation: expertise-scroll 32s linear infinite;
         }
       `}} />
 
@@ -262,7 +262,7 @@ export function ExpertiseSection() {
 
               <div className="mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
 
-              <p className="mt-4.5 text-[1.02rem] text-slate-400 leading-relaxed text-left">
+              <p className="mt-3.5 sm:mt-4.5 text-[0.92rem] sm:text-[1.02rem] text-slate-400 leading-relaxed text-justify">
                 We don't just guide you; we ignite your career potential through dedicated end-to-end overseas migration counseling.
               </p>
             </div>
@@ -346,7 +346,7 @@ export function ExpertiseSection() {
             className="flex w-max select-none cursor-grab active:cursor-grabbing hover:[animation-play-state:paused]"
             style={{
               animationName: "expertise-scroll",
-              animationDuration: "55s",
+              animationDuration: "32s",
               animationTimingFunction: "linear",
               animationIterationCount: "infinite",
               animationPlayState: isPaused ? "paused" : "running",
