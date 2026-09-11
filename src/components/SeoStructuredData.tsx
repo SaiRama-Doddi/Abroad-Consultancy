@@ -217,7 +217,7 @@ export function SeoStructuredData() {
             "name": "Which countries does McCoy Global Consultancy assist with for study and immigration?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We provide end-to-end guidance for premier destinations worldwide including USA, United Kingdom, Canada, Australia, Germany (Opportunity Card & Student Visas), Poland, France, Italy, Cyprus, Mauritius, Maldives, Singapore, Malaysia, Thailand, Indonesia, Sri Lanka, Vietnam, and 29+ European Schengen nations."
+              "text": "We provide end-to-end guidance for premier destinations worldwide including USA, United Kingdom, Canada, Australia, Germany (Opportunity Card & Student Visas), Poland, France, Italy, Cyprus, Mauritius, Singapore, Malaysia, and European Schengen nations."
             }
           },
           {

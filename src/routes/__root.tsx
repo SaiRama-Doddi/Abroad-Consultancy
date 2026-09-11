@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "keywords",
         content:
-          "McCoy Global Consultancy, McCoy Global, Abroad Consultancy Hyderabad, Overseas Education Consultants Hyderabad, Best Visa Consultancy Hyderabad, Germany Opportunity Card Chancenkarte, UK Youth Mobility Visa, USA Student Visa F1, Canada Study Permit, Australia Student Visa Subclass 500, Europe Schengen Student Visa, Cyprus Study Visa, Mauritius Study Work Visa, Maldives Resort Internship, Singapore Diploma Visa, Study Abroad Loans Hyderabad, Flight Ticket Booking",
+          "McCoy Global Consultancy, McCoy Global, Abroad Consultancy Hyderabad, Overseas Education Consultants Hyderabad, Best Visa Consultancy Hyderabad, Germany Opportunity Card Chancenkarte, UK Youth Mobility Visa, USA Student Visa F1, Canada Study Permit, Australia Student Visa Subclass 500, Europe Schengen Student Visa, Cyprus Study Visa, Mauritius Study Work Visa, Singapore Diploma Visa, Malaysia Study Visa, Study Abroad Loans Hyderabad, Flight Ticket Booking",
       },
       { name: "author", content: "McCoy Global Consultancy" },
       { name: "publisher", content: "McCoy Global Consultancy" },
