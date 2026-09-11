@@ -152,7 +152,7 @@ export function ServicesSection() {
     if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
     pauseTimeoutRef.current = setTimeout(() => {
       setIsPaused(false);
-    }, 4000);
+    }, 2000);
   };
 
   const scrollToCard = (index: number) => {
@@ -170,30 +170,36 @@ export function ServicesSection() {
     }
   };
 
-  // Auto-scroll loop for mobile cards (only runs when section is visible in viewport)
+  // Speed auto-scroll loop for mobile cards (only runs when section is visible in viewport)
   useEffect(() => {
+    if (typeof window === "undefined" || isPaused) return;
+
     const interval = setInterval(() => {
-      if (typeof window !== "undefined" && window.innerWidth < 1024 && !isPaused && scrollRef.current) {
+      if (window.innerWidth < 1024 && scrollRef.current) {
         const container = scrollRef.current;
         const rect = container.getBoundingClientRect();
         if (rect.bottom < 0 || rect.top > window.innerHeight) return;
 
-        const nextIndex = (activeIndex + 1) % visaServices.length;
-        scrollToCard(nextIndex);
+        setActiveIndex(prev => {
+          const nextIndex = (prev + 1) % visaServices.length;
+          scrollToCard(nextIndex);
+          return nextIndex;
+        });
       }
-    }, 3500);
+    }, 2000);
 
     return () => {
       clearInterval(interval);
       if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
     };
-  }, [activeIndex, isPaused]);
+  }, [isPaused]);
 
   const scroll = (direction: 'left' | 'right') => {
     resetPauseTimeout();
     const targetIdx = direction === 'left' 
       ? Math.max(0, activeIndex - 1) 
       : Math.min(visaServices.length - 1, activeIndex + 1);
+    setActiveIndex(targetIdx);
     scrollToCard(targetIdx);
   };
 
@@ -267,7 +273,7 @@ export function ServicesSection() {
   };
 
   return (
-    <section id="services" className="bg-[#090e1a] text-white pt-16 pb-20 relative overflow-hidden border-b border-slate-800">
+    <section id="services" className="bg-[#090e1a] text-white pt-10 sm:pt-16 pb-14 sm:pb-20 relative overflow-hidden border-b border-slate-800">
       {/* Decorative background grid elements */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#e0b76d_1.2px,transparent_1.2px)] [background-size:24px_24px]" />
       
@@ -275,29 +281,29 @@ export function ServicesSection() {
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--gold)]/3 rounded-full blur-[130px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-blue-500/3 rounded-full blur-[130px] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
+      <div className="mx-auto max-w-7xl px-3 sm:px-6 relative z-10">
 
         {/* Section Header (Visa Services) */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="text-left w-full mb-8 sm:mb-10 flex flex-col items-start">
+          <div className="text-left w-full mb-6 sm:mb-10 flex flex-col items-start">
             {/* Premium Capsule Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3.5">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-3.5 sm:px-4 py-1.5 text-[0.70rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3">
               <Sparkles className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400 animate-pulse" />
               <span className="text-amber-300 tracking-[0.22em] font-extrabold">Our Services</span>
             </div>
 
-            <h2 className="font-display text-4xl sm:text-5xl leading-tight text-white font-black tracking-tight text-left">
+            <h2 className="font-display text-3xl sm:text-5xl leading-tight text-white font-black tracking-tight text-left">
               Visa <span className="text-[var(--gold)]">Pathways</span> & Solutions
             </h2>
 
-            <div className="mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
+            <div className="mt-3.5 sm:mt-4 h-0.5 w-20 bg-gradient-to-r from-[var(--gold)] to-transparent" />
 
-            <p className="mt-4.5 text-[1.02rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+            <p className="mt-3 sm:mt-4.5 text-[0.90rem] sm:text-[1.02rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
               McCoy Global Consultancy provides comprehensive solutions, from standard student visa arrangements to tourist visa facilitation across the globe.
             </p>
 
             {/* Mobile Scroll Controls & Status (Only on small screens) */}
-            <div className="flex lg:hidden items-center justify-between w-full mt-6 pt-3 border-t border-slate-800/60">
+            <div className="flex lg:hidden items-center justify-between w-full mt-4 pt-2.5 border-t border-slate-800/60">
               <div className="flex items-center gap-2 text-xs">
                 <span className="font-bold text-[var(--gold)]">{activeIndex + 1}</span>
                 <span className="text-slate-500">/</span>
@@ -331,8 +337,8 @@ export function ServicesSection() {
           onScroll={handleScroll}
           onTouchStart={resetPauseTimeout}
           onMouseEnter={resetPauseTimeout}
-          className="flex lg:grid lg:grid-cols-2 gap-4 sm:gap-8 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory lg:snap-none scroll-smooth scrollbar-none lg:[perspective:1000px]"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPadding: '0 1rem' }}
+          className="flex lg:grid lg:grid-cols-2 gap-2.5 sm:gap-8 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 -mx-3 px-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory lg:snap-none scroll-smooth scrollbar-none lg:[perspective:1000px]"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPadding: '0 calc(50% - 145px)' }}
         >
           {visaServices.map((service, index) => {
             const Icon = service.icon;
@@ -345,24 +351,28 @@ export function ServicesSection() {
             return (
               <FeatureCardReveal
                 key={service.title}
-                delay={150 + index * 80}
-                className={`service-item-card shrink-0 w-[86vw] max-w-[360px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d] transition-all duration-500 ${
+                delay={100 + index * 60}
+                className={`service-item-card shrink-0 w-[76vw] max-w-[290px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d] transition-all duration-500 ${
                   isMobileActive ? 'z-30' : 'z-10'
                 } ${
                   isHovered ? 'lg:z-40' : isOtherHovered ? 'lg:z-10' : 'lg:z-20'
                 }`}
               >
                 <div
-                  onClick={() => handleServiceClick(service)}
+                  onClick={() => {
+                    setActiveIndex(index);
+                    scrollToCard(index);
+                    handleServiceClick(service);
+                  }}
                   onMouseEnter={() => {
                     resetPauseTimeout();
                     setHoveredIndex(index);
                   }}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className={`group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] cursor-pointer select-none ${
+                  className={`group relative flex flex-col justify-between rounded-xl sm:rounded-3xl border p-3.5 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] cursor-pointer select-none ${
                     isMobileActive
-                      ? 'scale-100 opacity-100 z-30 shadow-[0_20px_50px_rgba(184,123,44,0.22)] border-[var(--gold)]/60 bg-slate-900/90'
-                      : 'scale-[0.91] opacity-50 z-10 brightness-75 border-slate-800/60 bg-slate-950/30'
+                      ? 'scale-100 opacity-100 z-30 brightness-100 shadow-[0_15px_40px_rgba(224,183,109,0.3)] border-[var(--gold)]/80 bg-slate-900/95'
+                      : 'scale-[0.84] opacity-35 z-10 brightness-[0.45] saturate-50 blur-[0.2px] border-slate-800/40 bg-slate-950/20'
                   } ${
                     isHovered
                       ? 'lg:scale-[1.04] lg:opacity-100 lg:z-40 lg:shadow-[0_30px_70px_rgba(0,0,0,0.8),0_15px_35px_rgba(184,123,44,0.25)] lg:border-[var(--gold)]/80 lg:bg-slate-900/95 lg:[transform:rotateX(2deg)_translateZ(30px)]'
@@ -375,40 +385,43 @@ export function ServicesSection() {
                   <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
 
                   {/* Huge background progress number - lifts in 3D */}
-                  <div className="absolute right-4 sm:right-6 bottom-4 sm:bottom-5 text-5xl sm:text-7xl font-black select-none pointer-events-none font-display z-0 text-slate-800/25 group-hover:text-[var(--gold)]/10 transition-colors duration-500 [transform:translateZ(25px)]">
+                  <div className="absolute right-3 sm:right-6 bottom-2 sm:bottom-5 text-4xl sm:text-7xl font-black select-none pointer-events-none font-display z-0 text-slate-800/25 group-hover:text-[var(--gold)]/10 transition-colors duration-500 [transform:translateZ(25px)]">
                     {String(index + 1).padStart(2, '0')}
                   </div>
 
                   {/* Accent gold light glow on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
 
-                  <div className="flex flex-col md:flex-row gap-4 sm:gap-6 items-stretch w-full h-full relative z-10">
+                  <div className="flex flex-col md:flex-row gap-3 sm:gap-6 items-stretch w-full h-full relative z-10">
                     {/* Left panel: text and details - lifts in 3D */}
                     <div className="flex flex-col justify-between flex-1 pr-0 md:pr-4 [transform:translateZ(15px)]">
                       <div>
                         {/* Icon & Title */}
-                        <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-5">
-                          <div className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border ${service.bg} ${service.color} transition-all duration-500 shadow-sm`}>
-                            <Icon className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
+                        <div className="flex items-center gap-2.5 sm:gap-4 mb-2 sm:mb-5">
+                          <div className={`flex h-8 w-8 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-lg sm:rounded-2xl border ${service.bg} ${service.color} transition-all duration-500 shadow-sm`}>
+                            <Icon className="h-4 w-4 sm:h-5.5 sm:w-5.5" />
                           </div>
-                          <h3 className="font-display text-lg sm:text-xl font-black text-white group-hover:text-[var(--gold)] transition-colors duration-300 tracking-tight leading-snug">
+                          <h3 className="font-display text-sm sm:text-xl font-black text-white group-hover:text-[var(--gold)] transition-colors duration-300 tracking-tight leading-snug">
                             {highlightTitle(service.title)}
                           </h3>
                         </div>
 
                         {/* Description */}
-                        <p className="text-[0.76rem] sm:text-[0.82rem] leading-relaxed text-slate-300 mb-4 sm:mb-6 text-justify">
+                        <p className="text-[0.70rem] sm:text-[0.82rem] leading-snug sm:leading-relaxed text-slate-300 mb-2 sm:mb-6 text-justify line-clamp-2 sm:line-clamp-none">
                           {service.description}
                         </p>
 
-                        {/* Features List */}
-                        <ul className="space-y-2 sm:space-y-3">
-                          {service.features.map((feat) => (
-                            <li key={feat} className="flex items-start gap-2.5 sm:gap-3 group/li">
-                              <div className="flex h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-300 group-hover/li:bg-[var(--gold)] group-hover/li:text-black mt-0.5 shadow-sm">
-                                <CheckCircle2 className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                        {/* Features List (Compact on mobile) */}
+                        <ul className="space-y-1.5 sm:space-y-3">
+                          {service.features.map((feat, fIdx) => (
+                            <li 
+                              key={feat} 
+                              className={`flex items-start gap-2 sm:gap-3 group/li ${fIdx >= 2 ? "hidden sm:flex" : "flex"}`}
+                            >
+                              <div className="flex h-3.5 w-3.5 sm:h-5 sm:w-5 shrink-0 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-300 group-hover/li:bg-[var(--gold)] group-hover/li:text-black mt-0.5 shadow-sm">
+                                <CheckCircle2 className="h-2 w-2 sm:h-3 sm:w-3" />
                               </div>
-                              <span className="text-[0.74rem] sm:text-[0.82rem] font-bold text-slate-300 transition-colors duration-300 group-hover/li:text-white leading-snug">
+                              <span className="text-[0.66rem] sm:text-[0.82rem] font-bold text-slate-300 transition-colors duration-300 group-hover/li:text-white leading-tight sm:leading-snug line-clamp-1 sm:line-clamp-none">
                                 {feat}
                               </span>
                             </li>
@@ -418,15 +431,15 @@ export function ServicesSection() {
 
                       {/* Bottom Action Details Link */}
                       <div 
-                        className="mt-5 sm:mt-8 pt-3 sm:pt-4 border-t border-slate-800 flex items-center justify-between text-[0.66rem] sm:text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:text-[var(--gold)]/90"
+                        className="mt-3 sm:mt-8 pt-2 sm:pt-4 border-t border-slate-800 flex items-center justify-between text-[0.62rem] sm:text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:text-[var(--gold)]/90"
                       >
-                        <span>{isTourOrMap ? "Explore Destinations & Maps" : "Enquire Details"}</span>
-                        <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                        <span>{isTourOrMap ? "Explore Destinations" : "Enquire Details"}</span>
+                        <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                       </div>
                     </div>
 
                     {/* Right panel: Image wrapper - lifts in 3D */}
-                    <div className="relative w-full md:w-[160px] lg:w-[220px] h-[140px] sm:h-[180px] md:h-auto rounded-xl sm:rounded-2xl overflow-hidden shrink-0 border border-slate-800 group-hover:border-[var(--gold)]/40 transition-colors duration-500 shadow-sm self-stretch flex [transform:translateZ(20px)] mt-2 md:mt-0">
+                    <div className="relative w-full md:w-[160px] lg:w-[220px] h-[95px] sm:h-[180px] md:h-auto rounded-lg sm:rounded-2xl overflow-hidden shrink-0 border border-slate-800 group-hover:border-[var(--gold)]/40 transition-colors duration-500 shadow-sm self-stretch flex [transform:translateZ(20px)] mt-2 md:mt-0">
                       <img 
                         src={service.image} 
                         alt={service.title} 
@@ -434,10 +447,10 @@ export function ServicesSection() {
                       />
                       {/* Top-Right Country Flag Badge overlay */}
                       {service.countryCode && (
-                        <div className="absolute top-2.5 sm:top-3 right-2.5 sm:right-3 z-30 transition-all duration-500 group-hover:scale-110 shadow-lg border border-slate-800 rounded-lg overflow-hidden shrink-0 group-hover:border-[var(--gold)]">
+                        <div className="absolute top-2 sm:top-3 right-2 sm:right-3 z-30 transition-all duration-500 group-hover:scale-110 shadow-lg border border-slate-800 rounded-lg overflow-hidden shrink-0 group-hover:border-[var(--gold)]">
                           <img
                             src={`https://flagcdn.com/w80/${service.countryCode}.png`}
-                            className="h-6 w-9 sm:h-8 sm:w-12 object-cover"
+                            className="h-5 w-7.5 sm:h-8 sm:w-12 object-cover"
                             alt="Country Flag"
                           />
                         </div>
@@ -450,21 +463,22 @@ export function ServicesSection() {
           })}
           
           {/* End spacer so the last card has trailing breathing room and is never cropped */}
-          <div className="shrink-0 w-2 lg:hidden pointer-events-none" aria-hidden="true" />
+          <div className="shrink-0 w-3 lg:hidden pointer-events-none" aria-hidden="true" />
         </div>
 
         {/* Mobile Pagination Indicator Dots */}
-        <div className="flex lg:hidden justify-center items-center gap-1.5 mt-4">
+        <div className="flex lg:hidden justify-center items-center gap-1.5 mt-3">
           {visaServices.map((_, dotIdx) => (
             <button
               key={dotIdx}
               onClick={() => {
                 resetPauseTimeout();
+                setActiveIndex(dotIdx);
                 scrollToCard(dotIdx);
               }}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 dotIdx === activeIndex 
-                  ? 'w-6 bg-[var(--gold)]' 
+                  ? 'w-6 bg-[var(--gold)] shadow-[0_0_8px_rgba(224,183,109,0.5)]' 
                   : 'w-1.5 bg-slate-800'
               }`}
               aria-label={`Go to service slide ${dotIdx + 1}`}
