@@ -340,11 +340,11 @@ export function ServicesSection() {
               <FeatureCardReveal
                 key={service.title}
                 delay={150 + index * 80}
-                className="service-item-card shrink-0 w-[86vw] max-w-[360px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d]"
+                className="service-item-card shrink-0 w-[86vw] max-w-[360px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d] relative hover:z-30 focus-within:z-30 transition-all duration-300"
               >
                 <div
                   onClick={() => handleServiceClick(service)}
-                  className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/40 p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] hover:border-[var(--gold)]/50 hover:bg-slate-900/60 hover:lg:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(10px)] hover:shadow-[0_20px_50px_rgba(184,123,44,0.12)] cursor-pointer select-none"
+                  className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/40 p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:lg:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(20px)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.6),0_15px_35px_rgba(184,123,44,0.22)] hover:z-30 cursor-pointer select-none"
                 >
                   {/* Top gold bar accent on hover */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
