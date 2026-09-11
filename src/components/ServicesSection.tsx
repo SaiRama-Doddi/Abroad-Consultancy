@@ -143,6 +143,7 @@ function FeatureCardReveal({ children, delay = 0, className = "" }: { children: 
 export function ServicesSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isPaused, setIsPaused] = useState(false);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -336,15 +337,39 @@ export function ServicesSection() {
           {visaServices.map((service, index) => {
             const Icon = service.icon;
             const isTourOrMap = service.title.toLowerCase().includes("tourism") || service.title.toLowerCase().includes("visitor");
+            const isMobileActive = activeIndex === index;
+            const isHovered = hoveredIndex === index;
+            const hasHover = hoveredIndex !== null;
+            const isOtherHovered = hasHover && !isHovered;
+
             return (
               <FeatureCardReveal
                 key={service.title}
                 delay={150 + index * 80}
-                className="service-item-card shrink-0 w-[86vw] max-w-[360px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d] relative hover:z-30 focus-within:z-30 transition-all duration-300"
+                className={`service-item-card shrink-0 w-[86vw] max-w-[360px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d] transition-all duration-500 ${
+                  isMobileActive ? 'z-30' : 'z-10'
+                } ${
+                  isHovered ? 'lg:z-40' : isOtherHovered ? 'lg:z-10' : 'lg:z-20'
+                }`}
               >
                 <div
                   onClick={() => handleServiceClick(service)}
-                  className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-800/80 bg-slate-950/40 p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] hover:border-[var(--gold)]/60 hover:bg-slate-900/80 hover:lg:[transform:rotateX(3deg)_rotateY(-3deg)_translateZ(20px)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.6),0_15px_35px_rgba(184,123,44,0.22)] hover:z-30 cursor-pointer select-none"
+                  onMouseEnter={() => {
+                    resetPauseTimeout();
+                    setHoveredIndex(index);
+                  }}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  className={`group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border p-4 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] cursor-pointer select-none ${
+                    isMobileActive
+                      ? 'scale-100 opacity-100 z-30 shadow-[0_20px_50px_rgba(184,123,44,0.22)] border-[var(--gold)]/60 bg-slate-900/90'
+                      : 'scale-[0.91] opacity-50 z-10 brightness-75 border-slate-800/60 bg-slate-950/30'
+                  } ${
+                    isHovered
+                      ? 'lg:scale-[1.04] lg:opacity-100 lg:z-40 lg:shadow-[0_30px_70px_rgba(0,0,0,0.8),0_15px_35px_rgba(184,123,44,0.25)] lg:border-[var(--gold)]/80 lg:bg-slate-900/95 lg:[transform:rotateX(2deg)_translateZ(30px)]'
+                      : isOtherHovered
+                      ? 'lg:scale-[0.96] lg:opacity-40 lg:z-10 lg:blur-[0.5px] lg:brightness-75 lg:bg-slate-950/20 lg:[transform:scale(0.96)_translateZ(-20px)]'
+                      : 'lg:scale-100 lg:opacity-100 lg:z-20 lg:bg-slate-950/40 lg:border-slate-800/80'
+                  }`}
                 >
                   {/* Top gold bar accent on hover */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
