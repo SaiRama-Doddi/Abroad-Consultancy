@@ -10,15 +10,9 @@
   "categories": ["education", "travel", "business"],
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/favicon.png",
       "sizes": "any",
       "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
@@ -28,10 +22,10 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
+      "src": "/favicon.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "apple touch icon"
+      "purpose": "any maskable"
     }
   ]
 }
