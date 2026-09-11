@@ -391,10 +391,10 @@ export function AboutSection() {
               </h2>
               <div className="h-px w-24 bg-gradient-to-r from-[var(--gold)] to-transparent" />
               
-              <p className="text-[0.98rem] sm:text-[1.02rem] leading-relaxed text-slate-600 text-left sm:text-justify">
+              <p className="text-[0.98rem] sm:text-[1.02rem] leading-relaxed text-slate-600 text-justify">
                 McCoy Global Consultancy is built on one simple belief: a visa is not paperwork, it is a <span className="text-[var(--gold)] font-semibold">life decision</span>. We guide you with personalized pathways for study, career, and global migration.
               </p>
-              <p className="text-[0.98rem] sm:text-[1.02rem] leading-relaxed text-slate-600 text-left sm:text-justify">
+              <p className="text-[0.98rem] sm:text-[1.02rem] leading-relaxed text-slate-600 text-justify">
                 From documentation and interview prep to visa approvals — our dedicated consultants support you at <span className="text-[var(--gold)] font-semibold">every step</span>.
               </p>
             </div>
