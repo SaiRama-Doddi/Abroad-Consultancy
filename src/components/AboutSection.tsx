@@ -404,31 +404,31 @@ export function AboutSection() {
         {/* Bottom Horizontal Curved Stats Block */}
         <ScrollReveal direction="up" delay={200}>
           <div 
-            className="mt-16 rounded-3xl border border-slate-100 bg-white p-6 shadow-[0_20px_50px_rgba(0,0,0,0.03)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-center"
+            className="mt-10 sm:mt-16 rounded-2xl sm:rounded-3xl border border-slate-100 bg-white p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.03)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 items-center"
           >
             {stats.map((s, idx) => {
               const Icon = s.icon;
               return (
                 <div 
                   key={s.label} 
-                  className={`flex items-center gap-4 ${
-                    idx > 0 ? "pt-4 lg:pt-0 border-slate-100" : ""
+                  className={`flex items-center gap-3.5 sm:gap-4 ${
+                    idx > 0 ? "pt-3.5 sm:pt-4 lg:pt-0 border-slate-100" : ""
                   } ${
                     idx === 1 || idx === 3 ? "sm:pl-6 sm:border-l lg:pl-8 lg:border-l border-slate-100" : ""
                   } ${
                     idx === 2 ? "sm:border-l-0 lg:pl-8 lg:border-l border-slate-100" : ""
                   } ${
-                    idx >= 2 ? "pt-4 sm:pt-4 lg:pt-0 sm:border-t lg:border-t-0 border-slate-100" : ""
+                    idx >= 2 ? "pt-3.5 sm:pt-4 lg:pt-0 sm:border-t lg:border-t-0 border-slate-100" : ""
                   }`}
                 >
-                  <div className={`flex h-13 w-13 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl ${s.badgeBg} border transition-transform duration-300 hover:scale-110`}>
-                    <Icon className="h-7 w-7 sm:h-8 sm:w-8" />
+                  <div className={`flex h-11 w-11 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl ${s.badgeBg} border transition-transform duration-300 hover:scale-110`}>
+                    <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
                   </div>
                   <div>
-                    <span className="block font-display text-3xl font-extrabold text-[var(--gold)] leading-none">
+                    <span className="block font-display text-2xl sm:text-3xl font-extrabold text-[var(--gold)] leading-none">
                       <AnimatedCounter value={s.value} />
                     </span>
-                    <span className="block text-[0.72rem] sm:text-[0.78rem] uppercase font-bold tracking-widest text-slate-500 mt-2 leading-none">
+                    <span className="block text-[0.62rem] sm:text-[0.78rem] uppercase font-bold tracking-wider sm:tracking-widest text-slate-500 mt-1 sm:mt-2 leading-none">
                       {s.label}
                     </span>
                   </div>
