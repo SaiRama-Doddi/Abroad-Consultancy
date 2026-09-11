@@ -64,7 +64,7 @@ const features = [
   {
     title: "Trusted Customers",
     description: "Thousands of students trust our guidance to secure top global university admissions.",
-    mobileDesc: "Thousands of students trust our guidance for top university admissions.",
+    mobileDesc: "Thousands guided to top global universities.",
     icon: Handshake,
     color: "text-sky-400",
     bg: "bg-sky-500/15 border-sky-400/35 shadow-[0_0_18px_rgba(56,189,248,0.25)] group-hover:bg-sky-500/25 group-hover:border-sky-400/60",
@@ -73,7 +73,7 @@ const features = [
   {
     title: "24/7 Support",
     description: "Dedicated 24/7 team assisting with applications, documentation, and visas.",
-    mobileDesc: "Dedicated 24/7 team assisting with applications, documents, and visas.",
+    mobileDesc: "24/7 team assisting applications & visas.",
     icon: Headphones,
     color: "text-emerald-400",
     bg: "bg-emerald-500/15 border-emerald-400/35 shadow-[0_0_18px_rgba(52,211,153,0.25)] group-hover:bg-emerald-500/25 group-hover:border-emerald-400/60",
@@ -82,7 +82,7 @@ const features = [
   {
     title: "Trusted Consultant",
     description: "Certified counselors with years of expertise guiding your entire visa process.",
-    mobileDesc: "Certified counselors guiding every step of your visa process.",
+    mobileDesc: "Certified counselors for complete visa guidance.",
     icon: CheckCircle2,
     color: "text-purple-400",
     bg: "bg-purple-500/15 border-purple-400/35 shadow-[0_0_18px_rgba(192,132,252,0.25)] group-hover:bg-purple-500/25 group-hover:border-purple-400/60",
@@ -212,8 +212,13 @@ export function WhyChooseUs() {
                   {/* Quote text block */}
                   <div className="relative">
                     <span className="absolute -top-3.5 -left-3.5 font-serif text-3xl sm:text-4xl text-[var(--gold)]/35 select-none">“</span>
-                    <p className="text-[0.8rem] sm:text-[0.88rem] leading-relaxed text-slate-300 italic relative z-10 px-2 text-justify select-text">
-                      Our mission is to shape clear, stress-free visa pathways and secure admissions in world-class institutions with absolute transparency and integrity.
+                    <p className="text-[0.74rem] sm:text-[0.88rem] leading-snug sm:leading-relaxed text-slate-300 italic relative z-10 px-2 text-justify select-text">
+                      <span className="sm:hidden">
+                        Our mission is to shape stress-free visa pathways & top admissions with transparency.
+                      </span>
+                      <span className="hidden sm:inline">
+                        Our mission is to shape clear, stress-free visa pathways and secure admissions in world-class institutions with absolute transparency and integrity.
+                      </span>
                     </p>
                     <span className="absolute -bottom-4.5 sm:-bottom-5 -right-1.5 font-serif text-3xl sm:text-4xl text-[var(--gold)]/35 select-none">”</span>
                   </div>
