@@ -222,7 +222,7 @@ export function ExpertiseSection() {
   const [scrollDirection, setScrollDirection] = useState<"normal" | "reverse">("normal");
 
   return (
-    <section id="expertise" className="bg-[#090e1a] text-white pt-16 pb-20 relative overflow-hidden border-b border-slate-800">
+    <section id="expertise" className="bg-[#090e1a] text-white pt-3 sm:pt-14 pb-14 sm:pb-20 relative overflow-hidden border-b border-slate-800">
       {/* Inline styles for continuous infinite horizontal scroll */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes expertise-scroll {
@@ -248,10 +248,10 @@ export function ExpertiseSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between w-full mb-10 sm:mb-14 gap-6">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between w-full mb-6 sm:mb-14 gap-6">
             <div className="flex flex-col items-start max-w-2xl">
               {/* Premium Capsule Subtitle Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-3.5">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-2.5 sm:mb-3.5">
                 <Sparkles className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400 animate-pulse" />
                 <span className="text-amber-300 tracking-[0.22em] font-extrabold">Core Competencies</span>
               </div>

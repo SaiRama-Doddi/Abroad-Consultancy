@@ -130,7 +130,7 @@ return (
 
 export function WhyChooseUs() {
   return (
-    <section id="why-us" className="bg-[#090e1a] text-white pt-12 sm:pt-16 pb-12 sm:pb-16 relative overflow-hidden border-b border-slate-800 scroll-mt-20">
+    <section id="why-us" className="bg-[#090e1a] text-white pt-10 sm:pt-16 pb-3 sm:pb-12 relative overflow-hidden border-b border-slate-800/80 scroll-mt-20">
       {/* Decorative background grid elements */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#e0b76d_1.2px,transparent_1.2px)] [background-size:24px_24px]" />
       
