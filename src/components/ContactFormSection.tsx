@@ -293,10 +293,16 @@ export function ContactFormSection() {
                         <option value="it">Italy</option>
                         <option value="fr">France</option>
                         <option value="cy">Cyprus</option>
+                        <option value="eu">Europe (Schengen)</option>
                         <option value="ae">United Arab Emirates (Dubai)</option>
                         <option value="sg">Singapore</option>
                         <option value="my">Malaysia</option>
                         <option value="mu">Mauritius</option>
+                        <option value="id">Indonesia (Bali)</option>
+                        <option value="lk">Sri Lanka</option>
+                        <option value="vn">Vietnam</option>
+                        <option value="th">Thailand</option>
+                        <option value="mv">Maldives</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-650">
                         <ChevronDownIcon />

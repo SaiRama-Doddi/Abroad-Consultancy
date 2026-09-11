@@ -388,6 +388,218 @@ const destinations: Destination[] = [
   }
 ];
 
+const touristDestinations: Destination[] = [
+  {
+    name: "United States",
+    shortName: "USA",
+    code: "us",
+    region: "North America",
+    image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=600&q=80",
+    courses: ["10-Year B1/B2 Tourist Visa", "Family Tourism & Holidays", "Business Meetings & Summits"],
+    eligibility: "Valid passport, bank statement, travel itinerary & DS-160 appointment filing",
+    workRights: "Up to 6 Months stay per entry (10-Year Multiple Entry Validity)",
+    intakes: "Daily Appointment Slot Booking",
+    avgTuition: "Fast-Track Slot Booking & Filing",
+    highlights: [
+      "10-Year Multiple Entry B1/B2 Visa for frequent travel",
+      "Comprehensive DS-160 documentation & slot booking assistance",
+      "1-on-1 mock interview preparation by visa specialists",
+      "Support for family vacations, reunions & business visits"
+    ],
+    description: "Explore iconic American cities from New York to California. We provide end-to-end guidance for DS-160 filing, slot booking, financial verification, and interview preparation."
+  },
+  {
+    name: "United Kingdom",
+    shortName: "UK",
+    code: "gb",
+    region: "Europe",
+    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80",
+    courses: ["Standard Visitor Visa (6 Months)", "Long-Term Multiple Entry (2, 5, 10 Yrs)", "Family & Leisure Sightseeing"],
+    eligibility: "Valid passport, financial proof, travel itinerary & employment evidence",
+    workRights: "Up to 6 Months stay per visit",
+    intakes: "Year-Round Fast-Track Processing",
+    avgTuition: "3 to 5 Days Priority Options Available",
+    highlights: [
+      "Priority & Super Priority 24-48 hour decision pathways",
+      "London sightseeing, Scottish Highlands & family visits",
+      "Multi-year validity options for frequent UK visitors",
+      "End-to-end VFS biometric submission guidance"
+    ],
+    description: "Experience London, Edinburgh, and the historic British Isles with seamless UK visitor visa documentation, financial structuring, and fast-track filing."
+  },
+  {
+    name: "United Arab Emirates",
+    shortName: "Dubai",
+    code: "ae",
+    region: "Middle East",
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80",
+    courses: ["30-Day Express Tourist Visa", "60-Day Leisure & Visit Visa", "5-Year Multiple Entry Tourist Visa"],
+    eligibility: "Passport scan & photograph (No physical interview or biometrics)",
+    workRights: "30 or 60 Days with easy online extension",
+    intakes: "Instant 24 to 48 Hours Issuance",
+    avgTuition: "Guaranteed Express Approval",
+    highlights: [
+      "Guaranteed 24-48 hours fast-track eVisa issuance",
+      "Zero embassy interview or physical biometrics needed",
+      "Burj Khalifa, Desert Safari & luxury shopping getaways",
+      "Family, couple & corporate group holiday packages"
+    ],
+    description: "Instant Dubai eVisa issuance within 24-48 hours. Enjoy luxury shopping, desert safaris, and family getaways with zero paperwork hassle."
+  },
+  {
+    name: "Indonesia",
+    shortName: "Indonesia",
+    code: "id",
+    region: "Southeast Asia",
+    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80",
+    courses: ["B1 Tourist eVisa (30 Days)", "60-Day Visit Visa (Extendable)", "Luxury Bali Retreats & Island Tours"],
+    eligibility: "Passport with 6+ months validity, return flight & hotel booking",
+    workRights: "30 Days (Extendable up to 60 Days)",
+    intakes: "Instant 24-Hour e-VoA Grant",
+    avgTuition: "Electronic Visa on Arrival (e-VoA)",
+    highlights: [
+      "24-Hour electronic Visa on Arrival (e-VoA) processing",
+      "Bali beaches, Uluwatu temples & private pool villas",
+      "Budget-friendly luxury tropical holidays",
+      "Direct online approval with zero embassy visits"
+    ],
+    description: "Discover Bali's serene beaches, cultural temples, and tropical rainforests with swift 24-hour Indonesia eVisa processing."
+  },
+  {
+    name: "Sri Lanka",
+    shortName: "Sri Lanka",
+    code: "lk",
+    region: "South Asia",
+    image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80",
+    courses: ["Electronic Travel Authorization (ETA)", "Double Entry 30-Day Tourist Visa", "Ramayana Trail & Scenic Tea Tours"],
+    eligibility: "Valid passport, roundtrip flight & accommodation details",
+    workRights: "30 Days double entry (Extendable up to 180 Days)",
+    intakes: "Instant 24-Hour Online Issuance",
+    avgTuition: "Fast Online Approval",
+    highlights: [
+      "Instant 24-Hour ETA online grant with minimal documents",
+      "Emerald tea estates, historic temples & coastal beaches",
+      "Close proximity to India with budget-friendly itineraries",
+      "Direct daily flight connectivity from Hyderabad"
+    ],
+    description: "Explore Nuwara Eliya tea hills, pristine southern beaches, and historic wonders with fast online Sri Lanka ETA visa assistance."
+  },
+  {
+    name: "Vietnam",
+    shortName: "Vietnam",
+    code: "vn",
+    region: "Southeast Asia",
+    image: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80",
+    courses: ["30-Day Single Entry eVisa", "90-Day Multiple Entry Tourist Visa", "Ha Long Bay & Da Nang Tours"],
+    eligibility: "Passport scan & portrait photo",
+    workRights: "30 to 90 Days duration of stay",
+    intakes: "Fast 3 to 4 Working Days",
+    avgTuition: "Official Government eVisa",
+    highlights: [
+      "Official 3-day online eVisa issuance with high approval",
+      "Ha Long Bay cruises, Da Nang Golden Bridge & Hanoi heritage",
+      "Top trending budget-friendly international holiday destination",
+      "Direct flight options and simplified digital verification"
+    ],
+    description: "Experience Ha Long Bay cruises, the Golden Bridge in Da Nang, and vibrant street life with swift Vietnam tourist eVisa processing."
+  },
+  {
+    name: "Thailand",
+    shortName: "Thailand",
+    code: "th",
+    region: "Southeast Asia",
+    image: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80",
+    courses: ["Tourist Visa (TR - 60 Days)", "Visa on Arrival (VoA)", "Phuket & Bangkok Holiday Packages"],
+    eligibility: "Valid passport, confirmed roundtrip flight & hotel reservations",
+    workRights: "30 to 60 Days stay",
+    intakes: "Instant / Express Processing",
+    avgTuition: "Visa-Free / Fast-Track VoA",
+    highlights: [
+      "Visa exemption / Express electronic Visa on Arrival",
+      "Phuket beaches, Pattaya islands & Bangkok street shopping",
+      "Ideal for quick family vacations and group holiday trips",
+      "No complex financial documentation required"
+    ],
+    description: "Relax on world-famous Phuket beaches and explore Bangkok's vibrant culture with hassle-free Thailand tourist visa arrangements."
+  },
+  {
+    name: "Singapore",
+    shortName: "Singapore",
+    code: "sg",
+    region: "Asia",
+    image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=600&q=80",
+    courses: ["Singapore Tourist eVisa (2-Year Multiple)", "Family Holiday Packages", "Sentosa & Marina Bay City Tours"],
+    eligibility: "Passport scan, return flight booking & bank statement",
+    workRights: "Up to 30 Days stay per entry (2-Year Multiple Validity)",
+    intakes: "3 to 5 Working Days",
+    avgTuition: "Authorized ICA Direct Submission",
+    highlights: [
+      "Authorized ICA electronic visa filing in 3-5 days",
+      "2-Year Multiple Entry validity for frequent visitors",
+      "Sentosa Island, Universal Studios & Gardens by the Bay",
+      "World's safest, cleanest, and most family-friendly metropolis"
+    ],
+    description: "Visit Sentosa Island, Marina Bay Sands, and Universal Studios with authorized ICA electronic tourist visa filing and itinerary planning."
+  },
+  {
+    name: "Malaysia",
+    shortName: "Malaysia",
+    code: "my",
+    region: "Asia",
+    image: "https://images.unsplash.com/photo-1542044896530-05d85be9b11a?auto=format&fit=crop&w=600&q=80",
+    courses: ["Malaysia Digital Arrival Card (MDAC)", "Tourist eVisa (30 Days)", "Kuala Lumpur & Langkawi Getaways"],
+    eligibility: "Passport with 6+ months validity & flight ticket",
+    workRights: "30 Days stay per entry",
+    intakes: "Instant Online Registration",
+    avgTuition: "Visa-Free / Instant MDAC",
+    highlights: [
+      "Visa-Free tourist entry for Indian passport holders",
+      "Instant Digital Arrival Card (MDAC) registration",
+      "Iconic Petronas Twin Towers, Genting & Langkawi beaches",
+      "Affordable luxury dining and family shopping destination"
+    ],
+    description: "Explore the Petronas Towers, Batu Caves, and tropical Langkawi islands with seamless online digital arrival card (MDAC) registration."
+  },
+  {
+    name: "Maldives",
+    shortName: "Maldives",
+    code: "mv",
+    region: "Indian Ocean",
+    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80",
+    courses: ["30-Day Free Visa on Arrival", "Luxury Overwater Villa Retreats", "Honeymoon & Family Island Holidays"],
+    eligibility: "Passport, confirmed resort/hotel booking & return ticket",
+    workRights: "30 Days Free Visa on Arrival",
+    intakes: "Instant on Arrival",
+    avgTuition: "100% Free Visa on Arrival",
+    highlights: [
+      "100% Free 30-Day Visa on Arrival for Indian travelers",
+      "Private luxury island resorts & crystal clear turquoise lagoons",
+      "IMUGA Traveler Declaration online assistance",
+      "Direct flights with customized private resort packages"
+    ],
+    description: "Indulge in world-class private island resorts and turquoise lagoons with free 30-day tourist visa on arrival and complete IMUGA filing support."
+  },
+  {
+    name: "Europe (Schengen)",
+    shortName: "Europe",
+    code: "eu",
+    region: "European Union",
+    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80",
+    courses: ["Type C Short-Stay Tourist Visa (90 Days)", "Multi-Country European Holiday Tours", "Family & Friends Visit Visa"],
+    eligibility: "Valid passport, flight & hotel reservations, travel insurance & bank statement",
+    workRights: "Up to 90 Days within any 180-day period",
+    intakes: "15 Working Days Processing",
+    avgTuition: "Explore 29 European Nations",
+    highlights: [
+      "Single visa unlocks 29 Schengen countries (France, Switzerland, Italy, etc.)",
+      "Complete cover letter, verified itinerary & insurance assistance",
+      "VFS appointment scheduling & biometric preparation",
+      "High approval rate with experienced documentation experts"
+    ],
+    description: "Tour Paris, the Swiss Alps, Rome, and Barcelona with a single Schengen Tourist Visa. We provide complete itinerary planning, verified hotel/flight bookings, travel insurance, and VFS submission support."
+  }
+];
+
 export function DestinationsSection() {
   const [selectedCountry, setSelectedCountry] = useState<Destination | null>(null);
 
@@ -436,10 +648,14 @@ export function DestinationsSection() {
   };
 
   const handleWhatsAppClick = (country: Destination) => {
-    const courseText = country.totalCourse ? ` (${country.totalCourse} course)` : "";
-    const message = encodeURIComponent(
-      `Hi McCoy Global Consultancy, I am interested in studying in ${country.name}${courseText}. Could you please send me the complete country guide, benefits package, eligibility criteria, and fee details?`
-    );
+    const isTourism = touristDestinations.some(t => t.name === country.name && t.code === country.code);
+    const message = isTourism
+      ? encodeURIComponent(
+          `Hi McCoy Global Consultancy, I am interested in a Tourist / Visitor Visa for ${country.name}. Could you please send me the complete visa requirements, processing time, and document checklist?`
+        )
+      : encodeURIComponent(
+          `Hi McCoy Global Consultancy, I am interested in studying in ${country.name}${country.totalCourse ? ` (${country.totalCourse} course)` : ""}. Could you please send me the complete country guide, benefits package, eligibility criteria, and fee details?`
+        );
     window.open(`https://wa.me/917993356064?text=${message}`, "_blank");
   };
 
@@ -490,8 +706,16 @@ export function DestinationsSection() {
             animation: infinite-scroll-left 55s linear infinite;
             will-change: transform;
           }
+          .animate-infinite-scroll-right {
+            animation: infinite-scroll-right 55s linear infinite;
+            will-change: transform;
+          }
           .animate-infinite-scroll-left-mobile {
             animation: infinite-scroll-left 38s linear infinite;
+            will-change: transform;
+          }
+          .animate-infinite-scroll-right-mobile {
+            animation: infinite-scroll-right 38s linear infinite;
             will-change: transform;
           }
           .no-scrollbar::-webkit-scrollbar {
@@ -771,303 +995,526 @@ export function DestinationsSection() {
           </ScrollReveal>
         </div>
 
+        {/* ========================================================================= */}
+        {/* ROW 2: Tourism & Visitor Visa (Right to Left Scrolling)                   */}
+        {/* ========================================================================= */}
+        <div className="mt-14 sm:mt-18 pt-4">
+          <ScrollReveal direction="up" delay={100}>
+            <div className="text-center flex flex-col items-center mb-8">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-2.5">
+                <Plane className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
+                <span className="text-amber-300 tracking-[0.22em] font-extrabold">Tourism and Visitor Visa</span>
+              </div>
+              
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+                Tourism & <span className="text-[var(--gold)]">Visitor Visa</span>
+              </h2>
+              <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-slate-500">
+                Click on any country flag below to view fast-track tourist visa requirements, e-visa validity, and holiday packages.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Desktop/Laptop View: Tourism Row (Right to Left Scrolling) */}
+          <div className="hidden md:block">
+            <ScrollReveal direction="up" delay={200}>
+              <div className="relative w-full -mx-6 px-6 overflow-hidden py-6 -my-4">
+                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
+                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />
+
+                <div className="flex animate-infinite-scroll-right hover:[animation-play-state:paused] w-max select-none py-3">
+                  {/* Track 1 */}
+                  <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0">
+                    {touristDestinations.map((country) => (
+                      <button
+                        key={`${country.code}-tourist-track1`}
+                        type="button"
+                        onClick={() => setSelectedCountry(country)}
+                        className="w-[180px] sm:w-[220px] md:w-[280px] shrink-0 text-left focus:outline-none group cursor-pointer relative hover:z-30 p-1"
+                        title={`Click to view ${country.name} Tourist Visa Guide`}
+                      >
+                        <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-slate-200/80 shadow-[0_8px_25px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_45px_rgba(184,123,44,0.25)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-2">
+                          <img 
+                            src={`https://flagcdn.com/w640/${country.code}.png`} 
+                            alt={`${country.name} Flag`} 
+                            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2.5 py-1 text-[0.58rem] font-black uppercase tracking-wider border border-amber-400/30">
+                            <span>Tourist Visa</span>
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/75" />
+                          <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-slate-950/20 backdrop-blur-[1px]">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gold)] px-3.5 py-1 text-[0.68rem] font-extrabold uppercase tracking-widest text-white shadow-lg">
+                              View Guide
+                            </span>
+                          </div>
+                          <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full shadow-lg border border-slate-100 min-w-[100px] sm:min-w-[155px] justify-center z-20 transition-transform duration-300 group-hover:scale-105">
+                            <div className="h-4.5 w-4.5 sm:h-5.5 sm:w-5.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                              <img 
+                                src={`https://flagcdn.com/w40/${country.code}.png`} 
+                                className="h-full w-full object-cover scale-125" 
+                                alt={`${country.name} Flag`} 
+                              />
+                            </div>
+                            <span className="text-[0.6rem] sm:text-[0.72rem] font-black text-slate-800 uppercase tracking-wider">{country.shortName || country.name}</span>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Track 2 */}
+                  <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0">
+                    {touristDestinations.map((country) => (
+                      <button
+                        key={`${country.code}-tourist-track2`}
+                        type="button"
+                        onClick={() => setSelectedCountry(country)}
+                        className="w-[180px] sm:w-[220px] md:w-[280px] shrink-0 text-left focus:outline-none group cursor-pointer relative hover:z-30 p-1"
+                        title={`Click to view ${country.name} Tourist Visa Guide`}
+                      >
+                        <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-slate-200/80 shadow-[0_8px_25px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_45px_rgba(184,123,44,0.25)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-2">
+                          <img 
+                            src={`https://flagcdn.com/w640/${country.code}.png`} 
+                            alt={`${country.name} Flag`} 
+                            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2.5 py-1 text-[0.58rem] font-black uppercase tracking-wider border border-amber-400/30">
+                            <span>Tourist Visa</span>
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/75" />
+                          <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-slate-950/20 backdrop-blur-[1px]">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gold)] px-3.5 py-1 text-[0.68rem] font-extrabold uppercase tracking-widest text-white shadow-lg">
+                              View Guide
+                            </span>
+                          </div>
+                          <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full shadow-lg border border-slate-100 min-w-[100px] sm:min-w-[155px] justify-center z-20 transition-transform duration-300 group-hover:scale-105">
+                            <div className="h-4.5 w-4.5 sm:h-5.5 sm:w-5.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                              <img 
+                                src={`https://flagcdn.com/w40/${country.code}.png`} 
+                                className="h-full w-full object-cover scale-125" 
+                                alt={`${country.name} Flag`} 
+                              />
+                            </div>
+                            <span className="text-[0.6rem] sm:text-[0.72rem] font-black text-slate-800 uppercase tracking-wider">{country.shortName || country.name}</span>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Mobile View: Tourism Row (Right to Left Scrolling) */}
+          <div className="block md:hidden">
+            <ScrollReveal direction="up" delay={200}>
+              <div className="relative w-full -mx-6 px-6 overflow-hidden py-4 -my-2">
+                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
+                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />
+
+                <div className="flex animate-infinite-scroll-right-mobile hover:[animation-play-state:paused] active:[animation-play-state:paused] w-max select-none py-2">
+                  {/* Track 1 */}
+                  <div className="flex gap-2.5 pr-2.5 shrink-0">
+                    {touristDestinations.map((country) => (
+                      <button
+                        key={`${country.code}-tourist-mobile-track1`}
+                        type="button"
+                        onClick={() => setSelectedCountry(country)}
+                        className="w-[145px] xs:w-[165px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
+                        title={`Tap to view ${country.name} Tourist Visa Guide`}
+                      >
+                        <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_28px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
+                          <img
+                            src={`https://flagcdn.com/w320/${country.code}.png`}
+                            alt={`${country.name} Flag`}
+                            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                            loading="lazy"
+                          />
+                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2 py-0.5 text-[0.52rem] font-black uppercase tracking-wider border border-amber-400/30">
+                            <span>Tourist Visa</span>
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/80" />
+                          <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 bg-slate-950/25 backdrop-blur-[1px]">
+                            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.58rem] font-extrabold uppercase tracking-wider text-white shadow-md">
+                              View Guide
+                            </span>
+                          </div>
+                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md border border-slate-100 min-w-[85px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
+                            <div className="h-3.5 w-3.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                              <img
+                                src={`https://flagcdn.com/w40/${country.code}.png`}
+                                className="h-full w-full object-cover scale-125"
+                                alt={`${country.name} Flag`}
+                              />
+                            </div>
+                            <span className="text-[0.58rem] font-black text-slate-800 uppercase tracking-wider truncate">
+                              {country.shortName || country.name}
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Track 2 */}
+                  <div className="flex gap-2.5 pr-2.5 shrink-0" aria-hidden="true">
+                    {touristDestinations.map((country) => (
+                      <button
+                        key={`${country.code}-tourist-mobile-track2`}
+                        type="button"
+                        onClick={() => setSelectedCountry(country)}
+                        className="w-[145px] xs:w-[165px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
+                        title={`Tap to view ${country.name} Tourist Visa Guide`}
+                      >
+                        <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_28px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
+                          <img
+                            src={`https://flagcdn.com/w320/${country.code}.png`}
+                            alt={`${country.name} Flag`}
+                            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                            loading="lazy"
+                          />
+                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2 py-0.5 text-[0.52rem] font-black uppercase tracking-wider border border-amber-400/30">
+                            <span>Tourist Visa</span>
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/80" />
+                          <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 bg-slate-950/25 backdrop-blur-[1px]">
+                            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.58rem] font-extrabold uppercase tracking-wider text-white shadow-md">
+                              View Guide
+                            </span>
+                          </div>
+                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md border border-slate-100 min-w-[85px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
+                            <div className="h-3.5 w-3.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                              <img
+                                src={`https://flagcdn.com/w40/${country.code}.png`}
+                                className="h-full w-full object-cover scale-125"
+                                alt={`${country.name} Flag`}
+                              />
+                            </div>
+                            <span className="text-[0.58rem] font-black text-slate-800 uppercase tracking-wider truncate">
+                              {country.shortName || country.name}
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-1.5 text-[0.7rem] font-medium text-slate-500 pt-2">
+                  <Sparkles className="h-3 w-3 text-amber-500 shrink-0" />
+                  <span>Tap any country to open full tourist visa guide & requirements</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+
       </div>
 
       {/* ========================================================================= */}
       {/* COUNTRY DETAILS POPUP MODAL (View Guide & Contact Integration)            */}
       {/* ========================================================================= */}
-      {selectedCountry && (
-        <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-md animate-fade-in overflow-y-auto"
-          onClick={() => setSelectedCountry(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="country-modal-title"
-        >
+      {selectedCountry && (() => {
+        const isTourism = touristDestinations.some(t => t.name === selectedCountry.name && t.code === selectedCountry.code);
+        return (
           <div 
-            className="relative w-full max-w-2xl rounded-3xl border border-slate-200/80 bg-white shadow-[0_25px_70px_rgba(0,0,0,0.35)] overflow-hidden flex flex-col max-h-[92vh] animate-slide-up"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-md animate-fade-in overflow-y-auto"
+            onClick={() => setSelectedCountry(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="country-modal-title"
           >
-            {/* Top Banner Header with Country Flag & Backdrop */}
-            <div className="relative h-36 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
-              <img 
-                src={`https://flagcdn.com/w640/${selectedCountry.code}.png`} 
-                alt={`${selectedCountry.name} Flag`} 
-                className="w-full h-full object-cover opacity-65 scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#091930] via-[#091930]/60 to-transparent" />
+            <div 
+              className="relative w-full max-w-2xl rounded-3xl border border-slate-200/80 bg-white shadow-[0_25px_70px_rgba(0,0,0,0.35)] overflow-hidden flex flex-col max-h-[92vh] animate-slide-up"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Top Banner Header with Country Flag & Backdrop */}
+              <div className="relative h-36 sm:h-48 w-full overflow-hidden bg-slate-900 shrink-0">
+                <img 
+                  src={`https://flagcdn.com/w640/${selectedCountry.code}.png`} 
+                  alt={`${selectedCountry.name} Flag`} 
+                  className="w-full h-full object-cover opacity-65 scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#091930] via-[#091930]/60 to-transparent" />
 
-              {/* Close Button */}
-              <button
-                type="button"
-                onClick={() => setSelectedCountry(null)}
-                className="absolute top-3.5 right-3.5 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-slate-950/60 text-white backdrop-blur-md transition-all hover:bg-white hover:text-slate-900 hover:scale-110 shadow-lg border border-white/20"
-                aria-label="Close dialog"
-              >
-                <X className="h-5 w-5" />
-              </button>
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedCountry(null)}
+                  className="absolute top-3.5 right-3.5 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-slate-950/60 text-white backdrop-blur-md transition-all hover:bg-white hover:text-slate-900 hover:scale-110 shadow-lg border border-white/20"
+                  aria-label="Close dialog"
+                >
+                  <X className="h-5 w-5" />
+                </button>
 
-              {/* Header Title Information */}
-              <div className="absolute bottom-3.5 left-4 sm:left-6 right-4 sm:right-6 flex items-end justify-between gap-3 z-10">
-                <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl overflow-hidden border-2 border-white shadow-xl shrink-0 bg-white">
-                    <img 
-                      src={`https://flagcdn.com/w80/${selectedCountry.code}.png`} 
-                      alt="" 
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gold)]/20 border border-[var(--gold)]/40 px-2.5 py-0.5 text-[0.62rem] font-extrabold uppercase tracking-widest text-[var(--gold)] backdrop-blur-md mb-1">
-                      <Plane className="h-2.5 w-2.5" />
-                      <span>{selectedCountry.region || "Global Pathway"}</span>
+                {/* Header Title Information */}
+                <div className="absolute bottom-3.5 left-4 sm:left-6 right-4 sm:right-6 flex items-end justify-between gap-3 z-10">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl overflow-hidden border-2 border-white shadow-xl shrink-0 bg-white">
+                      <img 
+                        src={`https://flagcdn.com/w80/${selectedCountry.code}.png`} 
+                        alt="" 
+                        className="h-full w-full object-cover"
+                      />
                     </div>
-                    <h3 id="country-modal-title" className="font-display text-xl sm:text-3xl font-black text-white leading-tight drop-shadow-md">
-                      Study in {selectedCountry.name}
-                    </h3>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gold)]/20 border border-[var(--gold)]/40 px-2.5 py-0.5 text-[0.62rem] font-extrabold uppercase tracking-widest text-[var(--gold)] backdrop-blur-md mb-1">
+                        <Plane className="h-2.5 w-2.5" />
+                        <span>{isTourism ? "Tourism & Visitor Visa" : selectedCountry.region || "Global Pathway"}</span>
+                      </div>
+                      <h3 id="country-modal-title" className="font-display text-xl sm:text-3xl font-black text-white leading-tight drop-shadow-md">
+                        {isTourism ? `Visit ${selectedCountry.name}` : `Study in ${selectedCountry.name}`}
+                      </h3>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Scrollable Content Body */}
-            <div className="p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-5 text-slate-700 text-sm sm:text-base">
-              
-              {/* Short Country Overview */}
-              {selectedCountry.description && (
-                <p className="text-[0.88rem] sm:text-[0.95rem] text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-100 text-justify">
-                  {selectedCountry.description}
-                </p>
-              )}
-
-              {/* Transfer Pathway Banner (if specified) */}
-              {selectedCountry.pathway && (
-                <div className="rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-50 via-sky-50 to-indigo-50/40 p-3.5 sm:p-4 flex items-center gap-3.5 shadow-xs">
-                  <div className="h-10 w-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-sm">
-                    <Plane className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <span className="text-[0.66rem] font-bold uppercase tracking-wider text-blue-700 block">
-                      Transfer Pathway
-                    </span>
-                    <span className="text-[0.92rem] font-extrabold text-slate-900 block">
-                      {selectedCountry.pathway}
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {/* EXTRA BLOCK: Exclusive Benefits & Package Inclusions */}
-              {selectedCountry.benefits && selectedCountry.benefits.length > 0 && (
-                <div className="rounded-2xl border-2 border-amber-300/80 bg-gradient-to-br from-amber-50/90 via-orange-50/40 to-emerald-50/40 p-4 sm:p-5 shadow-sm relative overflow-hidden">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5 pb-2.5 border-b border-amber-200/80">
-                    <div className="flex items-center gap-2.5">
-                      <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-amber-500 to-[var(--gold)] text-white flex items-center justify-center shadow-xs shrink-0">
-                        <Gift className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[0.68rem] font-black uppercase tracking-widest text-amber-800">
-                            Exclusive Student Inclusions
-                          </span>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[0.6rem] font-black bg-emerald-600 text-white shadow-xs">
-                            Package Benefits
-                          </span>
-                        </div>
-                        <h4 className="text-sm sm:text-base font-black text-slate-900 leading-tight">
-                          Special Benefits Included with Admission
-                        </h4>
-                      </div>
-                    </div>
-                    {selectedCountry.totalCourse && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-amber-300 px-3 py-1 text-xs font-bold shadow-xs">
-                        <Clock className="h-3.5 w-3.5 text-amber-400" />
-                        <span>Total Course: {selectedCountry.totalCourse}</span>
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Benefits Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
-                    {selectedCountry.benefits.map((benefit, idx) => {
-                      const getBenefitIcon = () => {
-                        const t = benefit.title.toLowerCase();
-                        if (t.includes("airport") || t.includes("pickup")) {
-                          return <Car className="h-4 w-4 text-indigo-600 shrink-0" />;
-                        }
-                        if (t.includes("accommodation") || t.includes("stay") || t.includes("housing")) {
-                          return <Home className="h-4 w-4 text-amber-600 shrink-0" />;
-                        }
-                        if (t.includes("earn") || t.includes("rupees") || t.includes("lakh")) {
-                          return <Coins className="h-4 w-4 text-emerald-600 shrink-0" />;
-                        }
-                        if (t.includes("schengen") || t.includes("countries") || t.includes("pathway") || t.includes("europe")) {
-                          return <Globe className="h-4 w-4 text-purple-600 shrink-0" />;
-                        }
-                        if (t.includes("permit") || t.includes("visa")) {
-                          return <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />;
-                        }
-                        if (t.includes("part time") || t.includes("job") || t.includes("assistance")) {
-                          return <Briefcase className="h-4 w-4 text-blue-600 shrink-0" />;
-                        }
-                        return <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />;
-                      };
-                      const icon = getBenefitIcon();
-
-                      return (
-                        <div 
-                          key={idx}
-                          className="flex items-start gap-3 p-3 rounded-xl bg-white/95 border border-amber-200/70 shadow-xs hover:border-amber-400 transition-all group"
-                        >
-                          <div className="p-2 rounded-lg bg-amber-50/80 border border-amber-100 group-hover:scale-105 transition-transform shrink-0">
-                            {icon}
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <div className="flex items-center justify-between gap-1">
-                              <span className="font-bold text-slate-900 text-[0.84rem] sm:text-[0.88rem] leading-snug">
-                                {benefit.title}
-                              </span>
-                              {benefit.badge && (
-                                <span className="shrink-0 text-[0.6rem] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200/60">
-                                  {benefit.badge}
-                                </span>
-                              )}
-                            </div>
-                            {benefit.desc && (
-                              <p className="text-[0.74rem] sm:text-[0.78rem] text-slate-600 mt-0.5 leading-relaxed text-justify">
-                                {benefit.desc}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Grid of Key Features & Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              {/* Scrollable Content Body */}
+              <div className="p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-5 text-slate-700 text-sm sm:text-base">
                 
-                {/* Programs Available */}
-                <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider">
-                      <GraduationCap className="h-4 w-4" />
-                      <span>Popular Programs</span>
-                    </div>
-                    {selectedCountry.totalCourse && (
-                      <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 text-[0.66rem] font-extrabold text-amber-900">
-                        Duration: {selectedCountry.totalCourse}
-                      </span>
-                    )}
-                  </div>
-                  <ul className="space-y-1">
-                    {selectedCountry.courses.map((course, idx) => (
-                      <li key={idx} className="flex items-start gap-1.5 text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium">
-                        <CheckCircle className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                        <span>{course}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Eligibility Criteria */}
-                <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
-                  <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider mb-2">
-                    <FileText className="h-4 w-4" />
-                    <span>Entry Requirements</span>
-                  </div>
-                  <p className="text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium leading-snug whitespace-pre-line">
-                    {selectedCountry.eligibility}
+                {/* Short Country Overview */}
+                {selectedCountry.description && (
+                  <p className="text-[0.88rem] sm:text-[0.95rem] text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-100 text-justify">
+                    {selectedCountry.description}
                   </p>
-                </div>
+                )}
 
-                {/* Post-Study Work Rights */}
-                {selectedCountry.workRights && (
-                  <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
-                    <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider mb-1.5">
-                      <Briefcase className="h-4 w-4" />
-                      <span>Post-Study Work Visa</span>
+                {/* Transfer Pathway Banner (if specified) */}
+                {selectedCountry.pathway && (
+                  <div className="rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-50 via-sky-50 to-indigo-50/40 p-3.5 sm:p-4 flex items-center gap-3.5 shadow-xs">
+                    <div className="h-10 w-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <Plane className="h-5 w-5" />
                     </div>
-                    <p className="text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium leading-snug">
-                      {selectedCountry.workRights}
-                    </p>
+                    <div>
+                      <span className="text-[0.66rem] font-bold uppercase tracking-wider text-blue-700 block">
+                        Transfer Pathway
+                      </span>
+                      <span className="text-[0.92rem] font-extrabold text-slate-900 block">
+                        {selectedCountry.pathway}
+                      </span>
+                    </div>
                   </div>
                 )}
 
-                {/* Intakes & Tuition */}
-                <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
-                  <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider mb-1.5">
-                    <Clock className="h-4 w-4" />
-                    <span>Intakes & Avg. Tuition</span>
-                  </div>
-                  <p className="text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium leading-snug">
-                    <span className="text-slate-500 block text-[0.75rem]">Intakes: {selectedCountry.intakes || "Spring & Fall"}</span>
-                    <span className="text-emerald-600 font-bold block mt-0.5">{selectedCountry.avgTuition || "Affordable Fee Structure"}</span>
-                  </p>
-                </div>
-
-              </div>
-
-              {/* Key Highlights / Why Choose */}
-              {selectedCountry.highlights && selectedCountry.highlights.length > 0 && (
-                <div className="rounded-2xl border border-[var(--gold)]/20 bg-amber-50/40 p-3.5 sm:p-4">
-                  <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-900 mb-2.5">
-                    <Sparkles className="h-4 w-4 text-[var(--gold)]" />
-                    <span>Why Choose {selectedCountry.name}?</span>
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[0.8rem] sm:text-[0.84rem] text-slate-700">
-                    {selectedCountry.highlights.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] shrink-0 mt-1.5" />
-                        <span>{item}</span>
+                {/* EXTRA BLOCK: Exclusive Benefits & Package Inclusions */}
+                {selectedCountry.benefits && selectedCountry.benefits.length > 0 && (
+                  <div className="rounded-2xl border-2 border-amber-300/80 bg-gradient-to-br from-amber-50/90 via-orange-50/40 to-emerald-50/40 p-4 sm:p-5 shadow-sm relative overflow-hidden">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5 pb-2.5 border-b border-amber-200/80">
+                      <div className="flex items-center gap-2.5">
+                        <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-amber-500 to-[var(--gold)] text-white flex items-center justify-center shadow-xs shrink-0">
+                          <Gift className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[0.68rem] font-black uppercase tracking-widest text-amber-800">
+                              {isTourism ? "Tour Package Features" : "Exclusive Student Inclusions"}
+                            </span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[0.6rem] font-black bg-emerald-600 text-white shadow-xs">
+                              Package Benefits
+                            </span>
+                          </div>
+                          <h4 className="text-sm sm:text-base font-black text-slate-900 leading-tight">
+                            Special Inclusions with Visa Service
+                          </h4>
+                        </div>
                       </div>
-                    ))}
+                      {selectedCountry.totalCourse && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 text-amber-300 px-3 py-1 text-xs font-bold shadow-xs">
+                          <Clock className="h-3.5 w-3.5 text-amber-400" />
+                          <span>Total Course: {selectedCountry.totalCourse}</span>
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Benefits Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                      {selectedCountry.benefits.map((benefit, idx) => {
+                        const getBenefitIcon = () => {
+                          const t = benefit.title.toLowerCase();
+                          if (t.includes("airport") || t.includes("pickup")) {
+                            return <Car className="h-4 w-4 text-indigo-600 shrink-0" />;
+                          }
+                          if (t.includes("accommodation") || t.includes("stay") || t.includes("housing")) {
+                            return <Home className="h-4 w-4 text-amber-600 shrink-0" />;
+                          }
+                          if (t.includes("earn") || t.includes("rupees") || t.includes("lakh")) {
+                            return <Coins className="h-4 w-4 text-emerald-600 shrink-0" />;
+                          }
+                          if (t.includes("schengen") || t.includes("countries") || t.includes("pathway") || t.includes("europe")) {
+                            return <Globe className="h-4 w-4 text-purple-600 shrink-0" />;
+                          }
+                          if (t.includes("permit") || t.includes("visa")) {
+                            return <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />;
+                          }
+                          if (t.includes("part time") || t.includes("job") || t.includes("assistance")) {
+                            return <Briefcase className="h-4 w-4 text-blue-600 shrink-0" />;
+                          }
+                          return <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />;
+                        };
+                        const icon = getBenefitIcon();
+
+                        return (
+                          <div 
+                            key={idx}
+                            className="flex items-start gap-3 p-3 rounded-xl bg-white/95 border border-amber-200/70 shadow-xs hover:border-amber-400 transition-all group"
+                          >
+                            <div className="p-2 rounded-lg bg-amber-50/80 border border-amber-100 group-hover:scale-105 transition-transform shrink-0">
+                              {icon}
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center justify-between gap-1">
+                                <span className="font-bold text-slate-900 text-[0.84rem] sm:text-[0.88rem] leading-snug">
+                                  {benefit.title}
+                                </span>
+                                {benefit.badge && (
+                                  <span className="shrink-0 text-[0.6rem] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                                    {benefit.badge}
+                                  </span>
+                                )}
+                              </div>
+                              {benefit.desc && (
+                                <p className="text-[0.74rem] sm:text-[0.78rem] text-slate-600 mt-0.5 leading-relaxed text-justify">
+                                  {benefit.desc}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
+                )}
+
+                {/* Grid of Key Features & Details */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  
+                  {/* Programs / Visa Categories Available */}
+                  <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider">
+                        {isTourism ? <Plane className="h-4 w-4" /> : <GraduationCap className="h-4 w-4" />}
+                        <span>{isTourism ? "Visa Categories & Tours" : "Popular Programs"}</span>
+                      </div>
+                      {selectedCountry.totalCourse && (
+                        <span className="inline-flex items-center gap-1 rounded-md bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 text-[0.66rem] font-extrabold text-amber-900">
+                          Duration: {selectedCountry.totalCourse}
+                        </span>
+                      )}
+                    </div>
+                    <ul className="space-y-1">
+                      {selectedCountry.courses.map((course, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5 text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium">
+                          <CheckCircle className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                          <span>{course}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Eligibility / Visa Requirements */}
+                  <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
+                    <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider mb-2">
+                      <FileText className="h-4 w-4" />
+                      <span>{isTourism ? "Tourist Visa Requirements" : "Entry Requirements"}</span>
+                    </div>
+                    <p className="text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium leading-snug whitespace-pre-line">
+                      {selectedCountry.eligibility}
+                    </p>
+                  </div>
+
+                  {/* Duration of Stay / Work Rights */}
+                  {selectedCountry.workRights && (
+                    <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
+                      <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider mb-1.5">
+                        <Briefcase className="h-4 w-4" />
+                        <span>{isTourism ? "Duration of Stay & Validity" : "Post-Study Work Visa"}</span>
+                      </div>
+                      <p className="text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium leading-snug">
+                        {selectedCountry.workRights}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Intakes / Processing & Fees */}
+                  <div className="rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm">
+                    <div className="flex items-center gap-2 text-[var(--gold)] font-bold text-[0.72rem] uppercase tracking-wider mb-1.5">
+                      <Clock className="h-4 w-4" />
+                      <span>{isTourism ? "Processing Time & Fees" : "Intakes & Avg. Tuition"}</span>
+                    </div>
+                    <p className="text-[0.82rem] sm:text-[0.86rem] text-slate-800 font-medium leading-snug">
+                      <span className="text-slate-500 block text-[0.75rem]">
+                        {isTourism ? "Turnaround" : "Intakes"}: {selectedCountry.intakes || "Fast-Track Processing"}
+                      </span>
+                      <span className="text-emerald-600 font-bold block mt-0.5">
+                        {selectedCountry.avgTuition || (isTourism ? "Transparent Government & Service Fees" : "Affordable Fee Structure")}
+                      </span>
+                    </p>
+                  </div>
+
                 </div>
-              )}
 
-            </div>
+                {/* Key Highlights / Why Choose */}
+                {selectedCountry.highlights && selectedCountry.highlights.length > 0 && (
+                  <div className="rounded-2xl border border-[var(--gold)]/20 bg-amber-50/40 p-3.5 sm:p-4">
+                    <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-900 mb-2.5">
+                      <Sparkles className="h-4 w-4 text-[var(--gold)]" />
+                      <span>Why Choose {selectedCountry.name} {isTourism ? "Tourism" : ""}?</span>
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[0.8rem] sm:text-[0.84rem] text-slate-700">
+                      {selectedCountry.highlights.map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-[var(--gold)] shrink-0 mt-1.5" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-            {/* Modal Bottom Action Bar (View Guide, Contact & WhatsApp) */}
-            <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2.5 shrink-0">
-              <div className="text-center sm:text-left w-full sm:w-auto">
-                <span className="block text-[0.66rem] sm:text-[0.72rem] font-extrabold uppercase tracking-widest text-[var(--gold)]">
-                  Free Admission Assessment
-                </span>
-                <span className="text-[0.7rem] text-slate-500 hidden sm:block">
-                  Personalized university shortlist & visa roadmap
-                </span>
               </div>
 
-              <div className="flex items-center justify-center sm:justify-end gap-2 w-full sm:w-auto">
-                <button
-                  type="button"
-                  onClick={() => handleWhatsAppClick(selectedCountry)}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 rounded-lg sm:rounded-xl border border-emerald-500/30 bg-emerald-50 text-emerald-700 px-3 py-1.5 sm:px-3.5 sm:py-2 text-[0.72rem] sm:text-xs font-bold transition-all hover:bg-emerald-600 hover:text-white hover:scale-105 shadow-sm cursor-pointer whitespace-nowrap"
-                  title="Chat directly on WhatsApp"
-                >
-                  <MessageCircle className="h-3.5 w-3.5 fill-current shrink-0" />
-                  <span>WhatsApp</span>
-                </button>
+              {/* Modal Bottom Action Bar (View Guide, Contact & WhatsApp) */}
+              <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2.5 shrink-0">
+                <div className="text-center sm:text-left w-full sm:w-auto">
+                  <span className="block text-[0.66rem] sm:text-[0.72rem] font-extrabold uppercase tracking-widest text-[var(--gold)]">
+                    {isTourism ? "Fast-Track Visa Assessment" : "Free Admission Assessment"}
+                  </span>
+                  <span className="text-[0.7rem] text-slate-500 hidden sm:block">
+                    {isTourism ? "Personalized document checklist & slot booking guidance" : "Personalized university shortlist & visa roadmap"}
+                  </span>
+                </div>
 
-                <button
-                  type="button"
-                  onClick={() => handleContactClick(selectedCountry)}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 rounded-lg sm:rounded-xl text-white px-3.5 py-1.5 sm:px-4 sm:py-2 text-[0.72rem] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(224,183,109,0.4)] shadow-sm cursor-pointer whitespace-nowrap"
-                  style={{ background: "var(--gradient-gold)" }}
-                  title="Navigate to Free Assessment Form"
-                >
-                  <span>View Guide & Contact</span>
-                  <ArrowRight className="h-3.5 w-3.5 shrink-0" />
-                </button>
+                <div className="flex items-center justify-center sm:justify-end gap-2 w-full sm:w-auto">
+                  <button
+                    type="button"
+                    onClick={() => handleWhatsAppClick(selectedCountry)}
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 rounded-lg sm:rounded-xl border border-emerald-500/30 bg-emerald-50 text-emerald-700 px-3 py-1.5 sm:px-3.5 sm:py-2 text-[0.72rem] sm:text-xs font-bold transition-all hover:bg-emerald-600 hover:text-white hover:scale-105 shadow-sm cursor-pointer whitespace-nowrap"
+                    title="Chat directly on WhatsApp"
+                  >
+                    <MessageCircle className="h-3.5 w-3.5 fill-current shrink-0" />
+                    <span>WhatsApp</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleContactClick(selectedCountry)}
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 rounded-lg sm:rounded-xl text-white px-3.5 py-1.5 sm:px-4 sm:py-2 text-[0.72rem] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(224,183,109,0.4)] shadow-sm cursor-pointer whitespace-nowrap"
+                    style={{ background: "var(--gradient-gold)" }}
+                    title={isTourism ? "Enquire for Tourist Visa" : "Navigate to Free Assessment Form"}
+                  >
+                    <span>{isTourism ? "Enquire Tourist Visa" : "View Guide & Contact"}</span>
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+                  </button>
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
     </section>
   );
