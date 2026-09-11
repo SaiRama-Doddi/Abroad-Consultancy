@@ -36,7 +36,7 @@ const successStories: SuccessStory[] = [
     image: "/student-usa.png",
     approvalTime: "12 Days",
     serial: "MCC-US-8924",
-    testimonial: "McCoy Global made my dream of studying in the USA a reality. Their expert guidance on SOP drafting and visa interview prep was flawless. Highly recommended!",
+    testimonial: "Mr. B. Rohith made my dream of studying in the USA a reality. His expert guidance on SOP drafting and visa interview prep was flawless. Highly recommended!",
     milestones: ["Profile Evaluated", "I-20 Received", "Visa Slot Booked", "Visa Approved"]
   },
   {
@@ -49,7 +49,7 @@ const successStories: SuccessStory[] = [
     image: "/student-germany.png",
     approvalTime: "18 Days",
     serial: "MCC-DE-4412",
-    testimonial: "Securing my Germany Opportunity Card was seamless thanks to McCoy. They helped me with point calculation and document verification. Best consultancy ever!",
+    testimonial: "Securing my Germany Opportunity Card was seamless thanks to Mr. B. Rohith. He helped me with point calculation and document verification. Best advisor ever!",
     milestones: ["Points Audited", "Anabin Certified", "Embassy Interview", "Card Issued"]
   },
   {
@@ -62,7 +62,7 @@ const successStories: SuccessStory[] = [
     image: "/student-uk.png",
     approvalTime: "10 Days",
     serial: "MCC-UK-1092",
-    testimonial: "Extremely professional team. They handled my Youth Mobility Visa smoothly, and I arrived in London within weeks. Truly hassle-free!",
+    testimonial: "Extremely professional guidance from Mr. B. Rohith. He handled my Youth Mobility Visa smoothly, and I arrived in London within weeks. Truly hassle-free!",
     milestones: ["VFS Lodgement", "Biometrics Done", "Decision Received", "Visa Endorsed"]
   },
   {
@@ -75,7 +75,7 @@ const successStories: SuccessStory[] = [
     image: "/student-singapore.png",
     approvalTime: "14 Days",
     serial: "MCC-SG-3810",
-    testimonial: "Thanks to McCoy, I got my Singapore student visa and an internship placement at a leading logistics firm. Their guidance changed my career.",
+    testimonial: "Thanks to Mr. B. Rohith, I got my Singapore student visa and an internship placement at a leading logistics firm. His guidance changed my career.",
     milestones: ["University Offer", "ICA Application", "STP Approval", "Entry Granted"]
   }
 ];

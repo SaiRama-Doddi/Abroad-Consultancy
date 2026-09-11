@@ -19,7 +19,7 @@ const testimonials: Testimonial[] = [
     countryCode: "us",
     program: "Masters in Computer Science",
     rating: 5,
-    quote: "McCoy Global Consultancy made my dream of studying in the US a reality. They helped me choose the right university, guided me through the SOP drafting, and prepped me for the visa interview. The support was outstanding!",
+    quote: "Mr. B. Rohith made my dream of studying in the US a reality. He helped me choose the right university, personally guided me through SOP drafting, and prepped me for the visa interview. The support was outstanding!",
     initials: "RK"
   },
   {
@@ -28,7 +28,7 @@ const testimonials: Testimonial[] = [
     countryCode: "sg",
     program: "Diploma in Logistics Management (NSTC)",
     rating: 5,
-    quote: "The Singapore 6+6 package (6 months study + 6 months paid internship) recommended by McCoy Global was a game-changer. They managed the visa process seamlessly and guided me all the way to check-in.",
+    quote: "The Singapore 6+6 package (6 months study + 6 months paid internship) recommended by Mr. B. Rohith was a game-changer. He managed the visa process seamlessly and guided me all the way to check-in.",
     initials: "AM"
   },
   {
@@ -37,7 +37,7 @@ const testimonials: Testimonial[] = [
     countryCode: "ge",
     program: "MBBS (Doctor of Medicine)",
     rating: 5,
-    quote: "Getting admission for my MBBS in Georgia was simple and stress-free with their NEET-free counseling process. They guided me through translations, foreign registrations, and even helped with flight ticketing.",
+    quote: "Getting admission for my MBBS in Georgia was simple and stress-free with Mr. B. Rohith's guidance. He handled my translations, foreign registrations, and even helped with flight ticketing.",
     initials: "SY"
   },
   {
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     countryCode: "ca",
     program: "Postgraduate in Project Management",
     rating: 5,
-    quote: "McCoy Global helped me secure my admission in Canada and guided me through the SDS visa process. Their step-by-step assistance in documentation and GIC setup made the process completely stress-free!",
+    quote: "Mr. B. Rohith helped me secure my admission in Canada and guided me through the SDS visa process. His step-by-step assistance in documentation and GIC setup made the process completely stress-free!",
     initials: "PS"
   },
   {
@@ -55,7 +55,7 @@ const testimonials: Testimonial[] = [
     countryCode: "au",
     program: "Bachelor of Business Info Systems",
     rating: 5,
-    quote: "Extremely thankful to McCoy for guiding me through my Australian Subclass 500 visa. The visa grant was so fast! Their mock interview sessions prepared me perfectly for the GTE requirements.",
+    quote: "Extremely thankful to Mr. B. Rohith for guiding me through my Australian Subclass 500 visa. The visa grant was so fast! His mock interview sessions prepared me perfectly for the GTE requirements.",
     initials: "RD"
   },
   {
@@ -64,7 +64,7 @@ const testimonials: Testimonial[] = [
     countryCode: "gb",
     program: "MSc in Data Science · Manchester",
     rating: 5,
-    quote: "Securing my UK student visa was super easy with McCoy. They checked all my financial documentation, helped with the VFS process, and followed up at every step until I landed in Manchester.",
+    quote: "Securing my UK student visa was super easy with Mr. B. Rohith. He checked all my financial documentation, helped with the VFS process, and followed up at every step until I landed in Manchester.",
     initials: "FA"
   }
 ];
