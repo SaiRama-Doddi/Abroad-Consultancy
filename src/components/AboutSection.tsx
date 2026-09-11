@@ -384,21 +384,18 @@ export function AboutSection() {
                 <span className="text-amber-300 tracking-[0.22em] font-extrabold">About Us</span>
               </div>
               
-              <h2 className="font-display text-4xl leading-tight text-slate-800 sm:text-5xl">
-                From your first question to the <span className="text-[var(--gold)] font-bold">check-in counter</span>
+              <h2 className="font-display text-[1.85rem] xs:text-3xl sm:text-4xl lg:text-5xl leading-tight text-slate-800">
+                <span className="block sm:inline">From your first</span>{" "}
+                <span className="block sm:inline">question to the</span>{" "}
+                <span className="block sm:inline text-[var(--gold)] font-bold">check-in counter</span>
               </h2>
               <div className="h-px w-24 bg-gradient-to-r from-[var(--gold)] to-transparent" />
               
-              <p className="text-[1.02rem] leading-relaxed text-slate-600 text-justify">
-                McCoy Global Consultancy is a boutique overseas advisory built on one
-                simple belief: a visa is not paperwork, it is a <span className="text-[var(--gold)] font-semibold animate-pulse">life decision</span>. We sit
-                with you, understand your profile, and shape a route that actually
-                fits — study, skilled work, or family migration.
+              <p className="text-[0.98rem] sm:text-[1.02rem] leading-relaxed text-slate-600 text-left sm:text-justify">
+                McCoy Global Consultancy is built on one simple belief: a visa is not paperwork, it is a <span className="text-[var(--gold)] font-semibold">life decision</span>. We guide you with personalized pathways for study, career, and global migration.
               </p>
-              <p className="text-[1.02rem] leading-relaxed text-slate-600 text-justify">
-                Documentation, applications, interview prep, tickets and pre-departure
-                briefing — <span className="text-[var(--gold)] font-semibold">every step</span> is handled by a named consultant who stays with
-                you until you walk through that terminal with your passport in hand.
+              <p className="text-[0.98rem] sm:text-[1.02rem] leading-relaxed text-slate-600 text-left sm:text-justify">
+                From documentation and interview prep to visa approvals — our dedicated consultants support you at <span className="text-[var(--gold)] font-semibold">every step</span>.
               </p>
             </div>
           </ScrollReveal>
