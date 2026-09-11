@@ -669,19 +669,24 @@ export function DestinationsSection() {
         
         {/* Section Title */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="text-center flex flex-col items-center mb-8">
+          <div className="text-center flex flex-col items-center mb-6">
             <h2 className="font-display text-4xl sm:text-5xl font-black tracking-tight text-slate-900 leading-tight">
               Choose Your <span className="text-[var(--gold)]">Global Path</span>
             </h2>
-            <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-slate-500">
+            <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-slate-500 text-justify">
               Click on any country flag below to view the full admission guide, eligibility criteria, and post-study work rights.
             </p>
+          </div>
+        </ScrollReveal>
 
-            {/* Study Destinations Side Heading */}
-            <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)]">
+        {/* Side Heading: Study Destinations */}
+        <ScrollReveal direction="up" delay={120}>
+          <div className="flex items-center gap-3 mb-4 mt-2">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] shrink-0">
               <Globe className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
-              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Study Destinations</span>
+              <h3 className="text-amber-300 tracking-[0.22em] font-extrabold text-[0.72rem] sm:text-[0.75rem] uppercase m-0 p-0">Study Destinations</h3>
             </div>
+            <div className="h-px flex-1 bg-gradient-to-r from-amber-400/40 via-slate-200 to-transparent" />
           </div>
         </ScrollReveal>
 
@@ -993,13 +998,15 @@ export function DestinationsSection() {
         {/* ========================================================================= */}
         {/* ROW 2: Tourism & Visitor Visa (Right to Left Scrolling)                   */}
         {/* ========================================================================= */}
-        <div className="mt-10 sm:mt-14 pt-2">
+        <div className="mt-8 sm:mt-12 pt-2">
+          {/* Side Heading: Tourism and Visitor Visa */}
           <ScrollReveal direction="up" delay={100}>
-            <div className="text-center flex flex-col items-center mb-6">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)]">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] shrink-0">
                 <Plane className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
-                <span className="text-amber-300 tracking-[0.22em] font-extrabold">Tourism and Visitor Visa</span>
+                <h3 className="text-amber-300 tracking-[0.22em] font-extrabold text-[0.72rem] sm:text-[0.75rem] uppercase m-0 p-0">Tourism and Visitor Visa</h3>
               </div>
+              <div className="h-px flex-1 bg-gradient-to-r from-amber-400/40 via-slate-200 to-transparent" />
             </div>
           </ScrollReveal>
 
