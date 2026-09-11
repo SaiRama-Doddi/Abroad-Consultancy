@@ -670,17 +670,18 @@ export function DestinationsSection() {
         {/* Section Title */}
         <ScrollReveal direction="up" delay={100}>
           <div className="text-center flex flex-col items-center mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-2.5">
-              <Globe className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
-              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Study Destinations</span>
-            </div>
-            
             <h2 className="font-display text-4xl sm:text-5xl font-black tracking-tight text-slate-900 leading-tight">
               Choose Your <span className="text-[var(--gold)]">Global Path</span>
             </h2>
             <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-slate-500">
               Click on any country flag below to view the full admission guide, eligibility criteria, and post-study work rights.
             </p>
+
+            {/* Study Destinations Side Heading */}
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)]">
+              <Globe className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
+              <span className="text-amber-300 tracking-[0.22em] font-extrabold">Study Destinations</span>
+            </div>
           </div>
         </ScrollReveal>
 
@@ -985,12 +986,6 @@ export function DestinationsSection() {
                   ))}
                 </div>
               </div>
-
-              {/* Mobile Interaction Hint */}
-              <div className="flex items-center justify-center gap-1.5 text-[0.7rem] font-medium text-slate-500 pt-2">
-                <Sparkles className="h-3 w-3 text-amber-500 shrink-0" />
-                <span>Tap any country to open full admission guide & eligibility</span>
-              </div>
             </div>
           </ScrollReveal>
         </div>
@@ -998,20 +993,13 @@ export function DestinationsSection() {
         {/* ========================================================================= */}
         {/* ROW 2: Tourism & Visitor Visa (Right to Left Scrolling)                   */}
         {/* ========================================================================= */}
-        <div className="mt-14 sm:mt-18 pt-4">
+        <div className="mt-10 sm:mt-14 pt-2">
           <ScrollReveal direction="up" delay={100}>
-            <div className="text-center flex flex-col items-center mb-8">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] mb-2.5">
+            <div className="text-center flex flex-col items-center mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)]">
                 <Plane className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
                 <span className="text-amber-300 tracking-[0.22em] font-extrabold">Tourism and Visitor Visa</span>
               </div>
-              
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
-                Tourism & <span className="text-[var(--gold)]">Visitor Visa</span>
-              </h2>
-              <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-slate-500">
-                Click on any country flag below to view fast-track tourist visa requirements, e-visa validity, and holiday packages.
-              </p>
             </div>
           </ScrollReveal>
 
@@ -1200,11 +1188,6 @@ export function DestinationsSection() {
                       </button>
                     ))}
                   </div>
-                </div>
-
-                <div className="flex items-center justify-center gap-1.5 text-[0.7rem] font-medium text-slate-500 pt-2">
-                  <Sparkles className="h-3 w-3 text-amber-500 shrink-0" />
-                  <span>Tap any country to open full tourist visa guide & requirements</span>
                 </div>
               </div>
             </ScrollReveal>
