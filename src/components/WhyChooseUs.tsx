@@ -267,21 +267,21 @@ export function WhyChooseUs() {
         </div>
 
         {/* Bottom Achievements Stats Grid Row in Dark Glassmorphism container */}
-        <div className="bg-slate-950/40 border border-slate-800/60 rounded-3xl p-6 sm:p-8 mt-6">
-          <div className="grid grid-cols-1 min-[450px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 items-center [perspective:1000px]">
+        <div className="bg-slate-950/40 border border-slate-800/60 rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 lg:p-8 mt-4 sm:mt-6">
+          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-6 lg:gap-8 items-center [perspective:1000px]">
             {stats.map((s, idx) => {
               const Icon = s.icon;
               return (
                 <FeatureCardReveal key={s.label} delay={idx * 60} className="w-full flex [transform-style:preserve-3d]">
-                  <div className="flex items-center gap-3.5 group min-w-0 [transform-style:preserve-3d] hover:[transform:translateZ(10px)] transition-transform duration-300">
-                    <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border ${s.bg} ${s.color} transition-all duration-300 group-hover:scale-110 shadow-sm`}>
-                      <Icon className="h-5 w-5" />
+                  <div className="flex items-center gap-2.5 sm:gap-3.5 group min-w-0 [transform-style:preserve-3d] hover:[transform:translateZ(10px)] transition-transform duration-300">
+                    <div className={`flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg sm:rounded-xl border ${s.bg} ${s.color} transition-all duration-300 group-hover:scale-110 shadow-sm`}>
+                      <Icon className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5" />
                     </div>
                     <div className="min-w-0">
-                      <span className="block font-display text-[1.12rem] font-black text-white leading-none">
+                      <span className="block font-display text-[0.82rem] sm:text-[0.98rem] lg:text-[1.08rem] font-black text-white leading-none">
                         <AnimatedCounter value={s.value} />
                       </span>
-                      <span className="block text-[0.62rem] font-bold uppercase tracking-widest text-slate-400 mt-2 leading-tight">
+                      <span className="block text-[0.52rem] sm:text-[0.58rem] font-bold uppercase tracking-wider text-slate-400 mt-1 leading-tight">
                         {s.label}
                       </span>
                     </div>
