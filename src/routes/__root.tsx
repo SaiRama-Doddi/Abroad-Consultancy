@@ -135,6 +135,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { name: "apple-mobile-web-app-title", content: "McCoy Global" },
       { name: "application-name", content: "McCoy Global Consultancy" },
+      { name: "google-site-verification", content: "061125c3d798ab3b" },
+      { name: "google-site-verification", content: "google061125c3d798ab3b" },
+      { name: "google-site-verification", content: "c263ccdb01fda717" },
+      { name: "google-site-verification", content: "googlec263ccdb01fda717" },
       { name: "format-detection", content: "telephone=no" },
     ],
     links: [
@@ -161,6 +165,18 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2JJJ824B2" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-X2JJJ824B2');
+            `,
+          }}
+        />
         <HeadContent />
         <SeoStructuredData />
       </head>

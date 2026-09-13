@@ -35,3 +35,5 @@ Allow: /
 # Sitemap Index Declaration
 Sitemap: https://mccoyglobal.in/sitemap.xml
 Sitemap: https://www.mccoyglobal.in/sitemap.xml
+Sitemap: https://www.mccoyglobalconsultancy.com/sitemap.xml
+

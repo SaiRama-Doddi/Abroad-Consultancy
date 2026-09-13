@@ -255,16 +255,10 @@ export function HeroSection() {
       window.addEventListener("preloaderDone", handlePreloaderDone);
     }
 
-    // Snappy fallback so mobile heading starts promptly with fast preloader (0.95s)
-    const timer = setTimeout(() => {
-      setAnimationStarted(true);
-    }, 950);
-
     return () => {
       if (typeof window !== "undefined") {
         window.removeEventListener("preloaderDone", handlePreloaderDone);
       }
-      clearTimeout(timer);
     };
   }, []);
 

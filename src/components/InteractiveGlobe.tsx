@@ -51,11 +51,11 @@ interface City {
 }
 
 const cities: City[] = [
-  { lon: -100, lat: 40, label: "USA 🇺🇸" },
-  { lon: -79.3, lat: 43.6, label: "Canada 🇨🇦" },
-  { lon: 0, lat: 51.5, label: "UK 🇬🇧" },
-  { lon: 13.4, lat: 52.5, label: "Germany 🇩🇪" },
-  { lon: 151.2, lat: -33.8, label: "Australia 🇦🇺" }
+  { lon: -100, lat: 40, label: "USA" },
+  { lon: -79.3, lat: 43.6, label: "Canada" },
+  { lon: 0, lat: 51.5, label: "UK" },
+  { lon: 13.4, lat: 52.5, label: "Germany" },
+  { lon: 151.2, lat: -33.8, label: "Australia" }
 ];
 
 export function InteractiveGlobe() {
