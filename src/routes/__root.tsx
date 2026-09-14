@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 import { Toaster } from "../components/ui/sonner";
-import { Preloader } from "../components/Preloader";
 import { BackgroundFlight } from "../components/BackgroundFlight";
 import { SeoStructuredData } from "../components/SeoStructuredData";
 
@@ -181,7 +180,6 @@ function RootShell({ children }: { children: ReactNode }) {
         <SeoStructuredData />
       </head>
       <body>
-        <Preloader />
         <BackgroundFlight />
         {children}
         <Scripts />

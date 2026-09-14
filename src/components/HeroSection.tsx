@@ -174,7 +174,7 @@ function HighlightCardItem({
 
 export function HeroSection() {
   const [videoPlaying, setVideoPlaying] = useState(true);
-  const [animationStarted, setAnimationStarted] = useState(false);
+  const [animationStarted, setAnimationStarted] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -246,21 +246,6 @@ export function HeroSection() {
     };
   }, [activeCardIndex, isPaused]);
 
-  useEffect(() => {
-    const handlePreloaderDone = () => {
-      setAnimationStarted(true);
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("preloaderDone", handlePreloaderDone);
-    }
-
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("preloaderDone", handlePreloaderDone);
-      }
-    };
-  }, []);
 
   const handleConsultationClick = (e: React.MouseEvent) => {
     e.preventDefault();
