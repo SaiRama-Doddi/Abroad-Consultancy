@@ -55,8 +55,30 @@ function getHeightMultiplier(width: number) {
   return available / idealPx;
 }
 
-function getSlotConfig(totalCards: number, slot: number) {
-  if (totalCards >= MAX_VISIBLE) return FAN_POSITIONS[slot];
+export interface SlotConfig {
+  rot: number;
+  scale: number;
+  x: number;
+  y: number;
+  zIndex: number;
+  opacity: number;
+  filter: string;
+}
+
+const DEFAULT_SLOT_CONFIG: SlotConfig = {
+  rot: 0,
+  scale: 1.0,
+  x: 0,
+  y: 0.0,
+  zIndex: 12,
+  opacity: 1.0,
+  filter: "brightness(1.0) saturate(1.0) contrast(1.0)",
+};
+
+function getSlotConfig(totalCards: number, slot: number): SlotConfig {
+  if (totalCards >= MAX_VISIBLE) {
+    return FAN_POSITIONS[slot] ?? DEFAULT_SLOT_CONFIG;
+  }
   const center = totalCards >> 1;
   const distance = totalCards > 1 ? (slot - center) / center : 0;
   const absDistance = Math.abs(distance);

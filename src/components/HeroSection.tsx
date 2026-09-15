@@ -112,7 +112,9 @@ function HighlightCardItem({
     // Dynamically transitions both when scrolling down and when scrolling up
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry) {
+          setIsVisible(entry.isIntersecting);
+        }
       },
       {
         threshold: 0.06,
@@ -174,7 +176,7 @@ function HighlightCardItem({
 
 export function HeroSection() {
   const [videoPlaying, setVideoPlaying] = useState(true);
-  const [animationStarted, setAnimationStarted] = useState(true);
+  const [animationStarted, setAnimationStarted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -246,6 +248,21 @@ export function HeroSection() {
     };
   }, [activeCardIndex, isPaused]);
 
+  useEffect(() => {
+    const handlePreloaderDone = () => {
+      setAnimationStarted(true);
+    };
+
+    window.addEventListener("preloaderDone", handlePreloaderDone);
+    const fallbackTimer = setTimeout(() => {
+      setAnimationStarted(true);
+    }, 2200);
+
+    return () => {
+      window.removeEventListener("preloaderDone", handlePreloaderDone);
+      clearTimeout(fallbackTimer);
+    };
+  }, []);
 
   const handleConsultationClick = (e: React.MouseEvent) => {
     e.preventDefault();
