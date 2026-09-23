@@ -76,11 +76,33 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 border-b border-primary-foreground/5 ${
         isScrolled
-          ? "bg-[#0b1224]/85 backdrop-blur-xl py-2.5 shadow-lg"
-          : "bg-[#0b1224] py-3.5"
+          ? "bg-[#0b1224]/90 backdrop-blur-xl shadow-lg"
+          : "bg-[#0b1224]"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
+      {/* Red Intake Announcement Headline Ticker */}
+      <div
+        onClick={handleContactNavigate}
+        className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white py-1 sm:py-1.5 overflow-hidden cursor-pointer select-none border-b border-red-700/60 shadow-md transition-colors relative z-50 group"
+        title="Click to Enroll for 2025 - 2026 Intake"
+      >
+        <div className="animate-headline-marquee flex items-center whitespace-nowrap text-[11px] sm:text-[12.5px] font-black uppercase tracking-[0.14em]">
+          {[1, 2, 3, 4].map((setIndex) => (
+            <div key={setIndex} className="flex items-center shrink-0">
+              <span className="text-white drop-shadow-sm font-black">2025 - 2026 INTAKE</span>
+              <Plane className="inline-block h-3.5 w-3.5 sm:h-4 sm:w-4 text-white -rotate-45 mx-3 sm:mx-5 shrink-0 fill-white" />
+              <span className="text-amber-200 drop-shadow-sm font-black underline underline-offset-2 hover:text-white transition-colors">ENROLL NOW</span>
+              <Plane className="inline-block h-3.5 w-3.5 sm:h-4 sm:w-4 text-white -rotate-45 mx-3 sm:mx-5 shrink-0 fill-white" />
+              <span className="text-white drop-shadow-sm font-black">98% VISA SUCCESS RATE · USA · UK · CANADA · GERMANY · AUSTRALIA</span>
+              <Plane className="inline-block h-3.5 w-3.5 sm:h-4 sm:w-4 text-white -rotate-45 mx-3 sm:mx-5 shrink-0 fill-white" />
+              <span className="text-white drop-shadow-sm font-black">FREE PROFILE ASSESSMENT & SCHOLARSHIP GUIDANCE</span>
+              <Plane className="inline-block h-3.5 w-3.5 sm:h-4 sm:w-4 text-white -rotate-45 mx-3 sm:mx-5 shrink-0 fill-white" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3.5">
         {/* Logo and Brand Title */}
         <a
           href="#home"

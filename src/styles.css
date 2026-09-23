@@ -549,5 +549,17 @@
   }
 }
 
+@keyframes headline-marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
 
+.animate-headline-marquee {
+  display: flex;
+  width: max-content;
+  animation: headline-marquee 28s linear infinite;
+}
 
+.animate-headline-marquee:hover {
+  animation-play-state: paused;
+}

@@ -279,7 +279,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[72vh] lg:min-h-[68vh] items-center overflow-hidden pt-24 sm:pt-28 lg:pt-24 pb-4 sm:pb-6 bg-[#060a15]"
+      className="relative flex min-h-[72vh] lg:min-h-[68vh] items-center overflow-hidden pt-32 sm:pt-36 lg:pt-36 pb-4 sm:pb-6 bg-[#060a15]"
     >
       {/* Background Video with high clarity & vibrancy */}
       <video

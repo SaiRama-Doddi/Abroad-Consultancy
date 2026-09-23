@@ -7,7 +7,8 @@ import {
   Clock, 
   FileCheck, 
   PlaneTakeoff,
-  ArrowRight 
+  ArrowRight,
+  Sparkles
 } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
 
@@ -19,6 +20,7 @@ interface SuccessStory {
   visaLabel: string;
   pathwayInfo: string;
   image: string;
+  visaImage?: string;
   approvalTime: string;
   serial: string;
   testimonial: string;
@@ -27,67 +29,91 @@ interface SuccessStory {
 
 const successStories: SuccessStory[] = [
   {
-    name: "Kiran Kumar",
+    name: "Praveen Goud Cherlapally",
     destination: "United States",
     countryCode: "us",
     visaType: "student",
     visaLabel: "Student Visa (F-1)",
-    pathwayInfo: "MS in Computer Science · UT Dallas",
-    image: "/student-usa.png",
-    approvalTime: "12 Days",
-    serial: "MCC-US-8924",
-    testimonial: "Mr. B. Rohith made my dream of studying in the USA a reality. His expert guidance on SOP drafting and visa interview prep was flawless. Highly recommended!",
-    milestones: ["Profile Evaluated", "I-20 Received", "Visa Slot Booked", "Visa Approved"]
-  },
-  {
-    name: "Ananya Reddy",
-    destination: "Germany",
-    countryCode: "de",
-    visaType: "mobility",
-    visaLabel: "Germany Opportunity Card",
-    pathwayInfo: "IT Software Engineer Pathway",
-    image: "/student-germany.png",
-    approvalTime: "18 Days",
-    serial: "MCC-DE-4412",
-    testimonial: "Securing my Germany Opportunity Card was seamless thanks to Mr. B. Rohith. He helped me with point calculation and document verification. Best advisor ever!",
-    milestones: ["Points Audited", "Anabin Certified", "Embassy Interview", "Card Issued"]
-  },
-  {
-    name: "Vikram Malhotra",
-    destination: "United Kingdom",
-    countryCode: "gb",
-    visaType: "mobility",
-    visaLabel: "UK Youth Mobility Visa",
-    pathwayInfo: "Marketing Analyst · London",
-    image: "/student-uk.png",
+    pathwayInfo: "University of North Texas · USA",
+    image: "/story-3.jpg",
+    visaImage: "/visa-praveen.jpg",
     approvalTime: "10 Days",
-    serial: "MCC-UK-1092",
-    testimonial: "Extremely professional guidance from Mr. B. Rohith. He handled my Youth Mobility Visa smoothly, and I arrived in London within weeks. Truly hassle-free!",
-    milestones: ["VFS Lodgement", "Biometrics Done", "Decision Received", "Visa Endorsed"]
+    serial: "MCC-US-4278",
+    testimonial: "Securing my US F-1 student visa for University of North Texas was a dream come true! Mr. B. Rohith personally prepared me for the consular interview and ensured my financial documentation was airtight.",
+    milestones: ["I-20 from UNT", "DS-160 & SEVIS Paid", "Consular Mock Interview", "F-1 Visa Approved"]
   },
   {
-    name: "Sneha Rao",
-    destination: "Singapore",
-    countryCode: "sg",
+    name: "Nivedhita Burgula",
+    destination: "United States",
+    countryCode: "us",
     visaType: "student",
-    visaLabel: "Student Visa & Internship",
-    pathwayInfo: "NSTC Logistics Management + AI",
-    image: "/student-singapore.png",
-    approvalTime: "14 Days",
-    serial: "MCC-SG-3810",
-    testimonial: "Thanks to Mr. B. Rohith, I got my Singapore student visa and an internship placement at a leading logistics firm. His guidance changed my career.",
-    milestones: ["University Offer", "ICA Application", "STP Approval", "Entry Granted"]
+    visaLabel: "Student Visa (F-1)",
+    pathwayInfo: "Saint Peter's University · USA",
+    image: "/story-2.png",
+    visaImage: "/visa-nivedhita.png",
+    approvalTime: "9 Days",
+    serial: "MCC-US-2751",
+    testimonial: "Securing my US F-1 visa for Saint Peter's University was a breeze with McCoy Global Consultancy. Mr. B. Rohith personally reviewed my documentation and conducted thorough mock interviews.",
+    milestones: ["I-20 from Saint Peter's", "DS-160 & SEVIS Filing", "Consular Mock Interview", "F-1 Visa Approved"]
+  },
+  {
+    name: "Abhishek Bouchula",
+    destination: "United States",
+    countryCode: "us",
+    visaType: "student",
+    visaLabel: "Student Visa (F-1)",
+    pathwayInfo: "Oklahoma City University · USA",
+    image: "/story-4.jpg",
+    visaImage: "/visa-abhishek.png",
+    approvalTime: "10 Days",
+    serial: "MCC-US-1469",
+    testimonial: "Securing my US F-1 visa for Oklahoma City University was seamless with McCoy Global. Mr. B. Rohith’s personalized interview strategies and documentation guidance were top-notch!",
+    milestones: ["I-20 from Oklahoma City Univ", "DS-160 & SEVIS Paid", "Consular Mock Preparation", "F-1 Visa Approved"]
+  },
+  {
+    name: "Kavya Garkapogula",
+    destination: "United States",
+    countryCode: "us",
+    visaType: "student",
+    visaLabel: "Student Visa (F-1)",
+    pathwayInfo: "Murray State University · USA",
+    image: "/story-1.jpg",
+    visaImage: "/visa-kavya.jpg",
+    approvalTime: "8 Days",
+    serial: "MCC-US-0271",
+    testimonial: "Securing my US F-1 student visa for Murray State University was seamless with McCoy Global Consultancy. Mr. B. Rohith’s interview prep and documentation support were exceptional!",
+    milestones: ["I-20 from Murray State", "DS-160 & SEVIS Paid", "Consular Interview Prep", "F-1 Visa Approved"]
+  },
+  {
+    name: "Swaroop Samuel Sangaveera",
+    destination: "United States",
+    countryCode: "us",
+    visaType: "student",
+    visaLabel: "Student Visa (F-1)",
+    pathwayInfo: "Oklahoma City University · USA",
+    image: "/story-5.jpg",
+    visaImage: "/visa-swaroop.jpg",
+    approvalTime: "8 Days",
+    serial: "MCC-US-5952",
+    testimonial: "Securing my US F-1 student visa for Oklahoma City University was seamless with McCoy Global Consultancy. Mr. B. Rohith personally reviewed my documentation and conducted thorough consular mock interviews.",
+    milestones: ["I-20 from Oklahoma City Univ", "DS-160 & SEVIS Filing", "Consular Mock Preparation", "F-1 Visa Approved"]
   }
 ];
 
 export function GallerySection() {
   const [filter, setFilter] = useState<"all" | "student" | "mobility">("all");
   const [selectedStory, setSelectedStory] = useState<SuccessStory | null>(null);
+  const [modalTab, setModalTab] = useState<"photo" | "visa">("visa");
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  const handleSelectStory = (story: SuccessStory) => {
+    setSelectedStory(story);
+    setModalTab(story.visaImage ? "visa" : "photo");
+  };
 
   const filteredStories = successStories.filter(
     (story) => filter === "all" || story.visaType === filter
@@ -143,7 +169,7 @@ export function GallerySection() {
           </div>
         </ScrollReveal>
 
-        {/* Gallery Filter Tabs (Left-aligned, flex-wrap to prevent horizontal dragging) */}
+        {/* Gallery Filter Tabs */}
         <ScrollReveal direction="up" delay={200}>
           <div className="flex flex-wrap items-center justify-start gap-2 mb-6 sm:mb-8">
             {(["all", "student", "mobility"] as const).map((type) => (
@@ -164,17 +190,17 @@ export function GallerySection() {
           </div>
         </ScrollReveal>
 
-        {/* Gallery Grid: 2 columns on mobile, 4 columns on desktop */}
-        <div className="grid gap-3 sm:gap-6 lg:gap-8 grid-cols-2 lg:grid-cols-4">
+        {/* Gallery Grid: 2 columns on mobile, 3 on tablet, 5 on desktop */}
+        <div className="grid gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-5">
           {filteredStories.map((story, idx) => (
             <ScrollReveal 
               key={story.name} 
               direction="up" 
-              delay={150 + (idx % 4) * 80} 
+              delay={150 + (idx % 5) * 70} 
               className="flex"
             >
               <div
-                onClick={() => setSelectedStory(story)}
+                onClick={() => handleSelectStory(story)}
                 className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-150/70 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[var(--gold)] hover:shadow-[0_20px_40px_rgba(184,123,44,0.12),0_0_15px_rgba(184,123,44,0.06)] w-full cursor-pointer"
               >
                 {/* Top gold bar accent panel */}
@@ -185,11 +211,11 @@ export function GallerySection() {
 
                 <div className="relative z-10 flex flex-col h-full">
                   {/* Photo Container */}
-                  <div className="relative h-36 sm:h-52 md:h-64 w-full overflow-hidden bg-slate-50">
+                  <div className="relative h-44 sm:h-52 md:h-60 w-full overflow-hidden bg-slate-50">
                     <img
                       src={story.image}
                       alt={story.name}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                     
                     {/* Visa Approved pill */}
@@ -197,6 +223,14 @@ export function GallerySection() {
                       <ShieldCheck className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
                       <span>Approved</span>
                     </div>
+
+                    {/* Visa Foil Attached Badge if present */}
+                    {story.visaImage ? (
+                      <div className="absolute bottom-1.5 left-2 sm:bottom-3 sm:left-3 z-20 flex items-center gap-1 rounded-full bg-slate-900/90 backdrop-blur-md px-2 py-0.5 text-[0.5rem] sm:text-[0.6rem] font-extrabold text-amber-300 border border-amber-400/40 shadow-sm">
+                        <Sparkles className="h-2.5 w-2.5 text-amber-400" />
+                        <span>Visa Card</span>
+                      </div>
+                    ) : null}
 
                     {/* Serial watermark label */}
                     <div className="absolute bottom-1.5 right-2 sm:bottom-3 sm:right-4 z-20 font-mono text-[7px] sm:text-[9px] font-semibold text-white/70 bg-black/35 backdrop-blur-sm px-1.5 py-0.5 rounded">
@@ -260,66 +294,133 @@ export function GallerySection() {
 
         {/* PASSPORT DETAIL MODAL */}
         {selectedStory && isClient && createPortal(
-          <div className="fixed inset-0 z-[100] overflow-y-auto p-4 sm:p-6 md:p-10 flex items-start justify-center md:items-center">
+          <div className="fixed inset-0 z-[100] p-3 sm:p-6 flex items-center justify-center overflow-y-auto sm:overflow-hidden">
             {/* Backdrop Blur */}
             <div 
               className="fixed inset-0 bg-[#0b1224]/85 backdrop-blur-sm animate-fade-in z-0"
               onClick={() => setSelectedStory(null)}
             />
             
-            {/* Close Button - Fixed in viewport top-right for mobile & scroll-proof accessibility */}
+            {/* Close Button */}
             <button 
               onClick={() => setSelectedStory(null)}
-              className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[110] bg-slate-900/90 hover:bg-slate-800 text-white p-3 rounded-full transition-all duration-300 cursor-pointer shadow-[0_5px_20px_rgba(0,0,0,0.4)] border border-white/10"
+              className="fixed top-3 right-3 sm:top-5 sm:right-5 z-[110] bg-slate-900/90 hover:bg-slate-800 text-white p-2.5 sm:p-3 rounded-full transition-all duration-300 cursor-pointer shadow-lg border border-white/10"
               aria-label="Close modal"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
 
-            {/* Modal Box - Scrollable internally on tiny heights to prevent cutoffs */}
-            <div className="relative bg-white rounded-[28px] border border-slate-100 w-full max-w-4xl shadow-2xl z-10 animate-slide-up duration-500 grid md:grid-cols-2 my-auto max-h-[90vh] md:max-h-[85vh] overflow-y-auto">
+            {/* Modal Box */}
+            <div className="relative bg-white rounded-3xl border border-slate-100 w-full max-w-4xl shadow-2xl z-10 animate-slide-up duration-500 grid md:grid-cols-2 overflow-hidden my-auto max-h-[94vh] md:max-h-none overflow-y-auto md:overflow-y-visible">
 
-              {/* Left Side: Passport Page Photo & Info */}
-              <div className="relative bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-200/50">
+              {/* Left Side: Passport Page Photo, Visa Card & Info */}
+              <div className="relative bg-slate-50 p-4 sm:p-6 flex flex-col justify-between border-r border-slate-200/50">
                 <div className="absolute inset-0 bg-[radial-gradient(#e0b76d_0.8px,transparent_0.8px)] [background-size:16px_16px] opacity-[0.04] pointer-events-none" />
                 
                 <div>
                   {/* Passport Header Title */}
-                  <div className="flex items-center justify-between border-b-2 border-slate-200 pb-4 mb-6">
-                    <span className="font-mono text-xs font-bold text-slate-400">PASSPORT CONTROL</span>
-                    <span className="font-mono text-xs font-extrabold text-[var(--gold)]">{selectedStory.serial}</span>
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-3">
+                    <span className="font-mono text-[11px] font-bold text-slate-400">PASSPORT CONTROL</span>
+                    <span className="font-mono text-[11px] font-extrabold text-[var(--gold)]">{selectedStory.serial}</span>
                   </div>
 
-                  {/* Photo framed like a real passport attachment */}
-                  <div className="flex justify-center mb-6">
-                    <div className="relative p-2 bg-white rounded-2xl shadow-md border border-slate-200 rotate-[-1.5deg]">
-                      <img 
-                        src={selectedStory.image} 
-                        alt={selectedStory.name}
-                        className="w-48 h-56 object-cover rounded-xl grayscale-[15%] filter"
-                      />
-                      {/* Round Gold Holographic Seal overlay */}
-                      <div className="absolute -bottom-3 -right-3 w-14 h-14 rounded-full border-2 border-dashed border-[var(--gold)] bg-white flex items-center justify-center shadow-lg rotate-12">
-                        <div className="w-11 h-11 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)] flex flex-col items-center justify-center">
-                          <span className="font-display font-black text-[7px] text-[var(--gold)] tracking-widest leading-none">APPROVED</span>
-                          <span className="font-display font-black text-[6px] text-[var(--gold)]">MCCOY</span>
+                  {/* Switcher Tab between Photo and Visa Card */}
+                  {selectedStory.visaImage && (
+                    <div className="flex items-center justify-center gap-1 p-0.5 bg-slate-200/80 rounded-lg mb-3 border border-slate-300/60">
+                      <button
+                        type="button"
+                        onClick={() => setModalTab("photo")}
+                        className={`flex-1 py-1 px-2 rounded-md text-[10px] font-extrabold uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer ${
+                          modalTab === "photo"
+                            ? "bg-white text-slate-800 shadow-sm"
+                            : "text-slate-500 hover:text-slate-800"
+                        }`}
+                      >
+                        Student Photo
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setModalTab("visa")}
+                        className={`flex-1 py-1 px-2 rounded-md text-[10px] font-extrabold uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer ${
+                          modalTab === "visa"
+                            ? "bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white shadow-sm ring-1 ring-emerald-400/40"
+                            : "text-slate-500 hover:text-slate-800"
+                        }`}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        Verified Visa Card
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Visual Display Container */}
+                  <div className="flex flex-col items-center justify-center mb-3.5">
+                    {modalTab === "visa" && selectedStory.visaImage ? (
+                      <div className="relative w-full p-1.5 bg-white rounded-xl shadow border border-emerald-500/30">
+                        <img 
+                          src={selectedStory.visaImage} 
+                          alt={`${selectedStory.name} Visa Card`}
+                          className="w-full h-36 sm:h-44 object-contain rounded-lg bg-slate-900/5"
+                        />
+                        <div className="absolute -bottom-2 right-2.5 bg-emerald-600 text-white px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider flex items-center gap-1 shadow border border-emerald-300/40">
+                          <ShieldCheck className="h-2.5 w-2.5" /> US Visa Granted
                         </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="relative p-1.5 bg-white rounded-xl shadow border border-slate-200 rotate-[-1deg]">
+                        <img 
+                          src={selectedStory.image} 
+                          alt={selectedStory.name}
+                          className="w-36 h-36 sm:w-40 sm:h-44 object-cover object-top rounded-lg grayscale-[10%] filter"
+                        />
+                        <div className="absolute -bottom-2.5 -right-2.5 w-11 h-11 rounded-full border border-dashed border-[var(--gold)] bg-white flex items-center justify-center shadow rotate-12">
+                          <div className="w-9 h-9 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)] flex flex-col items-center justify-center">
+                            <span className="font-display font-black text-[6px] text-[var(--gold)] tracking-widest leading-none">APPROVED</span>
+                            <span className="font-display font-black text-[5px] text-[var(--gold)]">MCCOY</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Thumbnail Switcher */}
+                    {selectedStory.visaImage && (
+                      <div className="flex items-center gap-1.5 mt-2.5">
+                        <button
+                          type="button"
+                          onClick={() => setModalTab("photo")}
+                          className={`w-9 h-9 rounded-md overflow-hidden border transition-all p-0.5 cursor-pointer ${
+                            modalTab === "photo" ? "border-[var(--gold)] scale-105 shadow-sm" : "border-slate-200 opacity-60 hover:opacity-100"
+                          }`}
+                          title="Candidate Photo"
+                        >
+                          <img src={selectedStory.image} alt="Photo" className="w-full h-full object-cover object-top rounded" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setModalTab("visa")}
+                          className={`w-12 h-9 rounded-md overflow-hidden border transition-all p-0.5 cursor-pointer ${
+                            modalTab === "visa" ? "border-emerald-500 scale-105 shadow-sm" : "border-slate-200 opacity-60 hover:opacity-100"
+                          }`}
+                          title="Visa Card"
+                        >
+                          <img src={selectedStory.visaImage} alt="Visa Foil" className="w-full h-full object-contain rounded bg-slate-100" />
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   {/* Identity Grid */}
-                  <div className="grid grid-cols-2 gap-y-4 gap-x-6 text-left">
+                  <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-left">
                     <div>
-                      <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Given Name</span>
-                      <span className="text-sm font-extrabold text-slate-800">{selectedStory.name}</span>
+                      <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Given Name</span>
+                      <span className="text-xs sm:text-sm font-extrabold text-slate-800 truncate block">{selectedStory.name}</span>
                     </div>
                     <div>
-                      <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Destination</span>
-                      <span className="text-sm font-extrabold text-slate-800 flex items-center gap-1.5">
+                      <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Destination</span>
+                      <span className="text-xs sm:text-sm font-extrabold text-slate-800 flex items-center gap-1.5 truncate">
                         <img 
                           src={`https://flagcdn.com/w40/${selectedStory.countryCode}.png`} 
-                          width="16"
+                          width="14"
                           alt="Flag"
                           className="rounded-sm"
                         />
@@ -327,66 +428,66 @@ export function GallerySection() {
                       </span>
                     </div>
                     <div>
-                      <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Visa Type</span>
-                      <span className="text-xs font-bold text-slate-700 bg-slate-200/60 px-2 py-0.5 rounded">{selectedStory.visaLabel}</span>
+                      <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Visa Type</span>
+                      <span className="text-[11px] font-bold text-slate-700 bg-slate-200/60 px-1.5 py-0.5 rounded truncate block">{selectedStory.visaLabel}</span>
                     </div>
                     <div>
-                      <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Speed of Issue</span>
-                      <span className="text-xs font-bold text-slate-700 flex items-center gap-1">
-                        <Clock className="h-3 w-3 text-[var(--gold)]" /> {selectedStory.approvalTime}
+                      <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">Speed of Issue</span>
+                      <span className="text-[11px] font-bold text-slate-700 flex items-center gap-1">
+                        <Clock className="h-2.5 w-2.5 text-[var(--gold)]" /> {selectedStory.approvalTime}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 border-t border-slate-200 pt-4 text-center">
-                  <span className="font-mono text-[9px] text-slate-400">P&lt;INDMCC&lt;&lt;{selectedStory.name.replace(" ", "&lt;").toUpperCase()}&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+                <div className="mt-4 border-t border-slate-200 pt-2 text-center">
+                  <span className="font-mono text-[8px] text-slate-400">P&lt;INDMCC&lt;&lt;{selectedStory.name.replace(/\s+/g, "&lt;&lt;").toUpperCase()}&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
                 </div>
               </div>
 
               {/* Right Side: Milestones & Testimonial Case Study */}
-              <div className="p-8 flex flex-col justify-between bg-white">
+              <div className="p-4 sm:p-6 flex flex-col justify-between bg-white">
                 <div>
-                  <div className="inline-flex items-center gap-1 text-[var(--gold)] font-bold text-xs uppercase tracking-widest mb-3">
-                    <FileCheck className="h-4 w-4" />
+                  <div className="inline-flex items-center gap-1 text-[var(--gold)] font-bold text-[10px] uppercase tracking-widest mb-1.5">
+                    <FileCheck className="h-3.5 w-3.5" />
                     <span>Case Verification</span>
                   </div>
 
-                  <h3 className="font-display text-2xl font-extrabold text-slate-800 tracking-tight text-left mb-4">
+                  <h3 className="font-display text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight text-left mb-2.5">
                     Journey Details
                   </h3>
 
                   {/* Quote / Testimonial Box */}
-                  <div className="bg-[var(--gold)]/5 border-l-4 border-[var(--gold)] p-4 rounded-r-2xl mb-6 relative">
-                    <span className="absolute top-2 right-4 text-4xl font-display font-black text-[var(--gold)]/20 leading-none">“</span>
-                    <p className="text-[0.88rem] text-slate-600 leading-relaxed italic text-justify pr-2">
+                  <div className="bg-[var(--gold)]/5 border-l-3 border-[var(--gold)] p-3 rounded-r-xl mb-3.5 relative">
+                    <span className="absolute top-1 right-3 text-3xl font-display font-black text-[var(--gold)]/20 leading-none">“</span>
+                    <p className="text-[0.8rem] sm:text-[0.84rem] text-slate-600 leading-relaxed italic text-justify pr-2">
                       {selectedStory.testimonial}
                     </p>
                   </div>
 
                   {/* Application Timeline Milestones */}
                   <div>
-                    <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3 text-left">Processing Milestones</span>
-                    <div className="space-y-3.5">
+                    <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-2 text-left">Processing Milestones</span>
+                    <div className="space-y-2">
                       {selectedStory.milestones.map((m, idx) => (
-                        <div key={idx} className="flex items-center gap-3">
-                          <div className="w-5 h-5 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center shrink-0">
-                            <span className="text-[10px] font-extrabold text-emerald-600">✓</span>
+                        <div key={idx} className="flex items-center gap-2">
+                          <div className="w-4 h-4 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center shrink-0">
+                            <span className="text-[9px] font-extrabold text-emerald-600">✓</span>
                           </div>
-                          <span className="text-xs font-semibold text-slate-700">{m}</span>
+                          <span className="text-[11px] font-semibold text-slate-700">{m}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
                   <button 
                     type="button"
                     onClick={() => handleStartSuccessClick(selectedStory)}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/90 hover:to-[var(--gold)] text-[#0b1224] text-xs font-extrabold uppercase tracking-widest py-3.5 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--gold)] to-[var(--gold)]/90 hover:to-[var(--gold)] text-[#0b1224] text-[11px] font-extrabold uppercase tracking-widest py-3 px-5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                   >
-                    Start Your Success Story <PlaneTakeoff className="h-4 w-4" />
+                    Start Your Success Story <PlaneTakeoff className="h-3.5 w-3.5" />
                   </button>
                 </div>
               </div>
