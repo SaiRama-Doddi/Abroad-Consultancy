@@ -8,6 +8,7 @@ import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { ExpertiseSection } from "@/components/ExpertiseSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { GallerySection } from "@/components/GallerySection";
+import { AnnouncementTicker } from "@/components/AnnouncementTicker";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FaqSection } from "@/components/FaqSection";
 import { ContactFormSection } from "@/components/ContactFormSection";
@@ -81,6 +82,7 @@ function Index() {
         <ExpertiseSection />
         <ServicesSection />
         <GallerySection />
+        <AnnouncementTicker />
         <TestimonialsSection />
         <FaqSection />
         <ContactFormSection />
