@@ -20,6 +20,7 @@ interface SuccessStory {
   visaLabel: string;
   pathwayInfo: string;
   image: string;
+  imagePosition?: string;
   visaImage?: string;
   approvalTime: string;
   serial: string;
@@ -36,6 +37,7 @@ const successStories: SuccessStory[] = [
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "University of North Texas · USA",
     image: "/story-3.jpg",
+    imagePosition: "center 22%",
     visaImage: "/visa-praveen.jpg",
     approvalTime: "10 Days",
     serial: "MCC-US-4278",
@@ -50,6 +52,7 @@ const successStories: SuccessStory[] = [
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "Saint Peter's University · USA",
     image: "/story-2.png",
+    imagePosition: "center 25%",
     visaImage: "/visa-nivedhita.png",
     approvalTime: "9 Days",
     serial: "MCC-US-2751",
@@ -64,6 +67,7 @@ const successStories: SuccessStory[] = [
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "Oklahoma City University · USA",
     image: "/story-4.jpg",
+    imagePosition: "center 20%",
     visaImage: "/visa-abhishek.png",
     approvalTime: "10 Days",
     serial: "MCC-US-1469",
@@ -78,6 +82,7 @@ const successStories: SuccessStory[] = [
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "Murray State University · USA",
     image: "/story-1.jpg",
+    imagePosition: "center 25%",
     visaImage: "/visa-kavya.jpg",
     approvalTime: "8 Days",
     serial: "MCC-US-0271",
@@ -92,6 +97,7 @@ const successStories: SuccessStory[] = [
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "Oklahoma City University · USA",
     image: "/story-5.jpg",
+    imagePosition: "center 18%",
     visaImage: "/visa-swaroop.jpg",
     approvalTime: "8 Days",
     serial: "MCC-US-5952",
@@ -190,8 +196,8 @@ export function GallerySection() {
           </div>
         </ScrollReveal>
 
-        {/* Gallery Grid: 2 columns on mobile, 3 on tablet, 5 on desktop */}
-        <div className="grid gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-5">
+        {/* Gallery Grid: 1 col on mobile, 2 on wide mobile/small tablet, 3 on tablet, 5 on desktop */}
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-5">
           {filteredStories.map((story, idx) => (
             <ScrollReveal 
               key={story.name} 
@@ -211,11 +217,12 @@ export function GallerySection() {
 
                 <div className="relative z-10 flex flex-col h-full">
                   {/* Photo Container */}
-                  <div className="relative h-44 sm:h-52 md:h-60 w-full overflow-hidden bg-slate-50">
+                  <div className="relative h-60 min-[480px]:h-52 sm:h-56 md:h-64 w-full overflow-hidden bg-slate-100">
                     <img
                       src={story.image}
                       alt={story.name}
-                      className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{ objectPosition: story.imagePosition || "center center" }}
                     />
                     
                     {/* Visa Approved pill */}
@@ -371,7 +378,8 @@ export function GallerySection() {
                         <img 
                           src={selectedStory.image} 
                           alt={selectedStory.name}
-                          className="w-36 h-36 sm:w-40 sm:h-44 object-cover object-top rounded-lg grayscale-[10%] filter"
+                          className="w-36 h-36 sm:w-40 sm:h-44 object-cover rounded-lg grayscale-[10%] filter"
+                          style={{ objectPosition: selectedStory.imagePosition || "center center" }}
                         />
                         <div className="absolute -bottom-2.5 -right-2.5 w-11 h-11 rounded-full border border-dashed border-[var(--gold)] bg-white flex items-center justify-center shadow rotate-12">
                           <div className="w-9 h-9 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)] flex flex-col items-center justify-center">
@@ -393,7 +401,12 @@ export function GallerySection() {
                           }`}
                           title="Candidate Photo"
                         >
-                          <img src={selectedStory.image} alt="Photo" className="w-full h-full object-cover object-top rounded" />
+                          <img 
+                            src={selectedStory.image} 
+                            alt="Photo" 
+                            className="w-full h-full object-cover rounded" 
+                            style={{ objectPosition: selectedStory.imagePosition || "center center" }}
+                          />
                         </button>
                         <button
                           type="button"
