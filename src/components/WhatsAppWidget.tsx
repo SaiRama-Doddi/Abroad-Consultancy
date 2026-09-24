@@ -52,7 +52,7 @@ export function WhatsAppWidget() {
 
       {/* Direct WhatsApp Redirect Floating Link Button */}
       <a 
-        href="https://wa.me/918886368886?text=Hi%20Mr.%20B.%20Rohith,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20enquire%20about%20visa%20options."
+        href="https://wa.me/919849920961?text=Hi%20McCoy%20Global,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20enquire%20about%20visa%20options."
         target="_blank"
         rel="noopener noreferrer"
         className="group flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full text-white transition-all duration-300 shadow-[0_8px_30px_rgba(37,211,102,0.3)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(37,211,102,0.45)] cursor-pointer"

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Calendar, Globe, FileText, Shield, Handshake } from "lucide-react";
+import heroBgVideo from "../assets/Hero BG video.mp4";
 
 function renderLetterByLetter(
   text: string,
@@ -288,7 +289,7 @@ export function HeroSection() {
           opacity: 0.85,
           maxHeight: "640px"
         }}
-        src="/hero-cheerful-graduates-toss.mp4"
+        src={heroBgVideo}
         poster="/hero-graduation.jpg"
         autoPlay
         muted

@@ -275,7 +275,7 @@ export function SiteFooter() {
 
               {/* Item 2: WhatsApp / Phone with direct Chat badge */}
               <a 
-                href="https://wa.me/918886368886" 
+                href="https://wa.me/919849920961" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-slate-900/50 border border-slate-800/70 group hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all duration-200 cursor-pointer"
@@ -291,7 +291,7 @@ export function SiteFooter() {
                     </span>
                   </div>
                   <span className="text-white group-hover:text-emerald-400 transition-colors mt-0.5 block text-[0.78rem] sm:text-[0.82rem] font-bold tracking-wide whitespace-nowrap">
-                    +91 88863 68886
+                    +91 98499 20961
                   </span>
                 </div>
               </a>

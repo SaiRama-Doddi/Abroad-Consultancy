@@ -23,7 +23,7 @@ export function SeoStructuredData() {
         },
         "image": "https://mccoyglobal.in/og-image.png",
         "description": "McCoy Global Consultancy is Hyderabad's premier overseas education, immigration, and visa advisory firm. Specializing in Student Visas for USA, UK, Canada, Australia, Germany Opportunity Card (Chancenkarte), UK Youth Mobility Visa, Europe Schengen, Cyprus, Mauritius, Tourist Visas, Flight Tickets, and Education Loans.",
-        "telephone": "+918886368886",
+        "telephone": "+919849920961",
         "priceRange": "Free Consultation / Best Rates",
         "email": "info@mccoyglobal.in",
         "address": {
@@ -56,7 +56,7 @@ export function SeoStructuredData() {
           "https://facebook.com",
           "https://instagram.com",
           "https://linkedin.com",
-          "https://wa.me/918886368886"
+          "https://wa.me/919849920961"
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",

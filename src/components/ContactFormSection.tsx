@@ -158,10 +158,10 @@ export function ContactFormSection() {
                     <div className="text-left font-semibold">
                       <h4 className="font-display text-[0.7rem] font-black text-emerald-600 uppercase tracking-widest mt-1">Call Us</h4>
                       <a 
-                        href="tel:+918886368886" 
+                        href="tel:+919849920961" 
                         className="mt-1 block text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors"
                       >
-                        +91 88863 68886
+                        +91 98499 20961
                       </a>
                     </div>
                   </div>
@@ -182,7 +182,7 @@ export function ContactFormSection() {
               {/* Instant WhatsApp CTA */}
               <div className="pt-8 border-t border-slate-250/30 relative z-10 text-left">
                 <a 
-                  href="https://wa.me/918886368886"
+                  href="https://wa.me/919849920961"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 py-3.5 text-xs font-extrabold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.03] shadow-[0_6px_20px_rgba(37,211,102,0.35)] hover:shadow-[0_8px_25px_rgba(37,211,102,0.5)] border border-emerald-400/30 group"

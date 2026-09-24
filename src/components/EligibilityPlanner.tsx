@@ -431,7 +431,7 @@ export function EligibilityPlanner() {
                               id="lead-phone"
                               value={leadPhone}
                               onChange={(e) => setLeadPhone(e.target.value)}
-                              placeholder="e.g. +91 88863 68886"
+                              placeholder="e.g. +91 98499 20961"
                               className="w-full rounded-2xl border border-slate-200 bg-white pl-10 pr-4 py-3.5 text-xs text-slate-800 focus:border-[var(--gold)] focus:outline-none transition-colors"
                               required
                             />
