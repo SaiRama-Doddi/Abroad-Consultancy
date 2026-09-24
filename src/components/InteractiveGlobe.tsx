@@ -73,25 +73,43 @@ export function InteractiveGlobe() {
     let height = canvas.height;
     let radius = 0;
 
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const resize = () => {
-      const rect = canvas.parentElement?.getBoundingClientRect();
-      width = rect?.width || 400;
-      height = rect?.height || 500;
-      canvas.width = width * window.devicePixelRatio;
-      canvas.height = height * window.devicePixelRatio;
+      if (!canvas) return;
+      width = canvas.parentElement ? canvas.parentElement.clientWidth : 400;
+      height = canvas.parentElement ? canvas.parentElement.clientHeight : 400;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      ctx.scale(dpr, dpr);
       radius = Math.min(width, height) * 0.38; // Upgraded radius size
     };
 
     resize();
     window.addEventListener("resize", resize);
 
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            cancelAnimationFrame(animationId);
+            animationId = requestAnimationFrame(draw);
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
+
     // Dynamic rotation angle
     let angleY = 1.6; // starts facing UK/Europe/Africa
 
     const draw = () => {
+      if (!isVisible) return;
       ctx.clearRect(0, 0, width, height);
 
       // 1. Draw outer glowing atmospheric aura (Golden Halo)
@@ -323,6 +341,7 @@ export function InteractiveGlobe() {
 
     return () => {
       cancelAnimationFrame(animationId);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, []);

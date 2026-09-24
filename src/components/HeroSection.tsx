@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Calendar, Globe, FileText, Shield, Handshake } from "lucide-react";
-import heroBgVideo from "../assets/Hero BG video.mp4";
 
 function renderLetterByLetter(
   text: string,
@@ -176,7 +175,6 @@ function HighlightCardItem({
 }
 
 export function HeroSection() {
-  const [videoPlaying, setVideoPlaying] = useState(true);
   const [animationStarted, setAnimationStarted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -282,21 +280,20 @@ export function HeroSection() {
       id="home"
       className="relative flex min-h-[72vh] lg:min-h-[68vh] items-center overflow-hidden pt-32 sm:pt-36 lg:pt-36 pb-4 sm:pb-6 bg-[#060a15]"
     >
-      {/* Background Video with high clarity & vibrancy */}
+      {/* Background Video (Hero BG video) */}
       <video
-        className="absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 animate-slow-pan"
+        className="absolute inset-0 h-full w-full object-cover object-center animate-slow-pan"
         style={{
           opacity: 0.85,
           maxHeight: "640px"
         }}
-        src={heroBgVideo}
-        poster="/hero-graduation.jpg"
+        src="/hero-bg-video.mp4"
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         aria-hidden="true"
-        onPlaying={() => setVideoPlaying(true)}
       />
 
       {/* Smooth bottom fade into the page body */}

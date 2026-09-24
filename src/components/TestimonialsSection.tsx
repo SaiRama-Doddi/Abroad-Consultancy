@@ -203,6 +203,9 @@ export function TestimonialsSection() {
                           <img 
                             src={`https://flagcdn.com/w40/${t.countryCode}.png`} 
                             width="14"
+                            height="10"
+                            loading="lazy"
+                            decoding="async"
                             alt="flag"
                             className="rounded-sm shadow-sm"
                           />

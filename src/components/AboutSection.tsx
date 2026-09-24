@@ -360,9 +360,9 @@ export function AboutSection() {
                     style={{ animation: "float-fast 5s ease-in-out infinite" }}
                   >
                     <div className="flex -space-x-1.5">
-                      <img src="https://flagcdn.com/w40/gb.png" className="h-4 w-6 rounded-sm object-cover border border-white/10 shadow-sm" alt="UK" />
-                      <img src="https://flagcdn.com/w40/de.png" className="h-4 w-6 rounded-sm object-cover border border-white/10 shadow-sm" alt="Germany" />
-                      <img src="https://flagcdn.com/w40/us.png" className="h-4 w-6 rounded-sm object-cover border border-white/10 shadow-sm" alt="USA" />
+                      <img src="https://flagcdn.com/w40/gb.png" width={24} height={16} loading="lazy" decoding="async" className="h-4 w-6 rounded-sm object-cover border border-white/10 shadow-sm" alt="UK" />
+                      <img src="https://flagcdn.com/w40/de.png" width={24} height={16} loading="lazy" decoding="async" className="h-4 w-6 rounded-sm object-cover border border-white/10 shadow-sm" alt="Germany" />
+                      <img src="https://flagcdn.com/w40/us.png" width={24} height={16} loading="lazy" decoding="async" className="h-4 w-6 rounded-sm object-cover border border-white/10 shadow-sm" alt="USA" />
                     </div>
                     <span className="text-[0.72rem] font-extrabold uppercase tracking-widest text-slate-800">Global Visas</span>
                   </div>
@@ -558,7 +558,7 @@ export function AboutSection() {
             <div
               onClick={() =>
                 setActiveFlyer({
-                  src: "/study-in-cyprus.jpg",
+                  src: "/study-in-cyprus.webp",
                   title: "Study in Cyprus (Europe)"
                 })
               }
@@ -566,10 +566,13 @@ export function AboutSection() {
             >
               <div className="relative w-full overflow-hidden rounded-lg sm:rounded-xl">
                 <img
-                  src="/study-in-cyprus.jpg"
+                  src="/study-in-cyprus.webp"
                   alt="Study in Cyprus"
+                  width={400}
+                  height={560}
                   className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-blue-950/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="flex items-center gap-1.5 rounded-lg bg-white/95 px-3 py-1.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-blue-950 shadow-md">
@@ -584,7 +587,7 @@ export function AboutSection() {
             <div
               onClick={() =>
                 setActiveFlyer({
-                  src: "/study-in-mauritius.jpg",
+                  src: "/study-in-mauritius.webp",
                   title: "Study in Mauritius"
                 })
               }
@@ -592,10 +595,13 @@ export function AboutSection() {
             >
               <div className="relative w-full overflow-hidden rounded-lg sm:rounded-xl">
                 <img
-                  src="/study-in-mauritius.jpg"
+                  src="/study-in-mauritius.webp"
                   alt="Study in Mauritius"
+                  width={400}
+                  height={560}
                   className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-emerald-950/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="flex items-center gap-1.5 rounded-lg bg-white/95 px-3 py-1.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-emerald-950 shadow-md">

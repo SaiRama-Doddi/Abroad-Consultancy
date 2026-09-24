@@ -97,11 +97,13 @@ export function Preloader() {
           style={{ animation: "preloader-pulse-glow 2.5s ease-in-out infinite" }}
         >
           <img
-            src="/logo.png"
+            src="/logo.webp"
             alt="McCoy Global Logo"
+            width={192}
+            height={96}
             className="h-full w-full object-contain"
             loading="eager"
-            decoding="sync"
+            decoding="async"
           />
         </div>
 

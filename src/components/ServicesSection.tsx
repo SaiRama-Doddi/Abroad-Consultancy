@@ -16,7 +16,7 @@ const visaServices = [
   {
     title: "Student Visa",
     icon: GraduationCap,
-    image: "/service-student.jpg",
+    image: "/service-student.webp",
     color: "text-sky-400",
     bg: "bg-sky-500/15 border-sky-400/35 shadow-[0_0_18px_rgba(56,189,248,0.22)] group-hover:bg-sky-500/25 group-hover:border-sky-400/60",
     description: "Unlock global educational opportunities. We guide you from choosing the right university to submission and approval. Access quality education with high visa success rates.",
@@ -30,7 +30,7 @@ const visaServices = [
   {
     title: "Tourism & Visitor Visa",
     icon: Plane,
-    image: "/service-tourist.jpg",
+    image: "/service-tourist.webp",
     color: "text-cyan-400",
     bg: "bg-cyan-500/15 border-cyan-400/35 shadow-[0_0_18px_rgba(6,182,212,0.22)] group-hover:bg-cyan-500/25 group-hover:border-cyan-400/60",
     description: "Travel the world with zero stress. Whether it is visiting family, exploring destinations, or business meetings, we manage your visa formalities quickly and transparently.",
@@ -45,7 +45,7 @@ const visaServices = [
     title: "Opportunity Card Germany",
     countryCode: "de",
     icon: Briefcase,
-    image: "/service-germany.jpg",
+    image: "/service-germany.webp",
     color: "text-amber-400",
     bg: "bg-amber-500/15 border-amber-400/35 shadow-[0_0_18px_rgba(245,158,11,0.22)] group-hover:bg-amber-500/25 group-hover:border-amber-400/60",
     description: "Explore Germany's points-based job-seeking visa (Chancenkarte). We assess your eligibility, calculate points, and handle submissions for specialized visa programs.",
@@ -60,7 +60,7 @@ const visaServices = [
     title: "Youth Mobility Visa UK",
     countryCode: "gb",
     icon: Globe,
-    image: "/service-uk.jpg",
+    image: "/service-uk.webp",
     color: "text-rose-400",
     bg: "bg-rose-500/15 border-rose-400/35 shadow-[0_0_18px_rgba(244,63,94,0.22)] group-hover:bg-rose-500/25 group-hover:border-rose-400/60",
     description: "Live and work in the United Kingdom for up to 2 years. Our advisors help you navigate the qualifying criteria, age limits, financial requirements, and biometric registrations.",
@@ -74,7 +74,7 @@ const visaServices = [
   {
     title: "Flight Ticket Booking",
     icon: Ticket,
-    image: "/service-flight.jpg",
+    image: "/service-flight.webp",
     color: "text-purple-400",
     bg: "bg-purple-500/15 border-purple-400/35 shadow-[0_0_18px_rgba(192,132,252,0.22)] group-hover:bg-purple-500/25 group-hover:border-purple-400/60",
     description: "Fly out with ease and comfort. We secure the best routes, optimal flight schedules, and special student discount fares for your flights to any global destination.",
@@ -88,7 +88,7 @@ const visaServices = [
   {
     title: "Education Loan Assistance",
     icon: Landmark,
-    image: "/service-loan.jpg",
+    image: "/service-loan.webp",
     color: "text-emerald-400",
     bg: "bg-emerald-500/15 border-emerald-400/35 shadow-[0_0_18px_rgba(52,211,153,0.22)] group-hover:bg-emerald-500/25 group-hover:border-emerald-400/60",
     description: "Finance your overseas education stress-free. We partner with leading financial institutions to secure quick approvals, low-interest student loans, and collateral-free options.",
@@ -252,14 +252,21 @@ export function ServicesSection() {
                       <img 
                         src={service.image} 
                         alt={service.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        width={256}
+                        height={160}
                         loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       {/* Country Flag Badge overlay */}
                       {service.countryCode && (
                         <div className="absolute top-2 right-2 z-20 shadow-md border border-slate-800 rounded overflow-hidden">
                           <img
-                            src={`https://flagcdn.com/w80/${service.countryCode}.png`}
+                            src={`https://flagcdn.com/w40/${service.countryCode}.png`}
+                            width={30}
+                            height={20}
+                            loading="lazy"
+                            decoding="async"
                             className="h-4 w-6 sm:h-5 sm:w-7.5 object-cover"
                             alt="Country Flag"
                           />

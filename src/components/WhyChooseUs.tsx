@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import founderImg from "../assets/Founder.jpeg";
+import founderImg from "../assets/Founder.webp";
 import { 
   Handshake, 
   Headphones, 
@@ -180,6 +180,10 @@ export function WhyChooseUs() {
                     <img 
                       src={founderImg} 
                       alt="Mr. B. Rohith - Founder & Managing Director" 
+                      width={288}
+                      height={320}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 pointer-events-none" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />

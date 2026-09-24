@@ -36,9 +36,9 @@ const successStories: SuccessStory[] = [
     visaType: "student",
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "University of North Texas · USA",
-    image: "/story-3.jpg",
+    image: "/story-3.webp",
     imagePosition: "center 22%",
-    visaImage: "/visa-praveen.jpg",
+    visaImage: "/visa-praveen.webp",
     approvalTime: "10 Days",
     serial: "MCC-US-4278",
     testimonial: "Securing my US F-1 student visa for University of North Texas was a dream come true! Mr. B. Rohith personally prepared me for the consular interview and ensured my financial documentation was airtight.",
@@ -51,9 +51,9 @@ const successStories: SuccessStory[] = [
     visaType: "student",
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "Saint Peter's University · USA",
-    image: "/story-2.png",
+    image: "/story-2.webp",
     imagePosition: "center 25%",
-    visaImage: "/visa-nivedhita.png",
+    visaImage: "/visa-nivedhita.webp",
     approvalTime: "9 Days",
     serial: "MCC-US-2751",
     testimonial: "Securing my US F-1 visa for Saint Peter's University was a breeze with McCoy Global Consultancy. Mr. B. Rohith personally reviewed my documentation and conducted thorough mock interviews.",
@@ -66,9 +66,9 @@ const successStories: SuccessStory[] = [
     visaType: "student",
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "Oklahoma City University · USA",
-    image: "/story-4.jpg",
+    image: "/story-4.webp",
     imagePosition: "center 20%",
-    visaImage: "/visa-abhishek.png",
+    visaImage: "/visa-abhishek.webp",
     approvalTime: "10 Days",
     serial: "MCC-US-1469",
     testimonial: "Securing my US F-1 visa for Oklahoma City University was seamless with McCoy Global. Mr. B. Rohith’s personalized interview strategies and documentation guidance were top-notch!",
@@ -81,9 +81,9 @@ const successStories: SuccessStory[] = [
     visaType: "student",
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "Murray State University · USA",
-    image: "/story-1.jpg",
+    image: "/story-1.webp",
     imagePosition: "center 25%",
-    visaImage: "/visa-kavya.jpg",
+    visaImage: "/visa-kavya.webp",
     approvalTime: "8 Days",
     serial: "MCC-US-0271",
     testimonial: "Securing my US F-1 student visa for Murray State University was seamless with McCoy Global Consultancy. Mr. B. Rohith’s interview prep and documentation support were exceptional!",
@@ -96,9 +96,9 @@ const successStories: SuccessStory[] = [
     visaType: "student",
     visaLabel: "Student Visa (F-1)",
     pathwayInfo: "Oklahoma City University · USA",
-    image: "/story-5.jpg",
+    image: "/story-5.webp",
     imagePosition: "center 18%",
-    visaImage: "/visa-swaroop.jpg",
+    visaImage: "/visa-swaroop.webp",
     approvalTime: "8 Days",
     serial: "MCC-US-5952",
     testimonial: "Securing my US F-1 student visa for Oklahoma City University was seamless with McCoy Global Consultancy. Mr. B. Rohith personally reviewed my documentation and conducted thorough consular mock interviews.",
@@ -221,6 +221,10 @@ export function GallerySection() {
                     <img
                       src={story.image}
                       alt={story.name}
+                      width={384}
+                      height={256}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       style={{ objectPosition: story.imagePosition || "center center" }}
                     />
@@ -258,6 +262,10 @@ export function GallerySection() {
                         <img 
                           src={`https://flagcdn.com/w40/${story.countryCode}.png`} 
                           alt={`${story.destination} Flag`}
+                          width={22}
+                          height={15}
+                          loading="lazy"
+                          decoding="async"
                           className="w-4 sm:w-5.5 rounded-sm border border-slate-100 shadow-sm"
                         />
                         <span className="text-[0.58rem] sm:text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)]">

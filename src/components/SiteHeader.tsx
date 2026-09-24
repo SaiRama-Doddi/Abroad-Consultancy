@@ -88,7 +88,7 @@ export function SiteHeader() {
           onClick={() => setActiveLink("Home")}
         >
           <div className="flex h-10 w-16 sm:h-12 sm:w-20 shrink-0 items-center justify-center rounded-lg bg-white p-1.5 overflow-hidden transition-transform duration-300 group-hover:scale-105 shadow-[0_0_15px_rgba(166,106,33,0.25)]">
-            <img src="/logo.png" alt="McCoy Global Logo" className="h-full w-full object-contain" />
+            <img src="/logo.webp" alt="McCoy Global Logo" width={80} height={48} className="h-full w-full object-contain" fetchPriority="high" decoding="async" />
           </div>
           <div className="flex flex-col">
             <span className="font-sans text-[1.15rem] sm:text-[1.4rem] font-black tracking-[0.03em] text-white leading-none drop-shadow-[0_2px_8px_rgba(255,255,255,0.15)]">

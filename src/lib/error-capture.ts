@@ -62,6 +62,38 @@ console.error = (...args: unknown[]) => {
   originalConsoleError(...expanded);
 };
 
+if (typeof ReadableStreamDefaultController !== "undefined") {
+  const originalClose = ReadableStreamDefaultController.prototype.close;
+  ReadableStreamDefaultController.prototype.close = function (...args: unknown[]) {
+    try {
+      return (originalClose as (...a: unknown[]) => unknown).apply(this, args);
+    } catch (err: unknown) {
+      const error = err as { code?: string; message?: string };
+      if (
+        error?.code === "ERR_INVALID_STATE" ||
+        error?.message?.includes("already closed") ||
+        error?.message?.includes("Controller is already closed")
+      ) {
+        return;
+      }
+      throw err;
+    }
+  };
+}
+
+if (typeof process !== "undefined" && typeof process.on === "function") {
+  process.on("uncaughtException", (err: Error & { code?: string }) => {
+    if (
+      err &&
+      (err.message?.includes("Controller is already closed") ||
+        err.code === "ERR_INVALID_STATE")
+    ) {
+      return;
+    }
+    console.error("Uncaught exception:", err);
+  });
+}
+
 if (typeof globalThis.addEventListener === "function") {
   globalThis.addEventListener("error", (event) => record((event as ErrorEvent).error ?? event));
   globalThis.addEventListener("unhandledrejection", (event) =>

@@ -303,6 +303,10 @@ export function EligibilityPlanner() {
                           <div className="relative overflow-hidden rounded-md border border-slate-100 shadow-sm shrink-0 h-5.5 w-8">
                             <img 
                               src={`https://flagcdn.com/w40/${c.code}.png`} 
+                              width={32}
+                              height={22}
+                              loading="lazy"
+                              decoding="async"
                               className="h-full w-full object-cover"
                               alt={`${c.name} Flag`}
                             />

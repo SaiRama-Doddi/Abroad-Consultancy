@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import docImg from "../assets/Document and Verification.jpg";
-import examImg from "../assets/Exam and training.png";
+import docImg from "../assets/Document and Verification.webp";
+import examImg from "../assets/Exam and training.webp";
 import { 
   Target, 
   Globe, 
@@ -177,6 +177,7 @@ function ExpertiseCard({ item }: { item: ExpertiseItem }) {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
           style={{ objectPosition: item.imagePosition || "center" }}
           loading="lazy"
+          decoding="async"
         />
         
         {/* Subtle dark gradient overlay at the bottom of the image for contrast */}
