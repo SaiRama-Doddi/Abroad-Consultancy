@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { 
   GraduationCap, 
   Plane, 
@@ -8,7 +8,6 @@ import {
   Ticket, 
   Landmark,
   ChevronRight,
-  ChevronLeft,
   Sparkles
 } from "lucide-react";
 import { ScrollReveal } from "./ScrollReveal";
@@ -102,131 +101,7 @@ const visaServices = [
   }
 ];
 
-// Custom 3D Parallax repeatable reveal component
-function FeatureCardReveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry && entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1, rootMargin: "50px 0px" }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out lg:[transform-style:preserve-3d] ${className} ${
-        isVisible 
-          ? "opacity-100 translate-y-0 lg:[transform:rotateX(0deg)_scale(1)]" 
-          : "opacity-0 translate-y-4 lg:translate-y-16 lg:[transform:rotateX(12deg)_scale(0.94)]"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-}
-
 export function ServicesSection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const resetPauseTimeout = () => {
-    setIsPaused(true);
-    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
-    pauseTimeoutRef.current = setTimeout(() => {
-      setIsPaused(false);
-    }, 2000);
-  };
-
-  const scrollToCard = (index: number) => {
-    if (scrollRef.current) {
-      const container = scrollRef.current;
-      const cards = container.querySelectorAll('.service-item-card');
-      const targetCard = cards[index] as HTMLElement;
-      if (targetCard) {
-        const targetLeft = targetCard.offsetLeft - container.offsetLeft - (container.clientWidth - targetCard.clientWidth) / 2;
-        container.scrollTo({
-          left: Math.max(0, targetLeft),
-          behavior: 'smooth'
-        });
-      }
-    }
-  };
-
-  // Speed auto-scroll loop for mobile cards (only runs when section is visible in viewport)
-  useEffect(() => {
-    if (typeof window === "undefined" || isPaused) return;
-
-    const interval = setInterval(() => {
-      if (window.innerWidth < 1024 && scrollRef.current) {
-        const container = scrollRef.current;
-        const rect = container.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-
-        setActiveIndex(prev => {
-          const nextIndex = (prev + 1) % visaServices.length;
-          scrollToCard(nextIndex);
-          return nextIndex;
-        });
-      }
-    }, 2000);
-
-    return () => {
-      clearInterval(interval);
-      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
-    };
-  }, [isPaused]);
-
-  const scroll = (direction: 'left' | 'right') => {
-    resetPauseTimeout();
-    const targetIdx = direction === 'left' 
-      ? Math.max(0, activeIndex - 1) 
-      : Math.min(visaServices.length - 1, activeIndex + 1);
-    setActiveIndex(targetIdx);
-    scrollToCard(targetIdx);
-  };
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      const container = scrollRef.current;
-      const cards = container.querySelectorAll('.service-item-card');
-      if (cards.length === 0) return;
-      
-      const containerCenter = container.scrollLeft + container.clientWidth / 2;
-      let closestIdx = 0;
-      let minDistance = Infinity;
-
-      cards.forEach((cardEl, idx) => {
-        const el = cardEl as HTMLElement;
-        const cardCenter = el.offsetLeft + el.offsetWidth / 2;
-        const dist = Math.abs(containerCenter - cardCenter);
-        if (dist < minDistance) {
-          minDistance = dist;
-          closestIdx = idx;
-        }
-      });
-
-      setActiveIndex(closestIdx);
-    }
-  };
-
   const highlightTitle = (title: string) => {
     if (title.includes("Germany")) {
       return (
@@ -273,7 +148,7 @@ export function ServicesSection() {
   };
 
   return (
-    <section id="services" className="bg-[#090e1a] text-white pt-10 sm:pt-16 pb-14 sm:pb-20 relative overflow-hidden border-b border-slate-800">
+    <section id="services" className="bg-[#090e1a] text-white pt-10 sm:pt-16 pb-14 sm:pb-20 relative overflow-hidden border-b border-slate-800 scroll-mt-20 sm:scroll-mt-24">
       {/* Decorative background grid elements */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#e0b76d_1.2px,transparent_1.2px)] [background-size:24px_24px]" />
       
@@ -301,156 +176,91 @@ export function ServicesSection() {
             <p className="mt-3 sm:mt-4.5 text-[0.90rem] sm:text-[1.02rem] text-slate-400 leading-relaxed text-left w-full md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
               McCoy Global Consultancy provides comprehensive solutions, from standard student visa arrangements to tourist visa facilitation across the globe.
             </p>
-
-            {/* Mobile Scroll Controls & Status (Only on small screens) */}
-            <div className="flex lg:hidden items-center justify-between w-full mt-4 pt-2.5 border-t border-slate-800/60">
-              <div className="flex items-center gap-2 text-xs">
-                <span className="font-bold text-[var(--gold)]">{activeIndex + 1}</span>
-                <span className="text-slate-500">/</span>
-                <span className="text-slate-400 font-medium">{visaServices.length}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => scroll('left')}
-                  disabled={activeIndex === 0}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-800 bg-slate-900/90 text-slate-300 disabled:opacity-30 disabled:pointer-events-none hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors active:scale-95 shadow-sm"
-                  aria-label="Previous visa service card"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => scroll('right')}
-                  disabled={activeIndex === visaServices.length - 1}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-800 bg-slate-900/90 text-slate-300 disabled:opacity-30 disabled:pointer-events-none hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors active:scale-95 shadow-sm"
-                  aria-label="Next visa service card"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
           </div>
         </ScrollReveal>
 
-        {/* Visa Services Grid / Mobile Horizontal Snap Scroll */}
-        <div 
-          ref={scrollRef}
-          onScroll={handleScroll}
-          onTouchStart={resetPauseTimeout}
-          onMouseEnter={resetPauseTimeout}
-          className="flex lg:grid lg:grid-cols-2 gap-2.5 sm:gap-8 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 -mx-3 px-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory lg:snap-none scroll-smooth scrollbar-none lg:[perspective:1000px]"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', scrollPadding: '0 calc(50% - 145px)' }}
-        >
-          {visaServices.map((service, index) => {
-            const Icon = service.icon;
-            const isTourOrMap = service.title.toLowerCase().includes("tourism") || service.title.toLowerCase().includes("visitor");
-            const isMobileActive = activeIndex === index;
-            const isHovered = hoveredIndex === index;
-            const hasHover = hoveredIndex !== null;
-            const isOtherHovered = hasHover && !isHovered;
+        {/* Visa Services 1 Card Per Row Seamless Stack */}
+        <ScrollReveal direction="up" delay={150}>
+          <div className="rounded-xl sm:rounded-2xl lg:rounded-3xl border border-slate-800/80 bg-slate-950/60 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-sm divide-y divide-slate-800/80">
+            {visaServices.map((service, index) => {
+              const Icon = service.icon;
+              const isTourOrMap = service.title.toLowerCase().includes("tourism") || service.title.toLowerCase().includes("visitor");
 
-            return (
-              <FeatureCardReveal
-                key={service.title}
-                delay={100 + index * 60}
-                className={`service-item-card shrink-0 w-[76vw] max-w-[290px] sm:max-w-[420px] lg:w-auto lg:shrink snap-center lg:snap-align-none flex lg:[transform-style:preserve-3d] transition-all duration-500 ${
-                  isMobileActive ? 'z-30' : 'z-10'
-                } ${
-                  isHovered ? 'lg:z-40' : isOtherHovered ? 'lg:z-10' : 'lg:z-20'
-                }`}
-              >
+              return (
                 <div
-                  onClick={() => {
-                    setActiveIndex(index);
-                    scrollToCard(index);
-                    handleServiceClick(service);
-                  }}
-                  onMouseEnter={() => {
-                    resetPauseTimeout();
-                    setHoveredIndex(index);
-                  }}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  className={`group relative flex flex-col justify-between rounded-xl sm:rounded-3xl border p-3.5 sm:p-7 lg:p-8 transition-all duration-500 overflow-hidden w-full lg:[transform-style:preserve-3d] cursor-pointer select-none ${
-                    isMobileActive
-                      ? 'scale-100 opacity-100 z-30 brightness-100 shadow-[0_15px_40px_rgba(224,183,109,0.3)] border-[var(--gold)]/80 bg-slate-900/95'
-                      : 'scale-[0.84] opacity-35 z-10 brightness-[0.45] saturate-50 blur-[0.2px] border-slate-800/40 bg-slate-950/20'
-                  } ${
-                    isHovered
-                      ? 'lg:scale-[1.04] lg:opacity-100 lg:z-40 lg:shadow-[0_30px_70px_rgba(0,0,0,0.8),0_15px_35px_rgba(184,123,44,0.25)] lg:border-[var(--gold)]/80 lg:bg-slate-900/95 lg:[transform:rotateX(2deg)_translateZ(30px)]'
-                      : isOtherHovered
-                      ? 'lg:scale-[0.96] lg:opacity-40 lg:z-10 lg:blur-[0.5px] lg:brightness-75 lg:bg-slate-950/20 lg:[transform:scale(0.96)_translateZ(-20px)]'
-                      : 'lg:scale-100 lg:opacity-100 lg:z-20 lg:bg-slate-950/40 lg:border-slate-800/80'
-                  }`}
+                  key={service.title}
+                  onClick={() => handleServiceClick(service)}
+                  className="group relative flex flex-col justify-between p-3.5 sm:p-5 lg:p-6 transition-all duration-300 cursor-pointer select-none bg-slate-950/40 hover:bg-slate-900/80 overflow-hidden"
                 >
-                  {/* Top gold bar accent on hover */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-500 z-10" />
+                  {/* Left gold accent bar on hover */}
+                  <div className="absolute top-0 bottom-0 left-0 w-1 bg-transparent group-hover:bg-[var(--gold)] transition-colors duration-300 z-20" />
 
-                  {/* Huge background progress number - lifts in 3D */}
-                  <div className="absolute right-3 sm:right-6 bottom-2 sm:bottom-5 text-4xl sm:text-7xl font-black select-none pointer-events-none font-display z-0 text-slate-800/25 group-hover:text-[var(--gold)]/10 transition-colors duration-500 [transform:translateZ(25px)]">
+                  {/* Subtle background progress number watermark */}
+                  <div className="absolute right-3 sm:right-6 bottom-2 sm:bottom-3 text-3xl sm:text-6xl lg:text-7xl font-black select-none pointer-events-none font-display z-0 text-slate-800/20 group-hover:text-[var(--gold)]/10 transition-colors duration-300">
                     {String(index + 1).padStart(2, '0')}
                   </div>
 
                   {/* Accent gold light glow on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
 
-                  <div className="flex flex-col md:flex-row gap-3 sm:gap-6 items-stretch w-full h-full relative z-10">
-                    {/* Left panel: text and details - lifts in 3D */}
-                    <div className="flex flex-col justify-between flex-1 pr-0 md:pr-4 [transform:translateZ(15px)]">
+                  <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-5 lg:gap-7 items-stretch w-full relative z-10">
+                    {/* Left/Main content section */}
+                    <div className="flex flex-col justify-between flex-1 min-w-0">
                       <div>
-                        {/* Icon & Title */}
-                        <div className="flex items-center gap-2.5 sm:gap-4 mb-2 sm:mb-5">
-                          <div className={`flex h-8 w-8 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-lg sm:rounded-2xl border ${service.bg} ${service.color} transition-all duration-500 shadow-sm`}>
-                            <Icon className="h-4 w-4 sm:h-5.5 sm:w-5.5" />
+                        {/* Icon & Title Row */}
+                        <div className="flex items-center gap-2.5 sm:gap-3.5 mb-1.5 sm:mb-2">
+                          <div className={`flex h-7 w-7 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg sm:rounded-xl border ${service.bg} ${service.color} transition-all duration-300 shadow-sm`}>
+                            <Icon className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
                           </div>
-                          <h3 className="font-display text-sm sm:text-xl font-black text-white group-hover:text-[var(--gold)] transition-colors duration-300 tracking-tight leading-snug">
+                          <h3 className="font-display text-sm sm:text-lg lg:text-xl font-bold text-white group-hover:text-[var(--gold)] transition-colors duration-300 tracking-tight leading-tight">
                             {highlightTitle(service.title)}
                           </h3>
                         </div>
 
                         {/* Description */}
-                        <p className="text-[0.70rem] sm:text-[0.82rem] leading-snug sm:leading-relaxed text-slate-300 mb-2 sm:mb-6 text-justify line-clamp-2 sm:line-clamp-none">
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-4xl mb-2.5 sm:mb-3">
                           {service.description}
                         </p>
 
-                        {/* Features List (Compact on mobile) */}
-                        <ul className="space-y-1.5 sm:space-y-3">
-                          {service.features.map((feat, fIdx) => (
-                            <li 
+                        {/* All Features (Responsive 1-col on tiny mobile, 2-col on mobile, 4-col on tablet/desktop) */}
+                        <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-4 gap-1.5 sm:gap-2 mb-2.5 sm:mb-3">
+                          {service.features.map((feat) => (
+                            <div 
                               key={feat} 
-                              className={`flex items-start gap-2 sm:gap-3 group/li ${fIdx >= 2 ? "hidden sm:flex" : "flex"}`}
+                              className="flex items-center gap-1.5 text-[0.68rem] sm:text-xs text-slate-300 bg-slate-900/80 border border-slate-800/80 px-2 py-1 rounded-md group-hover:border-[var(--gold)]/30 transition-colors"
                             >
-                              <div className="flex h-3.5 w-3.5 sm:h-5 sm:w-5 shrink-0 items-center justify-center rounded-full bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/15 transition-all duration-300 group-hover/li:bg-[var(--gold)] group-hover/li:text-black mt-0.5 shadow-sm">
-                                <CheckCircle2 className="h-2 w-2 sm:h-3 sm:w-3" />
-                              </div>
-                              <span className="text-[0.66rem] sm:text-[0.82rem] font-bold text-slate-300 transition-colors duration-300 group-hover/li:text-white leading-tight sm:leading-snug line-clamp-1 sm:line-clamp-none">
-                                {feat}
-                              </span>
-                            </li>
+                              <CheckCircle2 className="h-3 w-3 text-[var(--gold)] shrink-0" />
+                              <span className="font-medium truncate">{feat}</span>
+                            </div>
                           ))}
-                        </ul>
+                        </div>
                       </div>
 
                       {/* Bottom Action Details Link */}
                       <div 
-                        className="mt-3 sm:mt-8 pt-2 sm:pt-4 border-t border-slate-800 flex items-center justify-between text-[0.62rem] sm:text-[0.68rem] font-extrabold uppercase tracking-wider text-[var(--gold)] group-hover:text-[var(--gold)]/90"
+                        className="mt-auto pt-2 border-t border-slate-800/60 flex items-center justify-between text-[0.68rem] sm:text-xs font-bold uppercase tracking-wider text-[var(--gold)] group-hover:text-amber-300"
                       >
-                        <span>{isTourOrMap ? "Explore Destinations" : "Enquire Details"}</span>
-                        <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                        <span className="flex items-center gap-1">
+                          {isTourOrMap ? "Explore Destinations" : "Enquire Details"}
+                        </span>
+                        <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                       </div>
                     </div>
 
-                    {/* Right panel: Image wrapper - lifts in 3D */}
-                    <div className="relative w-full md:w-[160px] lg:w-[220px] h-[95px] sm:h-[180px] md:h-auto rounded-lg sm:rounded-2xl overflow-hidden shrink-0 border border-slate-800 group-hover:border-[var(--gold)]/40 transition-colors duration-500 shadow-sm self-stretch flex [transform:translateZ(20px)] mt-2 md:mt-0">
+                    {/* Right panel: Side photo thumbnail (stacked above text on mobile, on right side on sm:) */}
+                    <div className="relative w-full sm:w-44 md:w-56 lg:w-64 h-32 sm:h-auto min-h-[120px] rounded-lg sm:rounded-xl overflow-hidden shrink-0 border border-slate-800 group-hover:border-[var(--gold)]/40 transition-colors shadow-sm self-stretch order-first sm:order-last">
                       <img 
                         src={service.image} 
                         alt={service.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
                       />
-                      {/* Top-Right Country Flag Badge overlay */}
+                      {/* Country Flag Badge overlay */}
                       {service.countryCode && (
-                        <div className="absolute top-2 sm:top-3 right-2 sm:right-3 z-30 transition-all duration-500 group-hover:scale-110 shadow-lg border border-slate-800 rounded-lg overflow-hidden shrink-0 group-hover:border-[var(--gold)]">
+                        <div className="absolute top-2 right-2 z-20 shadow-md border border-slate-800 rounded overflow-hidden">
                           <img
                             src={`https://flagcdn.com/w80/${service.countryCode}.png`}
-                            className="h-5 w-7.5 sm:h-8 sm:w-12 object-cover"
+                            className="h-4 w-6 sm:h-5 sm:w-7.5 object-cover"
                             alt="Country Flag"
                           />
                         </div>
@@ -458,33 +268,10 @@ export function ServicesSection() {
                     </div>
                   </div>
                 </div>
-              </FeatureCardReveal>
-            );
-          })}
-          
-          {/* End spacer so the last card has trailing breathing room and is never cropped */}
-          <div className="shrink-0 w-3 lg:hidden pointer-events-none" aria-hidden="true" />
-        </div>
-
-        {/* Mobile Pagination Indicator Dots */}
-        <div className="flex lg:hidden justify-center items-center gap-1.5 mt-3">
-          {visaServices.map((_, dotIdx) => (
-            <button
-              key={dotIdx}
-              onClick={() => {
-                resetPauseTimeout();
-                setActiveIndex(dotIdx);
-                scrollToCard(dotIdx);
-              }}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                dotIdx === activeIndex 
-                  ? 'w-6 bg-[var(--gold)] shadow-[0_0_8px_rgba(224,183,109,0.5)]' 
-                  : 'w-1.5 bg-slate-800'
-              }`}
-              aria-label={`Go to service slide ${dotIdx + 1}`}
-            />
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        </ScrollReveal>
 
       </div>
     </section>
