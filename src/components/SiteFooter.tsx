@@ -1,11 +1,8 @@
-import { toast } from "sonner";
 import { 
   MapPin, 
   Phone, 
   Clock, 
-  Send, 
-  Plane, 
-  Mail
+  Plane 
 } from "lucide-react";
 
 const exploreLinks = [
@@ -311,45 +308,6 @@ export function SiteFooter() {
 
             </div>
           </div>
-        </div>
-
-        {/* =========================================================================
-            NEWSLETTER SECTION: Stay Updated Panel
-            ========================================================================= */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 py-6 border-b border-slate-800/85 text-left relative z-10">
-          {/* Stay Updated Title */}
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-2xl bg-sky-500/15 text-sky-400 border border-sky-400/35 shadow-[0_0_15px_rgba(56,189,248,0.25)]">
-              <Mail className="h-5 w-5" />
-            </div>
-            <div>
-              <h4 className="font-display text-sm font-black uppercase text-white tracking-widest">Stay Updated</h4>
-              <p className="text-xs font-medium text-slate-400 mt-0.5">Subscribe to get the latest overseas visa updates and alerts.</p>
-            </div>
-          </div>
-
-          {/* Form Box */}
-          <form 
-            onSubmit={(e) => {
-              e.preventDefault();
-              toast.success("Subscribed successfully! Thank you for staying updated.");
-            }}
-            className="flex flex-col sm:flex-row items-stretch w-full lg:w-auto gap-2.5 sm:gap-3"
-          >
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
-              className="bg-slate-900/70 border border-slate-800 text-white placeholder:text-slate-500 rounded-xl px-4 py-3 sm:py-2.5 w-full lg:w-80 focus:border-[var(--gold)] focus:outline-none transition-all duration-300 font-semibold text-sm"
-              required
-            />
-            <button 
-              type="submit" 
-              className="bg-[var(--gold)] hover:bg-[var(--gold)]/90 text-slate-950 px-6 py-3 sm:py-2.5 rounded-xl font-bold uppercase tracking-widest text-[0.72rem] flex items-center justify-center gap-2 cursor-pointer transition-transform duration-300 hover:scale-[1.02] shadow-sm hover:shadow active:scale-95 shrink-0"
-            >
-              <span>Subscribe</span>
-              <Send className="h-3.5 w-3.5" />
-            </button>
-          </form>
         </div>
 
         {/* =========================================================================

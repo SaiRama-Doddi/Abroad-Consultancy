@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Calendar, Globe, FileText, Shield, Handshake } from "lucide-react";
+import mainHeroVideo from "../assets/Main Hero Video.mp4";
 
 function renderLetterByLetter(
   text: string,
@@ -280,14 +281,14 @@ export function HeroSection() {
       id="home"
       className="relative flex min-h-[72vh] lg:min-h-[68vh] items-center overflow-hidden pt-32 sm:pt-36 lg:pt-36 pb-4 sm:pb-6 bg-[#060a15]"
     >
-      {/* Background Video (Hero BG video) */}
+      {/* Background Video (Main Hero Video) */}
       <video
         className="absolute inset-0 h-full w-full object-cover object-center animate-slow-pan"
         style={{
           opacity: 0.85,
           maxHeight: "640px"
         }}
-        src="/hero-bg-video.mp4"
+        src={mainHeroVideo}
         autoPlay
         muted
         loop
