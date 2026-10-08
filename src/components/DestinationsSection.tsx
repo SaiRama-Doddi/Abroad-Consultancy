@@ -10,8 +10,6 @@ import {
   Coins, 
   Sparkles, 
   FileText, 
-  Mail, 
-  ExternalLink,
   MessageCircle,
   Plane,
   Home,
