@@ -868,7 +868,7 @@ export function DestinationsSection() {
         {/* Mobile View: Single Line Continuous Horizontal Infinite Scrolling with Pause-on-Touch */}
         <div className="block md:hidden">
           <ScrollReveal direction="up" delay={200}>
-            <div className="relative w-full -mx-6 px-6 overflow-hidden py-5 -my-2">
+            <div className="relative w-full -mx-6 px-6 overflow-hidden py-6 -my-2">
               {/* Subtle edge fade gradients */}
               <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
               <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />
@@ -885,7 +885,7 @@ export function DestinationsSection() {
                       className="w-[180px] xs:w-[205px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
                       title={`Tap to view ${country.name} Guide`}
                     >
-                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[1.75rem] overflow-hidden border border-slate-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] group-hover:shadow-[0_14px_32px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
+                      <div className="relative flex flex-col justify-end aspect-[4/5] w-full rounded-2xl sm:rounded-[1.75rem] overflow-hidden border border-slate-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] group-hover:shadow-[0_14px_32px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
                         {/* Background Destination Flag / Map visual */}
                         <img
                           src={`https://flagcdn.com/w640/${country.code}.png`}
@@ -918,7 +918,7 @@ export function DestinationsSection() {
 
                         {/* Country Pill Badge Overlay at bottom */}
                         <div className="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md border border-slate-100 min-w-[95px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
-                          <div className="h-4.5 w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                          <div className="h-5 w-5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
                             <img
                               src={`https://flagcdn.com/w80/${country.code}.png`}
                               className="h-full w-full object-cover scale-125"
@@ -944,7 +944,7 @@ export function DestinationsSection() {
                       className="w-[180px] xs:w-[205px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
                       title={`Tap to view ${country.name} Guide`}
                     >
-                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[1.75rem] overflow-hidden border border-slate-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] group-hover:shadow-[0_14px_32px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
+                      <div className="relative flex flex-col justify-end aspect-[4/5] w-full rounded-2xl sm:rounded-[1.75rem] overflow-hidden border border-slate-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] group-hover:shadow-[0_14px_32px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
                         <img
                           src={`https://flagcdn.com/w640/${country.code}.png`}
                           alt={`${country.name} Flag`}
@@ -973,7 +973,7 @@ export function DestinationsSection() {
                         </div>
 
                         <div className="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md border border-slate-100 min-w-[95px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
-                          <div className="h-4.5 w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                          <div className="h-5 w-5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
                             <img
                               src={`https://flagcdn.com/w80/${country.code}.png`}
                               className="h-full w-full object-cover scale-125"
