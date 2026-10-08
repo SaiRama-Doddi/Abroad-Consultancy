@@ -870,7 +870,7 @@ export function DestinationsSection() {
         {/* Mobile View: Single Line Continuous Horizontal Infinite Scrolling with Pause-on-Touch */}
         <div className="block md:hidden">
           <ScrollReveal direction="up" delay={200}>
-            <div className="relative w-full -mx-6 px-6 overflow-hidden py-4 -my-2">
+            <div className="relative w-full -mx-6 px-6 overflow-hidden py-5 -my-2">
               {/* Subtle edge fade gradients */}
               <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
               <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />
@@ -878,19 +878,19 @@ export function DestinationsSection() {
               {/* Single Continuous Scrolling Track */}
               <div className="flex animate-infinite-scroll-left-mobile hover:[animation-play-state:paused] active:[animation-play-state:paused] w-max select-none py-2">
                 {/* Track 1 */}
-                <div className="flex gap-2.5 pr-2.5 shrink-0">
+                <div className="flex gap-3 sm:gap-4 pr-3 sm:pr-4 shrink-0">
                   {destinations.map((country) => (
                     <button
                       key={`${country.code}-mobile-track1`}
                       type="button"
                       onClick={() => setSelectedCountry(country)}
-                      className="w-[145px] xs:w-[165px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
+                      className="w-[180px] xs:w-[205px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
                       title={`Tap to view ${country.name} Guide`}
                     >
-                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_28px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
+                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[1.75rem] overflow-hidden border border-slate-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] group-hover:shadow-[0_14px_32px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
                         {/* Background Destination Flag / Map visual */}
                         <img
-                          src={`https://flagcdn.com/w320/${country.code}.png`}
+                          src={`https://flagcdn.com/w640/${country.code}.png`}
                           alt={`${country.name} Flag`}
                           className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
                           loading="lazy"
@@ -898,12 +898,12 @@ export function DestinationsSection() {
 
                         {/* Total Course Badge or Key Tag */}
                         {country.totalCourse ? (
-                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2 py-0.5 text-[0.55rem] font-bold shadow-md border border-white/20">
-                            <Sparkles className="h-2 w-2 text-amber-300" />
+                          <div className="absolute top-2.5 left-2.5 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2.5 py-1 text-[0.58rem] sm:text-[0.62rem] font-bold shadow-md border border-white/20">
+                            <Sparkles className="h-2.5 w-2.5 text-amber-300" />
                             <span>{country.totalCourse} Course</span>
                           </div>
                         ) : (
-                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2 py-0.5 text-[0.52rem] font-black uppercase tracking-wider border border-amber-400/30">
+                          <div className="absolute top-2.5 left-2.5 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2.5 py-1 text-[0.56rem] font-black uppercase tracking-wider border border-amber-400/30">
                             <span>{country.region || "Global"}</span>
                           </div>
                         )}
@@ -913,21 +913,21 @@ export function DestinationsSection() {
 
                         {/* Hover & Touch Overlay Hint */}
                         <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 bg-slate-950/25 backdrop-blur-[1px]">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.58rem] font-extrabold uppercase tracking-wider text-white shadow-md">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-3 py-1 text-[0.62rem] font-extrabold uppercase tracking-wider text-white shadow-md">
                             View Guide
                           </span>
                         </div>
 
                         {/* Country Pill Badge Overlay at bottom */}
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md border border-slate-100 min-w-[85px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
-                          <div className="h-3.5 w-3.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                        <div className="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md border border-slate-100 min-w-[95px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
+                          <div className="h-4.5 w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
                             <img
-                              src={`https://flagcdn.com/w40/${country.code}.png`}
+                              src={`https://flagcdn.com/w80/${country.code}.png`}
                               className="h-full w-full object-cover scale-125"
                               alt={`${country.name} Flag`}
                             />
                           </div>
-                          <span className="text-[0.58rem] font-black text-slate-800 uppercase tracking-wider truncate">
+                          <span className="text-[0.64rem] sm:text-[0.68rem] font-black text-slate-800 uppercase tracking-wider truncate">
                             {country.shortName || country.name}
                           </span>
                         </div>
@@ -937,30 +937,30 @@ export function DestinationsSection() {
                 </div>
 
                 {/* Track 2 (Clone for Infinite Loop) */}
-                <div className="flex gap-2.5 pr-2.5 shrink-0" aria-hidden="true">
+                <div className="flex gap-3 sm:gap-4 pr-3 sm:pr-4 shrink-0" aria-hidden="true">
                   {destinations.map((country) => (
                     <button
                       key={`${country.code}-mobile-track2`}
                       type="button"
                       onClick={() => setSelectedCountry(country)}
-                      className="w-[145px] xs:w-[165px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
+                      className="w-[180px] xs:w-[205px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
                       title={`Tap to view ${country.name} Guide`}
                     >
-                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_28px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
+                      <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[1.75rem] overflow-hidden border border-slate-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.08)] group-hover:shadow-[0_14px_32px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
                         <img
-                          src={`https://flagcdn.com/w320/${country.code}.png`}
+                          src={`https://flagcdn.com/w640/${country.code}.png`}
                           alt={`${country.name} Flag`}
                           className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
                           loading="lazy"
                         />
 
                         {country.totalCourse ? (
-                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2 py-0.5 text-[0.55rem] font-bold shadow-md border border-white/20">
-                            <Sparkles className="h-2 w-2 text-amber-300" />
+                          <div className="absolute top-2.5 left-2.5 z-20 inline-flex items-center gap-1 rounded-full bg-emerald-600/95 text-white backdrop-blur-md px-2.5 py-1 text-[0.58rem] sm:text-[0.62rem] font-bold shadow-md border border-white/20">
+                            <Sparkles className="h-2.5 w-2.5 text-amber-300" />
                             <span>{country.totalCourse} Course</span>
                           </div>
                         ) : (
-                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2 py-0.5 text-[0.52rem] font-black uppercase tracking-wider border border-amber-400/30">
+                          <div className="absolute top-2.5 left-2.5 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2.5 py-1 text-[0.56rem] font-black uppercase tracking-wider border border-amber-400/30">
                             <span>{country.region || "Global"}</span>
                           </div>
                         )}
@@ -969,20 +969,20 @@ export function DestinationsSection() {
 
                         {/* Hover & Touch Overlay Hint */}
                         <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 bg-slate-950/25 backdrop-blur-[1px]">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.58rem] font-extrabold uppercase tracking-wider text-white shadow-md">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-3 py-1 text-[0.62rem] font-extrabold uppercase tracking-wider text-white shadow-md">
                             View Guide
                           </span>
                         </div>
 
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md border border-slate-100 min-w-[85px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
-                          <div className="h-3.5 w-3.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
+                        <div className="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md border border-slate-100 min-w-[95px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
+                          <div className="h-4.5 w-4.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
                             <img
-                              src={`https://flagcdn.com/w40/${country.code}.png`}
+                              src={`https://flagcdn.com/w80/${country.code}.png`}
                               className="h-full w-full object-cover scale-125"
                               alt={`${country.name} Flag`}
                             />
                           </div>
-                          <span className="text-[0.58rem] font-black text-slate-800 uppercase tracking-wider truncate">
+                          <span className="text-[0.64rem] sm:text-[0.68rem] font-black text-slate-800 uppercase tracking-wider truncate">
                             {country.shortName || country.name}
                           </span>
                         </div>
@@ -995,211 +995,6 @@ export function DestinationsSection() {
           </ScrollReveal>
         </div>
 
-        {/* ========================================================================= */}
-        {/* ROW 2: Tourism & Visitor Visa (Right to Left Scrolling)                   */}
-        {/* ========================================================================= */}
-        <div className="mt-8 sm:mt-12 pt-2">
-          {/* Side Heading: Tourism & Visitor Visa */}
-          <ScrollReveal direction="up" delay={100}>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#0b1224] border border-amber-400/50 px-4 py-1.5 text-[0.72rem] sm:text-[0.75rem] font-black uppercase tracking-[0.22em] text-amber-300 shadow-[0_4px_16px_rgba(11,18,36,0.18)] shrink-0">
-                <Plane className="h-3.5 w-3.5 shrink-0 animate-pulse text-amber-400 fill-amber-400/20" />
-                <h3 className="text-amber-300 tracking-[0.22em] font-extrabold text-[0.72rem] sm:text-[0.75rem] uppercase m-0 p-0">Tourism & Visitor Visa</h3>
-              </div>
-              <div className="h-px flex-1 bg-gradient-to-r from-amber-400/40 via-slate-200 to-transparent" />
-            </div>
-          </ScrollReveal>
-
-          {/* Desktop/Laptop View: Tourism Row (Right to Left Scrolling) */}
-          <div className="hidden md:block">
-            <ScrollReveal direction="up" delay={200}>
-              <div className="relative w-full -mx-6 px-6 overflow-hidden py-6 -my-4">
-                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
-                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />
-
-                <div className="flex animate-infinite-scroll-right hover:[animation-play-state:paused] w-max select-none py-3">
-                  {/* Track 1 */}
-                  <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0">
-                    {touristDestinations.map((country) => (
-                      <button
-                        key={`${country.code}-tourist-track1`}
-                        type="button"
-                        onClick={() => setSelectedCountry(country)}
-                        className="w-[180px] sm:w-[220px] md:w-[280px] shrink-0 text-left focus:outline-none group cursor-pointer relative hover:z-30 p-1"
-                        title={`Click to view ${country.name} Tourist Visa Guide`}
-                      >
-                        <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-slate-200/80 shadow-[0_8px_25px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_45px_rgba(184,123,44,0.25)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-2">
-                          <img 
-                            src={`https://flagcdn.com/w640/${country.code}.png`} 
-                            alt={`${country.name} Flag`} 
-                            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2.5 py-1 text-[0.58rem] font-black uppercase tracking-wider border border-amber-400/30">
-                            <span>Tourist Visa</span>
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/75" />
-                          <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-slate-950/20 backdrop-blur-[1px]">
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gold)] px-3.5 py-1 text-[0.68rem] font-extrabold uppercase tracking-widest text-white shadow-lg">
-                              View Guide
-                            </span>
-                          </div>
-                          <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full shadow-lg border border-slate-100 min-w-[100px] sm:min-w-[155px] justify-center z-20 transition-transform duration-300 group-hover:scale-105">
-                            <div className="h-4.5 w-4.5 sm:h-5.5 sm:w-5.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
-                              <img 
-                                src={`https://flagcdn.com/w40/${country.code}.png`} 
-                                className="h-full w-full object-cover scale-125" 
-                                alt={`${country.name} Flag`} 
-                              />
-                            </div>
-                            <span className="text-[0.6rem] sm:text-[0.72rem] font-black text-slate-800 uppercase tracking-wider">{country.shortName || country.name}</span>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Track 2 */}
-                  <div className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0">
-                    {touristDestinations.map((country) => (
-                      <button
-                        key={`${country.code}-tourist-track2`}
-                        type="button"
-                        onClick={() => setSelectedCountry(country)}
-                        className="w-[180px] sm:w-[220px] md:w-[280px] shrink-0 text-left focus:outline-none group cursor-pointer relative hover:z-30 p-1"
-                        title={`Click to view ${country.name} Tourist Visa Guide`}
-                      >
-                        <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl sm:rounded-[2rem] overflow-hidden border border-slate-200/80 shadow-[0_8px_25px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_45px_rgba(184,123,44,0.25)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-2">
-                          <img 
-                            src={`https://flagcdn.com/w640/${country.code}.png`} 
-                            alt={`${country.name} Flag`} 
-                            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2.5 py-1 text-[0.58rem] font-black uppercase tracking-wider border border-amber-400/30">
-                            <span>Tourist Visa</span>
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/75" />
-                          <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-slate-950/20 backdrop-blur-[1px]">
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gold)] px-3.5 py-1 text-[0.68rem] font-extrabold uppercase tracking-widest text-white shadow-lg">
-                              View Guide
-                            </span>
-                          </div>
-                          <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full shadow-lg border border-slate-100 min-w-[100px] sm:min-w-[155px] justify-center z-20 transition-transform duration-300 group-hover:scale-105">
-                            <div className="h-4.5 w-4.5 sm:h-5.5 sm:w-5.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
-                              <img 
-                                src={`https://flagcdn.com/w40/${country.code}.png`} 
-                                className="h-full w-full object-cover scale-125" 
-                                alt={`${country.name} Flag`} 
-                              />
-                            </div>
-                            <span className="text-[0.6rem] sm:text-[0.72rem] font-black text-slate-800 uppercase tracking-wider">{country.shortName || country.name}</span>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-
-          {/* Mobile View: Tourism Row (Right to Left Scrolling) */}
-          <div className="block md:hidden">
-            <ScrollReveal direction="up" delay={200}>
-              <div className="relative w-full -mx-6 px-6 overflow-hidden py-4 -my-2">
-                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-20" />
-                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-20" />
-
-                <div className="flex animate-infinite-scroll-right-mobile hover:[animation-play-state:paused] active:[animation-play-state:paused] w-max select-none py-2">
-                  {/* Track 1 */}
-                  <div className="flex gap-2.5 pr-2.5 shrink-0">
-                    {touristDestinations.map((country) => (
-                      <button
-                        key={`${country.code}-tourist-mobile-track1`}
-                        type="button"
-                        onClick={() => setSelectedCountry(country)}
-                        className="w-[145px] xs:w-[165px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
-                        title={`Tap to view ${country.name} Tourist Visa Guide`}
-                      >
-                        <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_28px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
-                          <img
-                            src={`https://flagcdn.com/w320/${country.code}.png`}
-                            alt={`${country.name} Flag`}
-                            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                            loading="lazy"
-                          />
-                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2 py-0.5 text-[0.52rem] font-black uppercase tracking-wider border border-amber-400/30">
-                            <span>Tourist Visa</span>
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/80" />
-                          <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 bg-slate-950/25 backdrop-blur-[1px]">
-                            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.58rem] font-extrabold uppercase tracking-wider text-white shadow-md">
-                              View Guide
-                            </span>
-                          </div>
-                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md border border-slate-100 min-w-[85px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
-                            <div className="h-3.5 w-3.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
-                              <img
-                                src={`https://flagcdn.com/w40/${country.code}.png`}
-                                className="h-full w-full object-cover scale-125"
-                                alt={`${country.name} Flag`}
-                              />
-                            </div>
-                            <span className="text-[0.58rem] font-black text-slate-800 uppercase tracking-wider truncate">
-                              {country.shortName || country.name}
-                            </span>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Track 2 */}
-                  <div className="flex gap-2.5 pr-2.5 shrink-0" aria-hidden="true">
-                    {touristDestinations.map((country) => (
-                      <button
-                        key={`${country.code}-tourist-mobile-track2`}
-                        type="button"
-                        onClick={() => setSelectedCountry(country)}
-                        className="w-[145px] xs:w-[165px] shrink-0 text-left focus:outline-none group cursor-pointer active:scale-95 transition-transform relative hover:z-30 p-0.5"
-                        title={`Tap to view ${country.name} Tourist Visa Guide`}
-                      >
-                        <div className="relative flex flex-col justify-end aspect-square w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-[0_4px_16px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_28px_rgba(184,123,44,0.22)] group-hover:border-[var(--gold)]/60 transition-all duration-300 bg-slate-900 group-hover:-translate-y-1.5">
-                          <img
-                            src={`https://flagcdn.com/w320/${country.code}.png`}
-                            alt={`${country.name} Flag`}
-                            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                            loading="lazy"
-                          />
-                          <div className="absolute top-2 left-2 z-20 inline-flex items-center gap-1 rounded-full bg-slate-950/70 text-amber-300 backdrop-blur-md px-2 py-0.5 text-[0.52rem] font-black uppercase tracking-wider border border-amber-400/30">
-                            <span>Tourist Visa</span>
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent z-10 transition-opacity duration-300 group-hover:from-slate-950/80" />
-                          <div className="absolute inset-0 z-15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300 bg-slate-950/25 backdrop-blur-[1px]">
-                            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.58rem] font-extrabold uppercase tracking-wider text-white shadow-md">
-                              View Guide
-                            </span>
-                          </div>
-                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-md border border-slate-100 min-w-[85px] max-w-[92%] justify-center z-20 transition-transform duration-300 group-hover:scale-105 group-hover:border-amber-300">
-                            <div className="h-3.5 w-3.5 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center shrink-0 shadow-inner">
-                              <img
-                                src={`https://flagcdn.com/w40/${country.code}.png`}
-                                className="h-full w-full object-cover scale-125"
-                                alt={`${country.name} Flag`}
-                              />
-                            </div>
-                            <span className="text-[0.58rem] font-black text-slate-800 uppercase tracking-wider truncate">
-                              {country.shortName || country.name}
-                            </span>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
 
       </div>
 
